@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Democracia, Ciudadanía y Globalización 2.0 | Contadores del Futuro</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f3f4f6;
+            --white: #ffffff;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+        
+        /* Hero Header */
+        .hero {
+            background: var(--gradient-1);
+            color: var(--white);
+            padding: 80px 20px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        
+        .stat-box {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* Tab Navigation */
+        .tab-container {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .tabs {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+        
+        .tab-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 20px 15px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .tab-btn:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            background: var(--light);
+        }
+        
+        .tab-icon {
+            font-size: 1.3rem;
+        }
+        
+        /* Content Sections */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-alt {
+            background: var(--white);
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--primary-dark);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-1);
+            border-radius: 2px;
+        }
+        
+        .section h3 {
+            font-size: 1.8rem;
+            margin: 40px 0 20px;
+            color: var(--primary);
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+        }
+        
+        .card-danger {
+            border-left-color: var(--danger);
+        }
+        
+        .card-success {
+            border-left-color: var(--secondary);
+        }
+        
+        .card-warning {
+            border-left-color: var(--accent);
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .stat-card-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Comparison Table */
+        .comparison {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin: 30px 0;
+        }
+        
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid var(--light);
+        }
+        
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+        
+        .comparison-cell {
+            padding: 20px;
+        }
+        
+        .comparison-header {
+            background: var(--primary);
+            color: var(--white);
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .comparison-good {
+            background: rgba(16, 185, 129, 0.1);
+        }
+        
+        .comparison-bad {
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        /* Code Blocks */
+        .code-block {
+            background: var(--dark);
+            color: #10b981;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            overflow-x: auto;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+        }
+        
+        /* Lists */
+        .value-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .value-list li {
+            padding: 15px 20px;
+            margin: 10px 0;
+            background: var(--white);
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .value-list li strong {
+            color: var(--primary);
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        /* Process Flow */
+        .flow-step {
+            background: var(--white);
+            padding: 25px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary);
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+        
+        .flow-step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            box-shadow: var(--shadow);
+        }
+        
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: var(--gradient-1);
+            color: var(--white);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Checklist */
+        .checklist {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin: 20px 0;
+        }
+        
+        .checklist-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: var(--light);
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            margin-top: 3px;
+            cursor: pointer;
+        }
+        
+        /* Quote */
+        .quote {
+            background: var(--gradient-2);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            font-size: 1.3rem;
+            font-style: italic;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .quote-author {
+            margin-top: 15px;
+            font-size: 1rem;
+            opacity: 0.9;
+            font-style: normal;
+        }
+        
+        /* Commitment Box */
+        .commitment-box {
+            background: var(--white);
+            border: 3px solid var(--primary);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .commitment-box h3 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+        
+        .signature-line {
+            border-bottom: 2px solid var(--dark);
+            margin: 30px 0 10px;
+            padding-bottom: 5px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                min-width: 100%;
+            }
+            
+            .comparison-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Progress indicator */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--gradient-1);
+            width: 0%;
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Hero Header -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>🎯 DEMOCRACIA, CIUDADANÍA Y GLOBALIZACIÓN 2.0</h1>
+            <p class="hero-subtitle">El Superpoder del Contador Ético | Formando Guardianes de la Transparencia</p>
+            
+            <div class="hero-stats">
+                <div class="stat-box">
+                    <span class="stat-number">32/100</span>
+                    <span class="stat-label">Índice de Corrupción Ecuador</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">121°</span>
+                    <span class="stat-label">Posición Mundial</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">$94M</span>
+                    <span class="stat-label">Caso Triple A (2024)</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Tab Navigation -->
+    <div class="tab-container">
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'tab1')">
+                <span class="tab-icon">🚀</span>
+                <span>Bienvenida</span>
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'tab2')">
+                <span class="tab-icon">✅</span>
+                <span>Triple Check</span>
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'tab3')">
+                <span class="tab-icon">🧠</span>
+                <span>Matriz Moral</span>
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'tab4')">
+                <span class="tab-icon">💎</span>
+                <span>Valores</span>
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'tab5')">
+                <span class="tab-icon">⚖️</span>
+                <span>Entender vs Aceptar</span>
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'tab6')">
+                <span class="tab-icon">🌍</span>
+                <span>Globalización</span>
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'tab7')">
+                <span class="tab-icon">🌏</span>
+                <span>Valores Globales</span>
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'tab8')">
+                <span class="tab-icon">📋</span>
+                <span>Plan de Acción</span>
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'tab9')">
+                <span class="tab-icon">✍️</span>
+                <span>Compromiso</span>
+            </button>
+        </nav>
+    </div>
+    
+    <!-- Tab 1: Bienvenida -->
+    <div id="tab1" class="tab-content active">
+        <section class="section">
+            <h2>📱 Tu Superpoder Profesional</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 30px;">¿Sabías que como contador tienes el poder de <strong>destruir o salvar</strong> empresas, gobiernos y hasta economías enteras?</p>
+            
+            <div class="card card-danger">
+                <h3>🔴 Ecuador en Números Duros (2024-2025)</h3>
+                <div class="code-block">
+📊 Índice de Corrupción: 32/100 
+   (0=muy corrupto, 100=transparente)
+   
+📉 Ranking Mundial: 121/180 países
+   ▼ Peor posición en 12 años
+
+💰 Caso Triple A: $94 millones robados
+💰 Metástasis: Sistema judicial infiltrado
+💰 Impacto anual corrupción: ~$5 mil millones
+
+⚡ TU ROL: Cada firma que pongas puede 
+   detener o permitir estos fraudes
+                </div>
+            </div>
+            
+            <div class="quote">
+                "La pregunta no es si tendrás poder. Es QUÉ HARÁS con ese poder."
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-card-icon">⚖️</div>
+                    <h3>Caso Metástasis</h3>
+                    <p>20 de 21 acusados sentenciados por infiltración del narcotráfico en el sistema judicial</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon">💸</div>
+                    <h3>$94 Millones</h3>
+                    <p>Desviados en el Caso Triple A de contrabando de combustibles</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon">🔍</div>
+                    <h3>Tu Responsabilidad</h3>
+                    <p>Un contador ético podría haber detectado estas irregularidades</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section section-alt">
+            <h2>🎮 El Efecto Mariposa Contable</h2>
+            
+            <div class="comparison">
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-header">
+                        ❌ Contador Corrupto
+                    </div>
+                    <div class="comparison-cell comparison-header">
+                        ✅ Contador Íntegro
+                    </div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-bad">
+                        Falsifica estados financieros
+                    </div>
+                    <div class="comparison-cell comparison-good">
+                        Presenta la realidad financiera
+                    </div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-bad">
+                        Banco presta $2M a empresa inviable
+                    </div>
+                    <div class="comparison-cell comparison-good">
+                        Banco NO presta a empresa no viable
+                    </div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-bad">
+                        Empresa quiebra, banco pierde todo
+                    </div>
+                    <div class="comparison-cell comparison-good">
+                        Banco presta a 2 empresas sólidas
+                    </div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-bad">
+                        50 empleos NO se crean
+                    </div>
+                    <div class="comparison-cell comparison-good">
+                        40 familias con ingresos dignos
+                    </div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-bad">
+                        Ecuador más pobre y corrupto
+                    </div>
+                    <div class="comparison-cell comparison-good">
+                        Ecuador más próspero y transparente
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quote">
+                "TODO por la decisión de UN contador."
+                <div class="quote-author">— Tu elección define el país que construimos</div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Tab 2: Triple Check -->
+    <div id="tab2" class="tab-content">
+        <section class="section">
+            <h2>✅ El "Triple Check" del Contador Ético</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">Antes de firmar CUALQUIER documento, hazte estas 3 preguntas:</p>
+            
+            <div class="flow-step" data-step="1">
+                <h3>✅ CHECK 1: ¿Es Legal?</h3>
+                <p><strong>Pregunta:</strong> ¿Esto viola alguna ley o regulación?</p>
+                <div class="card card-danger">
+                    <h4>📚 Caso Real 2024</h4>
+                    <p>Auditor firma estados financieros inflados:</p>
+                    <ul>
+                        <li>Cliente consigue préstamo de $2M del banco</li>
+                        <li>Empresa quiebra 6 meses después</li>
+                        <li>Banco pierde todo + auditor pierde licencia + demanda civil</li>
+                    </ul>
+                </div>
+                <p><strong>Tu escudo:</strong> Conocer NIIF, leyes tributarias, código penal</p>
+            </div>
+            
+            <div class="flow-step" data-step="2">
+                <h3>✅ CHECK 2: ¿Es Ético?</h3>
+                <p><strong>Pregunta:</strong> ¿Podría explicar esto en redes sociales sin avergonzarme?</p>
+                <div class="card card-warning">
+                    <h4>📰 Test del Periódico</h4>
+                    <p>Si mañana sale en <em>El Universo</em> o <em>El Comercio</em> con tu nombre, ¿podrías mirarte al espejo?</p>
+                </div>
+                <p><strong>Ejemplo importante:</strong> Técnicamente legal ≠ éticamente correcto</p>
+                <ul class="value-list">
+                    <li>Aprovechar vacíos legales para que millonarios paguen 0% impuestos mientras empresas pequeñas pagan 25%</li>
+                    <li><strong>Legal:</strong> ✅ <strong>Ético:</strong> ❌</li>
+                </ul>
+            </div>
+            
+            <div class="flow-step" data-step="3">
+                <h3>✅ CHECK 3: ¿Puedo Vivir con las Consecuencias?</h3>
+                <p><strong>Pregunta:</strong> ¿Vale la pena arriesgar mi carrera, libertad y paz mental?</p>
+                <div class="card">
+                    <h4>📖 Historia Real: Contador de 28 años en Guayaquil</h4>
+                    <ul>
+                        <li>Acepta "arreglar" declaraciones por $500 extra/mes</li>
+                        <li>Gana $6,000 en un año</li>
+                        <li>SRI lo descubre → Multa $45,000 + antecedentes penales</li>
+                        <li>Ninguna empresa seria lo contrata</li>
+                        <li>A sus 35 años trabaja vendiendo seguros</li>
+                    </ul>
+                </div>
+                <div class="code-block">
+Ecuación simple:
+Ganancia ilegal temporal < Costo de toda una vida
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Tab 3: Matriz Moral -->
+    <div id="tab3" class="tab-content">
+        <section class="section">
+            <h2>🧠 La Matriz Moral: Objeto + Fin + Circunstancia</h2>
+            <p style="font-size: 1.2rem;">Para que una acción sea moralmente BUENA, necesitas los 3 elementos en verde. Si UNO está en rojo, TODO está en rojo.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-card-icon">🎯</div>
+                    <h3>1. OBJETO</h3>
+                    <p>¿QUÉ se hace?<br>La acción en sí misma</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon">💡</div>
+                    <h3>2. FIN</h3>
+                    <p>¿PARA QUÉ se hace?<br>La intención del que actúa</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon">📍</div>
+                    <h3>3. CIRCUNSTANCIA</h3>
+                    <p>¿EN QUÉ CONTEXTO?<br>Condiciones que rodean el acto</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section section-alt">
+            <h3>🎯 CASO DE ESTUDIO 1: El Regalo del Cliente</h3>
+            
+            <div class="card">
+                <p><strong>Situación:</strong> Un cliente importante les envía un iPhone 15 Pro Max ($1,200) como "agradecimiento" por los servicios de auditoría.</p>
+            </div>
+            
+            <div class="code-block">
+┌──────────────────────────────────────────────┐
+│ ANÁLISIS MORAL                               │
+├──────────────────────────────────────────────┤
+│ OBJETO: Recibir un regalo                   │
+│ Estado: ⚪ Neutral (depende del contexto)   │
+│                                              │
+│ FIN: "Agradecimiento" (según el cliente)    │
+│ Estado: 🔴 SOSPECHOSO                       │
+│ Realidad: Posible soborno para obtener      │
+│ opinión de auditoría favorable              │
+│                                              │
+│ CIRCUNSTANCIA: Valor excesivo ($1,200)      │
+│ Durante proceso de auditoría activo         │
+│ Estado: 🔴 INAPROPIADO                      │
+│                                              │
+│ VEREDICTO FINAL: 🔴 RECHAZAR                │
+└──────────────────────────────────────────────┘
+            </div>
+            
+            <div class="card card-success">
+                <h4>✅ ¿Qué hacer?</h4>
+                <ol>
+                    <li>Agradecer cortésmente</li>
+                    <li>Explicar: "No puedo aceptar por políticas de independencia profesional"</li>
+                    <li>Documentar el intento en papeles de trabajo</li>
+                    <li>Si insiste o hay presión → 🚨 Red flag mayor</li>
+                </ol>
+            </div>
+            
+            <div class="comparison">
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-header">
+                        ❌ Inaceptable
+                    </div>
+                    <div class="comparison-cell comparison-header">
+                        ✅ Aceptable
+                    </div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-bad">
+                        iPhone 15 Pro Max ($1,200)<br>
+                        Durante auditoría activa
+                    </div>
+                    <div class="comparison-cell comparison-good">
+                        Caja de chocolates ($15)<br>
+                        En Navidad, fuera de auditoría
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h3>🎯 CASO DE ESTUDIO 2: La Prima de Fin de Año</h3>
+            
+            <div class="card card-danger">
+                <p><strong>Situación:</strong> Tu jefe te dice: "Si 'arreglas' estos números para que cuadren, te doy $2,000 extra en diciembre."</p>
+            </div>
+            
+            <div class="code-block">
+┌──────────────────────────────────────────────┐
+│ DECODIFICANDO EL ESCENARIO                   │
+├──────────────────────────────────────────────┤
+│ Lo que DICE: "Arreglar números"              │
+│ Lo que SIGNIFICA: Falsificar registros       │
+│                                              │
+│ Lo que OFRECE: $2,000                        │
+│ Lo que ARRIESGAS: Tu carrera + libertad      │
+│                                              │
+│ OBJETO: Modificar registros contables       │
+│ Estado: 🔴 FRAUDE                            │
+│                                              │
+│ FIN (del jefe): Ocultar pérdidas/evadir     │
+│ Estado: 🔴 CRIMINAL                          │
+│                                              │
+│ FIN (tuyo si aceptas): Dinero fácil         │
+│ Estado: 🔴 COMPLICIDAD                       │
+│                                              │
+│ CIRCUNSTANCIA: Presión laboral + necesidad  │
+│ Estado: ⚠️ ENTENDIBLE pero NO JUSTIFICA     │
+│                                              │
+│ VEREDICTO: 🔴 NEGARSE ROTUNDAMENTE           │
+└──────────────────────────────────────────────┘
+            </div>
+            
+            <div class="quote">
+                "Entiendo que hay presión por los resultados, pero no puedo modificar registros para que muestren algo que no es real. Eso nos pone a ambos en riesgo legal. ¿Podemos buscar una solución dentro del marco legal?"
+                <div class="quote-author">— Tu respuesta profesional</div>
+            </div>
+            
+            <div class="card card-warning">
+                <h4>⚠️ Si hay represalias:</h4>
+                <ol>
+                    <li>Documenta TODO por escrito</li>
+                    <li>Consulta con el Colegio de Contadores</li>
+                    <li>Evalúa denunciar al ente regulador</li>
+                    <li>Busca asesoría legal</li>
+                </ol>
+                <p style="margin-top: 20px;"><strong>Recuerda:</strong> $2,000 hoy < Salario de 30 años de carrera profesional</p>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Tab 4: Valores -->
+    <div id="tab4" class="tab-content">
+        <section class="section">
+            <h2>💎 Los Valores - Tu Equipo de Superhéroes</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">Cada valor es como un poder especial. Necesitas activarlos todos para ser un contador imparable.</p>
+            
+            <div class="card card-success">
+                <h3>🦸‍♀️ HONESTIDAD - El Escudo Transparente</h3>
+                <p><strong>Poder:</strong> Te protege de enredarte en mentiras</p>
+                
+                <h4>Aplicación Contable:</h4>
+                <ul class="value-list">
+                    <li>✅ Cliente pregunta: "¿Puedo deducir esto?" → Respondes la verdad, no lo que quiere escuchar</li>
+                    <li>✅ Cometiste error → Lo admites y corriges</li>
+                    <li>✅ No sabes algo → Dices "déjame investigarlo" en lugar de inventar</li>
+                </ul>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-icon">🇯🇵</div>
+                        <h4>Japón: "Makoto"</h4>
+                        <p>Tasa de devolución objetos perdidos en Tokio: <strong>90%</strong></p>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">(NYC: 30%)</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon">🇳🇴</div>
+                        <h4>Noruega: "Redelighet"</h4>
+                        <p>Puestos de venta sin atender<br>Tasa fraude fiscal: <strong><2%</strong></p>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">(Ecuador: ~30-40% economía informal)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>⚖️ JUSTICIA - El Equilibrio Perfecto</h3>
+                <p><strong>Poder:</strong> Das a cada quien lo que le corresponde</p>
+                
+                <div class="code-block">
+Test de Justicia:
+┌────────────────────────────────────────┐
+│ ¿Aplicarías la misma regla si...?     │
+├────────────────────────────────────────┤
+│ ✓ Fuera tu mejor amigo                │
+│ ✓ Fuera tu peor enemigo               │
+│ ✓ Fuera tu jefe                       │
+│ ✓ Fuera tu familiar                   │
+│ ✓ Fuera alguien que no conoces        │
+│                                        │
+│ Si no → NO es justo, es favoritismo   │
+└────────────────────────────────────────┘
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-icon">🌍</div>
+                        <h4>Ubuntu (África)</h4>
+                        <p>"Yo soy porque nosotros somos"</p>
+                        <p>Justicia = Prosperidad comunitaria</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon">☪️</div>
+                        <h4>Zakat (Islam)</h4>
+                        <p>2.5% riqueza anual a los pobres</p>
+                        <p>No caridad → <strong>DEBER</strong> de justicia</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card card-warning">
+                <h3>🎯 RESPONSABILIDAD - El Ancla de Compromiso</h3>
+                <p><strong>Poder:</strong> Cumples lo prometido, pase lo que pase</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-icon">🇩🇪</div>
+                        <h4>Alemania</h4>
+                        <p><strong>"Verantwortung"</strong></p>
+                        <p>Llegar 5 min tarde = Falta de respeto grave</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon">🇨🇭</div>
+                        <h4>Suiza</h4>
+                        <p>Separación basura: 7 categorías</p>
+                        <p>Sin supervisión = Responsabilidad individual</p>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>📊 Dato:</strong> Alemania reciclaje 67% | Ecuador ~20%</p>
+            </div>
+            
+            <div class="card">
+                <h3>🛡️ INTEGRIDAD - El Código Inquebrantable</h3>
+                <p><strong>Poder:</strong> Eres la misma persona cuando nadie te ve</p>
+                
+                <div class="quote">
+                    "Imagina que hay una ventana mágica donde TODOS (familia, amigos, futuros empleadores) pueden ver TODO lo que haces 24/7. ¿Cambiarías algo de tu comportamiento?"
+                </div>
+                
+                <ul class="value-list">
+                    <li>Si SÍ → Ahí es donde falta integridad</li>
+                    <li>Si NO → Estás viviendo con integridad</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Tab 5: Entender vs Aceptar -->
+    <div id="tab5" class="tab-content">
+        <section class="section">
+            <h2>⚖️ Entender vs Aceptar: La Distinción Crucial</h2>
+            
+            <div class="card card-success">
+                <h3>💡 ¿Qué significa "entender pero no aceptar"?</h3>
+                <p>Significa que podemos:</p>
+                <ul class="value-list">
+                    <li><strong>Comprender</strong> las razones, presiones o contextos que llevaron a alguien a actuar mal</li>
+                    <li><strong>Empatizar</strong> con las dificultades que enfrentaba la persona</li>
+                    <li><strong>Reconocer</strong> que en circunstancias similares muchos podrían haber caído en la misma tentación</li>
+                </ul>
+                
+                <p style="margin-top: 20px;">PERO al mismo tiempo:</p>
+                <ul class="value-list">
+                    <li><strong>NO justificamos</strong> la acción incorrecta</li>
+                    <li><strong>NO eliminamos</strong> la responsabilidad personal</li>
+                    <li><strong>NO impedimos</strong> que haya consecuencias apropiadas</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="section section-alt">
+            <h3>📚 CASO A: El Estudiante Tramposo</h3>
+            
+            <div class="comparison">
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-header">
+                        ✅ ENTENDEMOS
+                    </div>
+                    <div class="comparison-cell comparison-header">
+                        ❌ NO ACEPTAMOS
+                    </div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-good">
+                        Situación económica brutal<br>
+                        Presión familiar inmensa<br>
+                        Trabaja 8h/día + estudia<br>
+                        Tiene 3 hermanos menores
+                    </div>
+                    <div class="comparison-cell comparison-bad">
+                        Que copie en el examen<br>
+                        Que tú le pases respuestas<br>
+                        Que minimices la gravedad<br>
+                        Que no haya consecuencias
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card card-success">
+                <h4>✅ SOLUCIÓN SOLIDARIA:</h4>
+                <ul>
+                    <li>Le ayudas a estudiar fines de semana</li>
+                    <li>Le compartes apuntes organizados</li>
+                    <li>Lo conectas con becas/ayudas estudiantiles</li>
+                    <li>Hablas con profesor sobre su situación (sin excusar el fraude, pero buscando apoyo institucional)</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h3>📚 CASO B: La Contadora Presionada</h3>
+            
+            <div class="card">
+                <h4>Contexto:</h4>
+                <ul>
+                    <li>Contador junior, 24 años, primer empleo, $450/mes</li>
+                    <li>Jefe poderoso le exige "ajustar" cifras</li>
+                    <li>Amenaza: "O lo haces o te despido y me aseguro que no trabajes en ningún lado"</li>
+                </ul>
+            </div>
+            
+            <div class="comparison">
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-header">
+                        ✅ ENTENDEMOS
+                    </div>
+                    <div class="comparison-cell comparison-header">
+                        ❌ NO ACEPTAMOS
+                    </div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-good">
+                        Miedo real a perder empleo<br>
+                        Desbalance de poder<br>
+                        Necesidad económica<br>
+                        Presión psicológica (mobbing)
+                    </div>
+                    <div class="comparison-cell comparison-bad">
+                        Que falsifique registros<br>
+                        Que comprometa integridad<br>
+                        Que viole código de ética<br>
+                        Que se vuelva cómplice
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card card-warning">
+                <h4>⚠️ RESPUESTA CORRECTA:</h4>
+                <div class="flow-step" data-step="1">
+                    <p>Documentar presión por escrito (emails, mensajes)</p>
+                </div>
+                <div class="flow-step" data-step="2">
+                    <p>Buscar asesoría (Colegio de Contadores, abogado)</p>
+                </div>
+                <div class="flow-step" data-step="3">
+                    <p>Responder profesionalmente: "No puedo realizar esa acción porque viola [X ley/norma específica]. Si insiste, tendré que consultar con [ente regulador]."</p>
+                </div>
+                <div class="flow-step" data-step="4">
+                    <p>Si despiden → Demanda laboral + reporte regulador</p>
+                </div>
+                <div class="flow-step" data-step="5">
+                    <p><strong>Mejor estar desempleado que en prisión</strong></p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section section-alt">
+            <h2>⚠️ El Peligro de la Permisividad</h2>
+            
+            <div class="card card-danger">
+                <h3>🪟 La Teoría de la Ventana Rota (Aplicada a Contabilidad)</h3>
+                <div class="code-block">
+DÍA 1: "Voy a redondear estos $0.50 para que cuadre rápido"
+       ⬇️ (Nadie dice nada)
+       
+DÍA 30: "Esta diferencia de $5 no importa, ajuste manual"
+        ⬇️ (Se vuelve rutina)
+        
+DÍA 90: "Estos $50 pueden ir a 'gastos varios'"
+        ⬇️ (Ya normalizaste el fraude)
+        
+DÍA 180: "¿Qué son $500? Nadie va a revisar"
+         ⬇️ (Eres delincuente)
+         
+DÍA 365: Estás desviando $10,000
+         SRI te audita
+         🚔 Cárcel + multa + antecedentes
+                </div>
+                <p style="margin-top: 20px;"><strong>Lección:</strong> La corrupción NO empieza grande. Empieza con "pequeñeces" que permites.</p>
+            </div>
+            
+            <div class="comparison">
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-header">
+                        ✅ COMPRENSIÓN (Positiva)
+                    </div>
+                    <div class="comparison-cell comparison-header">
+                        ❌ PERMISIVIDAD (Negativa)
+                    </div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-good">
+                        Entiende el contexto, pero mantiene límites claros
+                    </div>
+                    <div class="comparison-cell comparison-bad">
+                        Elimina límites por comodidad o miedo al conflicto
+                    </div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-good">
+                        Aplica consecuencias con proporcionalidad y justicia
+                    </div>
+                    <div class="comparison-cell comparison-bad">
+                        Evita consecuencias incluso cuando son necesarias
+                    </div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-good">
+                        "Te entiendo, pero esto no puede continuar"
+                    </div>
+                    <div class="comparison-cell comparison-bad">
+                        "Está bien, no pasa nada"
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Tab 6: Globalización -->
+    <div id="tab6" class="tab-content">
+        <section class="section">
+            <h2>🌍 Globalización: Tu Pasaporte Profesional</h2>
+            
+            <div class="card card-success">
+                <h3>📊 Las NIIF: Tu "Google Translate" Contable</h3>
+                
+                <div class="comparison">
+                    <div class="comparison-row">
+                        <div class="comparison-cell comparison-header">
+                            ❌ ANTES (hasta 2009)
+                        </div>
+                        <div class="comparison-cell comparison-header">
+                            ✅ AHORA (desde 2010)
+                        </div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell comparison-bad">
+                            🇪🇨 Ecuador: NEC<br>
+                            🇲🇽 México: NIF<br>
+                            🇺🇸 USA: US-GAAP<br>
+                            🇯🇵 Japón: JGAAP<br><br>
+                            Estados financieros incomparables
+                        </div>
+                        <div class="comparison-cell comparison-good">
+                            🌎 140+ países: NIIF<br><br>
+                            1 lenguaje contable global<br>
+                            Inversión internacional: FÁCIL<br>
+                            Puedes trabajar en cualquier país
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section section-alt">
+            <h3>📈 ¿Qué Cambió en Ecuador?</h3>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-card-icon">📄</div>
+                    <h4>Estados Financieros</h4>
+                    <p><strong>Antes:</strong> 2 básicos<br>(Balance + PyG)</p>
+                    <p><strong>Ahora:</strong> 5 completos<br>+ Notas Explicativas</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon">💰</div>
+                    <h4>Valuación</h4>
+                    <p><strong>Antes:</strong> Costo histórico<br>(lo que pagaste)</p>
+                    <p><strong>Ahora:</strong> Valor razonable<br>(lo que vale HOY)</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon">🌍</div>
+                    <h4>Comprensión</h4>
+                    <p><strong>Antes:</strong> Solo Ecuador<br>entiende</p>
+                    <p><strong>Ahora:</strong> 140+ países<br>entienden</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>🚀 Oportunidades Globales para Contadores Ecuatorianos</h2>
+            
+            <div class="card">
+                <h3>RUTA 1: Firma Big Four</h3>
+                <p>🏢 Deloitte, PwC, KPMG, EY</p>
+                <ul class="value-list">
+                    <li>📍 <strong>Oficinas:</strong> 150+ países</li>
+                    <li>💼 <strong>Rotación internacional:</strong> SÍ</li>
+                    <li>💰 <strong>Salario inicial Ecuador:</strong> $800-1,200</li>
+                    <li>💰 <strong>Después 5 años USA/Europa:</strong> $60,000-80,000</li>
+                    <li>📚 <strong>Requisito:</strong> NIIF + Inglés + CPA/ACCA</li>
+                </ul>
+                
+                <h4>🎯 Tu estrategia:</h4>
+                <div class="flow-step" data-step="1-2">Dominar NIIF</div>
+                <div class="flow-step" data-step="3">Certificación internacional (CPA/ACCA)</div>
+                <div class="flow-step" data-step="4">Inglés avanzado (TOEFL 100+)</div>
+                <div class="flow-step" data-step="5">Aplicar a transferencia internacional</div>
+            </div>
+            
+            <div class="card card-success">
+                <h3>RUTA 2: Empresas Multinacionales</h3>
+                <p>🌐 Google, Amazon, Netflix, etc.</p>
+                <ul class="value-list">
+                    <li>📍 <strong>Ubicación:</strong> Trabajo remoto posible</li>
+                    <li>💼 <strong>Rol:</strong> Financial Analyst, Controllers</li>
+                    <li>💰 <strong>Salario remoto:</strong> $30,000-50,000 USD/año</li>
+                    <li>📚 <strong>Requisito:</strong> NIIF + Excel avanzado + Inglés</li>
+                </ul>
+                
+                <h4>🎯 Tu estrategia:</h4>
+                <ul>
+                    <li>Dominar: Power BI, Tableau, SQL</li>
+                    <li>Certificar: NIIF for SMEs</li>
+                    <li>Portafolio: Crear dashboards en GitHub</li>
+                    <li>Networking: LinkedIn + eventos virtuales</li>
+                </ul>
+            </div>
+            
+            <div class="card card-warning">
+                <h3>RUTA 3: Emprendimiento Global</h3>
+                <p>💡 Consultoría contable internacional</p>
+                <ul class="value-list">
+                    <li>📍 <strong>Clientes:</strong> Startups latinoamericanas que venden a Europa/USA</li>
+                    <li>💼 <strong>Servicio:</strong> Adaptación NIIF, compliance</li>
+                    <li>💰 <strong>Tarifa:</strong> $50-150/hora (vs $10-20 local)</li>
+                    <li>📚 <strong>Requisito:</strong> NIIF + inglés + marketing digital</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="section section-alt">
+            <h2>🎓 Certificaciones Internacionales: Tu Multiplicador Salarial</h2>
+            
+            <div class="comparison">
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-header">Certificación</div>
+                    <div class="comparison-cell comparison-header">Costo</div>
+                    <div class="comparison-cell comparison-header">Duración</div>
+                    <div class="comparison-cell comparison-header">ROI Salario</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell">CPA (USA)</div>
+                    <div class="comparison-cell">$3,000</div>
+                    <div class="comparison-cell">1-2 años</div>
+                    <div class="comparison-cell comparison-good">+150%</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell">ACCA (UK)</div>
+                    <div class="comparison-cell">$4,000</div>
+                    <div class="comparison-cell">2-3 años</div>
+                    <div class="comparison-cell comparison-good">+200%</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell">CMA (Cost)</div>
+                    <div class="comparison-cell">$2,500</div>
+                    <div class="comparison-cell">1 año</div>
+                    <div class="comparison-cell comparison-good">+100%</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell">CFE (Fraud)</div>
+                    <div class="comparison-cell">$1,500</div>
+                    <div class="comparison-cell">6 meses</div>
+                    <div class="comparison-cell comparison-good">+80%</div>
+                </div>
+            </div>
+            
+            <p style="margin-top: 20px;"><strong>💡 TIP:</strong> Muchas tienen descuentos para estudiantes. Algunos empleadores las pagan si trabajas para ellos.</p>
+        </section>
+    </div>
+    
+    <!-- Tab 7: Valores Globales -->
+    <div id="tab7" class="tab-content">
+        <section class="section">
+            <h2>🌏 Valores Globales: Cómo se Viven en el Mundo</h2>
+            
+            <div class="card">
+                <h3>🇯🇵 JAPÓN: Disciplina y Perseverancia</h3>
+                
+                <h4>"Ganbaru" (頑張る): Hacer tu mejor esfuerzo siempre</h4>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-icon">📚</div>
+                        <h4>Estudiante Japonés</h4>
+                        <p><strong>240</strong> días escolares/año</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon">🇪🇨</div>
+                        <h4>Estudiante Ecuatoriano</h4>
+                        <p><strong>~200</strong> días escolares/año</p>
+                    </div>
+                    <div class="stat-card card-warning">
+                        <div class="stat-card-icon">⚡</div>
+                        <h4>Diferencia</h4>
+                        <p><strong>40 días</strong> = 2 meses más/año<br>
+                        En 12 años = 2 años completos más</p>
+                    </div>
+                </div>
+                
+                <div class="card card-success">
+                    <h4>📊 Aplicación para Ti:</h4>
+                    <p>Si estudias 1 hora extra diaria (lo que un japonés consideraría normal):</p>
+                    <div class="code-block">
+1 hora/día × 365 días = 365 horas/año
+= 45 días completos de 8 horas
+En 4 años de universidad = 180 días extra
+= 6 MESES más de conocimiento
+                    </div>
+                </div>
+                
+                <h4>"Kaizen" (改善): Mejora continua</h4>
+                <div class="code-block">
+No busques: Ser perfecto HOY
+Busca: Ser 1% mejor cada día
+
+1.01^365 = 37.8 (37 veces mejor en 1 año)
+0.99^365 = 0.03 (casi nada en 1 año)
+
+Pequeñas mejoras diarias = Transformación anual
+                </div>
+            </div>
+        </section>
+        
+        <section class="section section-alt">
+            <div class="card">
+                <h3>🇩🇪 ALEMANIA: Precisión y Responsabilidad</h3>
+                
+                <h4>"Verantwortung": Responsabilidad total</h4>
+                
+                <div class="card card-warning">
+                    <h4>📖 Historia Real:</h4>
+                    <p><strong>Estudiante ecuatoriano en intercambio en Alemania:</strong></p>
+                    <ul>
+                        <li>Llega 3 minutos tarde a clase</li>
+                        <li>Profesor cierra la puerta</li>
+                        <li>No lo deja entrar</li>
+                        <li>"Respeta el tiempo de los demás o no vengas"</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Resultado:</strong> Nunca más llegó tarde en 2 años. Ahora es controller en BMW.</p>
+                </div>
+                
+                <h4>Aplicación Contable: Precisión Alemana en Auditoría</h4>
+                <div class="comparison">
+                    <div class="comparison-row">
+                        <div class="comparison-cell comparison-header">❌ NO Aceptable</div>
+                        <div class="comparison-cell comparison-header">✅ Estándar Alemán</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell comparison-bad">"Más o menos cuadra"</div>
+                        <div class="comparison-cell comparison-good">"Cuadra hasta el último centavo"</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell comparison-bad">"Creo que la fórmula está bien"</div>
+                        <div class="comparison-cell comparison-good">"Revisé la fórmula 3 veces y pedí validación"</div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Esta mentalidad → Contadores buscados internacionalmente</strong></p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="card card-success">
+                <h3>🌍 UBUNTU (África): "Yo soy porque nosotros somos"</h3>
+                
+                <p><strong>Filosofía:</strong> Tu bienestar está ligado al bienestar de la comunidad</p>
+                
+                <div class="card">
+                    <h4>📖 Ejemplo Poderoso: Nelson Mandela</h4>
+                    <p>Aplicó Ubuntu en reconciliación post-apartheid:</p>
+                    <ul>
+                        <li>❌ NO: Venganza contra opresores blancos</li>
+                        <li>✅ SÍ: Comisión de Verdad y Reconciliación</li>
+                        <li>🏆 Resultado: País evitó guerra civil</li>
+                    </ul>
+                </div>
+                
+                <h4>Aplicación Profesional: Mentalidad Ubuntu en Firma de Auditoría</h4>
+                <div class="comparison">
+                    <div class="comparison-row">
+                        <div class="comparison-cell comparison-header">❌ Mentalidad Individualista</div>
+                        <div class="comparison-cell comparison-header">✅ Mentalidad Ubuntu</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell comparison-bad">"Si mi compañero falla, yo me veo mejor"</div>
+                        <div class="comparison-cell comparison-good">"Si ayudo a que todos mejoremos, la firma crece y todos ganamos más"</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell comparison-bad">"Guardo mi conocimiento para tener ventaja"</div>
+                        <div class="comparison-cell comparison-good">"Comparto conocimiento porque el éxito colectivo me beneficia a largo plazo"</div>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-icon">📈</div>
+                        <h4>Empresas con cultura Ubuntu</h4>
+                        <p><strong>+40%</strong> retención talento<br>
+                        <strong>+60%</strong> satisfacción laboral</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section section-alt">
+            <div class="card">
+                <h3>🇳🇴 NORUEGA: Solidaridad Activa</h3>
+                
+                <h4>"Dugnad": Trabajo comunitario voluntario</h4>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-icon">🤝</div>
+                        <h4>Participación</h4>
+                        <p><strong>80%</strong> de noruegos participan anualmente</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon">⏰</div>
+                        <h4>Tiempo Dedicado</h4>
+                        <p>Promedio: <strong>12 horas/año</strong> voluntario comunitario</p>
+                    </div>
+                    <div class="stat-card card-success">
+                        <div class="stat-card-icon">🏆</div>
+                        <h4>Resultado</h4>
+                        <p>Mayor confianza social del mundo</p>
+                    </div>
+                </div>
+                
+                <h4>Conexión con Corrupción</h4>
+                <div class="comparison">
+                    <div class="comparison-row">
+                        <div class="comparison-cell comparison-header">País</div>
+                        <div class="comparison-cell comparison-header">Índice Transparencia 2024</div>
+                        <div class="comparison-cell comparison-header">Puesto</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">🇳🇴 Noruega</div>
+                        <div class="comparison-cell comparison-good">84/100</div>
+                        <div class="comparison-cell comparison-good">7°</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">🇪🇨 Ecuador</div>
+                        <div class="comparison-cell comparison-bad">32/100</div>
+                        <div class="comparison-cell comparison-bad">121°</div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>¿Coincidencia? NO.</strong> Sociedades solidarias → Menos corrupción</p>
+                
+                <div class="card card-warning">
+                    <h4>🎯 Tu Desafío Este Mes:</h4>
+                    <p>Dedica 4 horas a:</p>
+                    <ul>
+                        <li>Enseñar contabilidad básica a emprendedores de tu barrio</li>
+                        <li>Ayudar a una fundación sin fines de lucro con sus registros</li>
+                        <li>Tutorear estudiantes de semestres inferiores</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Beneficio:</strong> Red de contactos + reputación + satisfacción personal</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Tab 8: Plan de Acción -->
+    <div id="tab8" class="tab-content">
+        <section class="section">
+            <h2>📋 Tu Plan de Acción: Constructor de Carrera Ética</h2>
+            
+            <div class="checklist">
+                <h3>MES 1-2: Fundamentos</h3>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check1">
+                    <label for="check1">Memorizar: Los 3 elementos de moralidad (Objeto-Fin-Circunstancia)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check2">
+                    <label for="check2">Leer: Código de Ética del Contador Ecuatoriano</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check3">
+                    <label for="check3">Completar: Autoevaluación de valores</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check4">
+                    <label for="check4">Investigar: 1 caso real de fraude contable y analizarlo</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check5">
+                    <label for="check5">Decidir: ¿Cuál es mi línea roja personal?</label>
+                </div>
+            </div>
+            
+            <div class="checklist">
+                <h3>MES 3-4: Construcción de Habilidades</h3>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check6">
+                    <label for="check6">Dominar: NIIF básicas (NIIF 1, NIIF 13, NIC 1, NIC 16)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check7">
+                    <label for="check7">Practicar: Excel intermedio (tablas dinámicas, BUSCARV)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check8">
+                    <label for="check8">Iniciar: Curso de inglés técnico contable</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check9">
+                    <label for="check9">Crear: Carpeta digital con casos de estudio éticos</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check10">
+                    <label for="check10">Networking: Conectar con 10 contadores profesionales en LinkedIn</label>
+                </div>
+            </div>
+            
+            <div class="checklist">
+                <h3>MES 5-6: Especialización</h3>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check11">
+                    <label for="check11">Elegir: Tu área de especialización (auditoría, forense, NIIF, etc.)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check12">
+                    <label for="check12">Certificar: Al menos 1 curso técnico con certificado</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check13">
+                    <label for="check13">Voluntariado: 8 horas en ONG o emprendimiento social</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check14">
+                    <label for="check14">Portfolio: Documentar 3 proyectos académicos en formato profesional</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check15">
+                    <label for="check15">Objetivo: Definir meta salarial 1, 3 y 5 años</label>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section section-alt">
+            <h2>🎮 Gamificación: Sistema de Puntos Éticos</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">Acumula puntos este semestre. <strong>Meta: 1,000 puntos</strong></p>
+            
+            <div class="card card-success">
+                <h3>PUNTOS POSITIVOS (+)</h3>
+                <ul class="value-list">
+                    <li><strong>+100</strong> Rechazar propuesta antiética de compañero/profesor</li>
+                    <li><strong>+50</strong> Admitir error voluntariamente antes de que lo descubran</li>
+                    <li><strong>+30</strong> Ayudar a compañero académicamente (2+ horas)</li>
+                    <li><strong>+25</strong> Completar trabajo grupal ANTES del deadline</li>
+                    <li><strong>+20</strong> Llegar temprano a todas las clases de la semana</li>
+                    <li><strong>+15</strong> Devolver dinero/objeto encontrado</li>
+                    <li><strong>+40</strong> Reportar irregularidad (académica o laboral)</li>
+                    <li><strong>+35</strong> Hacer trabajo voluntario contable (4 horas)</li>
+                    <li><strong>+10</strong> Leer 1 artículo técnico de NIIF y resumirlo</li>
+                </ul>
+            </div>
+            
+            <div class="card card-danger">
+                <h3>PUNTOS NEGATIVOS (-)</h3>
+                <ul class="value-list">
+                    <li><strong>-200</strong> Copiar en examen</li>
+                    <li><strong>-150</strong> Mentir para justificar ausencia/atraso</li>
+                    <li><strong>-100</strong> No hacer tu parte en trabajo grupal</li>
+                    <li><strong>-75</strong> Llegar tarde habitualmente (3+ veces/mes)</li>
+                    <li><strong>-50</strong> Plagiar contenido para tareas</li>
+                    <li><strong>-40</strong> Chismear destructivamente sobre compañeros</li>
+                    <li><strong>-30</strong> No cumplir compromiso adquirido</li>
+                </ul>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-card-icon">🏆</div>
+                    <h4>1000+</h4>
+                    <p>Contador Ético Elite</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon">🥇</div>
+                    <h4>750-999</h4>
+                    <p>Contador Íntegro</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon">🥈</div>
+                    <h4>500-749</h4>
+                    <p>Contador en Desarrollo</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon">🥉</div>
+                    <h4>250-499</h4>
+                    <p>Contador con Áreas de Mejora</p>
+                </div>
+                <div class="stat-card card-danger">
+                    <div class="stat-card-icon">⚠️</div>
+                    <h4><250</h4>
+                    <p>Riesgo Profesional Alto</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>💬 Frases para Memorizar y Vivir</h2>
+            
+            <div class="quote">
+                "El dinero fácil se va fácil. La reputación toma años construir y segundos destruir."
+                <div class="quote-author">— Cuando te ofrezcan dinero por fraude</div>
+            </div>
+            
+            <div class="quote" style="background: var(--gradient-3);">
+                "Mi integridad no depende de quién me observa. Depende de quién soy."
+                <div class="quote-author">— Cuando sientas que nadie te ve</div>
+            </div>
+            
+            <div class="quote" style="background: var(--gradient-2);">
+                "Entender por qué alguien hizo algo malo no hace que sea menos malo."
+                <div class="quote-author">— Cuando quieras justificar un error</div>
+            </div>
+            
+            <div class="quote" style="background: var(--gradient-1);">
+                "Soy contador. Protejo la verdad financiera. Es mi superpoder y mi responsabilidad sagrada."
+                <div class="quote-author">— Tu mantra profesional</div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Tab 9: Compromiso -->
+    <div id="tab9" class="tab-content">
+        <section class="section">
+            <h2>✍️ Tu Compromiso Personal</h2>
+            
+            <div class="commitment-box">
+                <h3>MI CÓDIGO PERSONAL DEL CONTADOR ÉTICO</h3>
+                
+                <p style="text-align: center; margin-bottom: 30px; font-size: 1.1rem;">
+                    Este es mi compromiso conmigo mismo, con mi profesión y con Ecuador.
+                </p>
+                
+                <ul class="value-list">
+                    <li><strong>✓</strong> Nunca firmar documentos que no reflejen la verdad financiera</li>
+                    <li><strong>✓</strong> Reportar irregularidades aunque me cueste personalmente</li>
+                    <li><strong>✓</strong> Mantener los mismos estándares éticos con clientes grandes y pequeños</li>
+                    <li><strong>✓</strong> Actualizarme constantemente en NIIF y normativa</li>
+                    <li><strong>✓</strong> Usar mi conocimiento para elevar, no para explotar</li>
+                    <li><strong>✓</strong> Recordar que mi firma afecta a familias, trabajadores, ahorristas</li>
+                    <li><strong>✓</strong> Ser el contador que mi país necesita, no el que la corrupción busca</li>
+                </ul>
+                
+                <div style="margin-top: 40px;">
+                    <div class="signature-line">
+                        <strong>Nombre completo:</strong>
+                    </div>
+                    <div class="signature-line">
+                        <strong>Firma:</strong>
+                    </div>
+                    <div class="signature-line">
+                        <strong>Fecha:</strong>
+                    </div>
+                    <div class="signature-line">
+                        <strong>Testigo (opcional):</strong>
+                    </div>
+                </div>
+                
+                <p style="text-align: center; margin-top: 30px; font-style: italic; opacity: 0.8;">
+                    "Imprime este compromiso, fírmalo y ponlo donde lo veas todos los días"
+                </p>
+            </div>
+        </section>
+        
+        <section class="section section-alt">
+            <h2>🎬 Cierre: Nos Vemos en el Campo de Batalla (Profesional)</h2>
+            
+            <div class="card">
+                <p style="font-size: 1.2rem; line-height: 1.8;">
+                    Esta no es teoría abstracta.<br><br>
+                    Es <strong>entrenamiento</strong> para las decisiones más importantes de tu vida profesional.<br><br>
+                    Habrá momentos donde te ofrecerán dinero fácil.<br>
+                    Habrá momentos donde nadie te vea hacer trampa.<br>
+                    Habrá momentos donde te presionen hasta el límite.
+                </p>
+            </div>
+            
+            <div class="quote">
+                "En esos momentos, ¿quién serás?"
+            </div>
+            
+            <div class="card card-success">
+                <p style="font-size: 1.2rem; text-align: center;">
+                    Los valores que construyas <strong>HOY</strong> serán tu armadura <strong>MAÑANA</strong>.
+                </p>
+            </div>
+            
+            <div style="text-align: center; margin: 60px 0;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">
+                    Bienvenidos a Democracia, Ciudadanía y Globalización.
+                </h2>
+                <h3 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 40px;">
+                    Bienvenidos a convertirse en los guardianes que Ecuador necesita.
+                </h3>
+                <button class="cta-button" onclick="alert('¡Excelente! Ahora imprime tu compromiso y comienza tu transformación profesional.')">
+                    Let's do this. 💪🔥
+                </button>
+            </div>
+            
+            <div style="text-align: center; margin: 40px 0; font-size: 1.5rem; font-weight: 700; color: var(--primary);">
+                #ContadoresÉticos #EcuadorTransparente #NIIFWarriors
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px; padding: 40px; background: var(--light); border-radius: 15px;">
+                <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 10px;">
+                    Profesor Gabriel | Semestre 2026-I
+                </p>
+                <p style="font-size: 0.95rem; opacity: 0.8;">
+                    "Formando no solo contadores competentes, sino ciudadanos íntegros"
+                </p>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // Tab functionality
+        function openTab(evt, tabId) {
+            // Hide all tab contents
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            // Remove active class from all buttons
+            const tabButtons = document.getElementsByClassName('tab-btn');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            // Show the selected tab content and mark button as active
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+            
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Progress bar on scroll
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+        
+        // Save checkbox states to localStorage
+        document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(checkbox => {
+            const savedState = localStorage.getItem(checkbox.id);
+            if (savedState === 'true') {
+                checkbox.checked = true;
+            }
+            
+            checkbox.addEventListener('change', function() {
+                localStorage.setItem(this.id, this.checked);
+            });
+        });
+        
+        // Add smooth scroll behavior for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
