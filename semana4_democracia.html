@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 4 – Conceptualización Crítica de la Democracia</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+  :root {
+    --ug-blue: #1a3a6e;
+    --ug-cyan: #00aeef;
+    --ug-cyan-light: #e8f7fd;
+    --ug-blue-light: #e8eef8;
+    --gold: #c9a84c;
+    --text-dark: #1a1a2e;
+    --text-body: #2d3748;
+    --text-muted: #5a6a80;
+    --white: #ffffff;
+    --border: #d0dce8;
+    --success: #15803d;
+    --error: #b91c1c;
+    --success-bg: #dcfce7;
+    --error-bg: #fee2e2;
+    --shadow: 0 4px 24px rgba(26,58,110,0.10);
+    --shadow-sm: 0 2px 8px rgba(26,58,110,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #f0f4fa;
+    color: var(--text-body);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ─── HEADER ─── */
+  .site-header {
+    background: linear-gradient(135deg, var(--ug-blue) 0%, #0d2550 100%);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .header-logo img { height: 52px; width: auto; filter: brightness(0) invert(1); opacity: 0.92; }
+  .header-text { flex: 1; }
+  .header-text .curso { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--ug-cyan); font-weight: 600; }
+  .header-text h1 { font-family: 'Merriweather', serif; font-size: 17px; color: #fff; font-weight: 700; line-height: 1.3; }
+  .header-badge {
+    background: var(--gold);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── PROGRESS BAR ─── */
+  .progress-wrap {
+    background: rgba(255,255,255,0.12);
+    padding: 8px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .progress-label { color: var(--ug-cyan); font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .progress-track { flex: 1; height: 5px; background: rgba(255,255,255,0.2); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--ug-cyan), #00d4ff); border-radius: 3px; transition: width 0.5s ease; width: 0%; }
+  .progress-pct { color: #fff; font-size: 11px; font-weight: 700; width: 30px; text-align: right; }
+
+  /* ─── TABS ─── */
+  .tabs-container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+  .tabs-nav {
+    display: flex;
+    gap: 4px;
+    padding: 20px 0 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs-nav::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    background: var(--white);
+    border: 2px solid var(--border);
+    border-bottom: none;
+    padding: 9px 18px;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tab-btn:hover { color: var(--ug-blue); border-color: var(--ug-cyan); }
+  .tab-btn.active {
+    background: var(--white);
+    color: var(--ug-blue);
+    border-color: var(--ug-cyan);
+    border-bottom: 2px solid var(--white);
+    position: relative;
+    z-index: 2;
+  }
+  .tab-btn .tab-num {
+    background: var(--ug-blue-light);
+    color: var(--ug-blue);
+    font-size: 10px;
+    font-weight: 800;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tab-btn.active .tab-num { background: var(--ug-cyan); color: #fff; }
+  .tab-btn.done .tab-num { background: var(--success); color: #fff; }
+
+  /* ─── CONTENT PANEL ─── */
+  .content-panel {
+    background: var(--white);
+    border: 2px solid var(--ug-cyan);
+    border-radius: 0 12px 12px 12px;
+    padding: 36px 44px;
+    margin-bottom: 32px;
+    min-height: 460px;
+    position: relative;
+    box-shadow: var(--shadow);
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; animation: fadeIn 0.35s ease; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+
+  /* ─── TYPOGRAPHY ─── */
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--ug-cyan);
+    margin-bottom: 8px;
+  }
+  h2.section-title {
+    font-family: 'Merriweather', serif;
+    font-size: 24px;
+    color: var(--ug-blue);
+    font-weight: 700;
+    margin-bottom: 22px;
+    line-height: 1.35;
+    border-bottom: 3px solid var(--ug-cyan);
+    padding-bottom: 12px;
+  }
+  h3.subsection {
+    font-family: 'Merriweather', serif;
+    font-size: 17px;
+    color: var(--ug-blue);
+    font-weight: 700;
+    margin: 28px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  h3.subsection::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 20px;
+    background: var(--ug-cyan);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  p { margin-bottom: 16px; color: var(--text-body); line-height: 1.8; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ─── CALLOUT BOXES ─── */
+  .callout {
+    border-left: 4px solid var(--ug-cyan);
+    background: var(--ug-cyan-light);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+  }
+  .callout.gold { border-left-color: var(--gold); background: #fdf9ee; }
+  .callout.blue { border-left-color: var(--ug-blue); background: var(--ug-blue-light); }
+  .callout.red { border-left-color: #b91c1c; background: #fff5f5; }
+  .callout-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+    color: var(--ug-blue);
+  }
+  .callout.gold .callout-title { color: #7a5c00; }
+  .callout.red .callout-title { color: #991b1b; }
+
+  /* ─── QUOTE ─── */
+  blockquote {
+    border-left: 4px solid var(--gold);
+    background: #fdf9ee;
+    padding: 18px 24px;
+    margin: 22px 0;
+    border-radius: 0 8px 8px 0;
+    font-family: 'Merriweather', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: #4a3000;
+    line-height: 1.75;
+  }
+  blockquote footer {
+    margin-top: 10px;
+    font-style: normal;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline { margin: 24px 0; }
+  .tl-item {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 20px;
+  }
+  .tl-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .tl-dot {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--ug-blue);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .tl-line { width: 2px; flex: 1; background: var(--border); margin-top: 4px; min-height: 24px; }
+  .tl-item:last-child .tl-line { display: none; }
+  .tl-body {}
+  .tl-year { font-size: 11px; font-weight: 700; color: var(--ug-cyan); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+  .tl-title { font-weight: 700; color: var(--ug-blue); font-size: 14px; margin-bottom: 5px; }
+  .tl-text { font-size: 14px; color: var(--text-body); }
+
+  /* ─── THINKER CARDS ─── */
+  .thinkers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 20px; margin: 20px 0; }
+  .thinker-card {
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+    background: #fff;
+  }
+  .thinker-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+  .thinker-header {
+    background: linear-gradient(135deg, var(--ug-blue), #1a4d8e);
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .thinker-avatar {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: var(--ug-cyan);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .thinker-meta .name { font-weight: 700; color: #fff; font-size: 14px; }
+  .thinker-meta .period { font-size: 11px; color: var(--ug-cyan); }
+  .thinker-body { padding: 14px 18px; font-size: 13.5px; }
+  .thinker-tag {
+    display: inline-block;
+    background: var(--ug-blue-light);
+    color: var(--ug-blue);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── TENSION TABLE ─── */
+  .tension-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 16px 0; }
+  .tension-table th { background: var(--ug-blue); color: #fff; padding: 10px 14px; text-align: left; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  .tension-table th:first-child { border-radius: 8px 0 0 0; }
+  .tension-table th:last-child { border-radius: 0 8px 0 0; }
+  .tension-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .tension-table tr:nth-child(even) td { background: var(--ug-blue-light); }
+  .tension-table td:first-child { font-weight: 600; color: var(--ug-blue); }
+
+  /* ─── SOFIA BOX ─── */
+  .sofia-box {
+    background: linear-gradient(135deg, #f0f7ff 0%, #e8f7fd 100%);
+    border: 1.5px solid var(--ug-cyan);
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin: 24px 0;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .sofia-avatar {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ug-blue), var(--ug-cyan));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0,174,239,0.3);
+  }
+  .sofia-text .sofia-name { font-weight: 700; color: var(--ug-blue); font-size: 13px; margin-bottom: 6px; }
+  .sofia-text p { font-size: 14px; margin: 0; }
+
+  /* ─── ECUADOR BOX ─── */
+  .ecuador-box {
+    background: #fff8e1;
+    border: 1.5px solid var(--gold);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 20px 0;
+  }
+  .ecuador-flag { font-size: 20px; margin-right: 8px; }
+
+  /* ─── NAV BUTTONS ─── */
+  .nav-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .btn-primary { background: var(--ug-blue); color: #fff; }
+  .btn-primary:hover { background: #0d2550; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(26,58,110,0.3); }
+  .btn-secondary { background: var(--white); color: var(--ug-blue); border: 2px solid var(--ug-blue); }
+  .btn-secondary:hover { background: var(--ug-blue-light); }
+  .btn-ghost { background: transparent; color: var(--text-muted); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+
+  /* ─── QUIZ ─── */
+  .quiz-header {
+    background: linear-gradient(135deg, var(--ug-blue) 0%, #1a4d8e 100%);
+    color: #fff;
+    padding: 22px 28px;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 0;
+  }
+  .quiz-header h3 { font-family: 'Merriweather', serif; font-size: 17px; margin-bottom: 6px; }
+  .quiz-header p { font-size: 13px; opacity: 0.85; margin: 0; }
+  .quiz-progress-bar { height: 4px; background: rgba(255,255,255,0.2); margin-top: 14px; border-radius: 2px; overflow: hidden; }
+  .quiz-progress-fill { height: 100%; background: var(--ug-cyan); border-radius: 2px; transition: width 0.4s ease; }
+  .quiz-counter { font-size: 12px; opacity: 0.8; margin-top: 6px; }
+
+  .question-block {
+    border: 1.5px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 28px;
+    background: #fff;
+    display: none;
+  }
+  .question-block.active { display: block; animation: fadeIn 0.3s ease; }
+  .question-text {
+    font-family: 'Merriweather', serif;
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--ug-blue);
+    line-height: 1.6;
+    margin-bottom: 22px;
+    padding-bottom: 16px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .q-number { font-size: 11px; color: var(--ug-cyan); font-family: 'Source Sans 3', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
+  .options-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .option-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #fff;
+  }
+  .option-item:hover:not(.locked) { border-color: var(--ug-cyan); background: var(--ug-cyan-light); }
+  .option-item.selected { border-color: var(--ug-blue); background: var(--ug-blue-light); }
+  .option-item.correct { border-color: var(--success); background: var(--success-bg); }
+  .option-item.wrong { border-color: var(--error); background: var(--error-bg); }
+  .option-item.locked { cursor: default; }
+  .option-letter {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--ug-blue-light);
+    color: var(--ug-blue);
+    font-size: 12px;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .option-item.selected .option-letter { background: var(--ug-blue); color: #fff; }
+  .option-item.correct .option-letter { background: var(--success); color: #fff; }
+  .option-item.wrong .option-letter { background: var(--error); color: #fff; }
+  .option-text { font-size: 14px; line-height: 1.6; }
+
+  .btn-submit-q {
+    margin-top: 18px;
+    background: var(--ug-blue);
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-submit-q:hover:not(:disabled) { background: #0d2550; transform: translateY(-1px); }
+  .btn-submit-q:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn-submit-q.next { background: var(--ug-cyan); }
+  .btn-submit-q.next:hover { background: #008abc; }
+
+  .feedback-panel {
+    margin-top: 18px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .feedback-panel.show { display: block; }
+  .feedback-panel.correct-fb { background: var(--success-bg); border: 1.5px solid var(--success); }
+  .feedback-panel.wrong-fb { background: var(--error-bg); border: 1.5px solid var(--error); }
+  .feedback-title { font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+  .correct-fb .feedback-title { color: var(--success); }
+  .wrong-fb .feedback-title { color: var(--error); }
+  .feedback-text { font-size: 13.5px; line-height: 1.7; }
+
+  /* RESULTS */
+  .results-panel {
+    text-align: center;
+    padding: 40px 20px;
+    display: none;
+  }
+  .results-panel.show { display: block; animation: fadeIn 0.5s ease; }
+  .results-score-circle {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ug-blue), var(--ug-cyan));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 8px 24px rgba(0,174,239,0.4);
+  }
+  .results-score-circle .score-num { font-size: 32px; font-weight: 800; color: #fff; line-height: 1; }
+  .results-score-circle .score-den { font-size: 13px; color: rgba(255,255,255,0.8); }
+  .results-message { font-family: 'Merriweather', serif; font-size: 20px; color: var(--ug-blue); font-weight: 700; margin-bottom: 10px; }
+  .results-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+  .results-details { max-width: 400px; margin: 0 auto 24px; }
+  .rd-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 14px; border-radius: 6px; margin-bottom: 6px; font-size: 13px; }
+  .rd-item.corr { background: var(--success-bg); color: var(--success); font-weight: 600; }
+  .rd-item.incorr { background: var(--error-bg); color: var(--error); font-weight: 600; }
+  .btn-reset-quiz {
+    background: var(--ug-blue);
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: all 0.2s;
+  }
+  .btn-reset-quiz:hover { background: #0d2550; }
+
+  /* RECAP BADGE */
+  .recap-badge {
+    background: linear-gradient(135deg, #f0f7ff, #e8f7fd);
+    border: 1.5px solid var(--ug-cyan);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-size: 13.5px;
+  }
+  .recap-badge strong { color: var(--ug-blue); }
+
+  /* HIGHLIGHT PILL */
+  .hl { background: var(--ug-cyan-light); color: var(--ug-blue); padding: 1px 7px; border-radius: 4px; font-weight: 600; }
+
+  /* CONCEPT GRID */
+  .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  @media(max-width:600px) { .concept-grid { grid-template-columns: 1fr; } .content-panel { padding: 22px 18px; } .thinkers-grid { grid-template-columns: 1fr; } }
+  .concept-card {
+    background: var(--ug-blue-light);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--ug-cyan);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .concept-card .cc-title { font-weight: 700; color: var(--ug-blue); font-size: 13px; margin-bottom: 6px; }
+  .concept-card p { font-size: 13px; margin: 0; }
+
+  /* FOOTER */
+  .site-footer {
+    background: var(--ug-blue);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    margin-top: 40px;
+  }
+  .site-footer strong { color: var(--ug-cyan); }
+
+  /* ICON HELPER */
+  .ico { font-style: normal; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-logo">
+      <img src="data:image/jpeg;base64,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" alt="Universidad de Guayaquil" />
+    </div>
+    <div class="header-text">
+      <div class="curso">Democracia, Ciudadanía y Globalización · Ciclo I - 2026</div>
+      <h1>Semana 4: Conceptualización Crítica de la Democracia</h1>
+    </div>
+    <div class="header-badge">Sem. 4 / 14</div>
+  </div>
+  <div class="progress-wrap">
+    <span class="progress-label">Tu progreso</span>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-pct" id="progressPct">0%</span>
+  </div>
+</header>
+
+<div class="tabs-container">
+  <nav class="tabs-nav" id="tabsNav">
+    <button class="tab-btn active" onclick="showTab(0)" id="tabBtn0"><span class="tab-num">1</span>Presentación</button>
+    <button class="tab-btn" onclick="showTab(1)" id="tabBtn1"><span class="tab-num">2</span>Orígenes</button>
+    <button class="tab-btn" onclick="showTab(2)" id="tabBtn2"><span class="tab-num">3</span>Pensadores Clásicos</button>
+    <button class="tab-btn" onclick="showTab(3)" id="tabBtn3"><span class="tab-num">4</span>Modernos y Contemporáneos</button>
+    <button class="tab-btn" onclick="showTab(4)" id="tabBtn4"><span class="tab-num">5</span>Tensiones y Paradojas</button>
+    <button class="tab-btn" onclick="showTab(5)" id="tabBtn5"><span class="tab-num">6</span>Democracia y Valores</button>
+    <button class="tab-btn" onclick="showTab(6)" id="tabBtn6"><span class="tab-num">7</span>Ecuador Hoy</button>
+    <button class="tab-btn" onclick="showTab(7)" id="tabBtn7"><span class="tab-num">8</span>✏️ Cuestionario</button>
+  </nav>
+
+  <div class="content-panel">
+
+    <!-- ═══ TAB 0: PRESENTACIÓN ═══ -->
+    <div class="tab-content active" id="tab0">
+      <div class="section-eyebrow">Bienvenida a la Semana 4</div>
+      <h2 class="section-title">¿Qué entendemos realmente por democracia?</h2>
+
+      <div class="recap-badge">
+        <strong>📌 Recapitulación Semanas 1–3:</strong> Hasta ahora hemos explorado los fundamentos de la ética profesional del contador, la relación entre individuo y Estado (incluyendo la soberanía), las cinco funciones del Estado ecuatoriano y la importancia del Estado de Derecho. Hemos comprendido que la institucionalidad depende de la calidad moral de quienes la sostienen. Esta semana damos un paso más: estudiaremos críticamente qué es la democracia, cómo ha sido concebida a lo largo de la historia, y —lo más importante— por qué el carácter ciudadano es su único sostén verdadero.
+      </div>
+
+      <div class="sofia-box">
+        <div class="sofia-avatar">👩‍💼</div>
+        <div class="sofia-text">
+          <div class="sofia-name">Sofía, contadora recién graduada, reflexiona:</div>
+          <p>«En mi primera semana de trabajo, mi jefe me pidió que firmara un balance que tenía irregularidades. Me dijo: <em>"Todo el mundo lo hace, así funciona esto."</em> Yo recordé algo de mis estudios: en una democracia real, los procedimientos formales sólo funcionan si las personas que los operan tienen conciencia moral. Si firmo ese balance, no soy sólo deshonesta yo: estoy debilitando una institución, defraudando inversores, y contribuyendo a ese sistema que destruye la confianza pública. ¿Pero cuánto sabe realmente la gente sobre qué significa vivir en democracia?»</p>
+        </div>
+      </div>
+
+      <p>La pregunta de Sofía es el punto de partida de esta semana. <span class="hl">La democracia no es simplemente el derecho a votar</span>. Es un sistema de organización política, social y moral cuyas raíces se remontan a la antigüedad griega, y cuyas exigencias éticas recaen, en última instancia, sobre cada ciudadano —y cada profesional— que la habita.</p>
+
+      <p>A lo largo de esta semana analizaremos la democracia desde múltiples perspectivas históricas y filosóficas: desde Atenas hasta el Ecuador del siglo XXI, pasando por Locke, Rousseau, Tocqueville, Rawls y Amartya Sen. Contrastaremos visiones para que tú puedas forjar una comprensión propia, crítica y fundamentada.</p>
+
+      <div class="callout gold">
+        <div class="callout-title">🎯 Propósito de Aprendizaje</div>
+        Al concluir esta semana, podrás: (1) definir la democracia críticamente desde distintas tradiciones filosóficas; (2) identificar sus tensiones constitutivas; (3) conectar los valores ciudadanos con la salud democrática; y (4) aplicar este análisis a la realidad ecuatoriana y a tu futura práctica como contador.
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn btn-ghost" disabled>← Anterior</button>
+        <button class="btn btn-primary" onclick="showTab(1)">Siguiente: Los Orígenes →</button>
+      </div>
+    </div>
+
+    <!-- ═══ TAB 1: ORÍGENES ═══ -->
+    <div class="tab-content" id="tab1">
+      <div class="section-eyebrow">Contexto Histórico</div>
+      <h2 class="section-title">De Atenas a la Modernidad: los orígenes de la democracia</h2>
+
+      <p>Para entender críticamente la democracia contemporánea, es imprescindible conocer dónde y cómo nació. La historia de la democracia es también la historia de sus fracasos, traiciones y reinvenciones. No es un logro terminado: es un proceso permanente, y su calidad depende de los seres humanos que la sostienen.</p>
+
+      <h3 class="subsection">La democracia ateniense (siglo V a.C.)</h3>
+
+      <p>En el siglo V antes de Cristo, en la ciudad-estado de Atenas (Grecia), surgió lo que los historiadores reconocen como el primer experimento democrático documentado de la humanidad. El político ateniense <strong>Clístenes</strong> reorganizó la estructura política de la ciudad hacia el año 507 a.C., y bajo el liderazgo de <strong>Pericles</strong> (495–429 a.C.), el sistema alcanzó su mayor esplendor. La palabra «democracia» proviene del griego: <em>demos</em> (pueblo) y <em>kratos</em> (poder, gobierno). Literalmente: <span class="hl">el gobierno del pueblo</span>.</p>
+
+      <div class="callout blue">
+        <div class="callout-title">📜 ¿Cómo funcionaba la democracia ateniense?</div>
+        <p style="margin:0;font-size:14px;">El órgano central era la <strong>Asamblea (Ecclesia)</strong>, donde todos los ciudadanos varones libres mayores de 20 años podían participar directamente, hablar y votar. No existían representantes: los ciudadanos gobernaban directamente. Sin embargo, este sistema excluía a las mujeres (más de la mitad de la población), a los esclavos (aproximadamente un tercio de los habitantes), y a los extranjeros residentes. Es decir: una democracia excluyente, pensada para una minoría privilegiada.</p>
+      </div>
+
+      <blockquote>
+        «Creemos que quien no participa en la vida pública no es solo una persona tranquila, sino un ciudadano inútil.»
+        <footer>— Pericles, Oración Fúnebre, 431 a.C. (recogida por Tucídides en <em>Historia de la Guerra del Peloponeso</em>)</footer>
+      </blockquote>
+
+      <p>Esta cita es extraordinariamente moderna. Pericles no decía que el ciudadano tiene <em>derecho</em> a participar: decía que <em>no participar es una forma de inutilidad cívica</em>. La participación no era opción, era obligación moral. Este punto conecta directamente con lo que hemos estudiado sobre la ciudadanía activa.</p>
+
+      <h3 class="subsection">La crítica de los filósofos: ¿puede el pueblo gobernarse a sí mismo?</h3>
+
+      <p>Paradójicamente, dos de los más grandes filósofos griegos —<strong>Platón</strong> (427–347 a.C.) y su discípulo <strong>Aristóteles</strong> (384–322 a.C.)— fueron críticos severos de la democracia. Sus objeciones siguen siendo relevantes hoy.</p>
+
+      <div class="thinkers-grid">
+        <div class="thinker-card">
+          <div class="thinker-header">
+            <div class="thinker-avatar">Pl</div>
+            <div class="thinker-meta">
+              <div class="name">Platón</div>
+              <div class="period">427–347 a.C. · Atenas</div>
+            </div>
+          </div>
+          <div class="thinker-body">
+            <div class="thinker-tag">Crítico de la Democracia</div>
+            <p>En <em>La República</em>, Platón argumentó que la democracia es el gobierno de los ignorantes. Si cualquier persona puede votar sin preparación filosófica ni virtud, la mayoría elegirá lo más cómodo y no lo más justo. Para él, gobernar requería <em>sabiduría (sophia)</em>, no simplemente números. Su metáfora del "barco del Estado" es célebre: nadie elegiría al piloto de una nave por votación popular entre pasajeros sin conocimiento náutico.</p>
+          </div>
+        </div>
+        <div class="thinker-card">
+          <div class="thinker-header">
+            <div class="thinker-avatar">Ar</div>
+            <div class="thinker-meta">
+              <div class="name">Aristóteles</div>
+              <div class="period">384–322 a.C. · Estagira</div>
+            </div>
+          </div>
+          <div class="thinker-body">
+            <div class="thinker-tag">Moderado y Contextual</div>
+            <p>Aristóteles fue más matizado. En su <em>Política</em>, clasificó los sistemas de gobierno en buenos (monarquía, aristocracia, politeia) y corrompidos (tiranía, oligarquía, democracia extrema). Para él, la democracia podía degenerar en demagogia —el gobierno de demagogos que manipulan a las masas con promesas vacías. Pero reconocía que la participación ciudadana podía ser sabia si los ciudadanos tenían <strong>phronesis</strong> (prudencia práctica), el mismo concepto que guía nuestro curso.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout red">
+        <div class="callout-title">⚠️ Reflexión Crítica</div>
+        <p style="margin:0;font-size:14px;">La crítica de Platón y Aristóteles no es antidemocrática por impulso autoritario. Es una advertencia sobre la <strong>calidad moral y educativa del ciudadano</strong>. Si las personas que votan no tienen información, no piensan críticamente, y se dejan llevar por promesas demagógicas, el resultado no es democracia genuina, sino <em>oclocracia</em>: el gobierno de la muchedumbre. Esta distinción es crucial para entender muchos fracasos democráticos contemporáneos, incluyendo en Ecuador.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-marker"><div class="tl-dot">1</div><div class="tl-line"></div></div>
+          <div class="tl-body">
+            <div class="tl-year">507 a.C.</div>
+            <div class="tl-title">Reformas de Clístenes en Atenas</div>
+            <div class="tl-text">Se organiza la primera democracia directa: la Asamblea (Ecclesia). Los ciudadanos varones libres gobiernan directamente.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-marker"><div class="tl-dot">2</div><div class="tl-line"></div></div>
+          <div class="tl-body">
+            <div class="tl-year">431 a.C.</div>
+            <div class="tl-title">Oración Fúnebre de Pericles</div>
+            <div class="tl-text">El máximo exponente de la democracia ateniense define la participación como obligación moral, no derecho opcional.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-marker"><div class="tl-dot">3</div><div class="tl-line"></div></div>
+          <div class="tl-body">
+            <div class="tl-year">399 a.C.</div>
+            <div class="tl-title">Condena de Sócrates</div>
+            <div class="tl-text">La democracia ateniense condena a muerte a su más grande pensador crítico. La paradoja democrática: la mayoría puede equivocarse gravemente.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-marker"><div class="tl-dot">4</div><div class="tl-line"></div></div>
+          <div class="tl-body">
+            <div class="tl-year">1215</div>
+            <div class="tl-title">Carta Magna en Inglaterra</div>
+            <div class="tl-text">Los barones ingleses limitan el poder del Rey Juan I. Primer antecedente del Estado de Derecho moderno: nadie está por encima de la ley.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-marker"><div class="tl-dot">5</div><div class="tl-line"></div></div>
+          <div class="tl-body">
+            <div class="tl-year">1688</div>
+            <div class="tl-title">Revolución Gloriosa (Inglaterra)</div>
+            <div class="tl-text">El Parlamento limita la monarquía. Locke escribe sus tratados sobre el gobierno civil: los derechos naturales y el consentimiento popular como base del poder legítimo.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-marker"><div class="tl-dot">6</div><div class="tl-line"></div></div>
+          <div class="tl-body">
+            <div class="tl-year">1789</div>
+            <div class="tl-title">Revolución Francesa</div>
+            <div class="tl-text">«Liberté, Égalité, Fraternité». La democracia moderna irrumpe como proyecto político total, heredando las ideas de Rousseau sobre la voluntad general.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-marker"><div class="tl-dot">7</div><div class="tl-line"></div></div>
+          <div class="tl-body">
+            <div class="tl-year">Siglo XX</div>
+            <div class="tl-title">Auge y Crisis de las Democracias</div>
+            <div class="tl-text">Las democracias liberales triunfan sobre el fascismo y el comunismo, pero enfrentan nuevas amenazas: populismo, corrupción institucional, desigualdad creciente y erosión de la participación ciudadana.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn btn-secondary" onclick="showTab(0)">← Anterior</button>
+        <button class="btn btn-primary" onclick="showTab(2)">Siguiente: Pensadores Clásicos →</button>
+      </div>
+    </div>
+
+    <!-- ═══ TAB 2: PENSADORES CLÁSICOS ═══ -->
+    <div class="tab-content" id="tab2">
+      <div class="section-eyebrow">Filosofía Política</div>
+      <h2 class="section-title">Los pensadores que forjaron la democracia moderna</h2>
+
+      <p>Entre los siglos XVII y XIX, varios filósofos reformularon radicalmente la pregunta sobre el poder político: <em>¿por qué debo obedecer a un gobierno?</em> Sus respuestas —distintas, a veces contradictorias— constituyen los fundamentos de la democracia moderna. Conocerlos no es un ejercicio académico vacío: sus ideas viven en las constituciones actuales, incluyendo la del Ecuador.</p>
+
+      <h3 class="subsection">Thomas Hobbes y el problema del orden (1588–1679)</h3>
+
+      <p><strong>Hobbes</strong> no era un demócrata, pero su análisis es el punto de partida ineludible. En su obra monumental <em>Leviatán</em> (1651), publicada en plena guerra civil inglesa, Hobbes describió el «estado de naturaleza» como una condición de guerra permanente: <em>"guerra de todos contra todos"</em>. Sin un poder central que imponga orden, la vida humana sería, en sus palabras, <em>"solitaria, pobre, brutal y breve"</em>.</p>
+
+      <blockquote>
+        «En tal condición, no existe industria alguna, pues los frutos de la misma son inciertos. No hay cultivo de la tierra, ni navegación, ni construcciones cómodas... y lo peor de todo, hay temor continuo y peligro de muerte violenta.»
+        <footer>— Thomas Hobbes, Leviatán (1651), Capítulo XIII</footer>
+      </blockquote>
+
+      <p>La solución de Hobbes fue el <strong>contrato social</strong>: los individuos ceden su libertad absoluta a un soberano (el «Leviatán») a cambio de seguridad y orden. Su propuesta era autoritaria —el soberano tiene poder casi ilimitado— pero su diagnóstico del problema sigue siendo relevante: <span class="hl">sin instituciones fuertes, la convivencia colapsa</span>. Esto conecta directamente con lo que ocurre cuando instituciones como la Contraloría o la Superintendencia de Compañías dejan de funcionar en Ecuador.</p>
+
+      <h3 class="subsection">John Locke y los derechos naturales (1632–1704)</h3>
+
+      <p>Locke partió de una premisa diferente a Hobbes. En su <em>Segundo Tratado sobre el Gobierno Civil</em> (1689), argumentó que en el estado de naturaleza los seres humanos ya poseen derechos: <strong>vida, libertad y propiedad</strong>. El gobierno no crea estos derechos: los protege. Si el gobierno viola estos derechos, los ciudadanos tienen el derecho a derrocarlo —una idea revolucionaria que inspiró directamente la Declaración de Independencia de los Estados Unidos en 1776.</p>
+
+      <div class="callout blue">
+        <div class="callout-title">🔑 La idea clave de Locke para la democracia</div>
+        <p style="margin:0;font-size:14px;">El poder político legítimo requiere el <strong>consentimiento de los gobernados</strong>. El gobierno no es un fin en sí mismo: es un instrumento al servicio de los ciudadanos. Si traiciona esa función, pierde su legitimidad. Esta idea vive hoy en el Artículo 1 de la Constitución del Ecuador: «Ecuador es un Estado constitucional de derechos... La soberanía radica en el pueblo.»</p>
+      </div>
+
+      <h3 class="subsection">Jean-Jacques Rousseau y la voluntad general (1712–1778)</h3>
+
+      <p>Rousseau fue el filósofo más radical e influyente de la Ilustración política. En <em>El Contrato Social</em> (1762), introdujo un concepto que cambiaría la historia: la <strong>voluntad general</strong> (<em>volonté générale</em>). Para Rousseau, hay una diferencia crucial entre «la voluntad de todos» (la suma de intereses individuales y particulares) y «la voluntad general» (el bien común que trasciende los intereses individuales).</p>
+
+      <blockquote>
+        «El hombre ha nacido libre, y en todas partes se halla encadenado. El que se cree señor de los demás, no deja de ser más esclavo que ellos.»
+        <footer>— Jean-Jacques Rousseau, El Contrato Social (1762), Libro I, Capítulo I</footer>
+      </blockquote>
+
+      <p>Rousseau identificó también un problema fundamental de la democracia representativa: cuando eliges a un representante, le cedes tu soberanía. <em>"El pueblo inglés cree ser libre; se engaña mucho: no lo es sino durante la elección de los miembros del Parlamento; desde el momento en que éstos son elegidos, el pueblo es esclavo."</em> Esta crítica sigue siendo muy actual.</p>
+
+      <div class="callout">
+        <div class="callout-title">💡 Punto de Conexión con la Carrera Contable</div>
+        <p style="margin:0;font-size:14px;">La «voluntad general» de Rousseau tiene un paralelo directo en la ética profesional contable. Los estados financieros de una empresa pública no son propiedad del gerente ni del contador: son información que pertenece a la comunidad de inversores, empleados, proveedores y ciudadanos. Manipularlos es traicionar la «voluntad general» de quienes dependen de esa información veraz.</p>
+      </div>
+
+      <h3 class="subsection">Alexis de Tocqueville y los riesgos de la democracia (1805–1859)</h3>
+
+      <p>Tocqueville fue el primer sociólogo de la democracia. Viajó a los Estados Unidos entre 1831 y 1832 para estudiar su sistema penitenciario, pero terminó escribiendo <em>La Democracia en América</em> (1835–1840), el análisis más perspicaz jamás escrito sobre el funcionamiento real de una democracia.</p>
+
+      <p>Sus advertencias son proféticas. Tocqueville identificó dos amenazas específicas que la democracia lleva en sí misma:</p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <div class="cc-title">⚠️ La Tiranía de la Mayoría</div>
+          <p>En democracia, la mayoría puede oprimir a las minorías con la misma violencia que un tirano individual, pero con la justificación moral de "la voluntad popular". La igualdad de votos no garantiza la justicia de las decisiones.</p>
+        </div>
+        <div class="concept-card">
+          <div class="cc-title">⚠️ El Despotismo Blando</div>
+          <p>Tocqueville previó que las democracias modernas pueden crear ciudadanos pasivos, que delegan todo en el Estado, pierden la capacidad de autogobernarse y terminan en una servidumbre voluntaria y cómoda. La dependencia destruye la virtud ciudadana.</p>
+        </div>
+        <div class="concept-card">
+          <div class="cc-title">✅ El Asociacionismo como Antídoto</div>
+          <p>Tocqueville encontró en los EE.UU. una fortaleza democrática única: la cultura de asociación voluntaria. Los ciudadanos se organizaban libremente para resolver problemas comunes sin esperar al Estado. La sociedad civil activa es el músculo de la democracia.</p>
+        </div>
+        <div class="concept-card">
+          <div class="cc-title">✅ El Rol de los Hábitos del Corazón</div>
+          <p>Para Tocqueville, la democracia no se sostiene solo con leyes e instituciones. Se sostiene con <em>mœurs</em>: los hábitos, costumbres, valores y disposiciones morales de los ciudadanos. Sin estas virtudes interiorizadas, ninguna Constitución sobrevive.</p>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn btn-secondary" onclick="showTab(1)">← Anterior</button>
+        <button class="btn btn-primary" onclick="showTab(3)">Siguiente: Pensadores Modernos →</button>
+      </div>
+    </div>
+
+    <!-- ═══ TAB 3: MODERNOS Y CONTEMPORÁNEOS ═══ -->
+    <div class="tab-content" id="tab3">
+      <div class="section-eyebrow">Siglos XX y XXI</div>
+      <h2 class="section-title">La democracia repensada: del liberalismo a las capacidades humanas</h2>
+
+      <p>El siglo XX trajo una profunda revisión del concepto democrático. Las dos guerras mundiales, el Holocausto, el colonialismo, los totalitarismos y las desigualdades económicas extremas obligaron a los filósofos a preguntarse: <em>¿es suficiente con el voto? ¿Puede haber democracia sin justicia económica? ¿Puede haber democracia sin capacidades reales para ejercerla?</em></p>
+
+      <h3 class="subsection">John Rawls y la justicia como equidad (1921–2002)</h3>
+
+      <p><strong>John Rawls</strong> es el filósofo político más influyente del siglo XX. Su obra magna, <em>Teoría de la Justicia</em> (1971), propone un experimento mental brillante: el <strong>velo de ignorancia</strong>. Imagina que debes diseñar las reglas de una sociedad, pero sin saber qué posición ocuparás en ella —no sabrás si nacerás rico o pobre, hombre o mujer, en qué país, con qué talentos. ¿Qué principios elegirías?</p>
+
+      <div class="callout blue">
+        <div class="callout-title">🎭 Los dos principios de Rawls</div>
+        <p style="margin:0;font-size:14px;"><strong>1. Principio de igualdad:</strong> Todos deben tener iguales libertades básicas (expresión, conciencia, asociación, voto).<br><br><strong>2. Principio de diferencia:</strong> Las desigualdades económicas y sociales sólo son justas si benefician a los miembros menos aventajados de la sociedad. Una desigualdad que no mejora la situación de los más pobres es injusta, aunque sea legal.</p>
+      </div>
+
+      <p>La contribución de Rawls a la teoría democrática es decisiva: una democracia que formalmente respeta las libertades pero genera desigualdades insostenibles no es una democracia plena. Este argumento es central para entender por qué Ecuador, con índices de desigualdad severos (coeficiente Gini elevado), enfrenta una crisis de legitimidad democrática que va más allá de los escándalos de corrupción.</p>
+
+      <h3 class="subsection">Amartya Sen y la democracia como conjunto de libertades (n. 1933)</h3>
+
+      <p>El economista y filósofo indio <strong>Amartya Sen</strong>, Premio Nobel de Economía 1998, reformuló la democracia en términos de <strong>libertades reales</strong>. En su obra <em>Desarrollo como Libertad</em> (1999), Sen argumentó que el desarrollo —y por tanto la democracia— no se mide con el PIB, sino con las <strong>capacidades</strong> que las personas tienen para llevar la vida que valoran.</p>
+
+      <div class="thinkers-grid">
+        <div class="thinker-card">
+          <div class="thinker-header">
+            <div class="thinker-avatar">AS</div>
+            <div class="thinker-meta">
+              <div class="name">Amartya Sen</div>
+              <div class="period">n. 1933 · India · Nobel 1998</div>
+            </div>
+          </div>
+          <div class="thinker-body">
+            <div class="thinker-tag">Capacidades y Libertad Real</div>
+            <p>Sen identificó tres valores que la democracia debe garantizar: <strong>(1) Valor intrínseco</strong>: participar es bueno en sí mismo. <strong>(2) Valor instrumental</strong>: la democracia crea incentivos para que los gobernantes atiendan las necesidades del pueblo. <strong>(3) Valor constructivo</strong>: el debate democrático define colectivamente qué se entiende por justicia y bienestar. Libertad formal sin capacidad real no es libertad: votar sin educación, sin información veraz y sin seguridad económica es libertad vacía.</p>
+          </div>
+        </div>
+        <div class="thinker-card">
+          <div class="thinker-header">
+            <div class="thinker-avatar">MN</div>
+            <div class="thinker-meta">
+              <div class="name">Martha Nussbaum</div>
+              <div class="period">n. 1947 · Estados Unidos</div>
+            </div>
+          </div>
+          <div class="thinker-body">
+            <div class="thinker-tag">Capacidades y Dignidad Humana</div>
+            <p>Nussbaum complementó a Sen con su «enfoque de capacidades»: identificó diez capacidades centrales que toda democracia debe garantizar a sus ciudadanos, incluyendo salud corporal, sentidos y emociones, razón práctica, afiliación, y control sobre el propio entorno político. Una democracia que no garantiza estas capacidades es democracia nominal, no real.</p>
+          </div>
+        </div>
+        <div class="thinker-card">
+          <div class="thinker-header">
+            <div class="thinker-avatar">Ha</div>
+            <div class="thinker-meta">
+              <div class="name">Jürgen Habermas</div>
+              <div class="period">n. 1929 · Alemania</div>
+            </div>
+          </div>
+          <div class="thinker-body">
+            <div class="thinker-tag">Democracia Deliberativa</div>
+            <p>Para Habermas, la democracia no se reduce a votar: requiere <strong>deliberación racional</strong>. Las decisiones colectivas deben surgir de un debate público guiado por argumentos razonados, no por poder o manipulación. La «acción comunicativa» —comunicación libre de dominación— es la base de una legitimidad democrática auténtica. Hoy, en la era de las redes sociales y la desinformación, esta teoría cobra urgencia extrema.</p>
+          </div>
+        </div>
+        <div class="thinker-card">
+          <div class="thinker-header">
+            <div class="thinker-avatar">MC</div>
+            <div class="thinker-meta">
+              <div class="name">Manuel Castells</div>
+              <div class="period">n. 1942 · España</div>
+            </div>
+          </div>
+          <div class="thinker-body">
+            <div class="thinker-tag">Redes, Poder e Información</div>
+            <p>Castells, cuyas ideas hemos trabajado en las semanas previas, analiza cómo el poder en la era digital se ejerce mediante el control de redes de comunicación. La democracia enfrenta una amenaza nueva: la manipulación masiva de la información. Cuando los ciudadanos no pueden distinguir la verdad de la mentira, el deliberar racionalmente es imposible. La «comunicación en masa autónoma» (redes sociales) puede democratizar el discurso o puede convertirse en el mayor instrumento de desinformación de la historia.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subsection">T. H. Marshall y la ciudadanía en tres dimensiones (1893–1981)</h3>
+
+      <p>El sociólogo británico <strong>Thomas Humphrey Marshall</strong> propuso en 1950 una visión histórica de la ciudadanía que sigue siendo el marco analítico dominante. Según Marshall, la ciudadanía plena se desarrolló en tres etapas históricas, cada una añadiendo una dimensión nueva:</p>
+
+      <table class="tension-table">
+        <tr><th>Dimensión</th><th>Siglo (aprox.)</th><th>Contenido</th><th>Ejemplo concreto</th></tr>
+        <tr><td>Civil</td><td>XVIII</td><td>Derechos necesarios para la libertad individual: expresión, pensamiento, propiedad, justicia.</td><td>Derecho a un juicio justo, a la libre expresión.</td></tr>
+        <tr><td>Política</td><td>XIX</td><td>Derechos de participación en el ejercicio del poder: votar y ser elegido.</td><td>Sufragio universal, partidos políticos.</td></tr>
+        <tr><td>Social</td><td>XX</td><td>Derecho a un mínimo de bienestar económico y seguridad: educación, salud, trabajo digno.</td><td>Sistema público de salud, educación gratuita.</td></tr>
+      </table>
+
+      <p>Marshall mostró que sin la dimensión <em>social</em>, las dimensiones civil y política son formalmente válidas pero prácticamente vacías. Un ciudadano analfabeto, enfermo y hambriento puede tener derecho al voto, pero no tiene las condiciones reales para ejercerlo con libertad y criterio.</p>
+
+      <div class="sofia-box">
+        <div class="sofia-avatar">👩‍💼</div>
+        <div class="sofia-text">
+          <div class="sofia-name">Sofía conecta los conceptos:</div>
+          <p>«Ahora entiendo algo que me desconcertaba. En Ecuador, muchos candidatos ofrecen subsidios y beneficios justo antes de las elecciones. Eso no es generosidad: es usar la dimensión social de la ciudadanía para manipular la dimensión política. Marshall me ayuda a ver que las tres dimensiones deben funcionar de manera autónoma e interdependiente, no como instrumentos de manipulación electoral. Un contador que certifica balances falsos para financiar esas campañas está atacando las tres dimensiones al mismo tiempo.»</p>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn btn-secondary" onclick="showTab(2)">← Anterior</button>
+        <button class="btn btn-primary" onclick="showTab(4)">Siguiente: Tensiones y Paradojas →</button>
+      </div>
+    </div>
+
+    <!-- ═══ TAB 4: TENSIONES Y PARADOJAS ═══ -->
+    <div class="tab-content" id="tab4">
+      <div class="section-eyebrow">Análisis Crítico</div>
+      <h2 class="section-title">Las tensiones constitutivas de la democracia</h2>
+
+      <p>Una de las señales de pensamiento maduro es la capacidad de sostener tensiones sin resolverlas fácilmente. La democracia no es un sistema de respuestas claras: está atravesada por tensiones fundamentales que la hacen simultáneamente frágil y valiosa. Conocerlas es condición para ejercer la ciudadanía con lucidez.</p>
+
+      <h3 class="subsection">1. Libertad vs. Igualdad</h3>
+
+      <p>Esta es la tensión más profunda de la democracia liberal. La libertad irrestricta produce desigualdad: si las personas son libres de acumular riqueza sin límite, los más talentosos, afortunados o inescrupulosos concentrarán el poder económico y, con él, el político. Pero la igualdad forzada puede requerir restricciones a la libertad: redistribuir la riqueza implica limitar el derecho de propiedad.</p>
+
+      <div class="callout gold">
+        <div class="callout-title">🌍 Contraste Global</div>
+        <p style="margin:0;font-size:14px;"><strong>Modelo liberal-estadounidense:</strong> Prioriza la libertad individual. Acepta mayor desigualdad como precio de la libertad. Confía en el mercado.<br><br><strong>Modelo socialdemócrata-nórdico (Suecia, Noruega, Dinamarca):</strong> Acepta altos impuestos para garantizar mayor igualdad real. Fuerte Estado de bienestar. <br><br><strong>Modelo andino-comunitario (Buen Vivir/Sumak Kawsay):</strong> Incorporado en la Constitución ecuatoriana de 2008. Reconoce los derechos de la naturaleza y la dimensión colectiva/comunitaria del bienestar. Tensiona el modelo liberal individualista desde las tradiciones indígenas.</p>
+      </div>
+
+      <h3 class="subsection">2. Mayoría vs. Derechos de las Minorías</h3>
+
+      <p>La democracia, por definición, implica que la mayoría decide. Pero ¿puede la mayoría decidir cualquier cosa? ¿Puede la mayoría votar para discriminar a una minoría étnica, religiosa o sexual? Esta fue precisamente la paradoja que señalaba Tocqueville con la «tiranía de la mayoría».</p>
+
+      <p>La respuesta democrática moderna ha sido construir un <strong>Estado Constitucional de Derechos</strong>: hay ciertas garantías que ninguna mayoría puede eliminar, porque son constitutivas de la dignidad humana. El Ecuador de 2008 adoptó este modelo. Pero su eficacia depende de que los jueces, fiscales y funcionarios que aplican la Constitución actúen con independencia e integridad.</p>
+
+      <h3 class="subsection">3. Participación vs. Eficiencia</h3>
+
+      <p>Cuantas más personas participan en las decisiones, más lento y complejo es el proceso. Una asamblea de 100 personas tarda mucho más en decidir que un gerente solo. Esto crea una tensión real: los problemas complejos del siglo XXI (cambio climático, pandemias, crisis financieras) requieren respuestas rápidas, técnicas y coordinadas. ¿Puede la democracia deliberativa ser suficientemente ágil?</p>
+
+      <div class="callout red">
+        <div class="callout-title">⚠️ El argumento tecnocrático y sus riesgos</div>
+        <p style="margin:0;font-size:14px;">Algunos argumentan que ciertos ámbitos deben quedar fuera de la política democrática y ser manejados por «expertos» (tecnócratas). Este argumento fue usado, por ejemplo, para justificar que el Banco Central fuera «independiente» de la política. Sin embargo, la experiencia muestra que la tecnocracia sin rendición de cuentas democrática produce sus propios abusos. El caso del ISSPOL (Instituto de Seguridad Social de la Policía Nacional) en Ecuador, donde fondos de pensiones fueron mal invertidos bajo la administración de «expertos», ilustra este riesgo perfectamente.</p>
+      </div>
+
+      <h3 class="subsection">4. Democracia Formal vs. Democracia Sustantiva</h3>
+
+      <p>Esta es la tensión más relevante para entender la realidad ecuatoriana y latinoamericana. Una democracia <em>formal</em> cumple los procedimientos: hay elecciones, hay constitución, hay separación de poderes. Pero una democracia <em>sustantiva</em> también garantiza que esos procedimientos produzcan resultados justos, que los ciudadanos tengan capacidades reales para participar, y que el poder esté genuinamente distribuido.</p>
+
+      <table class="tension-table">
+        <tr><th>Dimensión</th><th>Democracia Formal</th><th>Democracia Sustantiva</th></tr>
+        <tr><td>Elecciones</td><td>Se realizan regularmente</td><td>Son libres, informadas, sin compra de votos</td></tr>
+        <tr><td>Libertad de prensa</td><td>Existe legalmente</td><td>Los medios son independientes del poder económico</td></tr>
+        <tr><td>Separación de poderes</td><td>Está en la Constitución</td><td>Los poderes son realmente independientes entre sí</td></tr>
+        <tr><td>Derechos sociales</td><td>Reconocidos en la ley</td><td>Accesibles para todos en la práctica</td></tr>
+        <tr><td>Rendición de cuentas</td><td>Existen órganos de control</td><td>Investigan y sancionan sin importar el poder del investigado</td></tr>
+      </table>
+
+      <div class="ecuador-box">
+        <span class="ecuador-flag">🇪🇨</span>
+        <strong>Caso Ecuador: la operación «Metástasis» (2024)</strong>
+        <p style="margin-top:8px;font-size:14px;">En enero de 2024, una investigación reveló una red de corrupción que habría penetrado el sistema judicial ecuatoriano, vinculando a jueces, fiscales y funcionarios con organizaciones criminales. El nombre «Metástasis» es simbólico: sugiere que la corrupción no era un fenómeno aislado sino sistémico. Desde la perspectiva de la democracia sustantiva, cuando el sistema judicial —el poder llamado a garantizar derechos— es cooptado por el crimen organizado, la democracia formal sigue existiendo (hay elecciones, hay Constitución) pero la democracia sustantiva colapsa. Este es el diagnóstico más honesto que podemos hacer del Ecuador contemporáneo.</p>
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn btn-secondary" onclick="showTab(3)">← Anterior</button>
+        <button class="btn btn-primary" onclick="showTab(5)">Siguiente: Democracia y Valores →</button>
+      </div>
+    </div>
+
+    <!-- ═══ TAB 5: DEMOCRACIA Y VALORES ═══ -->
+    <div class="tab-content" id="tab5">
+      <div class="section-eyebrow">Ética y Democracia</div>
+      <h2 class="section-title">La democracia descansa sobre el carácter del ciudadano</h2>
+
+      <p>Hemos llegado al núcleo de esta semana. Todo lo aprendido hasta aquí converge en una tesis fundamental: <span class="hl">la democracia no es solo un sistema de votación ni un conjunto de instituciones. Es una forma de ser y de relacionarse con los demás que exige virtudes específicas en cada ciudadano.</span> Sin esas virtudes, ninguna constitución, ningún parlamento, ningún tribunal puede sostener la democracia por sí solo.</p>
+
+      <h3 class="subsection">La phronesis aristotélica como fundamento democrático</h3>
+
+      <p>Retomemos a Aristóteles. Su concepto de <strong>phronesis</strong> —prudencia práctica, sabiduría aplicada a la acción— es exactamente lo que necesita un ciudadano democrático. La phronesis no es saber teorías: es la capacidad de discernir qué es lo correcto en situaciones concretas, complejas y con intereses en conflicto. Un ciudadano con phronesis no se deja manipular por la demagogia. Un contador con phronesis no firma lo que no es ético aunque le presionen.</p>
+
+      <blockquote>
+        «La virtud es un hábito selectivo que consiste en un término medio relativo a nosotros, determinado por la razón y por aquella razón por la que decidiría el hombre prudente.»
+        <footer>— Aristóteles, Ética a Nicómaco, Libro II</footer>
+      </blockquote>
+
+      <h3 class="subsection">Virtudes ciudadanas: lo que la democracia exige de cada persona</h3>
+
+      <div class="thinkers-grid">
+        <div class="thinker-card">
+          <div class="thinker-header" style="background:linear-gradient(135deg,#0d5c2d,#15803d);">
+            <div class="thinker-avatar" style="background:#22c55e;">🤝</div>
+            <div class="thinker-meta">
+              <div class="name">Ubuntu (África)</div>
+              <div class="period">Filosofía Bantú del ser-en-relación</div>
+            </div>
+          </div>
+          <div class="thinker-body">
+            <div class="thinker-tag">Solidaridad Comunitaria</div>
+            <p><em>«Umuntu ngumuntu ngabantu»</em>: «Una persona es persona a través de otras personas.» La democracia requiere reconocer que nuestra humanidad está ligada a la humanidad de los demás. El individualismo extremo —el «sálvese quien pueda»— destruye la base comunitaria de la democracia.</p>
+          </div>
+        </div>
+        <div class="thinker-card">
+          <div class="thinker-header" style="background:linear-gradient(135deg,#7c3d00,#b45309);">
+            <div class="thinker-avatar" style="background:#f59e0b;">🌄</div>
+            <div class="thinker-meta">
+              <div class="name">Minga (Andes)</div>
+              <div class="period">Tradición indígena andina</div>
+            </div>
+          </div>
+          <div class="thinker-body">
+            <div class="thinker-tag">Trabajo Colectivo Voluntario</div>
+            <p>La <em>minga</em> es la práctica ancestral andina de trabajo comunitario solidario sin esperar pago individual. Cada miembro aporta sus capacidades al bien común. Esta lógica es radicalmente democrática: la comunidad existe porque sus miembros contribuyen voluntariamente a ella, sin necesidad de que una autoridad externa los obligue.</p>
+          </div>
+        </div>
+        <div class="thinker-card">
+          <div class="thinker-header" style="background:linear-gradient(135deg,#0f172a,#1e3a5f);">
+            <div class="thinker-avatar" style="background:#0ea5e9;">⛩️</div>
+            <div class="thinker-meta">
+              <div class="name">MAKOTO (Japón)</div>
+              <div class="period">Filosofía japonesa de la sinceridad</div>
+            </div>
+          </div>
+          <div class="thinker-body">
+            <div class="thinker-tag">Integridad y Congruencia</div>
+            <p><em>Makoto</em> es la virtud japonesa que une la verdad interior con la acción exterior. Se es honesto no por miedo al castigo, sino porque la autenticidad es un valor en sí mismo. Una democracia funciona cuando sus ciudadanos y funcionarios actúan con esta congruencia: dicen lo que piensan y hacen lo que dicen.</p>
+          </div>
+        </div>
+        <div class="thinker-card">
+          <div class="thinker-header" style="background:linear-gradient(135deg,#1a3a6e,#00aeef);">
+            <div class="thinker-avatar" style="background:#fff;color:#1a3a6e;">🏛️</div>
+            <div class="thinker-meta">
+              <div class="name">Virtud Cívica Clásica</div>
+              <div class="period">Tradición greco-romana y republicana</div>
+            </div>
+          </div>
+          <div class="thinker-body">
+            <div class="thinker-tag">Servicio y Bien Común</div>
+            <p>La tradición republicana clásica —de Cicerón a los fundadores de las repúblicas modernas— exige que el ciudadano subordine su interés privado al bien público cuando entra en funciones. El político, el juez, el fiscal, el contador público: todos ejercen funciones que deben estar al servicio de la comunidad, no de intereses particulares.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subsection">La cadena causal: del individuo a la democracia</h3>
+
+      <p>Un error frecuente es pensar que la democracia se deteriora por grandes conspiraciones o por líderes malvados. La verdad es más perturbadora y más esperanzadora al mismo tiempo: la democracia se deteriora decisión a decisión, persona a persona. Y puede recuperarse del mismo modo.</p>
+
+      <div class="callout">
+        <div class="callout-title">🔗 La Cadena Causal en el ámbito contable</div>
+        <p style="margin:0;font-size:14px;">
+          <strong>Decisión individual:</strong> Un contador acepta firmar estados financieros alterados a cambio de una comisión.<br>
+          <strong>↓ Consecuencia institucional:</strong> La empresa publica información falsa y capta inversiones que no merece.<br>
+          <strong>↓ Consecuencia sistémica:</strong> Los inversores pierden confianza en el mercado de valores; el crédito se encarece para todas las empresas.<br>
+          <strong>↓ Consecuencia democrática:</strong> Se erosiona la confianza ciudadana en las instituciones económicas; se legitima la narrativa de que «todo es corrupción».<br>
+          <strong>↓ Consecuencia política:</strong> Ciudadanos desesperanzados son más vulnerables a propuestas demagógicas y autoritarias.
+        </p>
+      </div>
+
+      <p>Este análisis de «cadena causal» explica por qué hemos insistido desde la Semana 1 en que la ética del contador no es un asunto privado. <span class="hl">Tu firma es un acto político</span>. Tu honestidad o deshonestidad tiene consecuencias que se propagan hasta el sistema democrático en su conjunto.</p>
+
+      <h3 class="subsection">La integridad como alternativa a la fragmentación</h3>
+
+      <p>Recordemos la distinción central de nuestro curso: <strong>integridad vs. fragmentación</strong>. Una persona íntegra actúa de manera coherente en todos los ámbitos de su vida: en casa, en el trabajo, en la esfera pública. La fragmentación —ser honesto en privado pero corrupto en la esfera profesional— es el cáncer de la democracia. Porque la democracia sólo funciona cuando los ciudadanos son iguales en sus roles públicos que en sus compromisos privados.</p>
+
+      <div class="nav-actions">
+        <button class="btn btn-secondary" onclick="showTab(4)">← Anterior</button>
+        <button class="btn btn-primary" onclick="showTab(6)">Siguiente: Ecuador Hoy →</button>
+      </div>
+    </div>
+
+    <!-- ═══ TAB 6: ECUADOR HOY ═══ -->
+    <div class="tab-content" id="tab6">
+      <div class="section-eyebrow">Realidad Nacional</div>
+      <h2 class="section-title">La democracia ecuatoriana: diagnóstico crítico</h2>
+
+      <p>Todo lo aprendido hasta aquí cobra sentido pleno cuando lo aplicamos a Ecuador. No para desesperarnos, sino para entender con precisión qué está ocurriendo y cuál es el rol que como profesionales podemos y debemos jugar.</p>
+
+      <h3 class="subsection">Ecuador y el modelo constitucional de 2008</h3>
+
+      <p>La Constitución del Ecuador de 2008, aprobada en Montecristi, es una de las constituciones más avanzadas del mundo en términos de derechos. Reconoció explícitamente:</p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <div class="cc-title">📜 Derechos de la Naturaleza</div>
+          <p>Ecuador fue el primer país del mundo en reconocer derechos propios a la naturaleza (Pachamama), incorporando la cosmovisión andina al derecho positivo.</p>
+        </div>
+        <div class="concept-card">
+          <div class="cc-title">🌿 Sumak Kawsay (Buen Vivir)</div>
+          <p>Principio rector que supera el modelo de desarrollo económico convencional, proponiendo una convivencia armónica entre seres humanos y naturaleza.</p>
+        </div>
+        <div class="concept-card">
+          <div class="cc-title">⚖️ Estado Constitucional de Derechos</div>
+          <p>Los derechos no son concesiones del Estado: son anteriores y superiores a él. Cualquier acto del Estado que los viole puede ser impugnado judicialmente.</p>
+        </div>
+        <div class="concept-card">
+          <div class="cc-title">🏛️ Cinco Funciones del Estado</div>
+          <p>Además de los tres poderes clásicos, Ecuador incorporó la Función Electoral y la Función de Transparencia y Control Social para fortalecer la rendición de cuentas.</p>
+        </div>
+      </div>
+
+      <h3 class="subsection">La brecha entre texto constitucional y realidad</h3>
+
+      <p>Sin embargo, la distancia entre lo que dice la Constitución y lo que ocurre en la práctica es uno de los problemas centrales de la democracia ecuatoriana. Este fenómeno tiene un nombre en ciencia política: <strong>decoupling institucional</strong> — cuando las instituciones formales se desacoplan de su funcionamiento real.</p>
+
+      <div class="ecuador-box">
+        <span class="ecuador-flag">🇪🇨</span>
+        <strong>Indicadores que muestran la brecha democrática en Ecuador</strong>
+        <p style="margin-top:10px;font-size:14px;">
+          <strong>Índice de Percepción de Corrupción (Transparencia Internacional 2023):</strong> Ecuador obtuvo 34 puntos sobre 100, ubicándose en el puesto 112 de 180 países. Un puntaje por debajo de 50 indica un serio problema de corrupción en el sector público.<br><br>
+          <strong>Caso ISSPOL:</strong> El Instituto de Seguridad Social de la Policía Nacional sufrió una de las mayores defraudaciones en la historia del Ecuador: fondos de pensiones de policías fueron mal invertidos y dilapidados por administradores con responsabilidad fiduciaria. Pérdidas estimadas en cientos de millones de dólares.<br><br>
+          <strong>Operación «Triple A» y «Plaga»:</strong> Investigaciones judiciales que revelaron redes de corrupción dentro del sistema judicial y penitenciario, erosionando la confianza pública en la administración de justicia.<br><br>
+          <strong>Violencia y crimen organizado (2022–2024):</strong> Ecuador pasó de ser uno de los países más seguros de la región a enfrentar una crisis de seguridad sin precedentes, con acciones del crimen organizado que incluyeron ataques a infraestructuras estatales y medios de comunicación.
+        </p>
+      </div>
+
+      <h3 class="subsection">¿Qué dice todo esto sobre la democracia ecuatoriana?</h3>
+
+      <p>Aplicando los marcos analíticos de esta semana:</p>
+
+      <p><strong>Desde Rawls:</strong> Las desigualdades en Ecuador no benefician a los más pobres (principio de diferencia). El sistema tributario ha sido históricamente favorable a los grandes contribuyentes. La democracia formal existe, pero la justicia distributiva —condición de la democracia sustantiva— es precaria.</p>
+
+      <p><strong>Desde Sen y Nussbaum:</strong> Amplios sectores de la población ecuatoriana —especialmente en zonas rurales e indígenas— no tienen las capacidades reales para ejercer su ciudadanía: falta de educación de calidad, falta de acceso a información confiable, inseguridad física.</p>
+
+      <p><strong>Desde Tocqueville:</strong> La debilidad de la sociedad civil organizada y la alta dependencia de subsidios estatales han creado el «despotismo blando» que él predijo: ciudadanos que ceden su autonomía a cambio de protección.</p>
+
+      <p><strong>Desde la tradición del Buen Vivir:</strong> El modelo extractivista que ha financiado el Estado ecuatoriano (petróleo, minería) genera tensiones profundas con la cosmovisión indígena y con la sostenibilidad ambiental que la Constitución prometió.</p>
+
+      <h3 class="subsection">El rol del contador-ciudadano en este contexto</h3>
+
+      <div class="sofia-box">
+        <div class="sofia-avatar">👩‍💼</div>
+        <div class="sofia-text">
+          <div class="sofia-name">Sofía concluye su reflexión:</div>
+          <p>«Ahora entiendo por qué la decisión que tomé aquel primer día fue tan importante. No se trataba solo de mi carrera o mi conciencia personal. En un país donde la información financiera veraz es escasa, donde los fraudes institucionales son frecuentes y donde la confianza pública está erosionada, un contador honesto es literalmente un agente democrático. Cuando me niego a firmar algo falso, estoy votando por la democracia sustantiva. Cuando documento correctamente una transacción, estoy construyendo transparencia. Cuando denuncio irregularidades, estoy ejerciendo el tipo de control ciudadano que Tocqueville admiraba en la sociedad civil estadounidense. Mi trabajo contable es un trabajo democrático.»</p>
+        </div>
+      </div>
+
+      <div class="callout gold">
+        <div class="callout-title">🎓 Síntesis Conceptual de la Semana</div>
+        <p style="margin:0;font-size:14px;">La democracia es un sistema político de gobierno del pueblo, <strong>pero también</strong> es una forma de vida colectiva que requiere virtudes ciudadanas específicas. Nació en Atenas como participación directa; fue reformulada como contrato social (Locke, Rousseau, Hobbes); fue analizada críticamente por sus propias contradicciones (Tocqueville, Platón); y fue enriquecida con las dimensiones de justicia (Rawls), capacidades (Sen, Nussbaum), deliberación (Habermas) y redes de poder (Castells). Su calidad no depende solo de sus instituciones, sino de la integridad moral de los ciudadanos que las habitan. En Ecuador, la brecha entre democracia formal y sustantiva exige profesionales comprometidos con la transparencia y la justicia como valores vividos, no solo declarados.</p>
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn btn-secondary" onclick="showTab(5)">← Anterior</button>
+        <button class="btn btn-primary" onclick="showTab(7)">Ir al Cuestionario ✏️</button>
+      </div>
+    </div>
+
+    <!-- ═══ TAB 7: CUESTIONARIO ═══ -->
+    <div class="tab-content" id="tab7">
+      <div class="section-eyebrow">Evaluación Formativa</div>
+      <h2 class="section-title">Cuestionario Interactivo — Semana 4</h2>
+
+      <div class="callout blue" style="margin-bottom:24px;">
+        <div class="callout-title">📋 Instrucciones</div>
+        <p style="margin:0;font-size:14px;">Lee cada pregunta con cuidado. Selecciona la alternativa que consideres correcta y presiona «Verificar». Recibirás retroalimentación inmediata con la justificación académica de la respuesta correcta. Las alternativas han sido diseñadas para obligarte a razonar con profundidad: no hay respuestas obviamente incorrectas desde la superficie. El propósito es que aprendas de la justificación, no que adivines.</p>
+      </div>
+
+      <div class="quiz-header">
+        <h3>Conceptualización Crítica de la Democracia</h3>
+        <p>10 preguntas · Semana 4 · Democracia, Ciudadanía y Globalización</p>
+        <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill"></div></div>
+        <div class="quiz-counter" id="quizCounter">Pregunta 1 de 10</div>
+      </div>
+
+      <!-- PREGUNTAS -->
+      <div id="questionsContainer">
+
+        <div class="question-block active" id="qblock0">
+          <span class="q-number">Pregunta 1 de 10</span>
+          <div class="question-text">Pericles afirmó que quien no participa en la vida pública «no es solo una persona tranquila, sino un ciudadano inútil». ¿Cuál es la implicación filosófica más profunda de esta afirmación para la teoría democrática?</div>
+          <ul class="options-list" id="opts0">
+            <li class="option-item" onclick="selectOpt(0,0)"><div class="option-letter">A</div><div class="option-text">La participación política no es un derecho opcional sino una obligación moral que define la ciudadanía misma; sin participación activa, el individuo renuncia a su condición de ciudadano pleno y debilita el fundamento de la democracia.</div></li>
+            <li class="option-item" onclick="selectOpt(0,1)"><div class="option-letter">B</div><div class="option-text">La participación es deseable pero el Estado puede funcionar bien aunque la mayoría de ciudadanos sea pasiva, siempre que existan representantes capaces y leyes sólidas que garanticen el orden institucional.</div></li>
+            <li class="option-item" onclick="selectOpt(0,2)"><div class="option-letter">C</div><div class="option-text">La afirmación de Pericles refleja el carácter exclusivo de la democracia ateniense, donde participar era un privilegio de clase y no una obligación universal, por lo que no es aplicable a las democracias modernas.</div></li>
+            <li class="option-item" onclick="selectOpt(0,3)"><div class="option-letter">D</div><div class="option-text">Pericles establece que la participación mejora la calidad de vida personal del ciudadano, pero su impacto sobre el sistema político colectivo depende de factores estructurales ajenos a la voluntad individual.</div></li>
+          </ul>
+          <button class="btn-submit-q" id="submitBtn0" onclick="checkAnswer(0,0)" disabled>Verificar respuesta</button>
+          <div class="feedback-panel" id="fb0">
+            <div class="feedback-title" id="fbTitle0"></div>
+            <div class="feedback-text" id="fbText0"></div>
+          </div>
+        </div>
+
+        <div class="question-block" id="qblock1">
+          <span class="q-number">Pregunta 2 de 10</span>
+          <div class="question-text">Platón criticó la democracia argumentando que el gobierno de la mayoría conduce inevitablemente a la demagogia. ¿Qué condición específica identificaba Platón como la causa principal de esta degeneración?</div>
+          <ul class="options-list" id="opts1">
+            <li class="option-item" onclick="selectOpt(1,0)"><div class="option-letter">A</div><div class="option-text">La ausencia de preparación filosófica y virtud moral en la mayoría de los ciudadanos, quienes sin <em>sophia</em> (sabiduría) elegirán lo conveniente y placentero en lugar de lo justo y verdadero.</div></li>
+            <li class="option-item" onclick="selectOpt(1,1)"><div class="option-letter">B</div><div class="option-text">La corrupción de los funcionarios públicos, cuya ambición personal los lleva a manipular los votos de ciudadanos que en sí mismos podrían tomar decisiones correctas si tuviesen información veraz.</div></li>
+            <li class="option-item" onclick="selectOpt(1,2)"><div class="option-letter">C</div><div class="option-text">La excesiva desigualdad económica que concentra el poder en pocas manos, haciendo que los votos de los ciudadanos pobres no tengan el mismo peso real que los de los ciudadanos ricos.</div></li>
+            <li class="option-item" onclick="selectOpt(1,3)"><div class="option-letter">D</div><div class="option-text">La falta de mecanismos institucionales de control, como un tribunal constitucional independiente, que permitan revisar las decisiones de la mayoría cuando estas vulneran derechos fundamentales.</div></li>
+          </ul>
+          <button class="btn-submit-q" id="submitBtn1" onclick="checkAnswer(1,0)" disabled>Verificar respuesta</button>
+          <div class="feedback-panel" id="fb1">
+            <div class="feedback-title" id="fbTitle1"></div>
+            <div class="feedback-text" id="fbText1"></div>
+          </div>
+        </div>
+
+        <div class="question-block" id="qblock2">
+          <span class="q-number">Pregunta 3 de 10</span>
+          <div class="question-text">Rousseau distingue entre «la voluntad de todos» y «la voluntad general». ¿En qué se diferencian y cuál tiene primacía en su teoría democrática?</div>
+          <ul class="options-list" id="opts2">
+            <li class="option-item" onclick="selectOpt(2,0)"><div class="option-letter">A</div><div class="option-text">La «voluntad de todos» es la suma aritmética de intereses individuales y particulares, mientras que la «voluntad general» apunta al bien común que trasciende los intereses privados; la «voluntad general» tiene primacía porque es el fundamento legítimo del poder político.</div></li>
+            <li class="option-item" onclick="selectOpt(2,1)"><div class="option-letter">B</div><div class="option-text">La «voluntad de todos» es el mandato que emerge de procesos electorales libres y la «voluntad general» es la que expresa el gobierno en su gestión; ambas tienen igual legitimidad democrática según Rousseau.</div></li>
+            <li class="option-item" onclick="selectOpt(2,2)"><div class="option-letter">C</div><div class="option-text">La «voluntad general» equivale a la mayoría parlamentaria, ya que en un sistema representativo los elegidos encarnan el bien común, mientras que la «voluntad de todos» refleja las preferencias individuales no organizadas políticamente.</div></li>
+            <li class="option-item" onclick="selectOpt(2,3)"><div class="option-letter">D</div><div class="option-text">Las dos voluntades son distintas en teoría, pero en la práctica resultan equivalentes en contextos de alta participación ciudadana, pues cuando todos votan, la suma de preferencias individuales tiende a aproximarse al bien común.</div></li>
+          </ul>
+          <button class="btn-submit-q" id="submitBtn2" onclick="checkAnswer(2,0)" disabled>Verificar respuesta</button>
+          <div class="feedback-panel" id="fb2">
+            <div class="feedback-title" id="fbTitle2"></div>
+            <div class="feedback-text" id="fbText2"></div>
+          </div>
+        </div>
+
+        <div class="question-block" id="qblock3">
+          <span class="q-number">Pregunta 4 de 10</span>
+          <div class="question-text">Tocqueville identificó el «despotismo blando» como una amenaza específicamente democrática. ¿Cuál de las siguientes situaciones ilustra mejor este concepto en el contexto contemporáneo?</div>
+          <ul class="options-list" id="opts3">
+            <li class="option-item" onclick="selectOpt(3,0)"><div class="option-letter">A</div><div class="option-text">Una población que, acomodada en subsidios y servicios estatales, delega progresivamente su capacidad de autogobernarse y de tomar decisiones colectivas, volviéndose dócil y dependiente de las decisiones de una élite tecnoburocrática.</div></li>
+            <li class="option-item" onclick="selectOpt(3,1)"><div class="option-letter">B</div><div class="option-text">Un régimen que suspende las elecciones y concentra el poder en el ejecutivo, usando la fuerza policial para reprimir las manifestaciones de oposición y controlar los medios de comunicación.</div></li>
+            <li class="option-item" onclick="selectOpt(3,2)"><div class="option-letter">C</div><div class="option-text">Una oligarquía económica que controla informalmente el sistema político mediante financiamiento de campañas electorales y lobby legislativo, condicionando las decisiones del gobierno sin necesidad de ejercer represión directa.</div></li>
+            <li class="option-item" onclick="selectOpt(3,3)"><div class="option-letter">D</div><div class="option-text">La manipulación mediática de la opinión pública a través de noticias falsas y algoritmos de redes sociales que polarizan a la ciudadanía y dificultan el diálogo racional entre grupos con visiones distintas.</div></li>
+          </ul>
+          <button class="btn-submit-q" id="submitBtn3" onclick="checkAnswer(3,0)" disabled>Verificar respuesta</button>
+          <div class="feedback-panel" id="fb3">
+            <div class="feedback-title" id="fbTitle3"></div>
+            <div class="feedback-text" id="fbText3"></div>
+          </div>
+        </div>
+
+        <div class="question-block" id="qblock4">
+          <span class="q-number">Pregunta 5 de 10</span>
+          <div class="question-text">El «velo de ignorancia» de John Rawls es un experimento mental para diseñar principios de justicia. ¿Qué implicación tiene este experimento para la evaluación de un sistema fiscal en una democracia?</div>
+          <ul class="options-list" id="opts4">
+            <li class="option-item" onclick="selectOpt(4,0)"><div class="option-letter">A</div><div class="option-text">Un sistema fiscal justo, según Rawls, sería aquel que elegiríamos si no supiéramos en qué posición económica naceremos; esto exige una tributación progresiva que beneficie especialmente a los menos favorecidos, ya que racionalmente nos protegeríamos ante el riesgo de nacer en situación de desventaja.</div></li>
+            <li class="option-item" onclick="selectOpt(4,1)"><div class="option-letter">B</div><div class="option-text">El velo de ignorancia sugiere que el sistema fiscal óptimo es el proporcional (igual porcentaje para todos), ya que garantiza igualdad de trato sin discriminar entre ciudadanos con distintos niveles de ingreso.</div></li>
+            <li class="option-item" onclick="selectOpt(4,2)"><div class="option-letter">C</div><div class="option-text">El experimento de Rawls concluye que la libertad económica tiene prioridad sobre la redistribución, por lo que un sistema de impuestos bajos y poco redistributivo es preferible porque amplía la libertad individual de todos los ciudadanos.</div></li>
+            <li class="option-item" onclick="selectOpt(4,3)"><div class="option-letter">D</div><div class="option-text">Rawls admite que la justicia fiscal es relativa a las preferencias culturales de cada sociedad, por lo que su teoría no permite concluir cuál sistema tributario es objetivamente más justo que otro.</div></li>
+          </ul>
+          <button class="btn-submit-q" id="submitBtn4" onclick="checkAnswer(4,0)" disabled>Verificar respuesta</button>
+          <div class="feedback-panel" id="fb4">
+            <div class="feedback-title" id="fbTitle4"></div>
+            <div class="feedback-text" id="fbText4"></div>
+          </div>
+        </div>
+
+        <div class="question-block" id="qblock5">
+          <span class="q-number">Pregunta 6 de 10</span>
+          <div class="question-text">Amartya Sen argumenta que la democracia tiene un «valor constructivo» además de su valor intrínseco e instrumental. ¿Cuál de las siguientes afirmaciones describe mejor este valor constructivo?</div>
+          <ul class="options-list" id="opts5">
+            <li class="option-item" onclick="selectOpt(5,0)"><div class="option-letter">A</div><div class="option-text">El debate público democrático no solo implementa valores ya definidos, sino que es el proceso mediante el cual los ciudadanos construyen colectivamente la comprensión de qué significa justicia y bienestar en su sociedad concreta.</div></li>
+            <li class="option-item" onclick="selectOpt(5,1)"><div class="option-letter">B</div><div class="option-text">La democracia produce crecimiento económico sostenido porque crea incentivos para que los gobernantes inviertan en infraestructura y educación, generando condiciones favorables para el desarrollo material de la población.</div></li>
+            <li class="option-item" onclick="selectOpt(5,2)"><div class="option-letter">C</div><div class="option-text">El valor constructivo de la democracia consiste en que permite a los ciudadanos construir su propia identidad política y cultural de manera autónoma, independientemente de las tradiciones e imposiciones históricas de clase o etnia.</div></li>
+            <li class="option-item" onclick="selectOpt(5,3)"><div class="option-letter">D</div><div class="option-text">La democracia construye capital social al generar confianza interpersonal entre ciudadanos que comparten espacios de deliberación, lo que a su vez reduce los costos de transacción en los mercados económicos y fortalece la cohesión comunitaria.</div></li>
+          </ul>
+          <button class="btn-submit-q" id="submitBtn5" onclick="checkAnswer(5,0)" disabled>Verificar respuesta</button>
+          <div class="feedback-panel" id="fb5">
+            <div class="feedback-title" id="fbTitle5"></div>
+            <div class="feedback-text" id="fbText5"></div>
+          </div>
+        </div>
+
+        <div class="question-block" id="qblock6">
+          <span class="q-number">Pregunta 7 de 10</span>
+          <div class="question-text">T. H. Marshall identificó tres dimensiones históricas de la ciudadanía: civil, política y social. ¿Qué argumento justifica que la dimensión social sea condición de posibilidad real —no solo complemento— de las dimensiones civil y política?</div>
+          <ul class="options-list" id="opts6">
+            <li class="option-item" onclick="selectOpt(6,0)"><div class="option-letter">A</div><div class="option-text">Sin condiciones mínimas de bienestar (educación, salud, seguridad económica), los derechos civiles y políticos existen formalmente pero no pueden ejercerse con libertad real; la miseria y la ignorancia convierten el voto en un instrumento de manipulación, no de autodeterminación.</div></li>
+            <li class="option-item" onclick="selectOpt(6,1)"><div class="option-letter">B</div><div class="option-text">La dimensión social es prioritaria porque fue la última en desarrollarse históricamente, y los sistemas democráticos más avanzados —los escandinavos— demuestran que el bienestar social puede mantenerse con formas más limitadas de libertad política.</div></li>
+            <li class="option-item" onclick="selectOpt(6,2)"><div class="option-letter">C</div><div class="option-text">Las tres dimensiones de Marshall son complementarias pero no jerárquicas; la dimensión social es importante pero puede ser implementada después de consolidar las dimensiones civil y política sin que esto comprometa la democracia real.</div></li>
+            <li class="option-item" onclick="selectOpt(6,3)"><div class="option-letter">D</div><div class="option-text">Marshall argumenta que la dimensión social es condición de la política porque sin acceso a medios de comunicación —garantizados por el Estado de bienestar— los ciudadanos no pueden informarse adecuadamente para ejercer su voto de manera racional.</div></li>
+          </ul>
+          <button class="btn-submit-q" id="submitBtn6" onclick="checkAnswer(6,0)" disabled>Verificar respuesta</button>
+          <div class="feedback-panel" id="fb6">
+            <div class="feedback-title" id="fbTitle6"></div>
+            <div class="feedback-text" id="fbText6"></div>
+          </div>
+        </div>
+
+        <div class="question-block" id="qblock7">
+          <span class="q-number">Pregunta 8 de 10</span>
+          <div class="question-text">La Constitución del Ecuador de 2008 incorpora el principio del «Sumak Kawsay» (Buen Vivir). ¿Qué tensión teórica fundamental introduce este principio respecto al modelo democrático liberal clásico?</div>
+          <ul class="options-list" id="opts7">
+            <li class="option-item" onclick="selectOpt(7,0)"><div class="option-letter">A</div><div class="option-text">El Sumak Kawsay desafía la primacía del individuo y del crecimiento económico ilimitado propios del liberalismo clásico, proponiendo un modelo de bienestar colectivo y relacional que incluye derechos de la naturaleza, en tensión con la lógica extractivista que ha financiado históricamente el Estado ecuatoriano.</div></li>
+            <li class="option-item" onclick="selectOpt(7,1)"><div class="option-letter">B</div><div class="option-text">El Sumak Kawsay reemplaza el principio de soberanía popular por el principio de soberanía territorial, lo que genera una tensión jurídica con las instituciones de representación política de carácter nacional.</div></li>
+            <li class="option-item" onclick="selectOpt(7,2)"><div class="option-letter">C</div><div class="option-text">El Buen Vivir introduce una concepción espiritual del Estado que entra en conflicto con el principio de laicidad propio de los Estados democráticos modernos, debilitando la neutralidad normativa que garantiza la coexistencia de distintas cosmovisiones.</div></li>
+            <li class="option-item" onclick="selectOpt(7,3)"><div class="option-letter">D</div><div class="option-text">La tensión principal es procedimental: el Sumak Kawsay fue incluido por decisión de la Asamblea Constituyente sin consulta específica a las comunidades indígenas, lo que lo convierte en una apropiación simbólica que no tiene respaldo real en las prácticas comunitarias andinas.</div></li>
+          </ul>
+          <button class="btn-submit-q" id="submitBtn7" onclick="checkAnswer(7,0)" disabled>Verificar respuesta</button>
+          <div class="feedback-panel" id="fb7">
+            <div class="feedback-title" id="fbTitle7"></div>
+            <div class="feedback-text" id="fbText7"></div>
+          </div>
+        </div>
+
+        <div class="question-block" id="qblock8">
+          <span class="q-number">Pregunta 9 de 10</span>
+          <div class="question-text">La filosofía Ubuntu («una persona es persona a través de otras personas») y la práctica andina de la Minga comparten un fundamento que desafía el individualismo liberal democrático. ¿Cuál es ese fundamento compartido y cuál es su implicación para la ciudadanía democrática?</div>
+          <ul class="options-list" id="opts8">
+            <li class="option-item" onclick="selectOpt(8,0)"><div class="option-letter">A</div><div class="option-text">Ambas tradiciones sostienen que la identidad del individuo es constitutivamente relacional: nadie existe ni se realiza en aislamiento. La implicación democrática es que la ciudadanía no es un conjunto de derechos individuales a proteger, sino una red de responsabilidades mutuas orientadas al bien común.</div></li>
+            <li class="option-item" onclick="selectOpt(8,1)"><div class="option-letter">B</div><div class="option-text">El fundamento compartido es la tradición oral y el conocimiento no escrito, que generan formas de deliberación colectiva más auténticas que los procedimientos formales de las democracias occidentales basadas en texto escrito y representación institucional.</div></li>
+            <li class="option-item" onclick="selectOpt(8,2)"><div class="option-letter">C</div><div class="option-text">Ubuntu y Minga comparten la idea de que la propiedad colectiva de los medios de producción es condición del bienestar comunitario; su implicación democrática es la necesidad de abolir la propiedad privada como mecanismo de explotación.</div></li>
+            <li class="option-item" onclick="selectOpt(8,3)"><div class="option-letter">D</div><div class="option-text">El fundamento compartido es la primacía de la autoridad comunitaria sobre la individual, lo que implica que en estas tradiciones la democracia requiere liderazgos fuertes de carácter carismático que encamen el espíritu colectivo de la comunidad.</div></li>
+          </ul>
+          <button class="btn-submit-q" id="submitBtn8" onclick="checkAnswer(8,0)" disabled>Verificar respuesta</button>
+          <div class="feedback-panel" id="fb8">
+            <div class="feedback-title" id="fbTitle8"></div>
+            <div class="feedback-text" id="fbText8"></div>
+          </div>
+        </div>
+
+        <div class="question-block" id="qblock9">
+          <span class="q-number">Pregunta 10 de 10</span>
+          <div class="question-text">Un contador público certifica estados financieros de una empresa que tiene vínculos con fondos públicos, a pesar de conocer irregularidades. Su argumento es: «No es mi función investigar, solo verificar lo que me presentan». ¿Cuál de las siguientes evaluaciones aplica correctamente los marcos democráticos estudiados en esta semana?</div>
+          <ul class="options-list" id="opts9">
+            <li class="option-item" onclick="selectOpt(9,0)"><div class="option-letter">A</div><div class="option-text">El argumento del contador es eticamente insostenible: al certificar lo falso, viola la phronesis aristotélica (renuncia al discernimiento ético), contribuye al deterioro de la democracia sustantiva (destruye la transparencia institucional) y rompe la cadena de responsabilidad ciudadana que sostiene la confianza pública en las instituciones.</div></li>
+            <li class="option-item" onclick="selectOpt(9,1)"><div class="option-letter">B</div><div class="option-text">El argumento es jurídicamente válido porque la responsabilidad del contador se limita a la verificación técnica de los documentos presentados; la responsabilidad moral por las irregularidades recae exclusivamente sobre quienes alteraron la información contable.</div></li>
+            <li class="option-item" onclick="selectOpt(9,2)"><div class="option-letter">C</div><div class="option-text">El dilema es complejo porque el contador enfrenta la tensión rawlsiana entre libertad individual (proteger su empleo) y justicia distributiva (transparencia pública); sin información completa sobre el alcance del daño, no es posible establecer su responsabilidad moral de manera categórica.</div></li>
+            <li class="option-item" onclick="selectOpt(9,3)"><div class="option-letter">D</div><div class="option-text">El caso ilustra la paradoja de la democracia formal: las leyes contables obligan a verificar formalmente, pero no pueden exigir virtud moral a los individuos; la solución debe ser institucional —crear organismos de control más estrictos— no individual.</div></li>
+          </ul>
+          <button class="btn-submit-q" id="submitBtn9" onclick="checkAnswer(9,0)" disabled>Verificar respuesta</button>
+          <div class="feedback-panel" id="fb9">
+            <div class="feedback-title" id="fbTitle9"></div>
+            <div class="feedback-text" id="fbText9"></div>
+          </div>
+        </div>
+
+      </div><!-- end questionsContainer -->
+
+      <!-- RESULTS -->
+      <div class="results-panel" id="resultsPanel">
+        <div class="results-score-circle">
+          <span class="score-num" id="rScore">0</span>
+          <span class="score-den" id="rDen">de 10</span>
+        </div>
+        <div class="results-message" id="rMessage">¡Evaluación completada!</div>
+        <div class="results-sub" id="rSub"></div>
+        <div class="results-details" id="rDetails"></div>
+        <button class="btn-reset-quiz" onclick="resetQuiz()">🔄 Intentar de nuevo</button>
+      </div>
+
+      <div class="nav-actions" style="margin-top:24px;">
+        <button class="btn btn-secondary" onclick="showTab(6)">← Volver al contenido</button>
+        <span style="font-size:12px;color:var(--text-muted);">Semana 4 · Democracia, Ciudadanía y Globalización</span>
+      </div>
+    </div>
+
+  </div><!-- content-panel -->
+</div><!-- tabs-container -->
+
+<footer class="site-footer">
+  <strong>Universidad de Guayaquil</strong> · Facultad de Ciencias Administrativas · Democracia, Ciudadanía y Globalización · Ciclo I 2026 · Material de uso exclusivo académico
+</footer>
+
+<script>
+// ─── STATE ───
+const TOTAL_TABS = 8;
+let visitedTabs = new Set([0]);
+let currentTab = 0;
+
+// Quiz state
+const correctAnswers = [0,0,0,0,0,0,0,0,0,0];
+const justifications = [
+  "Pericles expresaba una concepción de la ciudadanía radicalmente activa: ser ciudadano no es solo poseer derechos, es ejercerlos con responsabilidad. Esta visión es la base de toda teoría democrática participativa. La alternativa B es incorrecta porque ignora que la democracia depende estructuralmente de la participación activa —los representantes actúan bien cuando la ciudadanía los vigila y exige. La alternativa C confunde el carácter histórico limitado de la democracia ateniense con su contenido conceptual normativo, que sí es universalizable. La alternativa D reduce la participación a un beneficio privado, omitiendo su dimensión esencialmente pública y colectiva.",
+  "Platón no era un enemigo de la justicia; era escéptico de que la mayoría pudiera acceder a ella sin formación filosófica. El punto central de su crítica es epistemológico y moral: la sabiduría política requiere «sophia» (conocimiento del Bien), no simplemente contar voluntades. Sin esa formación, la mayoría elegirá demagogos que apelen a emociones, no a razones. La alternativa B describe un problema real pero distinto: la corrupción de actores individuales, no la estructura del sistema. La alternativa C corresponde a la crítica marxista, no a Platón. La alternativa D describe la solución moderna de los tribunales constitucionales, que Platón no conoció y que tampoco resuelve el problema de fondo que él planteaba.",
+  "Rousseau es muy preciso en esta distinción: la 'voluntad de todos' (volonté de tous) suma intereses particulares —lo que cada uno quiere para sí mismo— y puede ser egoísta, corta de miras, manipulable. La 'voluntad general' (volonté générale) es lo que conviene a todos como comunidad; es el fundamento del bien común y, por tanto, del poder político legítimo. Las alternativas B y C confunden la voluntad general con la voluntad del gobierno o del parlamento, que según el propio Rousseau puede traicionar la voluntad general. La alternativa D comete el error de reducir la voluntad general a un promedio estadístico, cuando para Rousseau es una categoría normativa (deber ser), no descriptiva.",
+  "El 'despotismo blando' de Tocqueville es una forma de servilismo voluntario y cómodo: el Estado paternalista provee de todo a ciudadanos que, a cambio, renuncian a su autonomía y capacidad crítica. No hay represión visible —de ahí que sea 'blando'— pero el resultado es ciudadanos infantilizados que no pueden gobernarse a sí mismos. Las alternativas B y C describen formas de autoritarismo y captura política distintas: la B es represión directa (no blando), y la C es oligarquía económica. La alternativa D, aunque muy actual, describe la desinformación digital, fenómeno que Tocqueville no podría haber previsto y que además implica manipulación activa, no la servilidad pasiva que él describía.",
+  "El velo de ignorancia de Rawls es un dispositivo de imparcialidad: al no saber qué posición tendrás en la sociedad, tu interés racional te lleva a preferir una sociedad donde incluso la peor posición sea lo más digna posible. Esto fundamenta el principio de diferencia: las desigualdades solo se justifican si benefician a los peor situados. Aplicado a la fiscalidad, el resultado es una tributación progresiva y redistributiva. La alternativa B (tributación proporcional) refleja la lógica libertaria de Nozick, adversario de Rawls. La alternativa C invierte la conclusión de Rawls, confundiendo su teoría con el libertarismo. La alternativa D contradice la pretensión universalista de la filosofía rawlsiana, que busca principios válidos por encima de preferencias culturales particulares.",
+  "El valor constructivo de la democracia en Sen es sofisticado: no se limita a ejecutar valores predefinidos (intrínsecos) ni a producir buenos resultados materiales (instrumentales). Va más allá: el debate público democrático es el mecanismo social por el cual los propios ciudadanos definen y redefinen qué significa el bienestar, la justicia y las necesidades. Las alternativas B y D describen valores instrumentales de la democracia (producción de crecimiento, capital social), no el valor constructivo. La alternativa C describe la autonomía identitaria individual, que es válida pero no es la dimensión constructiva en sentido seniano —esta se refiere al proceso colectivo de construcción de valores compartidos.",
+  "Marshall fue claro: la ciudadanía plena requiere que los tres tipos de derechos funcionen en conjunto. La clave es que la libertad política formal (votar, opinar, asociarse) solo se ejerce realmente cuando el ciudadano tiene las condiciones materiales para hacerlo con autonomía. Un ciudadano en condición de miseria y analfabetismo puede ser comprado con un bono, intimidado con la pérdida de un subsidio, o simplemente incapacitado para evaluar críticamente las propuestas políticas. La alternativa B hace una afirmación histórica parcialmente válida pero invierte la relación: la primacía es normativa, no cronológica. La alternativa C adopta la posición liberal ortodoxa que Marshall precisamente cuestionaba. La alternativa D restringe la condición social a acceso mediático, siendo demasiado estrecha.",
+  "El Sumak Kawsay introduce en el derecho constitucional ecuatoriano una ontología radicalmente diferente a la del liberalismo clásico: el bienestar no es individual y acumulativo, sino relacional y comunitario, y la naturaleza no es un recurso sino un sujeto de derechos. Esto choca frontalmente con el modelo extractivista (petróleo, minería) que ha financiado el Estado ecuatoriano, revelando una contradicción constitutiva. Las alternativas B y C introducen tensiones que no son las que articula el Sumak Kawsay: la soberanía territorial y la laicidad son debates reales pero no los centrales en este caso. La alternativa D plantea un problema de legitimidad procesal válido pero secundario frente a la tensión ontológica de fondo.",
+  "Ubuntu y Minga comparten la afirmación de que la persona no preexiste a sus relaciones comunitarias: es en y a través de la comunidad que el individuo se constituye como tal. Esto implica que los derechos tienen como contrapartida responsabilidades hacia la comunidad, y que el bien común no es la suma de bienes individuales sino un bien específicamente colectivo. La implicación democrática es directa: ciudadanía como responsabilidad activa, no solo como protección de derechos individuales. Las alternativas B, C y D introducen atributos que no definen el núcleo compartido: la oralidad, la propiedad colectiva y los liderazgos carismáticos son aspectos de algunas variantes de estas tradiciones, pero no su fundamento constitutivo central.",
+  "Este caso articula múltiples dimensiones del contenido de la semana. La phronesis aristotélica exige al contador usar su juicio moral en situaciones concretas, no esconderse detrás de un rol técnico. Desde la democracia sustantiva (vs. formal), el contador es un guardián institucional cuya firma tiene consecuencias sistémicas sobre la confianza pública. Desde la cadena causal, una certificación falsa tiene efectos que se propagan hasta la legitimidad democrática. La alternativa B es la que usaría quien quiere justificarse legalmente, pero confunde responsabilidad jurídica con responsabilidad moral: ambas son distintas pero ambas son reales. La alternativa C simula complejidad filosófica pero omite que la situación descrita (conocer irregularidades) elimina la incertidumbre que invocaría. La alternativa D recurre al institucionalismo para eludir la responsabilidad individual, exactamente la fragmentación moral que nuestro curso combate."
+];
+
+const userAnswers = new Array(10).fill(null);
+let currentQuestion = 0;
+let quizDone = false;
+
+// ─── TABS ───
+function showTab(idx) {
+  document.querySelectorAll('.tab-content').forEach((el,i) => {
+    el.classList.toggle('active', i===idx);
+  });
+  document.querySelectorAll('.tab-btn').forEach((btn,i) => {
+    btn.classList.toggle('active', i===idx);
+  });
+  currentTab = idx;
+  visitedTabs.add(idx);
+  updateProgress();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function updateProgress() {
+  const pct = Math.round((visitedTabs.size / TOTAL_TABS) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+  // Mark done tabs
+  visitedTabs.forEach(i => {
+    const btn = document.getElementById('tabBtn' + i);
+    if(btn && i !== currentTab) btn.classList.add('done');
+  });
+}
+
+// ─── QUIZ ───
+function selectOpt(qIdx, optIdx) {
+  if(quizDone || userAnswers[qIdx] !== null) return;
+  const opts = document.querySelectorAll(`#opts${qIdx} .option-item`);
+  opts.forEach(o => o.classList.remove('selected'));
+  opts[optIdx].classList.add('selected');
+  userAnswers[qIdx] = optIdx;
+  document.getElementById(`submitBtn${qIdx}`).disabled = false;
+}
+
+function checkAnswer(qIdx, correctIdx) {
+  if(userAnswers[qIdx] === null) return;
+  const chosen = userAnswers[qIdx];
+  const opts = document.querySelectorAll(`#opts${qIdx} .option-item`);
+  opts.forEach(o => { o.classList.add('locked'); o.onclick = null; });
+
+  if(chosen === correctIdx) {
+    opts[chosen].classList.add('correct');
+    showFeedback(qIdx, true, justifications[qIdx]);
+  } else {
+    opts[chosen].classList.add('wrong');
+    opts[correctIdx].classList.add('correct');
+    showFeedback(qIdx, false, justifications[qIdx]);
+  }
+
+  const submitBtn = document.getElementById(`submitBtn${qIdx}`);
+  submitBtn.textContent = qIdx < 9 ? 'Siguiente pregunta →' : 'Ver resultados';
+  submitBtn.classList.add('next');
+  submitBtn.onclick = () => {
+    if(qIdx < 9) {
+      document.getElementById(`qblock${qIdx}`).classList.remove('active');
+      document.getElementById(`qblock${qIdx+1}`).classList.add('active');
+      currentQuestion = qIdx + 1;
+      updateQuizProgress();
+    } else {
+      showResults();
+    }
+  };
+}
+
+function showFeedback(qIdx, isCorrect, text) {
+  const fb = document.getElementById(`fb${qIdx}`);
+  fb.classList.add('show');
+  fb.classList.add(isCorrect ? 'correct-fb' : 'wrong-fb');
+  document.getElementById(`fbTitle${qIdx}`).textContent = isCorrect ? '✅ ¡Respuesta correcta!' : '❌ Respuesta incorrecta';
+  document.getElementById(`fbText${qIdx}`).innerHTML = '<strong>Justificación académica:</strong> ' + text;
+}
+
+function updateQuizProgress() {
+  const pct = Math.round(((currentQuestion) / 10) * 100);
+  document.getElementById('quizProgressFill').style.width = pct + '%';
+  document.getElementById('quizCounter').textContent = `Pregunta ${Math.min(currentQuestion+1,10)} de 10`;
+}
+
+function showResults() {
+  document.querySelectorAll('.question-block').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById('resultsPanel');
+  panel.classList.add('show');
+
+  let correct = 0;
+  userAnswers.forEach((a,i) => { if(a === correctAnswers[i]) correct++; });
+
+  document.getElementById('rScore').textContent = correct;
+  document.getElementById('quizProgressFill').style.width = '100%';
+  document.getElementById('quizCounter').textContent = 'Evaluación completada';
+
+  let msg, sub;
+  if(correct >= 9) { msg = '🏆 ¡Dominio excelente!'; sub = 'Has demostrado comprensión profunda de la democracia y sus fundamentos filosóficos.'; }
+  else if(correct >= 7) { msg = '⭐ Muy buen desempeño'; sub = 'Buen manejo del contenido. Revisa las preguntas incorrectas para consolidar tu comprensión.'; }
+  else if(correct >= 5) { msg = '📚 Desempeño satisfactorio'; sub = 'Tienes una base sólida. Te recomendamos repasar el material y volver a intentarlo.'; }
+  else { msg = '🔄 Es necesario reforzar'; sub = 'Vuelve a estudiar el contenido de las pestañas. Las justificaciones de este cuestionario te guiarán.'; }
+
+  document.getElementById('rMessage').textContent = msg;
+  document.getElementById('rSub').textContent = sub;
+
+  let html = '';
+  userAnswers.forEach((a,i) => {
+    const ok = a === correctAnswers[i];
+    html += `<div class="rd-item ${ok?'corr':'incorr'}">${ok?'✅':'❌'} Pregunta ${i+1}<span>${ok?'Correcta':'Incorrecta'}</span></div>`;
+  });
+  document.getElementById('rDetails').innerHTML = html;
+
+  visitedTabs.add(7);
+  updateProgress();
+}
+
+function resetQuiz() {
+  userAnswers.fill(null);
+  currentQuestion = 0;
+
+  document.querySelectorAll('.question-block').forEach((b,i) => {
+    b.classList.remove('active');
+  });
+  document.getElementById('qblock0').classList.add('active');
+
+  for(let i=0;i<10;i++) {
+    const opts = document.querySelectorAll(`#opts${i} .option-item`);
+    opts.forEach(o => {
+      o.classList.remove('selected','correct','wrong','locked');
+      o.onclick = ((qi,oi) => () => selectOpt(qi,oi))(i, Array.from(o.parentElement.children).indexOf(o));
+    });
+    const fb = document.getElementById(`fb${i}`);
+    fb.classList.remove('show','correct-fb','wrong-fb');
+    const btn = document.getElementById(`submitBtn${i}`);
+    btn.disabled = true;
+    btn.textContent = 'Verificar respuesta';
+    btn.classList.remove('next');
+    btn.onclick = ((qi) => () => checkAnswer(qi, correctAnswers[qi]))(i);
+  }
+
+  document.getElementById('resultsPanel').classList.remove('show');
+  document.getElementById('quizProgressFill').style.width = '0%';
+  document.getElementById('quizCounter').textContent = 'Pregunta 1 de 10';
+}
+
+// Re-attach onclick handlers properly on load
+(function initQuiz() {
+  for(let i=0;i<10;i++) {
+    const opts = document.querySelectorAll(`#opts${i} .option-item`);
+    opts.forEach((o,oi) => {
+      o.onclick = () => selectOpt(i, oi);
+    });
+    document.getElementById(`submitBtn${i}`).onclick = () => checkAnswer(i, correctAnswers[i]);
+  }
+  updateProgress();
+})();
+</script>
+</body>
+</html>
