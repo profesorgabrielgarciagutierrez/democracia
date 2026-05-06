@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 06 – Democracia, Derechos Humanos y Convivencia | DCG</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Sans 3', sans-serif; background: #f4f6f9; color: #222; font-size: 16px; line-height: 1.7; }
+  h1,h2,h3,h4 { font-family: 'Lora', serif; }
+
+  /* ===== HEADER ===== */
+  .header { background: #003366; color: #fff; padding: 0; }
+  .header-inner { display: flex; align-items: center; gap: 18px; padding: 18px 28px; }
+  .header-logo { height: 64px; width: auto; border-radius: 6px; background: #fff; padding: 4px; flex-shrink: 0; }
+  .header-text { flex: 1; }
+  .header-text .inst { font-size: 0.78rem; font-weight: 300; letter-spacing: 0.04em; opacity: 0.85; text-transform: uppercase; }
+  .header-text h1 { font-size: 1.25rem; font-weight: 700; margin: 2px 0 4px; line-height: 1.3; }
+  .header-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .badge { background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); border-radius: 20px; padding: 2px 12px; font-size: 0.75rem; font-weight: 600; color: #fff; }
+
+  /* ===== TAB NAV ===== */
+  .tab-nav-wrap { background: #87CEEB; overflow-x: auto; white-space: nowrap; border-bottom: 3px solid #003366; }
+  .tab-nav { display: inline-flex; padding: 0 8px; }
+  .tab-btn { display: inline-block; padding: 11px 16px; font-family: 'Source Sans 3', sans-serif; font-size: 0.82rem; font-weight: 600; color: #222; background: transparent; border: none; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -3px; transition: background 0.2s, color 0.2s; white-space: nowrap; }
+  .tab-btn:hover { background: rgba(255,255,255,0.5); }
+  .tab-btn.active { background: #fff; color: #003366; font-weight: 700; border-bottom: 3px solid #003366; }
+
+  /* ===== CONTENT AREA ===== */
+  .content { max-width: 900px; margin: 0 auto; padding: 28px 20px 60px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ===== TYPOGRAPHY ===== */
+  .section-title { font-size: 1.55rem; color: #003366; margin-bottom: 6px; }
+  .section-sub { font-size: 1.05rem; color: #555; margin-bottom: 22px; border-bottom: 2px solid #87CEEB; padding-bottom: 8px; }
+  p { margin-bottom: 14px; }
+  ul, ol { margin: 10px 0 16px 22px; }
+  li { margin-bottom: 6px; }
+  strong { color: #003366; }
+
+  /* ===== BOXES ===== */
+  .box-concepto { border-left: 5px solid #003366; background: #f0f4ff; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 18px 0; }
+  .box-concepto .box-label { font-size: 0.72rem; font-weight: 700; color: #003366; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .box-ejemplo { background: #e3f2fd; border: 1px solid #90caf9; border-radius: 8px; padding: 14px 18px; margin: 18px 0; }
+  .box-ejemplo .box-label { font-size: 0.72rem; font-weight: 700; color: #1565c0; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .box-clave { background: #003366; color: #fff; border-radius: 8px; padding: 14px 20px; margin: 22px 0; }
+  .box-clave .box-label { font-size: 0.72rem; font-weight: 700; color: #87CEEB; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .box-clave p { color: #fff; margin: 0; }
+  .box-alerta { border-left: 5px solid #e65100; background: #fff3e0; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 18px 0; }
+  .box-alerta .box-label { font-size: 0.72rem; font-weight: 700; color: #e65100; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .box-reflexion { border-left: 5px solid #6a1b9a; background: #f3e5f5; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 18px 0; }
+  .box-reflexion .box-label { font-size: 0.72rem; font-weight: 700; color: #6a1b9a; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+
+  /* ===== TABLES ===== */
+  .tabla-wrap { overflow-x: auto; margin: 18px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th { background: #003366; color: #fff; padding: 10px 12px; text-align: left; font-family: 'Lora', serif; }
+  td { padding: 9px 12px; border-bottom: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f0f4ff; }
+
+  /* ===== SOFÍA ===== */
+  .sofia-card { display: flex; gap: 14px; background: linear-gradient(135deg, #003366 0%, #1565c0 100%); color: #fff; border-radius: 12px; padding: 18px; margin: 22px 0; align-items: flex-start; }
+  .sofia-avatar { font-size: 2.4rem; flex-shrink: 0; }
+  .sofia-card p { color: #fff; margin: 0; font-style: italic; font-size: 0.97rem; }
+  .sofia-card .sofia-name { font-weight: 700; font-size: 0.78rem; color: #87CEEB; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; font-style: normal; }
+
+  /* ===== INTERACTIVE EXERCISE ===== */
+  .quiz-container { background: #fff; border-radius: 12px; border: 1px solid #ddd; padding: 24px; }
+  .quiz-instructions { background: #e3f2fd; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 0.9rem; color: #1565c0; }
+  .q-item { margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid #eee; }
+  .q-item:last-child { border-bottom: none; }
+  .q-num { font-weight: 700; color: #003366; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+  .q-text { font-weight: 600; margin-bottom: 10px; font-size: 0.97rem; }
+  .opt-label { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 6px; cursor: pointer; border: 1px solid #ddd; margin-bottom: 6px; transition: background 0.15s; font-size: 0.94rem; }
+  .opt-label:hover { background: #f0f4ff; }
+  .opt-label input { accent-color: #003366; flex-shrink: 0; }
+  .opt-label.correct { background: #e8f5e9; border-color: #4caf50; }
+  .opt-label.incorrect { background: #ffebee; border-color: #f44336; }
+  .feedback-item { font-size: 0.85rem; margin-top: 8px; padding: 8px 12px; border-radius: 6px; }
+  .feedback-item.ok { background: #e8f5e9; color: #2e7d32; border-left: 4px solid #4caf50; }
+  .feedback-item.fail { background: #ffebee; color: #c62828; border-left: 4px solid #f44336; }
+
+  /* DRAG & DROP styles for exercise */
+  .drag-zone { min-height: 44px; border: 2px dashed #90caf9; border-radius: 8px; padding: 8px; margin: 6px 0; background: #f9fbff; display: flex; flex-wrap: wrap; gap: 6px; transition: background 0.2s; }
+  .drag-zone.over { background: #e3f2fd; border-color: #003366; }
+  .drag-chip { display: inline-flex; align-items: center; background: #003366; color: #fff; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; cursor: grab; user-select: none; }
+  .drag-chip:active { cursor: grabbing; opacity: 0.7; }
+
+  /* Match exercise */
+  .match-pair { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+  .match-left { background: #003366; color: #fff; padding: 7px 14px; border-radius: 6px; font-size: 0.88rem; min-width: 160px; flex-shrink: 0; }
+  .match-select { padding: 7px 10px; border: 1px solid #90caf9; border-radius: 6px; font-size: 0.88rem; font-family: 'Source Sans 3', sans-serif; min-width: 200px; }
+  .match-select.correct { border-color: #4caf50; background: #e8f5e9; }
+  .match-select.incorrect { border-color: #f44336; background: #ffebee; }
+
+  /* ===== SCORE ===== */
+  .score-box { background: #003366; color: #fff; border-radius: 12px; padding: 22px; text-align: center; margin-top: 22px; display: none; }
+  .score-num { font-size: 2.8rem; font-weight: 700; font-family: 'Lora', serif; }
+  .score-msg { font-size: 1rem; margin-top: 8px; color: #87CEEB; }
+  .progress-bar-wrap { background: rgba(255,255,255,0.2); border-radius: 20px; height: 14px; margin: 12px 0; overflow: hidden; }
+  .progress-bar-fill { height: 100%; border-radius: 20px; background: linear-gradient(90deg, #87CEEB, #00e5ff); transition: width 1s ease; }
+  .btn { display: inline-block; padding: 11px 28px; border-radius: 8px; font-size: 0.95rem; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; font-family: 'Source Sans 3', sans-serif; }
+  .btn-primary { background: #003366; color: #fff; }
+  .btn-primary:hover { background: #00509e; }
+  .btn-secondary { background: #87CEEB; color: #003366; margin-left: 10px; }
+  .btn-secondary:hover { background: #5bb8d4; }
+  .btn-wrap { margin-top: 20px; text-align: center; }
+
+  /* QUIZ badges */
+  .badge-teo { background: #003366; color: #fff; font-size: 0.7rem; padding: 2px 9px; border-radius: 12px; font-weight: 700; margin-right: 6px; }
+  .badge-caso { background: #e65100; color: #fff; font-size: 0.7rem; padding: 2px 9px; border-radius: 12px; font-weight: 700; margin-right: 6px; }
+
+  /* ===== AI ACTIVITY ===== */
+  .ai-card { background: linear-gradient(135deg, #1a237e 0%, #003366 60%, #00695c 100%); color: #fff; border-radius: 12px; padding: 24px; margin: 18px 0; }
+  .ai-card h3 { color: #87CEEB; font-size: 1.1rem; margin-bottom: 10px; }
+  .ai-card p { color: #e0e0e0; margin-bottom: 10px; }
+  .prompt-box { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; padding: 14px 16px; font-family: monospace; font-size: 0.87rem; color: #e0f7fa; white-space: pre-wrap; margin: 12px 0; line-height: 1.6; }
+  .ai-steps { counter-reset: ai-step; }
+  .ai-step { display: flex; gap: 12px; margin-bottom: 14px; }
+  .ai-step-num { background: #87CEEB; color: #003366; font-weight: 700; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; margin-top: 2px; }
+  .ai-step p { color: #e0e0e0; margin: 0; }
+
+  /* ===== REFLECTIVE QUESTIONS ===== */
+  .ref-card { background: #fff; border-radius: 10px; border: 1px solid #ddd; padding: 18px 20px; margin-bottom: 16px; }
+  .ref-card .ref-num { font-size: 0.78rem; font-weight: 700; color: #6a1b9a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .ref-card .ref-q { font-size: 1.02rem; font-weight: 600; color: #222; margin-bottom: 8px; font-family: 'Lora', serif; }
+  .ref-card .ref-hint { font-size: 0.88rem; color: #666; font-style: italic; }
+
+  /* ===== BIBLIOGRAPHY ===== */
+  .bib-card { background: #fff; border-radius: 10px; border: 1px solid #ddd; padding: 16px 18px; margin-bottom: 14px; display: flex; gap: 14px; align-items: flex-start; }
+  .bib-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .bib-ref { font-size: 0.9rem; line-height: 1.6; }
+  .bib-ref em { color: #003366; }
+  .bib-note { background: #fff3e0; border: 1px solid #ffe0b2; border-radius: 8px; padding: 12px 16px; font-size: 0.85rem; color: #bf360c; margin-top: 20px; }
+
+  /* Virtue list */
+  .virtue-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin: 18px 0; }
+  .virtue-card { background: #fff; border: 1px solid #90caf9; border-radius: 10px; padding: 14px; text-align: center; }
+  .virtue-card .virtue-icon { font-size: 2rem; margin-bottom: 6px; }
+  .virtue-card .virtue-name { font-weight: 700; color: #003366; font-size: 0.95rem; margin-bottom: 4px; }
+  .virtue-card .virtue-def { font-size: 0.82rem; color: #555; }
+
+  /* Rights vs duties */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 18px 0; }
+  @media(max-width:600px){ .split { grid-template-columns: 1fr; } .virtue-grid { grid-template-columns: 1fr 1fr; } }
+  .split-card { border-radius: 10px; padding: 16px; }
+  .split-card.rights { background: #e3f2fd; border: 2px solid #1565c0; }
+  .split-card.duties { background: #fce4ec; border: 2px solid #c62828; }
+  .split-card h4 { margin-bottom: 10px; }
+  .split-card.rights h4 { color: #1565c0; }
+  .split-card.duties h4 { color: #c62828; }
+
+  /* Timeline */
+  .timeline { border-left: 3px solid #003366; margin: 18px 0 18px 10px; padding-left: 20px; }
+  .tl-item { position: relative; margin-bottom: 18px; }
+  .tl-item::before { content: ''; position: absolute; left: -26px; top: 5px; width: 12px; height: 12px; background: #003366; border-radius: 50%; }
+  .tl-year { font-weight: 700; color: #003366; font-size: 0.85rem; }
+  .tl-text { font-size: 0.92rem; }
+
+  /* Mobile phone scenario */
+  .phone-scenario { background: #fff; border: 2px solid #ff7043; border-radius: 12px; overflow: hidden; margin: 18px 0; }
+  .phone-header { background: #ff7043; color: #fff; padding: 10px 16px; font-weight: 700; font-size: 0.9rem; }
+  .phone-body { padding: 14px 16px; }
+
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="header-inner">
+    <img src="ug.png" alt="Logo Universidad de Guayaquil" class="header-logo" onerror="this.style.display='none'">
+    <div class="header-text">
+      <div class="inst">Universidad de Guayaquil · Fac. Ciencias Administrativas · Contabilidad y Auditoría</div>
+      <h1>Democracia, Ciudadanía y Globalización</h1>
+      <div class="header-meta">
+        <span class="badge">Unidad 2: La Democracia</span>
+        <span class="badge">Semana 06</span>
+        <span class="badge">La Democracia y los Derechos Humanos · La Convivencia Democrática</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== TAB NAVIGATION ===== -->
+<div class="tab-nav-wrap">
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('repaso')">📋 Repaso</button>
+    <button class="tab-btn" onclick="showTab('t1')">1. Derechos Humanos y Democracia</button>
+    <button class="tab-btn" onclick="showTab('t2')">2. Derechos Y Obligaciones</button>
+    <button class="tab-btn" onclick="showTab('t3')">3. Convivencia y Valores</button>
+    <button class="tab-btn" onclick="showTab('t4')">4. Virtudes para Convivir</button>
+    <button class="tab-btn" onclick="showTab('t5')">5. Móviles, Privacidad y Buen Gusto</button>
+    <button class="tab-btn" onclick="showTab('ejercicio')">6. Ejercicio Interactivo</button>
+    <button class="tab-btn" onclick="showTab('cuestionario')">7. Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia')">8. Actividad con IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion')">9. Reflexión Personal</button>
+    <button class="tab-btn" onclick="showTab('biblio')">10. Bibliografía</button>
+  </nav>
+</div>
+
+<!-- ===== CONTENT ===== -->
+<main class="content">
+
+<!-- ========== REPASO ========== -->
+<section class="tab-panel active" id="tab-repaso">
+  <h2 class="section-title">📋 Repaso de Semanas Anteriores</h2>
+  <p class="section-sub">Unidad 1 y comienzo de Unidad 2 — Lo que ya hemos construido juntos</p>
+
+  <p>Antes de avanzar, es fundamental anclar lo aprendido. En las semanas previas construimos un andamiaje conceptual que ahora necesitamos para comprender la relación entre democracia y derechos humanos.</p>
+
+  <div class="box-concepto">
+    <div class="box-label">📌 Semanas 1–2 · Fundamentos del Estado y la Ciudadanía</div>
+    <p>Exploramos qué es el <strong>Estado</strong> como organización política que detenta soberanía sobre un territorio y una población. Diferenciamos entre gobierno (quienes ejercen el poder) y Estado (la institución permanente). Analizamos los modelos de ciudadanía: <strong>liberal</strong> (individuo y derechos), <strong>republicana</strong> (participación cívica), <strong>comunitaria</strong> (pertenencia e identidad colectiva) e <strong>intercultural</strong> (Ecuador plurinacional). La Constitución ecuatoriana de 2008 fue nuestro referente normativo permanente.</p>
+  </div>
+
+  <div class="box-concepto">
+    <div class="box-label">📌 Semana 3 · El Estado de Derecho y las Funciones del Estado</div>
+    <p>Profundizamos en el <strong>Estado de Derecho</strong>: nadie está por encima de la ley, ni siquiera quien gobierna. Analizamos las cinco funciones del Estado ecuatoriano (Ejecutiva, Legislativa, Judicial, Electoral y de Transparencia) y su rol de control y equilibrio mutuo. El concepto de <strong>separación de poderes</strong> fue clave para entender cómo la democracia se protege a sí misma.</p>
+  </div>
+
+  <div class="box-concepto">
+    <div class="box-label">📌 Semanas 4–5 · Modelos Democráticos y Ciudadanía Activa</div>
+    <p>Revisamos los modelos de democracia: <strong>directa</strong> (el pueblo decide sin intermediarios), <strong>representativa</strong> (elegimos representantes) y <strong>participativa</strong> (combinación con mecanismos como referéndum, iniciativa popular, revocatoria). Analizamos el referéndum ecuatoriano y sus implicaciones. Introdujimos la idea de <strong>ciudadanía activa</strong>: no basta con votar; la democracia vive de la participación cotidiana, el debate informado y el compromiso con el bien común.</p>
+  </div>
+
+  <div class="sofia-card">
+    <div class="sofia-avatar">👩‍💼</div>
+    <div>
+      <p class="sofia-name">Sofía · Contadora Pública, 22 años</p>
+      <p>"Todo lo que hemos visto tiene un hilo conductor: la democracia no es solo un sistema de votación, es una forma de organizarse para vivir juntos en libertad y justicia. Esta semana ese hilo llegará a su punto más personal: ¿cómo convivo yo, hoy, con mis compañeros, en mi trabajo, en mi ciudad?"</p>
+    </div>
+  </div>
+
+  <div class="box-clave">
+    <div class="box-label">🔑 Idea Puente para esta Semana</div>
+    <p>La democracia sin derechos humanos es vacía; pero los derechos sin obligaciones son insostenibles. Esta semana uniremos esas dos caras y examinaremos qué virtudes personales hacen posible la convivencia democrática real.</p>
+  </div>
+</section>
+
+<!-- ========== TEMA 1 ========== -->
+<section class="tab-panel" id="tab-t1">
+  <h2 class="section-title">1. Democracia y Derechos Humanos: Una Relación Inseparable</h2>
+  <p class="section-sub">Por qué no puede existir la una sin los otros</p>
+
+  <p>Cuando hablamos de <strong>derechos humanos</strong>, nos referimos al conjunto de facultades, libertades y pretensiones básicas que corresponden a toda persona por el simple hecho de ser humana, independientemente de su nacionalidad, sexo, religión, condición económica o cualquier otra circunstancia. No son concesiones del Estado: son reconocimientos de una dignidad preexistente.</p>
+
+  <div class="box-concepto">
+    <div class="box-label">📖 Concepto Fundamental</div>
+    <p><strong>Derechos Humanos:</strong> Conjunto de derechos inherentes a toda persona, universales (para todos), inalienables (no pueden quitarse), indivisibles (no hay jerarquía entre ellos) e interdependientes (se necesitan mutuamente). Su base filosófica radica en la <em>dignidad humana</em>: cada persona tiene un valor intrínseco que ningún poder puede anular.</p>
+  </div>
+
+  <h3 style="color:#003366;margin:20px 0 10px;">1.1 Historia: Cómo llegamos aquí</h3>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">1215 – Magna Carta (Inglaterra)</div>
+      <div class="tl-text">Primer límite escrito al poder absoluto del rey. Reconoce que ni siquiera el monarca puede actuar arbitrariamente contra sus súbditos.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1776 – Declaración de Independencia de EE.UU.</div>
+      <div class="tl-text">"Todos los hombres son creados iguales y dotados de derechos inalienables: vida, libertad y búsqueda de la felicidad." El Estado existe para proteger esos derechos, no para otorgarlos.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1789 – Declaración Francesa de Derechos del Hombre</div>
+      <div class="tl-text">La libertad, la propiedad, la seguridad y la resistencia a la opresión son derechos naturales. La soberanía reside en la nación.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1948 – Declaración Universal de Derechos Humanos (ONU)</div>
+      <div class="tl-text">Tras el horror de la Segunda Guerra Mundial, la humanidad acuerda 30 artículos que reconocen los derechos de todas las personas. Es el texto más traducido de la historia.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1969 – Convención Americana sobre Derechos Humanos</div>
+      <div class="tl-text">El "Pacto de San José" obliga a los Estados de América —incluido Ecuador— a proteger derechos civiles y políticos, y establece la Corte Interamericana de Derechos Humanos.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2008 – Constitución del Ecuador</div>
+      <div class="tl-text">Ecuador adopta la Constitución más avanzada de su historia: reconoce los derechos de la naturaleza (Pacha Mama), el <em>buen vivir</em> (sumak kawsay), los derechos colectivos de pueblos indígenas y afroecuatorianos, y eleva los derechos a categoría constitucional directamente aplicable.</div>
+    </div>
+  </div>
+
+  <h3 style="color:#003366;margin:20px 0 10px;">1.2 Las Tres Generaciones de Derechos</h3>
+
+  <div class="tabla-wrap">
+    <table>
+      <thead><tr><th>Generación</th><th>Tipo de Derechos</th><th>Ejemplos</th><th>Relación con la Democracia</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1ª Generación</strong><br><em>Civiles y Políticos</em></td><td>Protegen la libertad individual frente al Estado</td><td>Vida, libertad, expresión, voto, debido proceso, propiedad</td><td>Son la base mínima de cualquier democracia: sin voto libre no hay democracia posible</td></tr>
+        <tr><td><strong>2ª Generación</strong><br><em>Económicos, Sociales y Culturales</em></td><td>Requieren acción positiva del Estado</td><td>Educación, salud, trabajo, vivienda, seguridad social</td><td>Democracia real: no basta el voto si no hay condiciones de vida digna para participar</td></tr>
+        <tr><td><strong>3ª Generación</strong><br><em>Colectivos y Solidarios</em></td><td>Pertenecen a colectivos o a la humanidad entera</td><td>Paz, desarrollo, medio ambiente sano, patrimonio cultural, derechos de los pueblos indígenas</td><td>Ecuador reconoce derechos de la naturaleza: la democracia se extiende al futuro y al entorno</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="color:#003366;margin:20px 0 10px;">1.3 Por qué la Democracia necesita los Derechos Humanos</h3>
+
+  <p>Una democracia sin derechos humanos puede convertirse en la <strong>"tiranía de la mayoría"</strong>: si el 51% vota para oprimir al 49%, eso no es democracia legítima. Los derechos humanos son los límites que la mayoría no puede cruzar aunque tenga los votos.</p>
+
+  <div class="box-ejemplo">
+    <div class="box-label">🇪🇨 Ejemplo Ecuador — Caso Sarayaku vs. Ecuador (Corte IDH, 2012)</div>
+    <p>El Estado ecuatoriano permitió operaciones petroleras en territorio del pueblo Kichwa Sarayaku sin consultarles. La Corte Interamericana condenó a Ecuador por violar el derecho a la <strong>consulta previa libre e informada</strong>. Una mayoría política no puede suprimir los derechos de una minoría indígena. Este caso demostró que los derechos humanos son superiores a cualquier decisión gubernamental mayoritaria.</p>
+  </div>
+
+  <p>De igual forma, <strong>los derechos humanos necesitan la democracia</strong>: los regímenes autoritarios sistemáticamente violan derechos. La libertad de expresión, la separación de poderes y las elecciones libres son el escudo que protege los derechos.</p>
+
+  <div class="box-clave">
+    <div class="box-label">🔑 Idea Clave</div>
+    <p>Democracia y derechos humanos se retroalimentan: la democracia protege los derechos, y los derechos limitan a la democracia para que no se convierta en opresión. Son las dos alas de una misma ave: sin alguna de ellas, el sistema cae.</p>
+  </div>
+</section>
+
+<!-- ========== TEMA 2 ========== -->
+<section class="tab-panel" id="tab-t2">
+  <h2 class="section-title">2. Derechos Y Obligaciones: Las Dos Caras de la Ciudadanía</h2>
+  <p class="section-sub">Es hermoso exigir derechos. ¿Y las obligaciones?</p>
+
+  <div class="sofia-card">
+    <div class="sofia-avatar">👩‍💼</div>
+    <div>
+      <p class="sofia-name">Sofía reflexiona…</p>
+      <p>"En mi primer trabajo como auditora, un colega llegaba tarde todos los días. Cuando le llamaron la atención, respondió: 'tengo derecho a mi privacidad y mi tiempo'. Pensé: ¿y el derecho de los demás a trabajar en un equipo confiable? Los derechos de uno terminan donde empiezan los del otro."</p>
+    </div>
+  </div>
+
+  <p>Vivimos en una época donde la <strong>cultura del derecho</strong> ha avanzado enormemente, y eso es valioso. Pero con frecuencia esa cultura se vuelve unilateral: exigimos derechos sin recordar que somos también sujetos de <strong>obligaciones</strong>. Esta asimetría es uno de los grandes desafíos de la democracia contemporánea.</p>
+
+  <div class="box-concepto">
+    <div class="box-label">📖 Concepto: Obligaciones Ciudadanas</div>
+    <p>Las <strong>obligaciones ciudadanas</strong> son los deberes que corresponden a toda persona en una sociedad democrática: contribuir al bien común, respetar los derechos ajenos, cumplir las leyes, pagar impuestos, participar en los procesos cívicos y actuar con responsabilidad social. Son el complemento necesario de los derechos.</p>
+  </div>
+
+  <div class="split">
+    <div class="split-card rights">
+      <h4>⚖️ Mis Derechos incluyen…</h4>
+      <ul>
+        <li>Libertad de expresión y opinión</li>
+        <li>Educación gratuita y de calidad</li>
+        <li>Salud, trabajo digno y seguridad</li>
+        <li>Participación política (votar, ser elegido)</li>
+        <li>Privacidad e intimidad</li>
+        <li>No ser discriminado por ninguna razón</li>
+        <li>Acceso a la justicia</li>
+      </ul>
+    </div>
+    <div class="split-card duties">
+      <h4>🤝 Mis Obligaciones incluyen…</h4>
+      <ul>
+        <li>Respetar los derechos de los demás</li>
+        <li>Pagar impuestos para financiar lo colectivo</li>
+        <li>Cumplir la Constitución y las leyes</li>
+        <li>Votar y participar en la vida cívica</li>
+        <li>Respetar el entorno y el patrimonio público</li>
+        <li>Actuar con honestidad en mi profesión</li>
+        <li>Cuidar el bien común, no solo el propio</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="color:#003366;margin:20px 0 10px;">2.1 La Trampa de Exigir Sin Dar</h3>
+
+  <p>La filosofía política llama a esto el problema del <strong>"free rider"</strong> (polizón): quien aprovecha los bienes colectivos sin contribuir a ellos. En una democracia, si todos exigen pero nadie cumple sus obligaciones, el sistema se degrada:</p>
+
+  <div class="tabla-wrap">
+    <table>
+      <thead><tr><th>Exijo el derecho…</th><th>…pero evado la obligación de…</th><th>Consecuencia para la democracia</th></tr></thead>
+      <tbody>
+        <tr><td>A educación pública de calidad</td><td>Pagar impuestos que la financian</td><td>Escuelas sin recursos, sistema colapsado</td></tr>
+        <tr><td>A seguridad ciudadana</td><td>Denunciar actos ilícitos o corrupción</td><td>Impunidad generalizada</td></tr>
+        <tr><td>A votar libremente</td><td>Informarme antes de votar</td><td>Elecciones manipuladas por desinformación</td></tr>
+        <tr><td>A vivir en un ambiente sano</td><td>Cuidar el entorno (no botar basura, etc.)</td><td>Deterioro ambiental del bien común</td></tr>
+        <tr><td>A transparencia en el Estado</td><td>Actuar con honestidad en mi empresa o trabajo</td><td>Corrupción estructural (Caso Metástasis)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box-ejemplo">
+    <div class="box-label">🇪🇨 Caso Ecuatoriano — La Evasión Fiscal</div>
+    <p>Ecuador pierde aproximadamente <strong>4.000 millones de dólares al año</strong> en evasión tributaria, según datos del SRI (Servicio de Rentas Internas). Cada empresa o persona que evade impuestos está ejerciendo un "derecho" (guardar su dinero) mientras destruye la obligación que sostiene hospitales, escuelas y carreteras públicas. El derecho de unos (recibir servicios del Estado) depende de la obligación de otros (pagar tributos). No existe la una sin la otra.</p>
+  </div>
+
+  <h3 style="color:#003366;margin:20px 0 10px;">2.2 La Perspectiva del Contador-Auditor</h3>
+
+  <p>Para quien estudia Contabilidad y Auditoría, esta tensión es especialmente relevante. Un profesional contable tiene el <strong>derecho</strong> a ejercer su carrera libremente y a cobrar honorarios justos. Pero tiene la <strong>obligación</strong> de reportar con veracidad, de no encubrir fraudes, de proteger la información pública aunque eso le cueste su trabajo.</p>
+
+  <div class="box-alerta">
+    <div class="box-label">⚠️ Dilema Profesional Real</div>
+    <p>En el <strong>escándalo ISSPOL</strong> (Instituto de Seguridad Social de la Policía Nacional, Ecuador, 2019-2022), los auditores internos tenían la obligación legal y ética de alertar sobre inversiones irregulares. Algunos callaron. Resultado: más de 400 millones de dólares de los policías ecuatorianos perdidos. Exigir el derecho a no "meterse en problemas" destruyó el derecho de miles de familias a su pensión de retiro.</p>
+  </div>
+
+  <div class="box-clave">
+    <div class="box-label">🔑 Idea Clave</div>
+    <p>La madurez ciudadana y profesional no se mide por cuántos derechos conocemos, sino por qué tanto estamos dispuestos a cumplir nuestras obligaciones, especialmente cuando es incómodo hacerlo. Los derechos sin obligaciones son privilegios disfrazados; las obligaciones sin derechos son esclavitud. El equilibrio es la ciudadanía democrática plena.</p>
+  </div>
+</section>
+
+<!-- ========== TEMA 3 ========== -->
+<section class="tab-panel" id="tab-t3">
+  <h2 class="section-title">3. Convivencia Democrática: ¿Es Posible Sin Valores?</h2>
+  <p class="section-sub">Lo que la democracia necesita que seamos, no solo que hagamos</p>
+
+  <p>La <strong>convivencia democrática</strong> es la capacidad de una sociedad de vivir junta en paz, con respeto mutuo, dentro de marcos de justicia compartidos, aun cuando sus miembros tengan diferencias profundas de opinión, creencia, cultura o interés. Es el arte de habitar el mismo espacio con personas distintas a nosotros.</p>
+
+  <div class="box-concepto">
+    <div class="box-label">📖 Concepto: Convivencia Democrática</div>
+    <p><strong>Convivencia democrática</strong> es el conjunto de prácticas, actitudes y valores que permiten a ciudadanos libres e iguales coexistir pacíficamente, resolver conflictos sin violencia, colaborar en el bien común y reconocerse mutuamente como portadores de dignidad. No es ausencia de conflicto: es la capacidad de procesarlo civilizadamente.</p>
+  </div>
+
+  <h3 style="color:#003366;margin:20px 0 10px;">3.1 La Pregunta Incómoda: ¿Convivimos Realmente?</h3>
+
+  <p>Vivimos en sociedades formalmente democráticas, pero ¿convivimos? Observemos algunos síntomas que muestran que la convivencia está bajo presión:</p>
+
+  <ul>
+    <li><strong>Polarización política extrema:</strong> "Quien no piensa como yo es mi enemigo, no mi adversario."</li>
+    <li><strong>Redes sociales como cámaras de eco:</strong> Solo leemos y escuchamos a quienes confirman lo que ya creemos.</li>
+    <li><strong>Violencia simbólica y física:</strong> Insultos, cancelaciones, agresiones a quienes disienten.</li>
+    <li><strong>Desconfianza institucional:</strong> "Todos son corruptos" como excusa para no participar.</li>
+    <li><strong>Individualismo extremo:</strong> "Lo mío primero, lo colectivo que se arregle solo."</li>
+  </ul>
+
+  <div class="box-ejemplo">
+    <div class="box-label">🇪🇨 Ecuador — Convivencia en Tensión</div>
+    <p>En 2022, el paro nacional de 18 días protagonizado por movimientos indígenas puso en evidencia la fractura entre el gobierno central y los pueblos originarios. Las demandas (subsidios, precios, tierras) chocaron con las limitaciones fiscales del Estado. La negociación final —por difícil que fue— demostró que la convivencia democrática es posible incluso en situaciones de extremo conflicto, siempre que haya voluntad de diálogo y reconocimiento mutuo.</p>
+  </div>
+
+  <h3 style="color:#003366;margin:20px 0 10px;">3.2 Valores Que Hacen Posible la Convivencia</h3>
+
+  <p>La convivencia no es algo que "pasa sola". Requiere que las personas cultiven ciertos <strong>valores</strong> —disposiciones estables hacia el bien— que orienten su conducta en relación con los demás. Sin estos valores, las leyes no alcanzan: se puede legislar contra la discriminación, pero no se puede legislar la empatía.</p>
+
+  <div class="tabla-wrap">
+    <table>
+      <thead><tr><th>Valor</th><th>Qué significa en la convivencia</th><th>Sin este valor…</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Respeto</strong></td><td>Reconocer la dignidad del otro aunque discrepe conmigo. No insultar, no humillar.</td><td>El debate se convierte en agresión. La diferencia se vuelve enemiga.</td></tr>
+        <tr><td><strong>Tolerancia</strong></td><td>Aceptar que otros puedan tener creencias, estilos de vida o posiciones distintas sin que eso sea una amenaza.</td><td>Surgen el fanatismo y la intolerancia que destruyen la paz social.</td></tr>
+        <tr><td><strong>Solidaridad</strong></td><td>Sentir el sufrimiento del otro como propio y actuar para aliviarlo. No es lástima; es corresponsabilidad.</td><td>Los más vulnerables quedan solos. La desigualdad se vuelve estructural.</td></tr>
+        <tr><td><strong>Responsabilidad</strong></td><td>Asumir las consecuencias de mis actos y mis omisiones. No eludir culpas, no culpar siempre al otro.</td><td>La culpa siempre es "del sistema", "del gobierno", "de los demás". Nada cambia.</td></tr>
+        <tr><td><strong>Honestidad</strong></td><td>Actuar con verdad en mis palabras y mis hechos. No manipular, no mentir para obtener ventajas.</td><td>Se erosiona la confianza. Sin confianza, la sociedad no puede funcionar.</td></tr>
+        <tr><td><strong>Diálogo</strong></td><td>Escuchar de verdad antes de responder. Buscar entender, no solo ganar el argumento.</td><td>Los conflictos no se resuelven, se acumulan. La violencia se vuelve la única salida.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box-reflexion">
+    <div class="box-label">🌱 Conexión con el Pensamiento de Aristóteles</div>
+    <p>Aristóteles enseñaba que el ser humano es un <em>animal político</em> (zōon politikon): estamos hechos para vivir en comunidad, en la <em>polis</em>. Pero esa vida comunitaria exige el cultivo de las <strong>virtudes</strong> (areté): disposiciones adquiridas por la práctica, no por decreto. La convivencia, en este sentido, no es una técnica que se aprende en un libro, es una práctica que se ejercita todos los días.</p>
+  </div>
+
+  <div class="box-clave">
+    <div class="box-label">🔑 Idea Clave</div>
+    <p>Una democracia puede tener las mejores leyes del mundo y seguir siendo un desastre si sus ciudadanos no cultivan los valores que hacen posible la convivencia. Las leyes son el techo mínimo; los valores son las paredes que sostienen el edificio. Sin valores, la democracia es solo papel.</p>
+  </div>
+</section>
+
+<!-- ========== TEMA 4 ========== -->
+<section class="tab-panel" id="tab-t4">
+  <h2 class="section-title">4. Virtudes para Convivir: La Ética del Carácter</h2>
+  <p class="section-sub">Más allá de las reglas: ser personas que saben vivir con otros</p>
+
+  <p>Si los valores son <em>qué</em> queremos ser, las <strong>virtudes</strong> son los hábitos que lo hacen realidad. Una virtud, en sentido clásico, es una <strong>excelencia del carácter</strong> que se adquiere mediante la práctica constante, hasta que se convierte en algo natural en nosotros. No basta con saber que el respeto es importante; hay que practicarlo hasta que sea parte de quiénes somos.</p>
+
+  <div class="box-concepto">
+    <div class="box-label">📖 Concepto: Virtud (Areté)</div>
+    <p>Del griego <em>areté</em> y el latín <em>virtus</em>: disposición estable del carácter orientada al bien, adquirida mediante la repetición de actos buenos. Aristóteles distinguía virtudes intelectuales (sabiduría práctica o <em>frónesis</em>) y virtudes morales (valentía, justicia, templanza, prudencia). Para vivir bien en comunidad, necesitamos ambas.</p>
+  </div>
+
+  <p>Exploremos las virtudes más necesarias para la convivencia democrática contemporánea:</p>
+
+  <div class="virtue-grid">
+    <div class="virtue-card">
+      <div class="virtue-icon">🧘</div>
+      <div class="virtue-name">Prudencia</div>
+      <div class="virtue-def">Saber elegir el momento, el modo y el lugar adecuados para actuar. No impulsividad, no cálculo frío: sabiduría práctica.</div>
+    </div>
+    <div class="virtue-card">
+      <div class="virtue-icon">⚖️</div>
+      <div class="virtue-name">Justicia</div>
+      <div class="virtue-def">Dar a cada quien lo que le corresponde. Actuar con equidad, sin favoritismo ni arbitrariedad.</div>
+    </div>
+    <div class="virtue-card">
+      <div class="virtue-icon">🎭</div>
+      <div class="virtue-name">Coherencia</div>
+      <div class="virtue-def">Que mis palabras, valores y actos sean congruentes. No decir una cosa y hacer otra.</div>
+    </div>
+    <div class="virtue-card">
+      <div class="virtue-icon">🌸</div>
+      <div class="virtue-name">Buen Gusto</div>
+      <div class="virtue-def">Sentido estético y ético: saber qué es apropiado, bello y digno en la convivencia. No todo lo permitido es oportuno.</div>
+    </div>
+    <div class="virtue-card">
+      <div class="virtue-icon">🤐</div>
+      <div class="virtue-name">Discreción</div>
+      <div class="virtue-def">Guardar con respeto la información privada de los demás. No difundir lo que se conoce en confianza.</div>
+    </div>
+    <div class="virtue-card">
+      <div class="virtue-icon">🙌</div>
+      <div class="virtue-name">Generosidad</div>
+      <div class="virtue-def">Dar de lo propio sin esperar siempre una recompensa equivalente. Aportar al bien colectivo.</div>
+    </div>
+    <div class="virtue-card">
+      <div class="virtue-icon">💪</div>
+      <div class="virtue-name">Fortaleza</div>
+      <div class="virtue-def">Mantenerse firme en los valores cuando hay presión para abandonarlos. No ceder a la corrupción, al miedo o a la conveniencia.</div>
+    </div>
+    <div class="virtue-card">
+      <div class="virtue-icon">📐</div>
+      <div class="virtue-name">Orden</div>
+      <div class="virtue-def">Respetar normas, turnos, procesos y límites. El orden no es represión: es condición para la libertad de todos.</div>
+    </div>
+  </div>
+
+  <h3 style="color:#003366;margin:20px 0 10px;">4.1 La Virtud de la Coherencia: El Espejo de la Democracia</h3>
+
+  <p>La <strong>coherencia</strong> es quizás la virtud más olvidada y más necesaria. Vivimos rodeados de personas —y líderes— que proclaman valores que no practican. La democracia sufre enormemente por esta brecha:</p>
+
+  <ul>
+    <li>El político que habla de austeridad y viaja en jets privados.</li>
+    <li>El empresario que exige lealtad de sus empleados pero no paga horas extras.</li>
+    <li>El estudiante que denuncia la corrupción pero copia en el examen.</li>
+    <li>El auditor que firma un informe que sabe que es falso.</li>
+  </ul>
+
+  <div class="box-ejemplo">
+    <div class="box-label">🌍 Comparación Internacional — El Concepto Japonés de "Makoto"</div>
+    <p><em>Makoto</em> en japonés significa sinceridad, autenticidad, coherencia entre lo interior y lo exterior. En Japón, una persona "makoto" es alguien que no tiene dos caras: actúa igual cuando la ven que cuando no la ven. Esta virtud está en la base de la confianza institucional de Japón, que tiene uno de los índices más bajos de corrupción del mundo. Para el profesional ecuatoriano, practicar "makoto" significaría: firmar solo lo que es verdad, reportar solo lo que realmente se verificó.</p>
+  </div>
+
+  <h3 style="color:#003366;margin:20px 0 10px;">4.2 El Buen Gusto como Virtud Cívica</h3>
+
+  <p>El <strong>buen gusto</strong> no es un concepto estético frívolo. En el sentido aristotélico de la <em>frónesis</em> (sabiduría práctica), el buen gusto es saber qué es apropiado en cada situación. Implica:</p>
+
+  <ul>
+    <li>Saber cuándo hablar y cuándo guardar silencio.</li>
+    <li>Saber cómo expresar un desacuerdo sin ofender.</li>
+    <li>Saber qué compartir y qué guardar como privado.</li>
+    <li>Saber cómo vestir, actuar y comportarse según el contexto (una junta de trabajo no es una reunión de amigos).</li>
+    <li>Saber que no todo lo que se <em>puede</em> hacer se <em>debe</em> hacer.</li>
+  </ul>
+
+  <div class="box-alerta">
+    <div class="box-label">⚠️ Sin Buen Gusto…</div>
+    <p>Una reunión de trabajo interrumpida por notificaciones del celular, una red social convertida en descarga de agresión, una conversación privada grabada y difundida sin consentimiento, un video íntimo compartido como "chiste"… Todo eso es ausencia de buen gusto. Y tiene consecuencias reales en la convivencia democrática: destruye la confianza, humilla personas, y degrada el espacio público.</p>
+  </div>
+
+  <div class="box-clave">
+    <div class="box-label">🔑 Idea Clave</div>
+    <p>Las virtudes no son ornamentos del carácter: son su estructura portante. Una persona virtuosa no necesita que la vigilancia externa le diga cómo comportarse; actúa bien porque ha cultivado la disposición de hacerlo. Eso es exactamente lo que la democracia necesita de sus ciudadanos y profesionales.</p>
+  </div>
+</section>
+
+<!-- ========== TEMA 5 ========== -->
+<section class="tab-panel" id="tab-t5">
+  <h2 class="section-title">5. Los Móviles, la Privacidad y el Buen Gusto en la Era Digital</h2>
+  <p class="section-sub">La convivencia democrática desafiada por la tecnología</p>
+
+  <p>Vivimos en la era de la <strong>hiperconexión digital</strong>. El teléfono inteligente (smartphone) ha transformado radicalmente la forma en que nos relacionamos, informamos, trabajamos y convivimos. Esta transformación no es neutra: ha traído enormes beneficios, pero también ha generado nuevas amenazas a la privacidad, la dignidad y la convivencia democrática.</p>
+
+  <div class="box-concepto">
+    <div class="box-label">📖 Concepto: Privacidad Digital</div>
+    <p>La <strong>privacidad digital</strong> es el derecho de toda persona a controlar su información personal en entornos digitales: qué datos se recopilan sobre ella, quién los accede, cómo se usan y con quién se comparten. Es una extensión del derecho a la intimidad (Art. 66 de la Constitución del Ecuador) al mundo virtual.</p>
+  </div>
+
+  <h3 style="color:#003366;margin:20px 0 10px;">5.1 El Móvil Como Invasor de la Privacidad</h3>
+
+  <p>Nuestros teléfonos saben más de nosotros que nosotros mismos: nuestra ubicación en tiempo real, nuestras conversaciones privadas, nuestras compras, nuestras búsquedas, nuestros contactos, nuestros miedos, nuestros deseos. Esta información es recolectada, almacenada y con frecuencia vendida sin que lo sepamos claramente.</p>
+
+  <div class="phone-scenario">
+    <div class="phone-header">📱 Escenario Real: Lo que tu teléfono hace mientras lees esto</div>
+    <div class="phone-body">
+      <ul style="margin:0;padding-left:18px;">
+        <li>Las aplicaciones de tu teléfono registran <strong>cuánto tiempo</strong> pasas en cada pantalla.</li>
+        <li>Google y Meta (Facebook, Instagram) rastrean <strong>tu ubicación</strong> aunque tengas desactivado el GPS.</li>
+        <li>Las apps de mensajería acceden a tu <strong>micrófono y cámara</strong> con permisos que aceptaste sin leer.</li>
+        <li>Tus datos se venden a <strong>empresas de publicidad</strong> para mostrarte anuncios personalizados.</li>
+        <li>Los algoritmos deciden <strong>qué ves</strong> y qué no ves, formando tu visión del mundo.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box-ejemplo">
+    <div class="box-label">🇪🇨 Ecuador — La Filtración Masiva de Datos (2019)</div>
+    <p>En 2019, una empresa consultora ecuatoriana expuso en un servidor sin protección los datos de <strong>20.8 millones de ecuatorianos</strong> (incluyendo personas fallecidas), con información de cédulas, ingresos, empleadores, estado civil y más. Este caso demostró la vulnerabilidad de la privacidad digital en Ecuador y la urgencia de una legislación robusta. La Ley Orgánica de Protección de Datos Personales (2021) fue aprobada parcialmente como respuesta.</p>
+  </div>
+
+  <h3 style="color:#003366;margin:20px 0 10px;">5.2 La Convivencia Rota por el Mal Uso del Móvil</h3>
+
+  <p>El problema no es solo que las empresas tecnológicas recopilen datos. El problema más inmediato y cotidiano es cómo <em>nosotros</em> usamos la tecnología en nuestra relación con otros:</p>
+
+  <div class="tabla-wrap">
+    <table>
+      <thead><tr><th>Comportamiento</th><th>Virtud ausente</th><th>Daño a la convivencia</th></tr></thead>
+      <tbody>
+        <tr><td>Grabar una conversación privada sin consentimiento</td><td>Respeto, discreción, justicia</td><td>Violación de la intimidad; ruptura de confianza irreparable</td></tr>
+        <tr><td>Difundir fotos o videos íntimos de otra persona</td><td>Buen gusto, responsabilidad, respeto</td><td>Violencia digital; en Ecuador es delito (Art. 178-A COIP)</td></tr>
+        <tr><td>Usar el móvil en reuniones o clases ignorando a los presentes</td><td>Orden, respeto, prudencia</td><td>Deterioro de las relaciones cara a cara; cultura del "estoy pero no estoy"</td></tr>
+        <tr><td>Compartir información sin verificar ("fake news")</td><td>Coherencia, responsabilidad, honestidad</td><td>Desinformación masiva; erosión de la verdad colectiva</td></tr>
+        <tr><td>Acosar o insultar a personas en redes sociales</td><td>Buen gusto, fortaleza, justicia</td><td>Ciberbullying; en Ecuador tipificado como violencia digital</td></tr>
+        <tr><td>Publicar sin permiso lo que alguien dijo en privado</td><td>Discreción, prudencia, coherencia</td><td>Traición; destrucción de espacios de confianza</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="color:#003366;margin:20px 0 10px;">5.3 La Prudencia Digital: Virtud del Siglo XXI</h3>
+
+  <p>La <strong>prudencia digital</strong> es la aplicación de la sabiduría práctica al uso de la tecnología. Implica:</p>
+
+  <ul>
+    <li><strong>Antes de publicar:</strong> ¿Esto respeta la dignidad de todos los involucrados? ¿Es verdad verificada? ¿Podría causar daño?</li>
+    <li><strong>Antes de grabar:</strong> ¿Tengo el consentimiento de la persona? ¿Qué haré con esta grabación?</li>
+    <li><strong>Antes de compartir:</strong> ¿Es información pública o privada? ¿Tengo derecho a difundirla?</li>
+    <li><strong>En conversaciones:</strong> ¿El teléfono debe estar en mi bolsillo en este momento?</li>
+  </ul>
+
+  <div class="box-reflexion">
+    <div class="box-label">💭 Para Pensar — La Libertad de Expresión Tiene Límites</div>
+    <p>La libertad de expresión —un derecho humano fundamental— no protege el discurso de odio, la difamación, la pornografía no consentida ni la incitación a la violencia. "Puedo decir lo que quiero" es una idea incompleta. "Puedo decir lo que quiero dentro de los límites del respeto a la dignidad ajena" es la versión democrática completa. Las redes sociales han creado la ilusión de que todo vale. No todo vale.</p>
+  </div>
+
+  <h3 style="color:#003366;margin:20px 0 10px;">5.4 El Rol del Profesional Contable en el Entorno Digital</h3>
+
+  <p>El profesional de Contabilidad y Auditoría maneja información <strong>altamente sensible</strong>: estados financieros, datos de nómina, declaraciones tributarias, información de clientes. En el entorno digital, esto implica:</p>
+
+  <ul>
+    <li>Usar plataformas seguras y cifradas para manejar datos financieros.</li>
+    <li>No compartir información confidencial por WhatsApp o canales no seguros.</li>
+    <li>Proteger contraseñas y accesos con responsabilidad.</li>
+    <li>No usar dispositivos personales para acceder a sistemas corporativos sin autorización.</li>
+    <li>Reportar brechas de seguridad aunque eso incomode a la empresa.</li>
+  </ul>
+
+  <div class="sofia-card">
+    <div class="sofia-avatar">👩‍💼</div>
+    <div>
+      <p class="sofia-name">Sofía — Dilema Real</p>
+      <p>"Mi jefe me pidió que mandara por WhatsApp los estados financieros de un cliente para 'agilitar' la reunión. Sabía que no era correcto: WhatsApp no es una plataforma segura para ese tipo de información. Me costó decirle que no, pero lo hice. La prudencia digital no es paranoia; es responsabilidad profesional."</p>
+    </div>
+  </div>
+
+  <div class="box-clave">
+    <div class="box-label">🔑 Idea Clave</div>
+    <p>La democracia digital es posible, pero requiere que llevemos al espacio digital las mismas virtudes que necesitamos en el espacio físico: prudencia, respeto, coherencia, buen gusto y responsabilidad. El móvil no es excusa para olvidarnos de que al otro lado de la pantalla hay siempre una persona con dignidad.</p>
+  </div>
+</section>
+
+<!-- ========== EJERCICIO INTERACTIVO ========== -->
+<section class="tab-panel" id="tab-ejercicio">
+  <h2 class="section-title">6. Ejercicio Interactivo</h2>
+  <p class="section-sub">Responde todo primero — luego verifica tus respuestas</p>
+
+  <div class="quiz-container">
+    <div class="quiz-instructions">
+      📌 <strong>Instrucciones:</strong> Clasifica cada situación marcando si corresponde principalmente a un <strong>Derecho</strong>, a una <strong>Obligación</strong>, a una <strong>Virtud ausente</strong> o a un <strong>Problema de convivencia digital</strong>. Responde todos los ítems y luego presiona <em>Verificar respuestas</em>.
+    </div>
+
+    <!-- Ítem 1 -->
+    <div class="q-item" id="ex-1">
+      <div class="q-num">Ítem 1</div>
+      <div class="q-text">Una empresa auditora firma estados financieros que sabe son incorrectos para no perder al cliente.</div>
+      <label class="opt-label"><input type="radio" name="ex1" value="a"> Ejercicio legítimo de un derecho profesional</label>
+      <label class="opt-label"><input type="radio" name="ex1" value="b"> Violación de la obligación de honestidad y coherencia profesional</label>
+      <label class="opt-label"><input type="radio" name="ex1" value="c"> Problema exclusivamente digital</label>
+      <label class="opt-label"><input type="radio" name="ex1" value="d"> Expresión de solidaridad con el cliente</label>
+    </div>
+
+    <!-- Ítem 2 -->
+    <div class="q-item" id="ex-2">
+      <div class="q-num">Ítem 2</div>
+      <div class="q-text">Un estudiante graba una conversación privada de su compañero y la difunde en el grupo de WhatsApp del curso sin su permiso.</div>
+      <label class="opt-label"><input type="radio" name="ex2" value="a"> Ejercicio de la libertad de expresión</label>
+      <label class="opt-label"><input type="radio" name="ex2" value="b"> Violación a la privacidad y ausencia de prudencia, respeto y discreción</label>
+      <label class="opt-label"><input type="radio" name="ex2" value="c"> Comportamiento permitido si el audio no es íntimo</label>
+      <label class="opt-label"><input type="radio" name="ex2" value="d"> Ejercicio de transparencia ciudadana</label>
+    </div>
+
+    <!-- Ítem 3 -->
+    <div class="q-item" id="ex-3">
+      <div class="q-num">Ítem 3</div>
+      <div class="q-text">En el escándalo ISSPOL, miles de policías perdieron sus fondos de pensión porque auditores callaron irregularidades. ¿Qué obligación fue incumplida?</div>
+      <label class="opt-label"><input type="radio" name="ex3" value="a"> La obligación de reportar con veracidad y proteger el bien público</label>
+      <label class="opt-label"><input type="radio" name="ex3" value="b"> La obligación de obedecer a sus superiores</label>
+      <label class="opt-label"><input type="radio" name="ex3" value="c"> La obligación de maximizar la rentabilidad</label>
+      <label class="opt-label"><input type="radio" name="ex3" value="d"> No hubo incumplimiento; era un asunto administrativo</label>
+    </div>
+
+    <!-- Ítem 4 -->
+    <div class="q-item" id="ex-4">
+      <div class="q-num">Ítem 4</div>
+      <div class="q-text">La Constitución ecuatoriana de 2008 reconoce los derechos de la naturaleza (Pacha Mama). ¿A qué generación de derechos humanos pertenece este reconocimiento?</div>
+      <label class="opt-label"><input type="radio" name="ex4" value="a"> Tercera generación — derechos colectivos y solidarios</label>
+      <label class="opt-label"><input type="radio" name="ex4" value="b"> Primera generación — derechos civiles y políticos</label>
+      <label class="opt-label"><input type="radio" name="ex4" value="c"> Segunda generación — derechos económicos y sociales</label>
+      <label class="opt-label"><input type="radio" name="ex4" value="d"> No son derechos humanos; son derechos ecológicos sin categoría</label>
+    </div>
+
+    <!-- Ítem 5 -->
+    <div class="q-item" id="ex-5">
+      <div class="q-num">Ítem 5</div>
+      <div class="q-text">Alguien evade impuestos argumentando que "el gobierno no usa bien el dinero". ¿Qué análisis es más correcto?</div>
+      <label class="opt-label"><input type="radio" name="ex5" value="a"> Está evadiendo su obligación de contribuir al bien común, aunque la crítica al gobierno pueda ser válida</label>
+      <label class="opt-label"><input type="radio" name="ex5" value="b"> Es un derecho si el gobierno es ineficiente</label>
+      <label class="opt-label"><input type="radio" name="ex5" value="c"> La evasión es aceptable si es menor al 10% de los ingresos</label>
+      <label class="opt-label"><input type="radio" name="ex5" value="d"> No hay relación entre impuestos y democracia</label>
+    </div>
+
+    <!-- Ítem 6 -->
+    <div class="q-item" id="ex-6">
+      <div class="q-num">Ítem 6</div>
+      <div class="q-text">Un funcionario público predica valores democráticos en los medios pero acepta sobornos en privado. ¿Qué virtud está fundamentalmente ausente?</div>
+      <label class="opt-label"><input type="radio" name="ex6" value="a"> Coherencia — hay una brecha total entre discurso y conducta</label>
+      <label class="opt-label"><input type="radio" name="ex6" value="b"> Generosidad — no comparte con sus colegas</label>
+      <label class="opt-label"><input type="radio" name="ex6" value="c"> Orden — no sigue procedimientos burocráticos</label>
+      <label class="opt-label"><input type="radio" name="ex6" value="d"> Buen gusto estético en su comunicación pública</label>
+    </div>
+
+    <!-- Ítem 7 -->
+    <div class="q-item" id="ex-7">
+      <div class="q-num">Ítem 7</div>
+      <div class="q-text">La Declaración Universal de Derechos Humanos (1948) fue adoptada porque…</div>
+      <label class="opt-label"><input type="radio" name="ex7" value="a"> Tras los horrores de la Segunda Guerra Mundial, la humanidad acordó proteger la dignidad de toda persona</label>
+      <label class="opt-label"><input type="radio" name="ex7" value="b"> Los países ricos querían controlar a los países pobres</label>
+      <label class="opt-label"><input type="radio" name="ex7" value="c"> Estados Unidos exigió su aprobación para prestar ayuda económica</label>
+      <label class="opt-label"><input type="radio" name="ex7" value="d"> La ONU necesitaba un documento fundacional</label>
+    </div>
+
+    <!-- Ítem 8 -->
+    <div class="q-item" id="ex-8">
+      <div class="q-num">Ítem 8</div>
+      <div class="q-text">Un colega te envía los estados financieros confidenciales de un cliente por WhatsApp para que los revises desde casa. Como auditor prudente, ¿qué haces?</div>
+      <label class="opt-label"><input type="radio" name="ex8" value="a"> Pides que se use un canal seguro y cifrado; WhatsApp no garantiza la confidencialidad de datos financieros sensibles</label>
+      <label class="opt-label"><input type="radio" name="ex8" value="b"> Aceptas porque es más rápido y práctico</label>
+      <label class="opt-label"><input type="radio" name="ex8" value="c"> Lo descargas y lo reenvías a tu correo personal</label>
+      <label class="opt-label"><input type="radio" name="ex8" value="d"> No importa el canal si la información está en PDF</label>
+    </div>
+
+    <div class="btn-wrap">
+      <button class="btn btn-primary" onclick="verificarEjercicio()">✅ Verificar Respuestas</button>
+      <button class="btn btn-secondary" onclick="reiniciarEjercicio()">🔄 Reiniciar</button>
+    </div>
+
+    <div class="score-box" id="score-ejercicio"></div>
+  </div>
+</section>
+
+<!-- ========== CUESTIONARIO ========== -->
+<section class="tab-panel" id="tab-cuestionario">
+  <h2 class="section-title">7. Cuestionario de Evaluación</h2>
+  <p class="section-sub">10 preguntas · Responde todo primero, luego verifica</p>
+
+  <div class="quiz-container">
+    <div class="quiz-instructions">
+      📌 <strong>Instrucciones:</strong> Responde las 10 preguntas. Las primeras 7 son de contenido teórico (puedes apoyarte en lo estudiado en este widget). Las últimas 3 son análisis de casos autónomos. Al terminar, presiona <em>Verificar respuestas</em>.
+    </div>
+
+    <!-- P1 -->
+    <div class="q-item" id="q-1">
+      <div class="q-num"><span class="badge-teo">Teórica</span> Pregunta 1</div>
+      <div class="q-text">¿Cuál es la característica que distingue a los derechos humanos de los derechos que otorga el Estado?</div>
+      <label class="opt-label"><input type="radio" name="q1" value="a"> Son inherentes a toda persona por su dignidad, no dependen de concesión estatal</label>
+      <label class="opt-label"><input type="radio" name="q1" value="b"> Son otorgados por los gobiernos democráticos a sus ciudadanos</label>
+      <label class="opt-label"><input type="radio" name="q1" value="c"> Solo aplican a los ciudadanos adultos con documento de identidad</label>
+      <label class="opt-label"><input type="radio" name="q1" value="d"> Fueron creados por la ONU en 1948 y son de aplicación opcional</label>
+    </div>
+
+    <!-- P2 -->
+    <div class="q-item" id="q-2">
+      <div class="q-num"><span class="badge-teo">Teórica</span> Pregunta 2</div>
+      <div class="q-text">El concepto de "tiranía de la mayoría" en democracia significa que…</div>
+      <label class="opt-label"><input type="radio" name="q2" value="a"> Una mayoría puede usar el voto para oprimir a una minoría, lo cual es ilegítimo en democracia</label>
+      <label class="opt-label"><input type="radio" name="q2" value="b"> El partido con más votos tiene derecho a gobernar sin límites</label>
+      <label class="opt-label"><input type="radio" name="q2" value="c"> Las minorías siempre tienen razón frente a la mayoría</label>
+      <label class="opt-label"><input type="radio" name="q2" value="d"> La democracia solo funciona si hay unanimidad en las decisiones</label>
+    </div>
+
+    <!-- P3 -->
+    <div class="q-item" id="q-3">
+      <div class="q-num"><span class="badge-teo">Teórica</span> Pregunta 3</div>
+      <div class="q-text">¿Qué distingue a los derechos de segunda generación de los de primera generación?</div>
+      <label class="opt-label"><input type="radio" name="q3" value="a"> Requieren acción positiva del Estado (educación, salud, trabajo) mientras que los de primera generación protegen libertades individuales</label>
+      <label class="opt-label"><input type="radio" name="q3" value="b"> Los de segunda generación son más importantes y superiores jerárquicamente</label>
+      <label class="opt-label"><input type="radio" name="q3" value="c"> Los de segunda generación solo aplican en países en desarrollo</label>
+      <label class="opt-label"><input type="radio" name="q3" value="d"> Son exactamente iguales; la clasificación es solo académica</label>
+    </div>
+
+    <!-- P4 -->
+    <div class="q-item" id="q-4">
+      <div class="q-num"><span class="badge-teo">Teórica</span> Pregunta 4</div>
+      <div class="q-text">Según Aristóteles, ¿qué es una virtud y cómo se adquiere?</div>
+      <label class="opt-label"><input type="radio" name="q4" value="a"> Una disposición estable del carácter orientada al bien, que se adquiere mediante la práctica repetida</label>
+      <label class="opt-label"><input type="radio" name="q4" value="b"> Un talento innato con el que se nace; no puede enseñarse</label>
+      <label class="opt-label"><input type="radio" name="q4" value="c"> Un mandamiento religioso que se sigue por temor al castigo</label>
+      <label class="opt-label"><input type="radio" name="q4" value="d"> Una norma legal que obliga a actuar correctamente</label>
+    </div>
+
+    <!-- P5 -->
+    <div class="q-item" id="q-5">
+      <div class="q-num"><span class="badge-teo">Teórica</span> Pregunta 5</div>
+      <div class="q-text">¿Qué implica la "Convención Americana sobre Derechos Humanos" para Ecuador?</div>
+      <label class="opt-label"><input type="radio" name="q5" value="a"> Ecuador está obligado a proteger derechos civiles y políticos y puede ser juzgado por la Corte Interamericana si los viola</label>
+      <label class="opt-label"><input type="radio" name="q5" value="b"> Es solo un documento declarativo sin consecuencias jurídicas</label>
+      <label class="opt-label"><input type="radio" name="q5" value="c"> Solo aplica a países de Centroamérica</label>
+      <label class="opt-label"><input type="radio" name="q5" value="d"> Fue derogada cuando Ecuador aprobó su Constitución de 2008</label>
+    </div>
+
+    <!-- P6 -->
+    <div class="q-item" id="q-6">
+      <div class="q-num"><span class="badge-teo">Teórica</span> Pregunta 6</div>
+      <div class="q-text">¿Por qué la "coherencia" es considerada una virtud fundamental para la convivencia democrática?</div>
+      <label class="opt-label"><input type="radio" name="q6" value="a"> Porque garantiza que las palabras y los actos sean congruentes, generando confianza, que es la base de toda comunidad</label>
+      <label class="opt-label"><input type="radio" name="q6" value="b"> Porque es la virtud más difícil de practicar</label>
+      <label class="opt-label"><input type="radio" name="q6" value="c"> Porque es exigida por la ley como requisito profesional</label>
+      <label class="opt-label"><input type="radio" name="q6" value="d"> Porque garantiza que todos pensemos igual</label>
+    </div>
+
+    <!-- P7 -->
+    <div class="q-item" id="q-7">
+      <div class="q-num"><span class="badge-teo">Teórica</span> Pregunta 7</div>
+      <div class="q-text">El problema del "free rider" en democracia describe a quien…</div>
+      <label class="opt-label"><input type="radio" name="q7" value="a"> Aprovecha los bienes colectivos sin cumplir las obligaciones que los sostienen</label>
+      <label class="opt-label"><input type="radio" name="q7" value="b"> Exige más derechos de los que le corresponden por ley</label>
+      <label class="opt-label"><input type="radio" name="q7" value="c"> Participa excesivamente en procesos democráticos</label>
+      <label class="opt-label"><input type="radio" name="q7" value="d"> Vota siempre por el mismo partido sin informarse</label>
+    </div>
+
+    <!-- P8 CASO -->
+    <div class="q-item" id="q-8">
+      <div class="q-num"><span class="badge-caso">Análisis de Caso</span> Pregunta 8</div>
+      <div class="q-text">Patricia es contadora en una empresa de importaciones. Su jefe le pide que registre facturas ficticias para reducir el pago de impuestos. Le asegura que "todos lo hacen" y que nadie lo descubrirá. Patricia rechaza hacerlo. ¿Qué virtudes está ejerciendo?</div>
+      <label class="opt-label"><input type="radio" name="q8" value="a"> Fortaleza (mantiene sus valores bajo presión), coherencia (sus actos coinciden con su ética) y justicia (no priva al Estado de recursos que le corresponden)</label>
+      <label class="opt-label"><input type="radio" name="q8" value="b"> Generosidad con sus clientes y solidaridad con sus colegas</label>
+      <label class="opt-label"><input type="radio" name="q8" value="c"> Obediencia a la ley únicamente; no implica virtudes de carácter</label>
+      <label class="opt-label"><input type="radio" name="q8" value="d"> Prudencia excesiva que podría perjudicar su carrera profesional</label>
+    </div>
+
+    <!-- P9 CASO -->
+    <div class="q-item" id="q-9">
+      <div class="q-num"><span class="badge-caso">Análisis de Caso</span> Pregunta 9</div>
+      <div class="q-text">En una reunión de trabajo, Marco usa el teléfono constantemente, responde mensajes y publica en redes. Cuando alguien le llama la atención, responde: "Es mi celular y puedo usarlo cuando quiera." Desde la perspectiva de la convivencia democrática, ¿cómo se analiza esta situación?</div>
+      <label class="opt-label"><input type="radio" name="q9" value="a"> Marco confunde libertad con licencia: tiene derecho al celular, pero su obligación de respeto y orden en contexto laboral prohíbe ese uso; hay ausencia de prudencia y buen gusto</label>
+      <label class="opt-label"><input type="radio" name="q9" value="b"> Marco tiene razón: la libertad individual es absoluta en espacios privados</label>
+      <label class="opt-label"><input type="radio" name="q9" value="c"> Es un problema personal de Marco sin implicaciones para la convivencia</label>
+      <label class="opt-label"><input type="radio" name="q9" value="d"> La reunión debería adaptarse a las costumbres digitales de los jóvenes</label>
+    </div>
+
+    <!-- P10 CASO -->
+    <div class="q-item" id="q-10">
+      <div class="q-num"><span class="badge-caso">Análisis de Caso</span> Pregunta 10</div>
+      <div class="q-text">Un gobierno democráticamente elegido propone, mediante consulta popular, eliminar el derecho de los pueblos indígenas a ser consultados antes de explotar recursos en sus territorios. El 60% de la población apoya la medida. ¿Qué problema democrático se presenta?</div>
+      <label class="opt-label"><input type="radio" name="q10" value="a"> La "tiranía de la mayoría": los derechos humanos de las minorías no pueden ser eliminados por votación; son límites que la mayoría no puede cruzar</label>
+      <label class="opt-label"><input type="radio" name="q10" value="b"> No hay problema; en democracia la voluntad de la mayoría es siempre legítima</label>
+      <label class="opt-label"><input type="radio" name="q10" value="c"> El problema es técnico: el porcentaje requerido debería ser 75%</label>
+      <label class="opt-label"><input type="radio" name="q10" value="d"> Los pueblos indígenas deberían negociar económicamente con el gobierno</label>
+    </div>
+
+    <div class="btn-wrap">
+      <button class="btn btn-primary" onclick="verificarCuestionario()">✅ Verificar Respuestas</button>
+      <button class="btn btn-secondary" onclick="reiniciarCuestionario()">🔄 Reiniciar</button>
+    </div>
+
+    <div class="score-box" id="score-cuestionario"></div>
+  </div>
+</section>
+
+<!-- ========== ACTIVIDAD IA ========== -->
+<section class="tab-panel" id="tab-ia">
+  <h2 class="section-title">8. Actividad con Inteligencia Artificial</h2>
+  <p class="section-sub">Usar la IA como interlocutor para desarrollar pensamiento crítico</p>
+
+  <div class="ai-card">
+    <h3>🤖 Herramienta Recomendada: Claude (claude.ai)</h3>
+    <p>Para esta actividad se recomienda usar <strong>Claude en claude.ai</strong> (Anthropic). También puedes usar ChatGPT (chat.openai.com) o Gemini (gemini.google.com). Todas tienen versión gratuita.</p>
+  </div>
+
+  <h3 style="color:#003366;margin:20px 0 10px;">🎯 Nombre de la Actividad</h3>
+  <p style="font-size:1.05rem;"><strong>"El Espejo Roto: Derechos sin Obligaciones en el Ecuador Digital"</strong></p>
+
+  <h3 style="color:#003366;margin:14px 0 10px;">📋 Contexto de la Actividad</h3>
+  <p>Has estudiado la relación entre democracia y derechos humanos, la tensión entre derechos y obligaciones, las virtudes necesarias para la convivencia y los desafíos que el mundo digital plantea a la privacidad y el respeto. Ahora vas a usar la IA para explorar un caso concreto y desarrollar tu propio análisis crítico.</p>
+
+  <h3 style="color:#003366;margin:14px 0 10px;">📝 Prompt Exacto para la IA</h3>
+  <p>Copia y pega este texto <strong>exactamente como aparece</strong> en la herramienta de IA:</p>
+
+  <div class="prompt-box">Actúa como un experto en ética democrática y derechos humanos con conocimiento del contexto ecuatoriano. 
+
+Voy a describirte una situación y quiero que analices sus dimensiones éticas desde múltiples perspectivas:
+
+SITUACIÓN: Un grupo de estudiantes universitarios crea un perfil anónimo en Instagram donde publican capturas de pantalla de conversaciones privadas de Whatsapp de compañeros y profesores, generalmente fragmentadas y fuera de contexto, con el argumento de que están "ejerciendo la libertad de expresión" y "denunciando la hipocresía" de la institución.
+
+Por favor:
+1. Analiza qué derechos humanos están en juego (tanto los que invocan los creadores del perfil como los de las personas afectadas).
+2. Identifica qué obligaciones ciudadanas y virtudes están siendo violadas por los creadores del perfil.
+3. Explica si "libertad de expresión" protege o no este tipo de conducta, con referencia a los límites de ese derecho.
+4. Describe el daño que esta práctica causa a la convivencia democrática en una institución educativa.
+5. Propón tres acciones concretas que la institución podría tomar sin suprimir la libertad de expresión legítima.
+
+Sé específico, usa lenguaje universitario accesible, y menciona cuando sea posible cómo se vería esto en el contexto de Ecuador.</div>
+
+  <h3 style="color:#003366;margin:18px 0 10px;">📌 ¿Qué hacer con la respuesta de la IA?</h3>
+
+  <div class="ai-steps">
+    <div class="ai-step">
+      <div class="ai-step-num">1</div>
+      <p><strong>Lee la respuesta completa</strong> de la IA sin interrumpirla. Identifica los puntos con los que estás de acuerdo y los que te generan dudas o con los que discrepas.</p>
+    </div>
+    <div class="ai-step">
+      <div class="ai-step-num">2</div>
+      <p><strong>Escribe tu propio análisis</strong> (mínimo 300 palabras) respondiendo: ¿En qué puntos la IA acertó? ¿Qué dejó de considerar? ¿Añadirías algún argumento que no aparece en su respuesta? ¿La solución que propone es realista en Ecuador?</p>
+    </div>
+    <div class="ai-step">
+      <div class="ai-step-num">3</div>
+      <p><strong>Aplica el caso a tu futuro profesional:</strong> Si fueras el auditor interno de esa institución educativa y los afectados fueran empleados, ¿qué harías? ¿Qué informe elaborarías? ¿A quién lo reportarías?</p>
+    </div>
+    <div class="ai-step">
+      <div class="ai-step-num">4</div>
+      <p><strong>Incluye una reflexión personal:</strong> ¿Alguna vez has estado del lado de quien publica o del lado de quien es publicado sin consentimiento? ¿Qué sentiste? ¿Qué cambiarías?</p>
+    </div>
+  </div>
+
+  <h3 style="color:#003366;margin:18px 0 10px;">📊 Criterios de Evaluación</h3>
+
+  <div class="tabla-wrap">
+    <table>
+      <thead><tr><th>Nivel</th><th>Descripción</th></tr></thead>
+      <tbody>
+        <tr><td><strong>✅ Pensamiento Crítico</strong></td><td>Contrasta la respuesta de la IA con argumentos propios, identifica sus limitaciones, añade perspectivas del contexto ecuatoriano y conecta el caso con la profesión contable.</td></tr>
+        <tr><td><strong>⚠️ Procesamiento Superficial</strong></td><td>Resume la respuesta de la IA con sus propias palabras, sin cuestionarla ni añadir argumentos originales.</td></tr>
+        <tr><td><strong>❌ Copia Simple</strong></td><td>Copia la respuesta de la IA sin ninguna intervención propia. No es aceptable como trabajo académico.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box-clave">
+    <div class="box-label">🔑 Recuerda</div>
+    <p>La inteligencia artificial es una herramienta poderosa, pero no tiene experiencia de vida, no conoce a tus compañeros, no ha sentido lo que es ser expuesto sin consentimiento, y no será quien deba tomar decisiones profesionales en el futuro. Tú sí. Usa la IA para ampliar tu perspectiva, no para reemplazar tu pensamiento.</p>
+  </div>
+</section>
+
+<!-- ========== REFLEXIÓN PERSONAL ========== -->
+<section class="tab-panel" id="tab-reflexion">
+  <h2 class="section-title">9. Preguntas para la Reflexión Personal</h2>
+  <p class="section-sub">Conectando los contenidos con tu vida real — No hay respuestas correctas ni incorrectas</p>
+
+  <p>Esta sección no te evalúa ni te califica. Su propósito es ayudarte a descubrir que los contenidos de esta materia no están flotando en el aire de las ideas abstractas: están <strong>vivos en tu experiencia diaria</strong>. Tómate unos minutos contigo mismo/a y deja que estas preguntas hagan su trabajo.</p>
+
+  <div class="ref-card">
+    <div class="ref-num">Reflexión 1 · Derechos y Yo</div>
+    <div class="ref-q">¿Cuándo fue la última vez que exigiste un derecho? ¿Y cuándo fue la última vez que cumpliste una obligación con esfuerzo real, aunque nadie te lo exigiera?</div>
+    <div class="ref-hint">Piensa en situaciones cotidianas: hacer cola, pagar un servicio, ser puntual, decir la verdad cuando no había consecuencias. ¿Hay equilibrio entre ambas cosas en tu vida?</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-num">Reflexión 2 · El Espejo de la Coherencia</div>
+    <div class="ref-q">¿Hay algún valor que proclamas pero que te cuesta vivir en la práctica? ¿Qué tan grande es la brecha entre quien dices ser y quien eres cuando nadie te ve?</div>
+    <div class="ref-hint">La coherencia no es perfección. Es la disposición honesta a reconocer la brecha y a reducirla. ¿Qué paso concreto podrías dar para ser más coherente esta semana?</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-num">Reflexión 3 · Tu Celular y Tú</div>
+    <div class="ref-q">¿Cuánto tiempo al día pasa tu teléfono en tu mano? ¿En cuántas conversaciones de hoy estuviste presente de verdad, sin revisar el móvil?</div>
+    <div class="ref-hint">La adicción al teléfono no es una debilidad de carácter; es el diseño deliberado de las plataformas. Pero tú también eres alguien con voluntad. ¿Hay algún momento del día que podrías recuperar sin pantalla?</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-num">Reflexión 4 · Lo que Publicas, Lo que Eres</div>
+    <div class="ref-q">Si alguien que no te conoce revisara todo lo que has publicado en redes sociales en el último mes, ¿qué imagen se formaría de ti? ¿Es la imagen que quieres proyectar? ¿Es quien eres realmente?</div>
+    <div class="ref-hint">Las redes sociales se han convertido en una extensión de la identidad. Lo que publicamos dice algo de quiénes somos — o de quiénes queremos parecer. ¿Hay diferencia entre las dos cosas?</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-num">Reflexión 5 · Privacidad Ajena</div>
+    <div class="ref-q">¿Alguna vez has compartido algo de otra persona — una foto, un audio, una historia, un chisme — sin su permiso? ¿Cómo te sentirías si esa persona hiciera lo mismo contigo?</div>
+    <div class="ref-hint">La regla de oro: "Trata a los demás como quisieras ser tratado" aplica perfectamente al mundo digital. No es una regla religiosa; es el fundamento de toda convivencia posible.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-num">Reflexión 6 · Virtud bajo Presión</div>
+    <div class="ref-q">¿Recuerdas alguna situación en que todos a tu alrededor hacían algo que tú sabías que no estaba bien — copiar en un examen, hablar mal de alguien, mentir para cubrir a un compañero — y cediste a la presión? ¿Cómo te sentiste después?</div>
+    <div class="ref-hint">La fortaleza de carácter no se prueba en situaciones fáciles. Se prueba exactamente en esas situaciones. Y cada vez que cedes se hace más fácil ceder la próxima vez. ¿Qué construyes con tus decisiones cotidianas?</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-num">Reflexión 7 · La Democracia en tu Casa</div>
+    <div class="ref-q">¿Se viven valores democráticos en tu entorno más cercano (familia, grupo de amigos, equipo de trabajo)? ¿Se respeta la voz de todos? ¿Se resuelven los conflictos con diálogo? ¿Se acepta la diferencia?</div>
+    <div class="ref-hint">La democracia no empieza en las urnas: empieza en las conversaciones de tu casa, en cómo tratas a quien piensa diferente, en si permites que el otro hable sin interrumpirlo. ¿Eres democrático/a en lo cotidiano?</div>
+  </div>
+
+  <div class="box-reflexion">
+    <div class="box-label">💜 Para Cerrar esta Reflexión</div>
+    <p>El filósofo Romano Marco Aurelio escribió: <em>"Cuida de tu interior; examina quién eres por dentro."</em> Todo lo que hemos estudiado esta semana — derechos, obligaciones, virtudes, convivencia, prudencia digital — solo tiene sentido si se convierte en algo vivo dentro de ti. No en algo que sabes para un examen, sino en algo que eres cuando nadie te evalúa. Eso, y solo eso, hace mejor al mundo.</p>
+  </div>
+</section>
+
+<!-- ========== BIBLIOGRAFÍA ========== -->
+<section class="tab-panel" id="tab-biblio">
+  <h2 class="section-title">10. Bibliografía</h2>
+  <p class="section-sub">Referencias en formato APA 7.ª edición</p>
+
+  <div class="bib-card">
+    <div class="bib-icon">📚</div>
+    <div class="bib-ref">
+      Organización de las Naciones Unidas. (1948). <em>Declaración Universal de Derechos Humanos</em>. ONU. <a href="https://www.un.org/es/about-us/universal-declaration-of-human-rights" target="_blank" style="color:#003366;">https://www.un.org/es/about-us/universal-declaration-of-human-rights</a>
+    </div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-icon">📚</div>
+    <div class="bib-ref">
+      Organización de Estados Americanos. (1969). <em>Convención Americana sobre Derechos Humanos (Pacto de San José)</em>. OEA. <a href="https://www.oas.org/dil/esp/tratados_b-32_convencion_americana_sobre_derechos_humanos.htm" target="_blank" style="color:#003366;">https://www.oas.org/dil/esp/</a>
+    </div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-icon">📚</div>
+    <div class="bib-ref">
+      Asamblea Constituyente del Ecuador. (2008). <em>Constitución de la República del Ecuador</em>. Registro Oficial No. 449. <a href="https://www.asambleanacional.gob.ec/sites/default/files/private/asambleanacional/filesasambleanacionalnameuid-29/constitution_de_bolsillo.pdf" target="_blank" style="color:#003366;">Asamblea Nacional</a>
+    </div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-icon">📘</div>
+    <div class="bib-ref">
+      Bobbio, N. (1993). <em>El futuro de la democracia</em>. Fondo de Cultura Económica.
+    </div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-icon">📘</div>
+    <div class="bib-ref">
+      MacIntyre, A. (2001). <em>Tras la virtud</em> (A. Valcárcel, Trad.). Crítica. (Obra original publicada en 1981)
+    </div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-icon">📘</div>
+    <div class="bib-ref">
+      Nussbaum, M. C. (2010). <em>Sin fines de lucro: por qué la democracia necesita de las humanidades</em> (M. V. Rodil, Trad.). Katz Editores. (Obra original publicada en 2010)
+    </div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-icon">📘</div>
+    <div class="bib-ref">
+      Rawls, J. (1971). <em>A theory of justice</em>. Harvard University Press.
+    </div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-icon">📗</div>
+    <div class="bib-ref">
+      Zuboff, S. (2019). <em>The age of surveillance capitalism: The fight for a human future at the new frontier of power</em>. PublicAffairs.
+    </div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-icon">📄</div>
+    <div class="bib-ref">
+      Corte Interamericana de Derechos Humanos. (2012). <em>Caso Pueblo Indígena Kichwa de Sarayaku vs. Ecuador</em>. Sentencia de 27 de junio de 2012 (Fondo y Reparaciones). CIDH. <a href="https://www.corteidh.or.cr/docs/casos/articulos/seriec_245_esp.pdf" target="_blank" style="color:#003366;">https://www.corteidh.or.cr/</a>
+    </div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-icon">📄</div>
+    <div class="bib-ref">
+      Asamblea Nacional del Ecuador. (2021). <em>Ley Orgánica de Protección de Datos Personales</em>. Registro Oficial Suplemento No. 459, 26 de mayo de 2021.
+    </div>
+  </div>
+
+  <div class="bib-note">
+    📌 <strong>Nota:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank" style="color:#bf360c;">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos.
+  </div>
+</section>
+
+</main>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ===== TAB NAVIGATION =====
+function showTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== EXERCISE DATA =====
+const exAnswers = {
+  ex1: { correct: 'b', explain: 'Firmar estados financieros falsos es una violación grave de la obligación profesional de honestidad y coherencia. No es un derecho; es una conducta que puede configurar fraude contable.' },
+  ex2: { correct: 'b', explain: 'Grabar y difundir una conversación privada sin consentimiento viola la privacidad (Art. 66 Const. Ecuador) y refleja ausencia de prudencia, respeto y discreción. En Ecuador puede constituir delito bajo el COIP.' },
+  ex3: { correct: 'a', explain: 'Los auditores tenían la obligación legal y ética de reportar irregularidades para proteger los fondos de pensión de los policías. Callar fue una omisión que causó daño masivo al bien público.' },
+  ex4: { correct: 'a', explain: 'Los derechos de la naturaleza (Pacha Mama) son derechos colectivos y solidarios, pertenecientes a la tercera generación, que reconocen bienes comunes de toda la humanidad y las generaciones futuras.' },
+  ex5: { correct: 'a', explain: 'Aunque la crítica al gobierno puede ser válida, la obligación de pagar impuestos no depende de si estamos de acuerdo con cómo se usan: es la base que sostiene los bienes colectivos. La vía correcta es la denuncia y el control ciudadano, no la evasión.' },
+  ex6: { correct: 'a', explain: 'La coherencia es precisamente la virtud que garantiza que el discurso y la conducta sean congruentes. Predicar valores en público y actuar contrario a ellos en privado es la definición exacta de incoherencia.' },
+  ex7: { correct: 'a', explain: 'La DUDH fue respuesta directa al genocidio y los crímenes de lesa humanidad de la Segunda Guerra Mundial. La comunidad internacional acordó que ciertas dignidades no podían ser vulneradas nunca más por ningún Estado.' },
+  ex8: { correct: 'a', explain: 'La prudencia digital exige usar canales seguros para información financiera confidencial. WhatsApp no ofrece las garantías de seguridad necesarias para datos sujetos a secreto profesional. Exigir un canal seguro es responsabilidad profesional.' }
+};
+
+function verificarEjercicio() {
+  let total = 0, respondidas = 0;
+  const names = ['ex1','ex2','ex3','ex4','ex5','ex6','ex7','ex8'];
+
+  for (const name of names) {
+    const sel = document.querySelector(`input[name="${name}"]:checked`);
+    if (sel) respondidas++;
+  }
+
+  if (respondidas < names.length) {
+    alert('⚠️ Por favor responde todos los ítems antes de verificar.');
+    return;
+  }
+
+  for (const name of names) {
+    const sel = document.querySelector(`input[name="${name}"]:checked`);
+    const data = exAnswers[name];
+    const container = document.getElementById(name.replace('ex','ex-'));
+    const labels = container.querySelectorAll('.opt-label');
+    const isCorrect = sel.value === data.correct;
+    if (isCorrect) total++;
+
+    labels.forEach(lbl => {
+      lbl.classList.remove('correct','incorrect');
+      const inp = lbl.querySelector('input');
+      if (inp.value === data.correct) lbl.classList.add('correct');
+      else if (inp.checked) lbl.classList.add('incorrect');
+      inp.disabled = true;
+    });
+
+    // Remove old feedback
+    const old = container.querySelector('.feedback-item');
+    if (old) old.remove();
+
+    const fb = document.createElement('div');
+    fb.className = `feedback-item ${isCorrect ? 'ok' : 'fail'}`;
+    fb.innerHTML = `${isCorrect ? '✅' : '❌'} ${data.explain}`;
+    container.appendChild(fb);
+  }
+
+  mostrarScore('score-ejercicio', total, names.length);
+}
+
+function reiniciarEjercicio() {
+  document.querySelectorAll('#tab-ejercicio input[type=radio]').forEach(i => { i.checked = false; i.disabled = false; });
+  document.querySelectorAll('#tab-ejercicio .opt-label').forEach(l => l.classList.remove('correct','incorrect'));
+  document.querySelectorAll('#tab-ejercicio .feedback-item').forEach(f => f.remove());
+  const sb = document.getElementById('score-ejercicio');
+  sb.style.display = 'none';
+}
+
+// ===== QUIZ DATA =====
+const quizAnswers = {
+  q1: { correct: 'a', explain: 'Los derechos humanos son inherentes a la dignidad de toda persona; no son una concesión del Estado sino un reconocimiento de lo que ya nos pertenece por ser humanos.' },
+  q2: { correct: 'a', explain: 'La tiranía de la mayoría es el riesgo democrático de que el voto de la mayoría sirva para oprimir a minorías. Los derechos humanos son los límites que ninguna mayoría puede cruzar.' },
+  q3: { correct: 'a', explain: 'Los derechos de segunda generación (educación, salud, trabajo) requieren inversión y acción positiva del Estado; los de primera generación (libertad de expresión, voto) exigen principalmente que el Estado no interfiera.' },
+  q4: { correct: 'a', explain: 'Para Aristóteles, la virtud (areté) es una disposición estable del carácter orientada al bien, que se adquiere por la repetición de actos buenos hasta que se vuelve natural en la persona.' },
+  q5: { correct: 'a', explain: 'Ecuador ratificó la Convención Americana (Pacto de San José), que lo obliga a proteger derechos civiles y políticos y lo somete a la jurisdicción de la Corte Interamericana de Derechos Humanos.' },
+  q6: { correct: 'a', explain: 'La coherencia genera confianza: cuando las palabras y los actos coinciden, las personas y las instituciones son creíbles. Sin confianza, la sociedad democrática no puede funcionar.' },
+  q7: { correct: 'a', explain: 'El "free rider" (polizón) aprovecha los bienes colectivos sin cumplir las obligaciones que los sostienen, como quien exige servicios públicos de calidad pero evade los impuestos que los financian.' },
+  q8: { correct: 'a', explain: 'Patricia ejerce fortaleza (resiste la presión), coherencia (sus actos coinciden con su ética profesional) y justicia (no priva al Estado de recursos fiscales legítimos).' },
+  q9: { correct: 'a', explain: 'Marco confunde libertad con licencia: tiene el derecho de usar su celular, pero en el contexto de una reunión de trabajo tiene la obligación de respetar y mantener el orden. Ausencia de prudencia y buen gusto.' },
+  q10: { correct: 'a', explain: 'El fallo Sarayaku (Corte IDH, 2012) confirma que los derechos de los pueblos indígenas —incluida la consulta previa— son derechos humanos no eliminables por mayoría. La democracia no equivale a que la mayoría pueda hacer cualquier cosa.' }
+};
+
+function verificarCuestionario() {
+  const names = ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'];
+  let respondidas = 0, total = 0;
+
+  for (const name of names) {
+    if (document.querySelector(`input[name="${name}"]:checked`)) respondidas++;
+  }
+
+  if (respondidas < names.length) {
+    alert('⚠️ Por favor responde todas las preguntas antes de verificar.');
+    return;
+  }
+
+  for (const name of names) {
+    const sel = document.querySelector(`input[name="${name}"]:checked`);
+    const data = quizAnswers[name];
+    const container = document.getElementById('q-' + name.slice(1));
+    const labels = container.querySelectorAll('.opt-label');
+    const isCorrect = sel.value === data.correct;
+    if (isCorrect) total++;
+
+    labels.forEach(lbl => {
+      lbl.classList.remove('correct','incorrect');
+      const inp = lbl.querySelector('input');
+      if (inp.value === data.correct) lbl.classList.add('correct');
+      else if (inp.checked) lbl.classList.add('incorrect');
+      inp.disabled = true;
+    });
+
+    const old = container.querySelector('.feedback-item');
+    if (old) old.remove();
+    const fb = document.createElement('div');
+    fb.className = `feedback-item ${isCorrect ? 'ok' : 'fail'}`;
+    fb.innerHTML = `${isCorrect ? '✅' : '❌'} ${data.explain}`;
+    container.appendChild(fb);
+  }
+
+  mostrarScore('score-cuestionario', total, 10);
+}
+
+function reiniciarCuestionario() {
+  document.querySelectorAll('#tab-cuestionario input[type=radio]').forEach(i => { i.checked = false; i.disabled = false; });
+  document.querySelectorAll('#tab-cuestionario .opt-label').forEach(l => l.classList.remove('correct','incorrect'));
+  document.querySelectorAll('#tab-cuestionario .feedback-item').forEach(f => f.remove());
+  document.getElementById('score-cuestionario').style.display = 'none';
+}
+
+// ===== SCORE DISPLAY =====
+function mostrarScore(id, total, maximo) {
+  const pct = Math.round((total / maximo) * 100);
+  let emoji, msg, color;
+  if (pct === 100) { emoji = '🏆'; msg = '¡Perfecto! Dominas completamente el tema.'; color = '#00c853'; }
+  else if (pct >= 80) { emoji = '🎯'; msg = '¡Excelente! Tienes un sólido dominio del tema.'; color = '#00b0ff'; }
+  else if (pct >= 60) { emoji = '📘'; msg = 'Buen trabajo. Repasa los ítems marcados en rojo.'; color = '#ff9100'; }
+  else if (pct >= 40) { emoji = '⚠️'; msg = 'Necesitas reforzar. Vuelve a revisar el contenido.'; color = '#ff6d00'; }
+  else { emoji = '📖'; msg = 'Recomendamos leer nuevamente el material antes de continuar.'; color = '#d50000'; }
+
+  const box = document.getElementById(id);
+  box.innerHTML = `
+    <div style="font-size:2.2rem;margin-bottom:6px;">${emoji}</div>
+    <div class="score-num">${total} / ${maximo}</div>
+    <div style="font-size:1.1rem;color:#87CEEB;margin:4px 0;">${pct}%</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%" id="bar-${id}"></div></div>
+    <div class="score-msg">${msg}</div>
+  `;
+  box.style.display = 'block';
+  box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  setTimeout(() => {
+    const bar = document.getElementById('bar-' + id);
+    if (bar) bar.style.width = pct + '%';
+  }, 200);
+}
+</script>
+
+</body>
+</html>
