@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 3 | Estado de Derecho y Realidad Socioeconómica | DCG</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #f0f4f8;
+    color: #1a1a2e;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: #003366;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 12px 24px;
+  }
+  .header-logo {
+    height: 56px;
+    width: auto;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: #fff;
+    padding: 4px;
+  }
+  .header-text h1 {
+    font-family: 'Lora', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .header-text p { font-size: 0.82rem; color: #b3d4f5; margin-top: 2px; }
+  .header-badges { margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+  .badge { background: rgba(255,255,255,0.15); color: #fff; padding: 3px 10px; border-radius: 20px; font-size: 0.76rem; font-weight: 600; white-space: nowrap; }
+  .badge.accent { background: #00BCD4; }
+
+  /* TAB NAV */
+  .tab-nav-wrapper {
+    background: #87CEEB;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 3px solid #003366;
+  }
+  .tab-nav-wrapper::-webkit-scrollbar { height: 4px; }
+  .tab-nav-wrapper::-webkit-scrollbar-thumb { background: #003366; border-radius: 2px; }
+  .tab-nav { display: inline-flex; padding: 0 8px; }
+  .tab-btn {
+    padding: 11px 18px;
+    border: none;
+    background: transparent;
+    color: #1a1a2e;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.83rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,0.5); }
+  .tab-btn.active { background: #fff; color: #003366; font-weight: 700; border-bottom: 3px solid #003366; }
+
+  /* CONTENT */
+  .tab-content { display: none; padding: 28px 24px 56px; max-width: 960px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  /* TYPOGRAPHY */
+  h2 { font-family: 'Lora', serif; font-size: 1.6rem; color: #003366; margin-bottom: 10px; }
+  h3 { font-family: 'Lora', serif; font-size: 1.15rem; color: #003366; margin: 24px 0 8px; }
+  h4 { font-family: 'Source Sans 3', sans-serif; font-size: 1rem; font-weight: 700; color: #003366; margin: 16px 0 6px; }
+  p { line-height: 1.78; margin-bottom: 12px; font-size: 0.97rem; }
+  ul, ol { padding-left: 22px; margin-bottom: 12px; }
+  li { line-height: 1.72; margin-bottom: 5px; font-size: 0.97rem; }
+  a { color: #005099; }
+
+  /* BOXES */
+  .concept-box {
+    border-left: 5px solid #003366;
+    background: #f0f6ff;
+    padding: 16px 20px;
+    margin: 18px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .concept-box strong { color: #003366; }
+
+  .example-box {
+    background: #ddeeff;
+    border: 1px solid #a8c8ee;
+    padding: 16px 20px;
+    margin: 18px 0;
+    border-radius: 8px;
+  }
+  .example-box .ex-label {
+    font-weight: 700; color: #003366; font-size: 0.85rem;
+    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;
+  }
+
+  .key-idea {
+    background: #003366;
+    color: #fff;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 22px 0;
+    font-size: 0.97rem;
+    line-height: 1.75;
+  }
+  .key-idea strong { color: #87CEEB; }
+
+  .highlight-box {
+    background: #e8f5e9;
+    border-left: 5px solid #2e7d32;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+  }
+
+  .warning-box {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+  }
+
+  .danger-box {
+    background: #ffebee;
+    border-left: 5px solid #c62828;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+  }
+
+  .section-divider {
+    height: 2px;
+    background: linear-gradient(to right, #003366, #87CEEB, transparent);
+    margin: 28px 0;
+    border-radius: 2px;
+  }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; margin: 18px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th { background: #003366; color: #fff; padding: 10px 14px; text-align: left; font-weight: 600; }
+  td { padding: 9px 14px; border-bottom: 1px solid #dce6f0; vertical-align: top; }
+  tr:nth-child(even) td { background: #f0f6ff; }
+  tr:hover td { background: #ddeeff; }
+
+  /* CARDS */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin: 18px 0; }
+  .card { background: #fff; border-radius: 10px; padding: 18px; box-shadow: 0 2px 8px rgba(0,51,102,0.1); border-top: 4px solid #003366; }
+  .card h4 { margin-top: 0; font-size: 0.95rem; }
+  .card p { font-size: 0.87rem; margin-bottom: 0; }
+  .card.teal { border-top-color: #00BCD4; }
+  .card.green { border-top-color: #2e7d32; }
+  .card.orange { border-top-color: #e65100; }
+  .card.red { border-top-color: #c62828; }
+
+  /* INTRO BANNER */
+  .intro-banner {
+    background: linear-gradient(135deg, #003366 0%, #005099 100%);
+    color: #fff; padding: 26px 28px 20px; border-radius: 12px; margin-bottom: 24px;
+  }
+  .intro-banner h2 { color: #87CEEB; margin-bottom: 8px; font-size: 1.35rem; }
+  .intro-banner p { color: #d9eeff; margin-bottom: 0; }
+
+  /* REPASO TIMELINE */
+  .timeline { position: relative; padding-left: 28px; margin: 18px 0; }
+  .timeline::before { content:''; position: absolute; left: 10px; top: 0; bottom: 0; width: 3px; background: #87CEEB; border-radius: 2px; }
+  .timeline-item { position: relative; margin-bottom: 22px; }
+  .timeline-item::before { content:''; position: absolute; left: -22px; top: 6px; width: 14px; height: 14px; background: #003366; border-radius: 50%; border: 3px solid #87CEEB; }
+  .timeline-item h4 { margin-top: 0; }
+
+  /* STAT BOXES */
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin: 18px 0; }
+  .stat-box {
+    background: #fff; border-radius: 10px; padding: 18px 14px; text-align: center;
+    box-shadow: 0 2px 8px rgba(0,51,102,0.12); border-bottom: 4px solid #003366;
+  }
+  .stat-box .stat-num { font-family: 'Lora', serif; font-size: 1.9rem; font-weight: 700; color: #003366; }
+  .stat-box .stat-label { font-size: 0.8rem; color: #555; margin-top: 4px; line-height: 1.4; }
+  .stat-box.teal { border-bottom-color: #00BCD4; }
+  .stat-box.teal .stat-num { color: #00838f; }
+  .stat-box.orange { border-bottom-color: #e65100; }
+  .stat-box.orange .stat-num { color: #bf360c; }
+  .stat-box.green { border-bottom-color: #2e7d32; }
+  .stat-box.green .stat-num { color: #1b5e20; }
+  .stat-box.red { border-bottom-color: #c62828; }
+  .stat-box.red .stat-num { color: #b71c1c; }
+
+  /* PILLAR BOXES */
+  .pillar { background: #fff; border-radius: 10px; padding: 18px 20px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,51,102,0.08); border-left: 5px solid #003366; }
+  .pillar-num { display: inline-block; background: #003366; color: #fff; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 700; font-size: 0.9rem; margin-right: 8px; }
+  .pillar h4 { display: inline; margin: 0; }
+
+  /* CAUSAL CHAIN */
+  .chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 18px 0; }
+  .chain-step { background: #003366; color: #fff; padding: 10px 14px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; text-align: center; min-width: 120px; flex: 1; }
+  .chain-arrow { color: #003366; font-size: 1.4rem; font-weight: 700; flex-shrink: 0; }
+
+  /* INTERACTIVE EXERCISE */
+  .exercise-container { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,51,102,0.1); }
+  .exercise-item { margin-bottom: 22px; padding: 18px; background: #f8faff; border-radius: 8px; border: 1px solid #dce6f0; }
+  .exercise-item p.ei-question { font-weight: 600; margin-bottom: 10px; color: #003366; }
+  .exercise-options { display: flex; flex-direction: column; gap: 8px; }
+  .exercise-options label {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 14px; border-radius: 6px; cursor: pointer;
+    border: 1px solid #dce6f0; background: #fff;
+    transition: background 0.2s; font-size: 0.93rem; line-height: 1.5;
+  }
+  .exercise-options label:hover { background: #ddeeff; }
+  .exercise-options input[type="radio"] { margin-top: 3px; flex-shrink: 0; accent-color: #003366; }
+  .feedback-item { display: none; margin-top: 8px; padding: 10px 14px; border-radius: 6px; font-size: 0.9rem; line-height: 1.6; }
+  .feedback-item.correct { background: #e8f5e9; border-left: 4px solid #2e7d32; color: #1b5e20; display: block; }
+  .feedback-item.incorrect { background: #ffebee; border-left: 4px solid #c62828; color: #b71c1c; display: block; }
+
+  /* QUIZ */
+  .quiz-container { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,51,102,0.1); }
+  .quiz-question { margin-bottom: 24px; padding: 18px; background: #f8faff; border-radius: 8px; border: 1px solid #dce6f0; }
+  .quiz-question-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .quiz-num { font-weight: 700; color: #003366; font-size: 1rem; }
+  .badge-tipo { font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .badge-teorica { background: #003366; color: #fff; }
+  .badge-analisis { background: #00BCD4; color: #fff; }
+  .quiz-question p.q-text { font-weight: 600; color: #1a1a2e; margin-bottom: 10px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-options label {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 14px; border-radius: 6px; cursor: pointer;
+    border: 1px solid #dce6f0; background: #fff;
+    transition: background 0.2s; font-size: 0.92rem; line-height: 1.5;
+  }
+  .quiz-options label:hover { background: #ddeeff; }
+  .quiz-options input[type="radio"] { margin-top: 3px; flex-shrink: 0; accent-color: #003366; }
+
+  /* BUTTONS */
+  .btn-verificar {
+    display: block; width: 100%; padding: 14px; margin-top: 20px;
+    background: #003366; color: #fff; border: none; border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif; font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .btn-verificar:hover { background: #005099; }
+  .btn-reiniciar {
+    display: none; width: 100%; padding: 12px; margin-top: 10px;
+    background: #87CEEB; color: #003366; border: none; border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif; font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .btn-reiniciar:hover { background: #5bb8e0; }
+
+  /* SCORE */
+  .score-panel { display: none; margin-top: 22px; padding: 24px; background: #f0f6ff; border-radius: 10px; text-align: center; }
+  .score-emoji { font-size: 2.5rem; }
+  .score-number { font-size: 2rem; font-weight: 700; color: #003366; margin: 8px 0 4px; font-family: 'Lora', serif; }
+  .score-message { font-size: 1rem; color: #333; margin-bottom: 12px; }
+  .progress-bar-wrap { background: #dce6f0; border-radius: 10px; height: 16px; overflow: hidden; margin: 12px 0; }
+  .progress-bar-fill { height: 100%; border-radius: 10px; background: linear-gradient(to right, #003366, #00BCD4); transition: width 1s ease; }
+
+  /* AI ACTIVITY */
+  .ai-activity { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,51,102,0.1); }
+  .ai-prompt-box {
+    background: #1a1a2e; color: #e0f0ff; padding: 20px; border-radius: 8px;
+    font-family: 'Source Sans 3', monospace; font-size: 0.88rem; line-height: 1.75;
+    margin: 16px 0; white-space: pre-wrap; border-left: 4px solid #00BCD4;
+  }
+  .ai-step { display: flex; gap: 14px; margin-bottom: 16px; }
+  .ai-step-num { min-width: 32px; height: 32px; background: #003366; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+  .ai-step-text { font-size: 0.95rem; line-height: 1.65; padding-top: 5px; }
+
+  /* REFLECTION */
+  .reflection-container { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,51,102,0.1); }
+  .reflection-item { display: flex; gap: 16px; padding: 18px; margin-bottom: 16px; background: #f8faff; border-radius: 10px; border: 1px solid #dce6f0; }
+  .reflection-icon { font-size: 1.8rem; flex-shrink: 0; }
+  .reflection-text h4 { margin-top: 0; color: #003366; }
+  .reflection-text p { font-size: 0.93rem; margin-bottom: 0; }
+
+  /* BIBLIOGRAPHY */
+  .bib-card { background: #fff; border-radius: 10px; padding: 18px 20px; box-shadow: 0 2px 8px rgba(0,51,102,0.08); margin-bottom: 14px; border-left: 5px solid #003366; }
+  .bib-card .bib-authors { font-weight: 700; color: #003366; font-size: 0.88rem; }
+  .bib-card .bib-year { color: #555; font-size: 0.88rem; }
+  .bib-card .bib-title { font-style: italic; color: #1a1a2e; font-size: 0.95rem; margin: 4px 0; }
+  .bib-card .bib-source { font-size: 0.85rem; color: #555; }
+  .bib-note { background: #fff8e1; border: 1px solid #f9a825; border-radius: 8px; padding: 14px 18px; margin-top: 22px; font-size: 0.88rem; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .header-inner { flex-wrap: wrap; }
+    .header-badges { margin-left: 0; align-items: flex-start; }
+    .tab-content { padding: 18px 14px 40px; }
+    h2 { font-size: 1.3rem; }
+    .card-grid, .stat-grid { grid-template-columns: 1fr 1fr; }
+    .chain { flex-direction: column; align-items: stretch; }
+    .chain-arrow { transform: rotate(90deg); text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Logo_Universidad_de_Guayaquil.png/320px-Logo_Universidad_de_Guayaquil.png"
+         alt="Logo Universidad de Guayaquil" class="header-logo"
+         onerror="this.style.display='none'">
+    <div class="header-text">
+      <h1>Democracia, Ciudadanía y Globalización</h1>
+      <p>Facultad de Ciencias Administrativas · Carrera: Contabilidad y Auditoría · Universidad de Guayaquil</p>
+    </div>
+    <div class="header-badges">
+      <span class="badge accent">Semana 3</span>
+      <span class="badge">Unidad 1 · El Estado Ecuatoriano</span>
+    </div>
+  </div>
+</header>
+
+<!-- TAB NAV -->
+<div class="tab-nav-wrapper">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('tab0')">📋 Repaso S1–S2</button>
+    <button class="tab-btn" onclick="showTab('tab1')">1. Estado de Derecho</button>
+    <button class="tab-btn" onclick="showTab('tab2')">2. Pilares y Garantías</button>
+    <button class="tab-btn" onclick="showTab('tab3')">3. Realidad Social</button>
+    <button class="tab-btn" onclick="showTab('tab4')">4. Realidad Económica</button>
+    <button class="tab-btn" onclick="showTab('tab5')">5. Ejercicio Interactivo</button>
+    <button class="tab-btn" onclick="showTab('tab6')">6. Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('tab7')">7. Actividad con IA</button>
+    <button class="tab-btn" onclick="showTab('tab8')">8. Reflexión</button>
+    <button class="tab-btn" onclick="showTab('tab9')">9. Bibliografía</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     TAB 0 — REPASO SEMANAS 1 Y 2
+     ============================================================ -->
+<div id="tab0" class="tab-content active">
+  <div class="intro-banner">
+    <h2>Repaso: Semanas 1 y 2</h2>
+    <p>Antes de avanzar al nuevo contenido, revisemos lo esencial de lo que ya hemos estudiado. Este repaso es la base sobre la cual construiremos el concepto de <strong>Estado de Derecho</strong> y analizaremos la <strong>realidad socioeconómica del Ecuador</strong>.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <h4>🏛️ Semana 1 — Organización Política y Administrativa del Estado</h4>
+      <p>Aprendimos que el <strong>Estado</strong> es una organización política soberana con tres elementos indispensables: territorio, población y poder soberano. Diferenciamos Estado de Nación, y comprendimos que Ecuador es un <strong>Estado Unitario Descentralizado</strong>, presidencialista y —según el Art. 1 de la Constitución de 2008— <strong>plurinacional, intercultural y laico</strong>.</p>
+      <p>Estudiamos las <strong>cinco funciones del Estado ecuatoriano</strong>: Ejecutiva, Legislativa, Judicial, de Transparencia y Control Social, y Electoral. Cada una se vincula directamente con la práctica contable: el SRI (Ejecutiva), las leyes tributarias (Legislativa), los peritajes (Judicial), la Contraloría y la SCVS (Transparencia) y la auditoría de partidos políticos (Electoral).</p>
+      <div class="highlight-box"><strong>Idea clave:</strong> El Estado no es una estructura abstracta — es el marco jurídico-institucional dentro del cual ejercerás toda tu vida profesional.</div>
+    </div>
+
+    <div class="timeline-item">
+      <h4>🌐 Semana 2 — La Soberanía del Estado</h4>
+      <p>Estudiamos la <strong>soberanía</strong> como la capacidad del Estado de ejercer autoridad suprema dentro de su territorio sin subordinarse a ningún poder externo. Distinguimos la <strong>soberanía interna</strong> (poder sobre la población y el territorio) de la <strong>soberanía externa</strong> (independencia frente a otros Estados e igualdad ante el derecho internacional).</p>
+      <p>Analizamos cómo la <strong>globalización tensiona la soberanía</strong>: los tratados internacionales, las organizaciones como la ONU, la OMC y el FMI, y la adopción de normas externas (como las NIIF) implican que Ecuador cede parcialmente decisiones soberanas a marcos supranacionales. Esto no destruye la soberanía, pero la transforma en un concepto relacional y negociado.</p>
+      <div class="highlight-box"><strong>Idea clave:</strong> La soberanía en el siglo XXI no es absoluta — es el arte de defender los intereses nacionales dentro de un sistema global de interdependencias. Como contador, trabajarás con normas que nacen de esa negociación soberana.</div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>La cadena que conecta las tres semanas</h3>
+  <div class="chain">
+    <div class="chain-step">Organización del Estado<br><small>(Semana 1)</small></div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-step">Soberanía<br><small>(Semana 2)</small></div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-step">Estado de Derecho + Realidad Socioeconómica<br><small>(Semana 3)</small></div>
+  </div>
+  <p>Conocer la organización del Estado (Semana 1) y entender quién ejerce el poder soberano (Semana 2) nos lleva ahora a preguntar: <strong>¿ese poder se ejerce con justicia, dentro de reglas que protegen a todos?</strong> Eso es el Estado de Derecho. Y la pregunta siguiente es igualmente urgente: <strong>¿cuál es la realidad concreta del país que ese Estado debe transformar?</strong> Eso es la realidad socioeconómica.</p>
+
+  <div class="key-idea">
+    <strong>Punto de partida para la Semana 3:</strong> Un Estado puede tener estructura (Semana 1) y soberanía (Semana 2), y aun así ser injusto, corrupto o incapaz de garantizar el bienestar de su población. El <strong>Estado de Derecho</strong> es el mecanismo que convierte el poder en justicia. Y la <strong>realidad socioeconómica</strong> nos dice cuán lejos o cuán cerca estamos de ese ideal en el Ecuador concreto de hoy.
+  </div>
+</div>
+
+<!-- ============================================================
+     TAB 1 — EL ESTADO DE DERECHO: CONCEPTO Y EVOLUCIÓN
+     ============================================================ -->
+<div id="tab1" class="tab-content">
+  <h2>1. El Estado de Derecho: Concepto y Evolución Histórica</h2>
+  <p>El término <strong>Estado de Derecho</strong> (<em>Rechtsstaat</em>, en su origen alemán del siglo XIX) es uno de los conceptos más importantes de la ciencia política y jurídica moderna. Entenderlo no es un ejercicio académico abstracto: define si el poder del Estado está al servicio de las personas o al servicio de quienes lo ejercen.</p>
+
+  <div class="concept-box">
+    <strong>Estado de Derecho:</strong> Sistema político y jurídico en el que <em>el ejercicio del poder estatal está sometido a normas jurídicas preestablecidas</em>, elaboradas democráticamente y aplicadas de manera igualitaria a gobernantes y gobernados. Nadie —ni el Presidente, ni el juez, ni el empresario más poderoso— está por encima de la ley. El poder se ejerce <em>con</em> la ley y <em>para</em> la ley, no a pesar de ella.
+  </div>
+
+  <h3>1.1 La idea más simple: nadie está sobre la ley</h3>
+  <p>La esencia del Estado de Derecho puede resumirse en una sola frase atribuida al pensamiento liberal clásico: <em>"El rey también está bajo la ley."</em> Durante siglos, los monarcas gobernaron por "derecho divino" — su voluntad era la ley. La gran revolución política de la modernidad fue invertir esa ecuación: <strong>la ley está sobre la voluntad de cualquier gobernante</strong>.</p>
+  <p>En Ecuador, esto se concreta en el <strong>Art. 1 de la Constitución de 2008</strong>, que define al Estado como "constitucional de derechos y justicia", y en el <strong>Art. 424</strong>, que establece que la Constitución es la norma suprema y prevalece sobre cualquier otra norma o acto del poder público.</p>
+
+  <div class="section-divider"></div>
+
+  <h3>1.2 Evolución histórica: tres generaciones del Estado de Derecho</h3>
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Generación</th>
+        <th>Período</th>
+        <th>Características principales</th>
+        <th>Limitación</th>
+      </tr>
+      <tr>
+        <td><strong>Estado Liberal de Derecho</strong></td>
+        <td>Siglos XVIII–XIX</td>
+        <td>Igualdad formal ante la ley; separación de poderes; derechos civiles y políticos; protección de la propiedad privada</td>
+        <td>Solo garantizaba derechos a quienes tenían propiedad; ignoraba la desigualdad real</td>
+      </tr>
+      <tr>
+        <td><strong>Estado Social de Derecho</strong></td>
+        <td>Siglo XX (post 1945)</td>
+        <td>Añade derechos económicos, sociales y culturales (trabajo, salud, educación); el Estado interviene para corregir desigualdades del mercado</td>
+        <td>Dependía de recursos fiscales; podía tornarse paternalista o burocrático</td>
+      </tr>
+      <tr>
+        <td><strong>Estado Constitucional de Derechos</strong></td>
+        <td>Finales s. XX – s. XXI</td>
+        <td>Los derechos son directamente aplicables, sin necesidad de ley previa; jueces pueden inaplicar leyes inconstitucionales; incorpora derechos de la naturaleza y derechos colectivos</td>
+        <td>Requiere instituciones fuertes y jueces independientes; difícil de sostener sin cultura democrática sólida</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">🇪🇨 Ecuador en la tercera generación</div>
+    <p>La Constitución de 2008 lleva a Ecuador a la <strong>tercera generación</strong>: el Estado Constitucional de Derechos. Un ejemplo radical es el <strong>Art. 71</strong>, que otorga derechos propios a la <em>Pachamama</em> (Naturaleza), permitiendo que cualquier persona exija su respeto ante los jueces, sin necesidad de demostrar daño personal. Esto va mucho más allá del Estado Liberal o incluso del Estado Social del siglo XX.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>1.3 Estado de Derecho vs. Estado de Facto</h3>
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Estado de Derecho ✅</th>
+        <th>Estado de Facto ❌</th>
+      </tr>
+      <tr>
+        <td>Las autoridades actúan dentro de los límites que la ley les fija</td>
+        <td>Las autoridades actúan según su criterio, ignorando o torciendo la ley</td>
+      </tr>
+      <tr>
+        <td>Los ciudadanos conocen sus derechos y los pueden exigir ante jueces independientes</td>
+        <td>Los derechos dependen de conexiones, sobornos o voluntad del gobernante</td>
+      </tr>
+      <tr>
+        <td>Las leyes se aplican igual a ricos y pobres, poderosos y débiles</td>
+        <td>La ley se aplica selectivamente según el poder o la influencia del involucrado</td>
+      </tr>
+      <tr>
+        <td>La corrupción es la excepción y es sancionada</td>
+        <td>La corrupción es el mecanismo de funcionamiento normal del sistema</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="danger-box">
+    <strong>🚨 Caso Ecuador — ¿Estado de Derecho o Estado de Facto?</strong><br>
+    El <strong>Caso Metástasis</strong> (2023), que reveló la infiltración de redes criminales en el sistema judicial ecuatoriano, plantea una pregunta incómoda: ¿cuándo los jueces son sobornados para liberar criminales, hay realmente Estado de Derecho? La respuesta honesta es que el Ecuador convive con zonas donde funciona el Estado de Derecho y zonas —geográficas e institucionales— donde prima la lógica del Estado de Facto. La brecha entre el modelo constitucional y la realidad institucional es uno de los grandes desafíos del país.
+  </div>
+
+  <div class="key-idea">
+    <strong>Idea clave:</strong> El Estado de Derecho no es un logro permanente — es un <em>proceso continuo</em> de construcción democrática. Se consolida cuando los ciudadanos lo exigen, cuando los profesionales actúan con integridad, y cuando las instituciones tienen la fortaleza para resistir la corrupción. Un contador que adultera cifras contribuye, aunque no lo sepa, al deterioro del Estado de Derecho.
+  </div>
+</div>
+
+<!-- ============================================================
+     TAB 2 — PILARES Y GARANTÍAS DEL ESTADO DE DERECHO
+     ============================================================ -->
+<div id="tab2" class="tab-content">
+  <h2>2. Los Pilares del Estado de Derecho y sus Garantías en Ecuador</h2>
+  <p>El Estado de Derecho no es una sola norma — es una <em>arquitectura institucional</em> sostenida por varios pilares que, en conjunto, garantizan que el poder se ejerza con justicia. Revisemos cada uno con su expresión concreta en la realidad ecuatoriana.</p>
+
+  <div class="pillar">
+    <span class="pillar-num">1</span><h4>Supremacía Constitucional</h4>
+    <p style="margin-top:10px;">La Constitución es la norma máxima del ordenamiento jurídico. Ninguna ley, decreto, contrato o acto administrativo puede contradecirla. En Ecuador, la <strong>Corte Constitucional</strong> es el órgano que garantiza esta supremacía: puede declarar inconstitucional cualquier norma o acto del poder público.</p>
+    <div class="example-box" style="margin-top:10px;">
+      <div class="ex-label">📋 Ejemplo</div>
+      <p>En 2010, la Corte Constitucional declaró inconstitucional una norma que restringía el acceso a la información pública, porque violaba el Art. 18 de la Constitución. Ningún ministerio ni el propio Presidente podía aplicar esa norma a partir de esa declaración. Esto es supremacía constitucional en acción.</p>
+    </div>
+  </div>
+
+  <div class="pillar">
+    <span class="pillar-num">2</span><h4>Separación y Control entre Poderes (Funciones)</h4>
+    <p style="margin-top:10px;">Las cinco funciones del Estado (Semana 1) se controlan mutuamente para evitar la concentración del poder en una sola mano. Esto se llama sistema de <em>frenos y contrapesos</em>. La Asamblea puede interpelar a ministros; la Corte Constitucional puede anular leyes; el CPCCS puede destituir a autoridades electas mediante referéndum.</p>
+    <div class="warning-box" style="margin-top:10px;">
+      <strong>⚠️ Tensión real:</strong> En Ecuador han existido períodos en que el Ejecutivo presionó al Legislativo o intentó condicionar al Judicial. Cuando esto ocurre, el sistema de frenos se debilita y el Estado de Derecho entra en crisis. La independencia institucional no es automática — debe ser defendida activamente por la ciudadanía.
+    </div>
+  </div>
+
+  <div class="pillar">
+    <span class="pillar-num">3</span><h4>Legalidad y Seguridad Jurídica</h4>
+    <p style="margin-top:10px;">El principio de <strong>legalidad</strong> establece que ninguna autoridad puede actuar sin una norma previa que le otorgue esa facultad. Las autoridades solo pueden hacer lo que la ley expresamente les permite. Inversamente, los ciudadanos pueden hacer todo lo que la ley no prohíba.</p>
+    <p>La <strong>seguridad jurídica</strong> (Art. 82 Constitución) garantiza que las normas sean claras, públicas y aplicadas de manera consistente. Un contador que firma un estado financiero necesita seguridad jurídica: necesita saber que las normas tributarias vigentes hoy no serán aplicadas retroactivamente mañana para sancionarlo.</p>
+  </div>
+
+  <div class="pillar">
+    <span class="pillar-num">4</span><h4>Garantía de Derechos Fundamentales</h4>
+    <p style="margin-top:10px;">El Estado de Derecho no existe para proteger el poder — existe para proteger los derechos de las personas. La Constitución de 2008 reconoce derechos civiles, políticos, económicos, sociales, culturales, ambientales y colectivos. Además, crea mecanismos para hacerlos efectivos:</p>
+    <ul>
+      <li><strong>Acción de protección:</strong> Para proteger derechos constitucionales violados por el Estado o particulares.</li>
+      <li><strong>Habeas corpus:</strong> Para proteger la libertad física ante detenciones ilegales.</li>
+      <li><strong>Acción de acceso a la información pública:</strong> Para exigir transparencia a los organismos públicos.</li>
+      <li><strong>Acción por incumplimiento:</strong> Para obligar al Estado a aplicar normas que ignora.</li>
+    </ul>
+  </div>
+
+  <div class="pillar">
+    <span class="pillar-num">5</span><h4>Independencia Judicial</h4>
+    <p style="margin-top:10px;">Los jueces deben resolver los casos según la ley y la Constitución, sin presiones políticas, económicas o de otro tipo. Un Poder Judicial dependiente convierte al Estado de Derecho en ficción: si los jueces fallan a favor del más poderoso, la igualdad ante la ley es solo un papel.</p>
+    <div class="danger-box" style="margin-top:10px;">
+      <strong>🚨 Ecuador y la independencia judicial:</strong> Transparency International y el Índice de Estado de Derecho del World Justice Project han señalado consistentemente que Ecuador presenta déficits en independencia judicial. El Caso Metástasis reveló que redes criminales tenían jueces y fiscales capturados. Esto no invalida el modelo constitucional, pero revela la brecha entre el ideal y la realidad.
+    </div>
+  </div>
+
+  <div class="pillar">
+    <span class="pillar-num">6</span><h4>Rendición de Cuentas (Accountability)</h4>
+    <p style="margin-top:10px;">Todo funcionario público debe justificar sus actos ante la ciudadanía. En Ecuador, este principio se materializa en la obligación de los GAD, ministerios e instituciones de presentar informes de gestión, someter sus cuentas a la Contraloría y responder a pedidos de información. Un Estado que no rinde cuentas no es un Estado de Derecho — es una caja negra del poder.</p>
+    <div class="example-box" style="margin-top:10px;">
+      <div class="ex-label">📊 Contabilidad como herramienta de accountability</div>
+      <p>La contabilidad gubernamental y la auditoría pública son los mecanismos técnicos de la rendición de cuentas. Cuando un auditor de la Contraloría revisa si los fondos municipales se usaron correctamente, está operando el pilar del accountability. Por eso, la integridad del contador es una condición del Estado de Derecho.</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>Ecuador en el Índice de Estado de Derecho (World Justice Project)</h3>
+  <p>El <strong>World Justice Project</strong> publica anualmente el <em>Rule of Law Index</em>, que mide el Estado de Derecho en más de 140 países. Ecuador ocupa posiciones medias-bajas en América Latina, con fortalezas relativas en derechos fundamentales y debilidades graves en justicia penal y control de la corrupción.</p>
+
+  <div class="stat-grid">
+    <div class="stat-box">
+      <div class="stat-num">~80°</div>
+      <div class="stat-label">Puesto de Ecuador en el Rule of Law Index (de 142 países)</div>
+    </div>
+    <div class="stat-box teal">
+      <div class="stat-num">0.47</div>
+      <div class="stat-label">Puntaje global de Ecuador (escala 0–1, donde 1 es ideal)</div>
+    </div>
+    <div class="stat-box orange">
+      <div class="stat-num">140°</div>
+      <div class="stat-label">Posición en justicia penal (uno de los peores indicadores)</div>
+    </div>
+    <div class="stat-box green">
+      <div class="stat-num">Top 60</div>
+      <div class="stat-label">Posición relativa en derechos fundamentales (mejor indicador)</div>
+    </div>
+  </div>
+  <p style="font-size:0.82rem; color:#666; margin-top:4px;">* Datos aproximados del World Justice Project Rule of Law Index 2023. Consultar fuente original para cifras exactas actualizadas.</p>
+
+  <div class="key-idea">
+    <strong>Idea clave:</strong> El Estado de Derecho tiene seis pilares que se sostienen mutuamente. Si uno falla —por ejemplo, la independencia judicial—, los demás se ven afectados. Un Ecuador con Constitución avanzada pero con sistema judicial capturado es un Estado de Derecho <em>incompleto</em>. El reto no es escribir mejores leyes —ya las tenemos— sino construir la cultura y las instituciones que las hagan reales.
+  </div>
+</div>
+
+<!-- ============================================================
+     TAB 3 — REALIDAD SOCIAL DEL ECUADOR
+     ============================================================ -->
+<div id="tab3" class="tab-content">
+  <h2>3. La Realidad Social del Ecuador</h2>
+  <p>Conocer el Estado de Derecho como modelo teórico no basta. Necesitamos confrontarlo con la realidad concreta del país. ¿Qué tan justa es la sociedad ecuatoriana? ¿Quiénes están protegidos por el Estado y quiénes quedan excluidos?</p>
+  <p>Analizar la realidad social no es un ejercicio pesimista — es el primer paso para transformarla. Un contador o auditor que ignora el contexto social de su país trabaja con los ojos cerrados.</p>
+
+  <div class="section-divider"></div>
+
+  <h3>3.1 Población y diversidad</h3>
+  <div class="stat-grid">
+    <div class="stat-box">
+      <div class="stat-num">18.5M</div>
+      <div class="stat-label">Habitantes aproximados (2024)</div>
+    </div>
+    <div class="stat-box teal">
+      <div class="stat-num">72%</div>
+      <div class="stat-label">Población urbana (Costa y Sierra)</div>
+    </div>
+    <div class="stat-box green">
+      <div class="stat-num">14</div>
+      <div class="stat-label">Nacionalidades indígenas reconocidas</div>
+    </div>
+    <div class="stat-box orange">
+      <div class="stat-num">+400K</div>
+      <div class="stat-label">Refugiados y migrantes venezolanos (estimado)</div>
+    </div>
+  </div>
+
+  <p>Ecuador es un país <strong>mayoritariamente joven</strong>: el grueso de su población tiene menos de 35 años. Esto representa una oportunidad —bono demográfico potencial— pero también un reto: si el sistema educativo y productivo no absorbe a esa población joven con empleos dignos, se convierte en presión social y migración.</p>
+
+  <div class="section-divider"></div>
+
+  <h3>3.2 Pobreza y desigualdad: el reto estructural</h3>
+  <p>La <strong>pobreza</strong> en Ecuador se mide principalmente por el INEC (Instituto Nacional de Estadística y Censos) usando dos líneas: pobreza por consumo y pobreza multidimensional (que incluye acceso a educación, salud, trabajo y vivienda).</p>
+
+  <div class="stat-grid">
+    <div class="stat-box red">
+      <div class="stat-num">~25%</div>
+      <div class="stat-label">Pobreza por consumo urbana + rural (promedio nacional, 2023)</div>
+    </div>
+    <div class="stat-box red">
+      <div class="stat-num">~10%</div>
+      <div class="stat-label">Pobreza extrema (no alcanza para cubrir necesidades alimentarias básicas)</div>
+    </div>
+    <div class="stat-box orange">
+      <div class="stat-num">~38%</div>
+      <div class="stat-label">Pobreza rural (significativamente mayor que la urbana)</div>
+    </div>
+    <div class="stat-box teal">
+      <div class="stat-num">0.47</div>
+      <div class="stat-label">Coeficiente Gini de desigualdad (0=igualdad total, 1=desigualdad máxima)</div>
+    </div>
+  </div>
+  <p style="font-size:0.82rem; color:#666; margin-top:4px;">* Datos aproximados del INEC 2022–2023. Consultar encuestas ENEMDU actualizadas.</p>
+
+  <div class="concept-box">
+    <strong>Coeficiente de Gini:</strong> Es el indicador más utilizado para medir la desigualdad en la distribución del ingreso en una sociedad. Un Gini de 0 significa que todos ganan exactamente lo mismo (igualdad perfecta). Un Gini de 1 significa que una sola persona concentra todos los ingresos (desigualdad máxima). El Gini de Ecuador (~0.47) revela una desigualdad <strong>alta</strong>, aunque menor que países como Brasil (~0.52) o Colombia (~0.53).
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>3.3 Educación: avances y brechas persistentes</h3>
+  <p>Ecuador ha realizado importantes inversiones en educación, especialmente entre 2008 y 2015. El resultado es una mejora sostenida en cobertura escolar. Sin embargo, persisten brechas serias:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Indicador</th>
+        <th>Situación</th>
+        <th>Brecha crítica</th>
+      </tr>
+      <tr>
+        <td>Analfabetismo</td>
+        <td>~5% (reducido desde ~10% en 2000)</td>
+        <td>En zonas rurales e indígenas supera el 15%</td>
+      </tr>
+      <tr>
+        <td>Educación básica</td>
+        <td>Cobertura >95% en áreas urbanas</td>
+        <td>Deserción alta en secundaria (especialmente rural)</td>
+      </tr>
+      <tr>
+        <td>Educación superior</td>
+        <td>~30% de jóvenes acceden a universidad</td>
+        <td>Solo el 10% de la población rural accede a estudios superiores</td>
+      </tr>
+      <tr>
+        <td>Calidad educativa</td>
+        <td>Evaluaciones PISA-D muestran rezago frente a estándares OCDE</td>
+        <td>Brecha urbano-rural en comprensión lectora y matemáticas</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>3.4 Salud, vivienda y servicios básicos</h3>
+  <div class="card-grid">
+    <div class="card">
+      <h4>🏥 Salud</h4>
+      <p>El IESS y el MSP cubren a gran parte de la población, pero con inequidades: las zonas rurales tienen acceso limitado a especialistas. La pandemia de COVID-19 (2020–2021) evidenció la fragilidad del sistema de salud pública.</p>
+    </div>
+    <div class="card teal">
+      <h4>🏠 Vivienda</h4>
+      <p>El déficit habitacional supera el 1.5 millones de unidades. Las zonas periurbanas de Guayaquil, Quito y Manta concentran asentamientos informales sin escrituras ni servicios completos.</p>
+    </div>
+    <div class="card green">
+      <h4>💧 Agua y saneamiento</h4>
+      <p>El 85% de la población urbana tiene agua potable, pero en áreas rurales la cobertura baja al 60%. El saneamiento básico es aún más deficiente en comunidades amazónicas.</p>
+    </div>
+    <div class="card orange">
+      <h4>📱 Conectividad</h4>
+      <p>La brecha digital es aguda: el 70% de hogares urbanos tiene internet, frente al 25% rural. La educación virtual expone esta fractura, que afecta a estudiantes como tus compañeros de zonas alejadas.</p>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">🔗 La cadena causal desde la perspectiva contable</div>
+    <p>Un Estado que no garantiza salud, educación y servicios básicos produce una población menos productiva → menor crecimiento económico → menor recaudación tributaria → menos recursos para el Estado → más deuda → ajustes que recaen sobre los más pobres. El contador que trabaja en el SRI, en auditoría fiscal o en empresas sociales opera dentro de esta cadena. Conocerla transforma la manera en que entiendes el propósito de tu profesión.</p>
+  </div>
+
+  <div class="key-idea">
+    <strong>Idea clave:</strong> La realidad social ecuatoriana no es un dato estadístico frío — es el rostro de millones de personas cuyas oportunidades dependen, en parte, de que el sistema financiero y fiscal funcione con honestidad e integridad. Cada cifra que un contador registra o audita tiene consecuencias sociales reales.
+  </div>
+</div>
+
+<!-- ============================================================
+     TAB 4 — REALIDAD ECONÓMICA DEL ECUADOR
+     ============================================================ -->
+<div id="tab4" class="tab-content">
+  <h2>4. La Realidad Económica del Ecuador</h2>
+  <p>La realidad económica es el campo donde el Estado de Derecho se prueba con mayor dureza. Una constitución perfecta coexiste con una economía dolarizada, petrolera dependiente, con alta informalidad y deuda externa significativa. Analicemos sus rasgos fundamentales.</p>
+
+  <div class="section-divider"></div>
+
+  <h3>4.1 Estructura de la economía ecuatoriana</h3>
+  <p>Ecuador tiene una economía de ingreso medio-bajo. Su <strong>Producto Interno Bruto (PIB)</strong> — el valor total de bienes y servicios producidos en un año — es de aproximadamente <strong>115.000 millones de dólares</strong> (2023), lo que la ubica como la quinta economía de Sudamérica.</p>
+
+  <div class="concept-box">
+    <strong>Producto Interno Bruto (PIB):</strong> Es la suma del valor de todos los bienes y servicios finales producidos en un territorio durante un período (usualmente un año). Cuando el PIB crece, en general la economía genera más empleo e ingresos. Cuando decrece (recesión), las empresas reducen personal y el Estado recauda menos impuestos. El PIB per cápita (PIB dividido entre la población) da una idea —imperfecta— del bienestar promedio.
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-box">
+      <div class="stat-num">~$115B</div>
+      <div class="stat-label">PIB aproximado (USD, 2023)</div>
+    </div>
+    <div class="stat-box teal">
+      <div class="stat-num">~$6.200</div>
+      <div class="stat-label">PIB per cápita (USD, 2023)</div>
+    </div>
+    <div class="stat-box orange">
+      <div class="stat-num">~3.5%</div>
+      <div class="stat-label">Crecimiento PIB (promedio 2021–2023)</div>
+    </div>
+    <div class="stat-box red">
+      <div class="stat-num">>60%</div>
+      <div class="stat-label">Deuda pública como % del PIB (2023)</div>
+    </div>
+  </div>
+  <p style="font-size:0.82rem; color:#666; margin-top:4px;">* Datos aproximados del Banco Central del Ecuador y FMI. Consultar fuentes actualizadas.</p>
+
+  <div class="section-divider"></div>
+
+  <h3>4.2 Dolarización: origen, beneficios y limitaciones</h3>
+  <p>En el año 2000, Ecuador vivió una de las peores crisis económicas de su historia: el <strong>feriado bancario</strong>, que congeló los depósitos de millones de ciudadanos y provocó la quiebra del sucre (moneda nacional). Para estabilizar la economía, el presidente Jamil Mahuad adoptó el <strong>dólar estadounidense</strong> como moneda oficial.</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Beneficios de la dolarización</th>
+        <th>Limitaciones de la dolarización</th>
+      </tr>
+      <tr>
+        <td>Eliminó la hiperinflación y la devaluación del sucre</td>
+        <td>Ecuador no puede emitir dinero ni devaluar para ajustar su economía</td>
+      </tr>
+      <tr>
+        <td>Estabilidad de precios y confianza para inversión</td>
+        <td>Para crecer, debe ganar dólares exportando (petróleo, banano, camarón, flores)</td>
+      </tr>
+      <tr>
+        <td>Protegió los ahorros de la clase media y baja</td>
+        <td>Pierde competitividad si el dólar se fortalece frente a monedas de países vecinos</td>
+      </tr>
+      <tr>
+        <td>Facilitó la integración financiera internacional</td>
+        <td>La política monetaria la decide la Reserva Federal de EE. UU., no el BCE</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">💱 Dolarización y el contador</div>
+    <p>La dolarización significa que los estados financieros en Ecuador siempre se elaboran en USD, eliminando el riesgo de conversión monetaria. Sin embargo, cuando la FED de EE. UU. sube las tasas de interés (como en 2022–2023), el crédito se encarece en Ecuador, las empresas reducen inversión y los auditores empiezan a revisar mayores provisiones por cuentas incobrables. La política monetaria de otro país afecta directamente tu trabajo.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>4.3 Dependencia del petróleo: la maldición de los recursos</h3>
+  <p>Ecuador es productor de petróleo desde 1972. El crudo representa <strong>entre el 30% y el 40% de los ingresos del Presupuesto General del Estado</strong> en años típicos. Esta dependencia crea un problema estructural conocido como la "<em>enfermedad holandesa</em>" o "<em>maldición de los recursos</em>".</p>
+
+  <div class="concept-box">
+    <strong>Maldición de los recursos:</strong> Fenómeno económico por el cual países con grandes reservas de recursos naturales (petróleo, minerales) tienden a tener menor crecimiento a largo plazo, mayor corrupción e instituciones más débiles que países sin esos recursos. La riqueza natural genera ingresos fáciles que reducen la necesidad de desarrollar industria, diversificar la economía y fortalecer la recaudación tributaria.
+  </div>
+
+  <div class="chain">
+    <div class="chain-step">Precio alto del petróleo → ingresos fiscales abundantes</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-step">El Estado gasta más; no diversifica la economía</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-step">Precio cae → crisis fiscal → ajuste → recae sobre los más pobres</div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>4.4 Empleo, informalidad y recaudación tributaria</h3>
+  <p>El mercado laboral ecuatoriano presenta una estructura dual: un sector formal —con contratos, IESS y derechos laborales— y un sector informal masivo que opera fuera del registro legal.</p>
+
+  <div class="stat-grid">
+    <div class="stat-box orange">
+      <div class="stat-num">~55%</div>
+      <div class="stat-label">Empleo informal (no tiene contrato ni aporta al IESS)</div>
+    </div>
+    <div class="stat-box red">
+      <div class="stat-num">~4.5%</div>
+      <div class="stat-label">Desempleo abierto (subestima el problema por subempleo)</div>
+    </div>
+    <div class="stat-box teal">
+      <div class="stat-num">~30%</div>
+      <div class="stat-label">Subempleo (trabajan pero ganan menos del salario básico o menos horas)</div>
+    </div>
+    <div class="stat-box green">
+      <div class="stat-num">$460</div>
+      <div class="stat-label">Salario Básico Unificado (SBU, 2024 aproximado)</div>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">🧾 Informalidad y evasión tributaria: el problema del contador</div>
+    <p>Cuando más de la mitad de la economía opera de manera informal, el Estado pierde recaudación fiscal. Menos impuestos = menos recursos para salud, educación y seguridad. El SRI calcula que la <strong>evasión tributaria en Ecuador supera los 4.000 millones de dólares anuales</strong>. Un contador que ayuda a evadir no solo comete un delito — priva al Estado de recursos que podrían financiar hospitales y escuelas. Este es el vínculo directo entre ética contable y realidad social.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>4.5 Principales sectores económicos</h3>
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Sector</th>
+        <th>Aporte al PIB (aprox.)</th>
+        <th>Relevancia</th>
+      </tr>
+      <tr>
+        <td>Petróleo y minas</td>
+        <td>~11%</td>
+        <td>Principal fuente de divisas y financiamiento fiscal</td>
+      </tr>
+      <tr>
+        <td>Manufactura</td>
+        <td>~12%</td>
+        <td>Incluye alimentos procesados, textiles, industria química</td>
+      </tr>
+      <tr>
+        <td>Comercio</td>
+        <td>~10%</td>
+        <td>Gran empleador informal; Guayaquil como hub comercial</td>
+      </tr>
+      <tr>
+        <td>Agricultura, pesca y acuicultura</td>
+        <td>~8%</td>
+        <td>Banano (#1 exportador mundial), camarón, flores, cacao</td>
+      </tr>
+      <tr>
+        <td>Construcción</td>
+        <td>~7%</td>
+        <td>Sensible al ciclo político y al crédito; gran empleador</td>
+      </tr>
+      <tr>
+        <td>Servicios financieros</td>
+        <td>~3%</td>
+        <td>Sector donde operan la mayoría de los contadores y auditores</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>4.6 Deuda externa y presupuesto público</h3>
+  <p>Ecuador mantiene una <strong>deuda pública total superior al 60% del PIB</strong>. El pago de intereses y capital consume una porción significativa del Presupuesto General del Estado, compitiendo con el gasto social. Esto genera el dilema político más recurrente del Ecuador moderno: <em>pagar la deuda o financiar servicios sociales</em>.</p>
+
+  <div class="warning-box">
+    <strong>⚠️ Reflexión crítica:</strong> ¿Por qué Ecuador se endeuda tanto? Las causas son múltiples: caída del precio del petróleo, déficit de recaudación tributaria (agravado por la informalidad y la evasión), gasto corriente elevado (incluida la nómina del sector público) y proyectos de inversión sobredimensionados. Un auditor del sector público que trabaja en la Contraloría tiene la función de detectar justamente estos excesos. Tu rol importa.
+  </div>
+
+  <div class="key-idea">
+    <strong>Idea clave:</strong> La economía ecuatoriana es dolarizada, dependiente del petróleo, con alta informalidad y una deuda pública creciente. Estas características no son fatalidad — son el punto de partida para construir un modelo más justo y diversificado. Un contador íntegro, que contribuye a la recaudación honesta y audita el uso correcto de los recursos públicos, es un actor económico de primer orden en esa transformación.
+  </div>
+</div>
+
+<!-- ============================================================
+     TAB 5 — EJERCICIO INTERACTIVO
+     ============================================================ -->
+<div id="tab5" class="tab-content">
+  <h2>5. Ejercicio Interactivo</h2>
+  <p>Selecciona la respuesta correcta en cada pregunta. Responde <strong>todas primero</strong> y luego presiona <strong>"Verificar respuestas"</strong>.</p>
+
+  <div class="exercise-container">
+
+    <!-- ei1 -->
+    <div class="exercise-item">
+      <p class="ei-question">1. ¿Cuál es la esencia fundamental del Estado de Derecho?</p>
+      <div class="exercise-options">
+        <label><input type="radio" name="ei1" value="a"> El poder del Estado está sometido a normas jurídicas preestablecidas que se aplican por igual a gobernantes y gobernados; nadie está por encima de la ley.</label>
+        <label><input type="radio" name="ei1" value="b"> El Estado puede actuar libremente siempre que justifique sus acciones ante la ciudadanía al finalizar el período de gobierno.</label>
+        <label><input type="radio" name="ei1" value="c"> El Estado de Derecho implica que solo los jueces pueden crear normas jurídicas, sin intervención del Legislativo.</label>
+        <label><input type="radio" name="ei1" value="d"> El gobernante elegido democráticamente puede actuar sin restricciones legales durante su mandato por mandato popular.</label>
+      </div>
+      <div class="feedback-item" id="fb-ei1"></div>
+    </div>
+
+    <!-- ei2 -->
+    <div class="exercise-item">
+      <p class="ei-question">2. En Ecuador, ¿qué artículo constitucional garantiza la supremacía de la Constitución sobre cualquier otra norma?</p>
+      <div class="exercise-options">
+        <label><input type="radio" name="ei2" value="a"> El Art. 424, que establece que la Constitución es la norma suprema y prevalece sobre cualquier otra norma o acto del poder público.</label>
+        <label><input type="radio" name="ei2" value="b"> El Art. 1, que define la forma del Estado ecuatoriano.</label>
+        <label><input type="radio" name="ei2" value="c"> El Art. 100, que regula la participación ciudadana en las decisiones del Estado.</label>
+        <label><input type="radio" name="ei2" value="d"> El Art. 300, que establece los principios del régimen tributario.</label>
+      </div>
+      <div class="feedback-item" id="fb-ei2"></div>
+    </div>
+
+    <!-- ei3 -->
+    <div class="exercise-item">
+      <p class="ei-question">3. El Coeficiente de Gini mide la desigualdad en la distribución del ingreso. Un Gini de 0 significa:</p>
+      <div class="exercise-options">
+        <label><input type="radio" name="ei3" value="a"> Igualdad perfecta: todos tienen exactamente los mismos ingresos.</label>
+        <label><input type="radio" name="ei3" value="b"> Desigualdad máxima: una sola persona concentra todos los ingresos del país.</label>
+        <label><input type="radio" name="ei3" value="c"> Que el país no tiene ningún ciudadano en pobreza extrema.</label>
+        <label><input type="radio" name="ei3" value="d"> Que el PIB per cápita es igual para todas las regiones del país.</label>
+      </div>
+      <div class="feedback-item" id="fb-ei3"></div>
+    </div>
+
+    <!-- ei4 -->
+    <div class="exercise-item">
+      <p class="ei-question">4. ¿Cuál fue la causa directa que llevó a Ecuador a adoptar el dólar como moneda oficial en el año 2000?</p>
+      <div class="exercise-options">
+        <label><input type="radio" name="ei4" value="a"> La crisis económica de 1999–2000, que incluyó el feriado bancario y la quiebra del sucre, provocó la dolarización como medida de estabilización.</label>
+        <label><input type="radio" name="ei4" value="b"> Un acuerdo comercial con los Estados Unidos que obligó a Ecuador a usar el dólar para facilitar el intercambio bilateral.</label>
+        <label><input type="radio" name="ei4" value="c"> La Constitución de 2008 estableció el dólar como moneda oficial del Estado ecuatoriano.</label>
+        <label><input type="radio" name="ei4" value="d"> La dolarización fue impulsada por el Banco Central del Ecuador como política monetaria ordinaria.</label>
+      </div>
+      <div class="feedback-item" id="fb-ei4"></div>
+    </div>
+
+    <!-- ei5 -->
+    <div class="exercise-item">
+      <p class="ei-question">5. ¿Qué es la "maldición de los recursos" y cómo afecta a Ecuador?</p>
+      <div class="exercise-options">
+        <label><input type="radio" name="ei5" value="a"> Fenómeno por el cual países ricos en recursos naturales tienden a tener mayor corrupción, menor diversificación económica e instituciones más débiles; Ecuador lo vive a través de su dependencia del petróleo.</label>
+        <label><input type="radio" name="ei5" value="b"> La contaminación ambiental generada por la extracción petrolera en la Amazonía que empobrece a las comunidades locales.</label>
+        <label><input type="radio" name="ei5" value="c"> La incapacidad técnica del Estado ecuatoriano para gestionar sus recursos naturales por falta de personal calificado.</label>
+        <label><input type="radio" name="ei5" value="d"> El agotamiento progresivo de los recursos petroleros que obliga a Ecuador a buscar financiamiento externo.</label>
+      </div>
+      <div class="feedback-item" id="fb-ei5"></div>
+    </div>
+
+    <!-- ei6 -->
+    <div class="exercise-item">
+      <p class="ei-question">6. La garantía constitucional ecuatoriana denominada "Acción de protección" sirve para:</p>
+      <div class="exercise-options">
+        <label><input type="radio" name="ei6" value="a"> Proteger derechos constitucionales que han sido vulnerados por el Estado o por particulares, permitiendo a cualquier ciudadano exigir su reparación ante un juez.</label>
+        <label><input type="radio" name="ei6" value="b"> Proteger la libertad física de una persona detenida de manera ilegal por las autoridades.</label>
+        <label><input type="radio" name="ei6" value="c"> Exigir a los organismos públicos que entreguen información de acceso público que han negado.</label>
+        <label><input type="radio" name="ei6" value="d"> Obligar al Estado a aplicar una norma jurídica que sistemáticamente incumple.</label>
+      </div>
+      <div class="feedback-item" id="fb-ei6"></div>
+    </div>
+
+    <!-- ei7 -->
+    <div class="exercise-item">
+      <p class="ei-question">7. Aproximadamente, ¿qué porcentaje de la fuerza laboral ecuatoriana se encuentra en el sector informal?</p>
+      <div class="exercise-options">
+        <label><input type="radio" name="ei7" value="a"> Alrededor del 55%, lo que implica que más de la mitad de los trabajadores no tiene contrato formal ni aporta al IESS.</label>
+        <label><input type="radio" name="ei7" value="b"> Aproximadamente el 15%, que corresponde principalmente a trabajadores del campo.</label>
+        <label><input type="radio" name="ei7" value="c"> Cerca del 35%, concentrado en la región amazónica y la Sierra rural.</label>
+        <label><input type="radio" name="ei7" value="d"> Solo el 5%, ya que la dolarización formalizó gran parte de la economía ecuatoriana.</label>
+      </div>
+      <div class="feedback-item" id="fb-ei7"></div>
+    </div>
+
+    <!-- ei8 -->
+    <div class="exercise-item">
+      <p class="ei-question">8. ¿Cuál es el vínculo más directo entre la ética contable y la realidad socioeconómica del Ecuador?</p>
+      <div class="exercise-options">
+        <label><input type="radio" name="ei8" value="a"> Un contador que ayuda a evadir impuestos priva al Estado de recursos que podrían financiar salud, educación y seguridad, afectando directamente el bienestar de los ciudadanos más vulnerables.</label>
+        <label><input type="radio" name="ei8" value="b"> El vínculo es indirecto: la ética contable solo afecta a las empresas, no a la sociedad en general.</label>
+        <label><input type="radio" name="ei8" value="c"> La ética contable es relevante solo en el sector público; en el sector privado no tiene consecuencias sociales.</label>
+        <label><input type="radio" name="ei8" value="d"> Los contadores no tienen responsabilidad sobre los niveles de pobreza del país; eso depende exclusivamente del gobierno.</label>
+      </div>
+      <div class="feedback-item" id="fb-ei8"></div>
+    </div>
+
+    <button class="btn-verificar" onclick="verificarEjercicio()">✔ Verificar respuestas</button>
+    <div class="score-panel" id="ejercicio-score">
+      <div class="score-emoji" id="ej-emoji"></div>
+      <div class="score-number" id="ej-number"></div>
+      <div class="score-message" id="ej-message"></div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="ej-bar" style="width:0%"></div></div>
+    </div>
+    <button class="btn-reiniciar" id="btn-reiniciar-ej" onclick="reiniciarEjercicio()">↺ Reiniciar ejercicio</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     TAB 6 — CUESTIONARIO
+     ============================================================ -->
+<div id="tab6" class="tab-content">
+  <h2>6. Cuestionario de Evaluación</h2>
+  <p>Responde las <strong>10 preguntas</strong>. Selecciona todas tus respuestas primero y luego presiona <strong>"Verificar respuestas"</strong>. Las preguntas de análisis de caso son autónomas — puedes responderlas con pensamiento crítico.</p>
+
+  <div class="quiz-container">
+
+    <!-- Q1 -->
+    <div class="quiz-question">
+      <div class="quiz-question-header"><span class="quiz-num">1.</span><span class="badge-tipo badge-teorica">Teórica</span></div>
+      <p class="q-text">¿Cuál es la principal diferencia entre el Estado Liberal de Derecho (siglos XVIII–XIX) y el Estado Social de Derecho (siglo XX)?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi1" value="a"> El Estado Social añade derechos económicos, sociales y culturales (trabajo, salud, educación) y reconoce que el Estado debe intervenir para corregir las desigualdades que el mercado genera, algo que el Estado Liberal ignoraba.</label>
+        <label><input type="radio" name="qi1" value="b"> El Estado Liberal garantizaba más derechos que el Estado Social, pero los restringió para proteger la propiedad privada.</label>
+        <label><input type="radio" name="qi1" value="c"> El Estado Social eliminó los derechos civiles y políticos del liberalismo para concentrarse exclusivamente en los derechos económicos.</label>
+        <label><input type="radio" name="qi1" value="d"> No hay diferencia sustancial entre ambos modelos; el nombre cambia según el país que lo adopte.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-question">
+      <div class="quiz-question-header"><span class="quiz-num">2.</span><span class="badge-tipo badge-teorica">Teórica</span></div>
+      <p class="q-text">¿En qué consiste el principio de legalidad dentro del Estado de Derecho?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi2" value="a"> Las autoridades solo pueden actuar cuando una norma jurídica previa les otorga expresamente esa facultad; los ciudadanos, en cambio, pueden hacer todo lo que la ley no prohíba.</label>
+        <label><input type="radio" name="qi2" value="b"> Solo el Presidente puede crear leyes con fuerza vinculante; la Asamblea actúa solo como órgano consultivo.</label>
+        <label><input type="radio" name="qi2" value="c"> Los ciudadanos solo pueden ejercer los derechos que estén expresamente listados en la Constitución.</label>
+        <label><input type="radio" name="qi2" value="d"> Las leyes antiguas tienen más fuerza que las nuevas, para garantizar la estabilidad del ordenamiento jurídico.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-question">
+      <div class="quiz-question-header"><span class="quiz-num">3.</span><span class="badge-tipo badge-teorica">Teórica</span></div>
+      <p class="q-text">¿Cuál es una característica que distingue al Estado Constitucional de Derechos (Ecuador 2008) de los modelos anteriores de Estado de Derecho?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi3" value="a"> Los derechos son directamente aplicables sin necesidad de una ley que los desarrolle; los jueces pueden inaplicar leyes inconstitucionales; y se reconocen derechos de la naturaleza y derechos colectivos.</label>
+        <label><input type="radio" name="qi3" value="b"> El Estado Constitucional de Derechos elimina la necesidad de leyes ordinarias, ya que la Constitución regula todos los aspectos de la vida social.</label>
+        <label><input type="radio" name="qi3" value="c"> Solo los abogados pueden invocar derechos constitucionales ante los jueces; los demás ciudadanos deben hacerlo a través de sus representantes en la Asamblea.</label>
+        <label><input type="radio" name="qi3" value="d"> El Estado Constitucional de Derechos concentra el poder en la Corte Constitucional, que puede anular todas las decisiones de las demás funciones del Estado.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi3"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-question">
+      <div class="quiz-question-header"><span class="quiz-num">4.</span><span class="badge-tipo badge-teorica">Teórica</span></div>
+      <p class="q-text">¿Por qué la independencia judicial es un pilar fundamental del Estado de Derecho?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi4" value="a"> Porque si los jueces fallan según presiones políticas o económicas en lugar de la ley, la igualdad ante la ley se convierte en ficción y el Estado de Derecho deja de existir en la práctica.</label>
+        <label><input type="radio" name="qi4" value="b"> Porque los jueces independientes pueden crear leyes propias cuando la Asamblea Nacional no legisla con suficiente rapidez.</label>
+        <label><input type="radio" name="qi4" value="c"> Porque la independencia judicial garantiza que el Ejecutivo no pueda ser investigado ni sancionado por ningún tribunal.</label>
+        <label><input type="radio" name="qi4" value="d"> Porque los jueces independientes tienen la facultad de modificar la Constitución cuando consideran que sus disposiciones son injustas.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi4"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-question">
+      <div class="quiz-question-header"><span class="quiz-num">5.</span><span class="badge-tipo badge-teorica">Teórica</span></div>
+      <p class="q-text">¿Cuál es la principal limitación de la dolarización para la política económica ecuatoriana?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi5" value="a"> Ecuador no puede emitir dinero ni ajustar el tipo de cambio para responder a crisis económicas; la política monetaria la decide la Reserva Federal de EE. UU., no el Banco Central del Ecuador.</label>
+        <label><input type="radio" name="qi5" value="b"> La dolarización obliga a Ecuador a mantener reservas de oro en proporciones iguales a los dólares en circulación.</label>
+        <label><input type="radio" name="qi5" value="c"> El dólar solo puede usarse en transacciones comerciales internacionales; en el mercado interno se usa el sucre virtual.</label>
+        <label><input type="radio" name="qi5" value="d"> La dolarización fue impuesta por el FMI como condición para otorgar préstamos, sin que Ecuador pudiera negociar otras opciones.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi5"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-question">
+      <div class="quiz-question-header"><span class="quiz-num">6.</span><span class="badge-tipo badge-teorica">Teórica</span></div>
+      <p class="q-text">¿Qué mide el Producto Interno Bruto (PIB) de un país y cuál es su limitación más importante como indicador de bienestar?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi6" value="a"> El PIB mide el valor total de bienes y servicios producidos en un territorio en un período; su limitación es que no captura la distribución de esa riqueza, la desigualdad ni la calidad de vida real de las personas.</label>
+        <label><input type="radio" name="qi6" value="b"> El PIB mide el nivel de felicidad de la población en función de su capacidad de consumo; su limitación es que no considera las exportaciones.</label>
+        <label><input type="radio" name="qi6" value="c"> El PIB mide únicamente la producción industrial de un país, excluyendo servicios y actividades informales del cálculo.</label>
+        <label><input type="radio" name="qi6" value="d"> El PIB mide los ingresos del gobierno en un año; su limitación es que no incluye los ingresos del sector privado.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi6"></div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quiz-question">
+      <div class="quiz-question-header"><span class="quiz-num">7.</span><span class="badge-tipo badge-teorica">Teórica</span></div>
+      <p class="q-text">¿Qué es el principio de rendición de cuentas (accountability) y qué rol juega la auditoría pública en su cumplimiento?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi7" value="a"> Es la obligación de todo funcionario público de justificar sus actos ante la ciudadanía; la auditoría pública —ejercida principalmente por la Contraloría General del Estado— es el mecanismo técnico que verifica si los recursos fueron usados correctamente.</label>
+        <label><input type="radio" name="qi7" value="b"> Es el derecho de los funcionarios públicos a recibir una evaluación positiva de gestión antes de enfrentar cualquier proceso disciplinario.</label>
+        <label><input type="radio" name="qi7" value="c"> Es un principio solo aplicable al sector privado, que obliga a las empresas a reportar sus ganancias al SRI anualmente.</label>
+        <label><input type="radio" name="qi7" value="d"> La rendición de cuentas es voluntaria en Ecuador; solo se activa cuando hay una denuncia ciudadana formal ante la Asamblea Nacional.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi7"></div>
+    </div>
+
+    <!-- Q8 — ANÁLISIS -->
+    <div class="quiz-question">
+      <div class="quiz-question-header"><span class="quiz-num">8.</span><span class="badge-tipo badge-analisis">Análisis</span></div>
+      <p class="q-text">Un alcalde de un cantón mediano de Ecuador ordena a su departamento financiero registrar obras de pavimentación como "ejecutadas al 100%" para presentar en el informe de gestión, cuando en realidad solo se completó el 40%. El dinero restante no ha sido devuelto al presupuesto. ¿Qué pilar del Estado de Derecho se viola principalmente y qué organismo debería actuar?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi8" value="a"> Se viola el principio de rendición de cuentas (accountability) y legalidad; la Contraloría General del Estado tiene competencia para auditar el uso de recursos municipales y determinar responsabilidades civiles, administrativas y penales.</label>
+        <label><input type="radio" name="qi8" value="b"> Solo se viola el principio de transparencia informativa; el Ministerio de Gobierno debe emitir una advertencia al alcalde sin consecuencias legales adicionales.</label>
+        <label><input type="radio" name="qi8" value="c"> Se viola el principio de supremacía constitucional; el caso debe ser llevado directamente a la Corte Constitucional para que dicte sentencia.</label>
+        <label><input type="radio" name="qi8" value="d"> No se viola ningún principio del Estado de Derecho, porque el alcalde fue elegido democráticamente y tiene autonomía para gestionar el presupuesto como considere conveniente.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi8"></div>
+    </div>
+
+    <!-- Q9 — ANÁLISIS -->
+    <div class="quiz-question">
+      <div class="quiz-question-header"><span class="quiz-num">9.</span><span class="badge-tipo badge-analisis">Análisis</span></div>
+      <p class="q-text">Una empresa exportadora de camarón en Guayaquil opera con contratos laborales informales para el 80% de sus trabajadores, pagando por debajo del salario básico y sin aportaciones al IESS. Cuando el precio del camarón cae en los mercados internacionales, despide a todos sin liquidación. ¿Qué dimensiones de la realidad socioeconómica ecuatoriana ilustra esta situación?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi9" value="a"> Ilustra la alta informalidad laboral, la vulnerabilidad de los trabajadores ante la volatilidad de los mercados globales, el déficit del Estado de Derecho en garantizar derechos laborales, y el impacto de la dependencia de commodities de exportación en el empleo.</label>
+        <label><input type="radio" name="qi9" value="b"> Solo ilustra una mala decisión empresarial aislada, sin relación con la estructura socioeconómica del Ecuador.</label>
+        <label><input type="radio" name="qi9" value="c"> Ilustra únicamente el problema de la dolarización, ya que si Ecuador tuviera moneda propia podría devaluar y proteger las exportaciones.</label>
+        <label><input type="radio" name="qi9" value="d"> Demuestra que el modelo económico ecuatoriano funciona correctamente, pues las empresas se adaptan racionalmente a las señales del mercado.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi9"></div>
+    </div>
+
+    <!-- Q10 — ANÁLISIS -->
+    <div class="quiz-question">
+      <div class="quiz-question-header"><span class="quiz-num">10.</span><span class="badge-tipo badge-analisis">Análisis</span></div>
+      <p class="q-text">Sofía, recién graduada como CPA, consigue su primer empleo en una firma de auditoría que revisa los estados financieros de una empresa de construcción con contratos del Estado. Al revisar los documentos, descubre que la empresa infla sistemáticamente las facturas de materiales. Su jefe le dice: "Eso no es nuestro problema; nosotros solo auditamos lo que nos piden." ¿Qué debería hacer Sofía y por qué, desde la perspectiva del Estado de Derecho?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi10" value="a"> Sofía debe documentar los hallazgos, reportarlos al socio principal de la firma y, si no hay acción, comunicarlos a la Contraloría General o a la Fiscalía; omitir el hallazgo la convierte en cómplice de un delito y en actora del deterioro del Estado de Derecho.</label>
+        <label><input type="radio" name="qi10" value="b"> Sofía debe seguir las instrucciones de su jefe; la responsabilidad recae en la empresa auditada, no en los auditores externos.</label>
+        <label><input type="radio" name="qi10" value="c"> Sofía puede ignorar el hallazgo porque no tiene suficiente experiencia; debe esperar a que un auditor senior tome la decisión.</label>
+        <label><input type="radio" name="qi10" value="d"> Sofía debe renunciar inmediatamente y no hacer ninguna denuncia para evitar represalias; denunciar no es obligación legal del auditor privado en Ecuador.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi10"></div>
+    </div>
+
+    <button class="btn-verificar" onclick="verificarQuiz()">✔ Verificar respuestas</button>
+    <div class="score-panel" id="quiz-score">
+      <div class="score-emoji" id="quiz-emoji"></div>
+      <div class="score-number" id="quiz-number"></div>
+      <div class="score-message" id="quiz-message"></div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="quiz-bar" style="width:0%"></div></div>
+    </div>
+    <button class="btn-reiniciar" id="btn-reiniciar-quiz" onclick="reiniciarQuiz()">↺ Reiniciar cuestionario</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     TAB 7 — ACTIVIDAD CON IA
+     ============================================================ -->
+<div id="tab7" class="tab-content">
+  <h2>7. Actividad con Inteligencia Artificial</h2>
+  <div class="ai-activity">
+    <h3>🤖 "El termómetro del Estado de Derecho: ¿qué tan sano está el Ecuador?"</h3>
+    <p>Esta actividad te invita a usar la IA para construir un <strong>diagnóstico crítico</strong> del Estado de Derecho en Ecuador, compararlo con otro país latinoamericano y reflexionar sobre lo que tú, como futuro profesional contable, puedes hacer al respecto. La IA es tu punto de partida — tu pensamiento crítico es el destino.</p>
+
+    <div class="highlight-box">
+      <strong>🌐 Herramienta recomendada:</strong> <strong>Claude</strong> en <a href="https://claude.ai" target="_blank">claude.ai</a> (gratuito). Alternativas: ChatGPT (chatgpt.com) o Gemini (gemini.google.com).
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h3>Prompt exacto para usar con la IA:</h3>
+    <div class="ai-prompt-box">Actúa como un experto en derecho constitucional comparado y economía política latinoamericana.
+
+Necesito que me ayudes con un análisis en tres partes:
+
+PARTE 1 — DIAGNÓSTICO DEL ESTADO DE DERECHO EN ECUADOR:
+Evalúa el Estado de Derecho en Ecuador en 2024 tomando como base estos seis pilares: (1) supremacía constitucional, (2) separación de poderes, (3) legalidad y seguridad jurídica, (4) garantía de derechos fundamentales, (5) independencia judicial, y (6) rendición de cuentas. Para cada pilar, indica si Ecuador está en situación crítica, deficiente, aceptable o sólida, y justifica brevemente con un ejemplo concreto.
+
+PARTE 2 — COMPARACIÓN CON OTRO PAÍS:
+Elige un país latinoamericano que consideres tiene un Estado de Derecho más consolidado que Ecuador y otro que consideres lo tiene más débil. Explica las razones de cada caso usando dos o tres indicadores comparables.
+
+PARTE 3 — EL ROL DEL CONTADOR:
+¿Cuáles son las tres acciones concretas más importantes que un contador o auditor privado ecuatoriano puede hacer en su trabajo diario para fortalecer el Estado de Derecho, aunque sea de manera individual? Responde con ejemplos prácticos del contexto ecuatoriano.
+
+Responde en un lenguaje claro para un estudiante universitario de primer semestre.</div>
+
+    <div class="section-divider"></div>
+
+    <h3>¿Qué hacer con la respuesta?</h3>
+    <div class="ai-step">
+      <div class="ai-step-num">1</div>
+      <div class="ai-step-text"><strong>Verifica los hechos:</strong> ¿Los ejemplos que usó la IA son reales y precisos para Ecuador? ¿Mencionó el Caso Metástasis, la Contraloría, el CPCCS u otros organismos reales? Si usó ejemplos genéricos, pídele que los especifique para Ecuador: <em>"¿Puedes darme un ejemplo específico de Ecuador en 2022–2024?"</em></td></div>
+    </div>
+    <div class="ai-step">
+      <div class="ai-step-num">2</div>
+      <div class="ai-step-text"><strong>Cuestiona la comparación:</strong> ¿Estás de acuerdo con el país que la IA eligió como "más consolidado"? ¿Por qué sí o no? Escribe tu propia evaluación: ¿cuál país latinoamericano crees tú que tiene mejor o peor Estado de Derecho que Ecuador y por qué?</div>
+    </div>
+    <div class="ai-step">
+      <div class="ai-step-num">3</div>
+      <div class="ai-step-text"><strong>Elabora tu posición personal:</strong> De las tres acciones que la IA sugirió para los contadores, ¿cuál te parece la más difícil de aplicar en el Ecuador real? ¿Por qué? Escribe un párrafo (150–200 palabras) argumentando tu respuesta con al menos un dato del contenido de este widget.</div>
+    </div>
+    <div class="ai-step">
+      <div class="ai-step-num">4</div>
+      <div class="ai-step-text"><strong>Comparte en el foro del Moodle:</strong> Publica: (a) el pilar del Estado de Derecho que según tu análisis está en peor situación en Ecuador y por qué, (b) una acción concreta que tú harías como contador para fortalecerlo, y (c) una pregunta que le harías a un juez ecuatoriano si pudieras.</div>
+    </div>
+
+    <div class="section-divider"></div>
+    <h3>📊 Criterios de evaluación</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Criterio</th><th>Pensamiento crítico ✅</th><th>Copia simple ❌</th></tr>
+        <tr><td>Verificación de hechos</td><td>Señala si la IA usó datos incorrectos o imprecisos sobre Ecuador</td><td>Acepta todo lo que dijo la IA sin cuestionarlo</td></tr>
+        <tr><td>Posición propia</td><td>Argumenta su propio punto de vista sobre el pilar más débil, usando ejemplos concretos</td><td>Reproduce la evaluación de la IA como si fuera propia</td></tr>
+        <tr><td>Conexión con el material</td><td>Usa términos del widget (Contraloría, SCVS, Gini, dolarización, etc.) para argumentar</td><td>Responde en términos genéricos sin citar contenido específico</td></tr>
+        <tr><td>Reflexión profesional</td><td>Conecta el análisis del Estado de Derecho con acciones concretas de su futura carrera</td><td>No establece ninguna conexión entre el análisis y su carrera profesional</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     TAB 8 — REFLEXIÓN
+     ============================================================ -->
+<div id="tab8" class="tab-content">
+  <h2>8. Preguntas para la Reflexión Personal</h2>
+  <p>No hay respuestas correctas ni incorrectas. Estas preguntas conectan los conceptos estudiados con tu vida cotidiana, tus emociones, tu historia personal y tu futuro. Tómate tu tiempo. Puedes escribir, hablar con alguien de confianza, o simplemente reflexionar en silencio.</p>
+
+  <div class="reflection-container">
+
+    <div class="reflection-item">
+      <div class="reflection-icon">⚖️</div>
+      <div class="reflection-text">
+        <h4>La ley y tú: ¿cuándo la has sentido justa?</h4>
+        <p>Piensa en una situación de tu vida — reciente o de la infancia — donde sentiste que una regla o norma fue aplicada de manera injusta: en tu familia, en tu colegio, en tu barrio, ante una institución del Estado. ¿Cómo te hizo sentir esa injusticia? ¿Qué hiciste? ¿Protestaste, te resignaste o buscaste una alternativa? ¿Qué hubiera cambiado si hubiera existido un mecanismo efectivo para reclamar?</p>
+      </div>
+    </div>
+
+    <div class="reflection-item">
+      <div class="reflection-icon">💸</div>
+      <div class="reflection-text">
+        <h4>La informalidad como sobrevivencia</h4>
+        <p>El 55% de los ecuatorianos trabaja de manera informal. ¿Conoces a alguien así — un familiar, un vecino, un amigo — que trabaja sin contrato, sin IESS, sin derechos laborales garantizados? ¿Qué sientes cuando piensas en esa situación? ¿Crees que esas personas son "informales por elección" o porque el sistema formal no tiene espacio para ellas? ¿Qué dice eso del Estado de Derecho real en Ecuador?</p>
+      </div>
+    </div>
+
+    <div class="reflection-item">
+      <div class="reflection-icon">🏚️</div>
+      <div class="reflection-text">
+        <h4>Pobreza: ¿fatalidad o decisión colectiva?</h4>
+        <p>Hay quienes dicen que la pobreza es consecuencia de las malas decisiones individuales de cada persona. Hay quienes dicen que es el resultado de un sistema económico y político que concentra las oportunidades en pocas manos. ¿Qué crees tú? ¿Puedes pensar en alguien de tu entorno cuya situación económica no corresponde a su esfuerzo y capacidad? ¿Qué factores estructurales —no personales— influyeron en su situación?</p>
+      </div>
+    </div>
+
+    <div class="reflection-item">
+      <div class="reflection-icon">🛑</div>
+      <div class="reflection-text">
+        <h4>El límite que nunca cruzarías</h4>
+        <p>Imagina que en tu primer trabajo como contador/a, tu jefe te pide hacer algo éticamente cuestionable: registrar un gasto inexistente, omitir un ingreso, firmar algo sin verificarlo. ¿Cuál sería el límite que nunca cruzarías, sin importar el costo personal? ¿Tienes claro hoy ese límite, o crees que depende de la situación? ¿Qué valores personales — no académicos, sino tuyos de verdad — te guiarían en ese momento?</p>
+      </div>
+    </div>
+
+    <div class="reflection-item">
+      <div class="reflection-icon">🌱</div>
+      <div class="reflection-text">
+        <h4>La autoestima del ciudadano</h4>
+        <p>Muchos ecuatorianos sienten vergüenza o desesperanza frente a la corrupción y la desigualdad: "Así es el Ecuador, nada va a cambiar." ¿Tú sientes algo de eso? ¿De dónde viene ese sentimiento? ¿Qué pasaría si en lugar de resignación hubiera orgullo por lo que <em>sí</em> funciona — por los profesionales honestos, los jueces valientes, los maestros comprometidos? ¿Qué te haría sentir orgulloso/a de ser ecuatoriano/a y profesional?</p>
+      </div>
+    </div>
+
+    <div class="reflection-item">
+      <div class="reflection-icon">🔍</div>
+      <div class="reflection-text">
+        <h4>El petróleo como metáfora personal</h4>
+        <p>Ecuador depende del petróleo — un recurso fácil que dispensa del esfuerzo de diversificar y construir. ¿Hay algo en tu propia vida que funcione como "tu petróleo"? Un talento fácil que te evita esforzarte en otras áreas; una persona que siempre resuelve tus problemas; un hábito cómodo que te impide crecer. ¿Cuál es tu "maldición del recurso" personal? Reconocerla es el primer paso para transformarla.</p>
+      </div>
+    </div>
+
+    <div class="reflection-item">
+      <div class="reflection-icon">🤲</div>
+      <div class="reflection-text">
+        <h4>Inteligencia emocional ante la injusticia</h4>
+        <p>Ver injusticia puede generar rabia, tristeza, impotencia o indiferencia. Todas son respuestas emocionales válidas. Pero la inteligencia emocional nos invita a preguntarnos: ¿qué hago con esa emoción? ¿La dejo paralizarme, la convierto en cinismo, o la transformo en acción constructiva? ¿Qué tipo de profesional quieres ser cuando te enfrentes a una situación injusta en tu trabajo: el que mira hacia otro lado, el que explota, o el que actúa con inteligencia y principios?</p>
+      </div>
+    </div>
+
+    <div class="key-idea" style="margin-top:24px;">
+      <strong>Para llevar contigo:</strong> El Estado de Derecho no es un edificio terminado — es una construcción permanente que depende de personas que deciden, día a día, actuar con integridad. La realidad socioeconómica del Ecuador no es el destino inevitable del país — es el punto de partida de una generación de profesionales que puede transformarla. <strong>Esa generación eres tú.</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     TAB 9 — BIBLIOGRAFÍA
+     ============================================================ -->
+<div id="tab9" class="tab-content">
+  <h2>9. Bibliografía</h2>
+  <p>Referencias utilizadas y recomendadas para profundizar los temas de esta semana. Formato APA 7.ª edición.</p>
+
+  <div class="bib-card">
+    <div class="bib-authors">Asamblea Constituyente del Ecuador.</div>
+    <div class="bib-year">(2008).</div>
+    <div class="bib-title">Constitución de la República del Ecuador.</div>
+    <div class="bib-source">Registro Oficial N.° 449. Asamblea Nacional del Ecuador. https://www.asambleanacional.gob.ec</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Banco Central del Ecuador.</div>
+    <div class="bib-year">(2023).</div>
+    <div class="bib-title">Estadísticas macroeconómicas: Presentación estructural.</div>
+    <div class="bib-source">Banco Central del Ecuador. https://www.bce.fin.ec/index.php/estadisticas-economicas</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Díaz Revorio, F. J.</div>
+    <div class="bib-year">(2013).</div>
+    <div class="bib-title">Textos constitucionales históricos: El constitucionalismo europeo y americano en sus documentos.</div>
+    <div class="bib-source">Palestra Editores.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Instituto Nacional de Estadística y Censos (INEC).</div>
+    <div class="bib-year">(2023).</div>
+    <div class="bib-title">Encuesta Nacional de Empleo, Desempleo y Subempleo (ENEMDU): Resultados 2022–2023.</div>
+    <div class="bib-source">INEC. https://www.ecuadorencifras.gob.ec/enemdu-2023/</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Pérez Royo, J.</div>
+    <div class="bib-year">(2018).</div>
+    <div class="bib-title">Curso de derecho constitucional</div>
+    <div class="bib-source">(16.ª ed.). Marcial Pons.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Sen, A.</div>
+    <div class="bib-year">(2000).</div>
+    <div class="bib-title">Desarrollo y libertad.</div>
+    <div class="bib-source">Editorial Planeta. [Traducción de <em>Development as Freedom</em>, Oxford University Press, 1999]</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">World Justice Project.</div>
+    <div class="bib-year">(2023).</div>
+    <div class="bib-title">Rule of Law Index 2023.</div>
+    <div class="bib-source">World Justice Project. https://worldjusticeproject.org/rule-of-law-index/</div>
+  </div>
+
+  <div class="bib-note">
+    📌 <strong>Nota académica:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos. Los datos estadísticos del INEC y el Banco Central del Ecuador se actualizan trimestralmente; consulta siempre la versión más reciente en sus portales oficiales.
+  </div>
+</div>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+  /* === TAB NAVIGATION === */
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const tabs = ['tab0','tab1','tab2','tab3','tab4','tab5','tab6','tab7','tab8','tab9'];
+    document.querySelectorAll('.tab-btn')[tabs.indexOf(id)].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* === EJERCICIO INTERACTIVO === */
+  const ejercicioCorrects = {
+    ei1: 'a', ei2: 'a', ei3: 'a', ei4: 'a',
+    ei5: 'a', ei6: 'a', ei7: 'a', ei8: 'a'
+  };
+
+  const ejercicioFeedbacks = {
+    ei1: {
+      correct: '✅ Correcto. La esencia del Estado de Derecho es que el poder del Estado está sometido a normas jurídicas que se aplican por igual a gobernantes y gobernados. "El rey también está bajo la ley" es la síntesis histórica de este principio.',
+      incorrect: '❌ Incorrecto. En el Estado de Derecho nadie está sobre la ley, ni el gobernante elegido democráticamente. La legitimidad electoral no otorga carta blanca para actuar fuera del marco jurídico. La esencia es que el poder está siempre limitado y regulado por normas preestablecidas.'
+    },
+    ei2: {
+      correct: '✅ Correcto. El Art. 424 de la Constitución de 2008 establece expresamente que la Constitución es la norma suprema y que cualquier norma o acto del poder público que la contradiga carece de validez.',
+      incorrect: '❌ Incorrecto. El Art. 1 define la forma del Estado; el Art. 100 regula participación ciudadana; el Art. 300 establece principios tributarios. Es el Art. 424 el que garantiza expresamente la supremacía constitucional sobre cualquier otra norma o acto del poder público.'
+    },
+    ei3: {
+      correct: '✅ Correcto. Un Coeficiente de Gini de 0 representa igualdad perfecta de ingresos: todos los ciudadanos recibirían exactamente la misma proporción de la riqueza. En la práctica, ningún país llega a ese extremo; Ecuador tiene un Gini de aproximadamente 0.47, lo que indica desigualdad alta.',
+      incorrect: '❌ Incorrecto. Un Gini de 0 significa igualdad perfecta. Un Gini de 1 significa desigualdad máxima (una sola persona concentra todo). El Gini no mide pobreza extrema directamente, ni compara regiones del país — mide la distribución del ingreso en la población total.'
+    },
+    ei4: {
+      correct: '✅ Correcto. La crisis económica de 1999–2000 incluyó el congelamiento de depósitos (feriado bancario), la quiebra de decenas de bancos y la hiperinflación del sucre. El presidente Mahuad adoptó el dólar como medida de emergencia para estabilizar la economía. La Constitución de 2008 llegó ocho años después.',
+      incorrect: '❌ Incorrecto. La dolarización no fue impuesta por un tratado con EE. UU. ni por el FMI, ni fue una decisión del BCE. Fue una medida de emergencia adoptada en enero del año 2000 por el presidente Jamil Mahuad como respuesta a la crisis económica más grave de la historia reciente ecuatoriana.'
+    },
+    ei5: {
+      correct: '✅ Correcto. La "maldición de los recursos" describe el fenómeno por el cual países con abundantes recursos naturales tienden a diversificar menos su economía, desarrollar instituciones más débiles y sufrir mayor corrupción. Ecuador lo vive a través de su alta dependencia del petróleo, que representa entre el 30% y 40% de los ingresos fiscales.',
+      incorrect: '❌ Incorrecto. La "maldición de los recursos" no se refiere a la contaminación ambiental, ni a la falta de personal técnico, ni al agotamiento físico del recurso. Es un concepto económico que describe cómo la abundancia de recursos naturales puede paradójicamente inhibir el desarrollo institucional y económico de largo plazo.'
+    },
+    ei6: {
+      correct: '✅ Correcto. La Acción de Protección (Art. 88 Constitución) es la garantía para proteger derechos constitucionales vulnerados por el Estado o por personas particulares. Cualquier ciudadano puede interponerla ante un juez ordinario sin necesidad de abogado.',
+      incorrect: '❌ Incorrecto. La protección de la libertad física ante detención ilegal es el Habeas Corpus. La exigencia de información pública es la Acción de Acceso a la Información Pública. La obligación al Estado de aplicar normas es la Acción por Incumplimiento. La Acción de Protección protege cualquier derecho constitucional vulnerado por el Estado o por particulares.'
+    },
+    ei7: {
+      correct: '✅ Correcto. Aproximadamente el 55% de la fuerza laboral ecuatoriana trabaja en el sector informal, es decir, sin contrato laboral formal ni aportación al IESS. Esto representa uno de los principales desafíos estructurales del mercado laboral ecuatoriano.',
+      incorrect: '❌ Incorrecto. La informalidad laboral en Ecuador supera el 50% de la fuerza de trabajo — no es un fenómeno marginal. El 55% aproximado incluye trabajadores urbanos y rurales. La dolarización no formalizó automáticamente el mercado laboral; la informalidad es un problema estructural que persiste.'
+    },
+    ei8: {
+      correct: '✅ Correcto. Esta es la "cadena causal" central del curso: la evasión tributaria reduce los ingresos del Estado → el Estado tiene menos recursos para servicios públicos → los más pobres sufren más porque dependen más de esos servicios. El contador que ayuda a evadir es un actor en esa cadena de consecuencias sociales.',
+      incorrect: '❌ Incorrecto. La ética contable tiene consecuencias directas sobre la sociedad, tanto en el sector público como en el privado. La evasión tributaria priva al Estado de recursos para servicios sociales. La informalidad contable refuerza la informalidad económica. El rol del contador es transversal al bienestar social del país.'
+    }
+  };
+
+  function verificarEjercicio() {
+    const preguntas = Object.keys(ejercicioCorrects);
+    const sinResponder = preguntas.filter(n => !document.querySelector(`input[name="${n}"]:checked`));
+    if (sinResponder.length > 0) {
+      alert(`Responde todas las preguntas antes de verificar. Te faltan ${sinResponder.length} pregunta(s).`);
+      return;
+    }
+    let correctas = 0;
+    preguntas.forEach(name => {
+      const val = document.querySelector(`input[name="${name}"]:checked`).value;
+      const ok = val === ejercicioCorrects[name];
+      if (ok) correctas++;
+      const fb = document.getElementById(`fb-${name}`);
+      fb.className = `feedback-item ${ok ? 'correct' : 'incorrect'}`;
+      fb.textContent = ejercicioFeedbacks[name][ok ? 'correct' : 'incorrect'];
+      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+        inp.disabled = true;
+        inp.parentElement.style.background = '';
+      });
+      document.querySelector(`input[name="${name}"]:checked`).parentElement.style.background = ok ? '#e8f5e9' : '#ffebee';
+    });
+    const pct = Math.round(correctas / preguntas.length * 100);
+    document.getElementById('ejercicio-score').style.display = 'block';
+    document.getElementById('ej-number').textContent = `${correctas} / ${preguntas.length}`;
+    document.getElementById('ej-bar').style.width = pct + '%';
+    const rangos = [
+      [100, '🏆', '¡Perfecto! Dominas el Estado de Derecho y la realidad ecuatoriana.'],
+      [80,  '🎯', '¡Excelente! Comprensión sólida del tema.'],
+      [60,  '📘', 'Buen esfuerzo. Repasa los ítems incorrectos y su justificación.'],
+      [40,  '⚠️', 'Necesitas reforzar. Vuelve a las pestañas 1–4 con más detalle.'],
+      [0,   '📖', 'Te recomendamos releer el material completo antes de reintentar.']
+    ];
+    const [,emoji, msg] = rangos.find(([min]) => pct >= min);
+    document.getElementById('ej-emoji').textContent = emoji;
+    document.getElementById('ej-message').textContent = `${pct}% — ${msg}`;
+    document.getElementById('btn-reiniciar-ej').style.display = 'block';
+  }
+
+  function reiniciarEjercicio() {
+    Object.keys(ejercicioCorrects).forEach(name => {
+      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+        inp.checked = false; inp.disabled = false; inp.parentElement.style.background = '';
+      });
+      const fb = document.getElementById(`fb-${name}`);
+      fb.className = 'feedback-item'; fb.textContent = '';
+    });
+    document.getElementById('ejercicio-score').style.display = 'none';
+    document.getElementById('btn-reiniciar-ej').style.display = 'none';
+    document.getElementById('ej-bar').style.width = '0%';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* === CUESTIONARIO === */
+  const quizCorrects = {
+    qi1: 'a', qi2: 'a', qi3: 'a', qi4: 'a', qi5: 'a',
+    qi6: 'a', qi7: 'a', qi8: 'a', qi9: 'a', qi10: 'a'
+  };
+
+  const quizFeedbacks = {
+    qi1: {
+      correct: '✅ Correcto. El Estado Social de Derecho (siglo XX) añade los derechos económicos, sociales y culturales que el Estado Liberal ignoraba, y reconoce que el mercado genera desigualdades que el Estado debe corregir mediante políticas públicas.',
+      incorrect: '❌ Incorrecto. El Estado Liberal garantizó derechos civiles y políticos para quienes tenían propiedad, pero ignoró las desigualdades económicas. El Estado Social no eliminó esos derechos — los amplió, añadiendo los derechos sociales (salud, educación, trabajo) como obligaciones del Estado.'
+    },
+    qi2: {
+      correct: '✅ Correcto. El principio de legalidad tiene una doble dimensión: para las autoridades, solo pueden hacer lo que la ley expresamente les autoriza; para los ciudadanos, pueden hacer todo lo que la ley no prohíba. Esta asimetría es fundamental para proteger la libertad individual frente al poder del Estado.',
+      incorrect: '❌ Incorrecto. El principio de legalidad no concentra el poder legislativo en el Ejecutivo, ni limita los derechos solo a los listados explícitamente (la Constitución de 2008, Art. 11, establece que los derechos son inherentes a la persona y no requieren estar taxativamente listados para ser exigibles). La clave es que las autoridades solo actúan dentro de lo que la ley permite.'
+    },
+    qi3: {
+      correct: '✅ Correcto. El Estado Constitucional de Derechos supera a sus predecesores en tres aspectos clave: los derechos son directamente aplicables (sin necesidad de ley de desarrollo), los jueces pueden inaplicar leyes inconstitucionales (control difuso), y amplía los titulares de derechos a la naturaleza y colectivos.',
+      incorrect: '❌ Incorrecto. El Estado Constitucional de Derechos no elimina las leyes ordinarias — las jerarquiza bajo la Constitución. Tampoco otorga poderes ilimitados a la Corte Constitucional. La característica definitoria es que los derechos son exigibles directamente por cualquier persona sin esperar que una ley los desarrolle.'
+    },
+    qi4: {
+      correct: '✅ Correcto. Sin independencia judicial, la igualdad ante la ley se convierte en una ficción. Si los jueces fallan según quien paga más o tiene más influencia política, los derechos garantizados por la Constitución no tienen mecanismo de protección real. La independencia judicial es el guardián de todos los demás pilares del Estado de Derecho.',
+      incorrect: '❌ Incorrecto. Los jueces independientes no crean leyes ni pueden modificar la Constitución — eso es función del Legislativo y la Asamblea Constituyente respectivamente. La independencia judicial significa que resuelven los casos aplicando la ley sin presiones externas, garantizando así la igualdad real ante la ley.'
+    },
+    qi5: {
+      correct: '✅ Correcto. Al usar el dólar, Ecuador renuncia a la política monetaria: no puede emitir dinero, devaluar para ganar competitividad, ni fijar tasas de interés. Todas esas decisiones las toma la Reserva Federal de EE. UU. en función de su propia economía, no de la ecuatoriana.',
+      incorrect: '❌ Incorrecto. La dolarización no requiere reservas de oro equivalentes; Ecuador puede usar el dólar libremente. El dólar es moneda de curso legal para todas las transacciones internas. El FMI no impuso la dolarización — fue una decisión soberana de emergencia del gobierno ecuatoriano en 2000.'
+    },
+    qi6: {
+      correct: '✅ Correcto. El PIB mide el valor total de producción de bienes y servicios. Su limitación fundamental es que es un promedio que oculta la distribución: un país puede tener un PIB alto mientras la mayoría de sus ciudadanos viven en pobreza si la riqueza está concentrada en pocas manos. Para eso se usan complementariamente indicadores como el Gini o el IDH.',
+      incorrect: '❌ Incorrecto. El PIB no mide felicidad ni bienestar subjetivo — para eso existe el Índice de Felicidad. El PIB incluye servicios (son más del 50% del PIB en muchos países). El PIB no mide los ingresos del gobierno — eso es el Presupuesto General del Estado. El PIB mide el valor de la producción total de un territorio en un período.'
+    },
+    qi7: {
+      correct: '✅ Correcto. La rendición de cuentas (accountability) obliga a los funcionarios públicos a justificar sus actos ante la ciudadanía. La Contraloría General del Estado es el organismo técnico que verifica el uso correcto de los recursos públicos a través de auditorías gubernamentales, siendo el mecanismo técnico por excelencia del accountability fiscal.',
+      incorrect: '❌ Incorrecto. La rendición de cuentas es una obligación, no un derecho de los funcionarios. No es exclusiva del sector privado — es principalmente una obligación del sector público. En Ecuador no es voluntaria: la Constitución (Art. 209) y el COOTAD la exigen explícitamente a todos los niveles de gobierno.'
+    },
+    qi8: {
+      correct: '✅ Correcto. Registrar obras no ejecutadas como completadas viola el principio de legalidad (actuar fuera del marco legal) y la rendición de cuentas (falsear información pública). La Contraloría General del Estado tiene competencia directa para auditar el uso de recursos municipales y puede determinar responsabilidades civiles (devolución de dinero), administrativas (destitución) y remitir el caso a la Fiscalía para la responsabilidad penal.',
+      incorrect: '❌ Incorrecto. No es solo un problema de "transparencia informativa" — es un delito. El Ministerio de Gobierno no tiene competencia sancionatoria en este caso. La Corte Constitucional no investiga delitos administrativos. El mandato democrático no otorga inmunidad para el mal uso de recursos públicos — el Art. 212 de la Constitución establece que la Contraloría controla el uso de recursos del Estado sin excepción.'
+    },
+    qi9: {
+      correct: '✅ Correcto. La situación ilustra múltiples dimensiones simultáneas: (1) la alta informalidad laboral ecuatoriana (~55%), (2) la vulnerabilidad de los trabajadores informales ante crisis externas, (3) el déficit del Estado de Derecho en garantizar los derechos laborales consagrados en la Constitución, y (4) la dependencia de Ecuador de commodities de exportación cuyos precios se fijan en mercados internacionales que el país no controla.',
+      incorrect: '❌ Incorrecto. Esta situación no es aislada — es estructural. No se explica solo por la dolarización (el problema existiría con cualquier moneda si la informalidad persiste). Y definitivamente no demuestra que el modelo "funciona correctamente": los trabajadores sin derechos laborales son una falla del mercado y del Estado de Derecho, no una adaptación eficiente.'
+    },
+    qi10: {
+      correct: '✅ Correcto. En Ecuador, el auditor tiene obligaciones legales y éticas de reportar hallazgos de posibles delitos. El COIP tipifica la complicidad por omisión. Las normas de auditoría (NIA) exigen comunicar irregularidades significativas. Omitir el hallazgo convierte a Sofía en cómplice del fraude y en actora del deterioro del Estado de Derecho que estudiamos. La integridad profesional no es opcional.',
+      incorrect: '❌ Incorrecto. El auditor no puede simplemente "seguir instrucciones" cuando detecta indicios de delito — eso lo convierte en cómplice por omisión. No puede ignorar el hallazgo por falta de experiencia — la obligación ética no depende de los años de trabajo. Y denunciar sí es una obligación legal del auditor en Ecuador cuando detecta presuntos delitos en el ejercicio de su función.'
+    }
+  };
+
+  function verificarQuiz() {
+    const preguntas = Object.keys(quizCorrects);
+    const sinResponder = preguntas.filter(n => !document.querySelector(`input[name="${n}"]:checked`));
+    if (sinResponder.length > 0) {
+      alert(`Responde todas las preguntas antes de verificar. Te faltan ${sinResponder.length} pregunta(s).`);
+      return;
+    }
+    let correctas = 0;
+    preguntas.forEach(name => {
+      const val = document.querySelector(`input[name="${name}"]:checked`).value;
+      const ok = val === quizCorrects[name];
+      if (ok) correctas++;
+      const fb = document.getElementById(`fb-${name}`);
+      fb.className = `feedback-item ${ok ? 'correct' : 'incorrect'}`;
+      fb.textContent = quizFeedbacks[name][ok ? 'correct' : 'incorrect'];
+      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+        inp.disabled = true; inp.parentElement.style.background = '';
+      });
+      document.querySelector(`input[name="${name}"]:checked`).parentElement.style.background = ok ? '#e8f5e9' : '#ffebee';
+    });
+    const pct = Math.round(correctas / preguntas.length * 100);
+    document.getElementById('quiz-score').style.display = 'block';
+    document.getElementById('quiz-number').textContent = `${correctas} / ${preguntas.length}`;
+    document.getElementById('quiz-bar').style.width = pct + '%';
+    const rangos = [
+      [100, '🏆', '¡Perfecto! Rendimiento excepcional.'],
+      [80,  '🎯', '¡Muy bien! Comprensión sólida del tema.'],
+      [60,  '📘', 'Aprobado. Refuerza los temas con errores.'],
+      [40,  '⚠️', 'Por debajo del mínimo. Relee el material y reintenta.'],
+      [0,   '📖', 'Dedica más tiempo al material. ¡Puedes mejorar!']
+    ];
+    const [,emoji, msg] = rangos.find(([min]) => pct >= min);
+    document.getElementById('quiz-emoji').textContent = emoji;
+    document.getElementById('quiz-message').textContent = `${pct}% — ${msg}`;
+    document.getElementById('btn-reiniciar-quiz').style.display = 'block';
+  }
+
+  function reiniciarQuiz() {
+    Object.keys(quizCorrects).forEach(name => {
+      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+        inp.checked = false; inp.disabled = false; inp.parentElement.style.background = '';
+      });
+      const fb = document.getElementById(`fb-${name}`);
+      fb.className = 'feedback-item'; fb.textContent = '';
+    });
+    document.getElementById('quiz-score').style.display = 'none';
+    document.getElementById('btn-reiniciar-quiz').style.display = 'none';
+    document.getElementById('quiz-bar').style.width = '0%';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>

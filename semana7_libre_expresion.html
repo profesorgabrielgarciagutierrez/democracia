@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Semana 7 | Derecho a la Libre Expresión en Internet</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ===== RESET & BASE ===== */
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Sans 3',sans-serif;background:#f0f4f8;color:#1a1a2e;font-size:16px;line-height:1.7;}
+h1,h2,h3,h4{font-family:'Lora',serif;}
+
+/* ===== HEADER ===== */
+.header{background:#003366;color:#fff;padding:18px 24px;display:flex;align-items:center;gap:18px;}
+.header img{height:64px;width:auto;border-radius:4px;}
+.header-text h1{font-size:1.25rem;font-weight:700;line-height:1.3;}
+.header-text p{font-size:0.85rem;opacity:.85;margin-top:3px;}
+.badge-semana{background:#87CEEB;color:#003366;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:20px;display:inline-block;margin-top:6px;}
+
+/* ===== TAB NAV ===== */
+.tab-bar-wrap{background:#87CEEB;overflow-x:auto;white-space:nowrap;border-bottom:3px solid #003366;}
+.tab-bar{display:inline-flex;min-width:100%;}
+.tab-btn{background:transparent;border:none;padding:12px 18px;font-family:'Source Sans 3',sans-serif;font-size:.82rem;font-weight:600;color:#1a1a2e;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;transition:all .2s;}
+.tab-btn:hover{background:rgba(255,255,255,.5);}
+.tab-btn.active{background:#fff;color:#003366;font-weight:700;border-bottom:3px solid #003366;}
+
+/* ===== CONTENT AREA ===== */
+.tab-content{display:none;padding:28px 24px;max-width:960px;margin:0 auto;}
+.tab-content.active{display:block;}
+
+/* ===== CONTENT BOXES ===== */
+.concept-box{border-left:5px solid #003366;background:#fff;padding:16px 20px;margin:18px 0;border-radius:0 8px 8px 0;box-shadow:0 2px 6px rgba(0,51,102,.08);}
+.concept-box h4{color:#003366;font-size:1rem;margin-bottom:6px;}
+
+.example-box{background:#e8f4fd;border-radius:8px;padding:18px 20px;margin:18px 0;border:1px solid #b3d9f2;}
+.example-box .ex-title{font-weight:700;color:#003366;margin-bottom:8px;font-size:.95rem;}
+
+.warning-box{background:#fff3cd;border-left:5px solid #f0a500;border-radius:0 8px 8px 0;padding:16px 20px;margin:18px 0;}
+.warning-box h4{color:#7a4f00;margin-bottom:6px;}
+
+.danger-box{background:#fde8e8;border-left:5px solid #c0392b;border-radius:0 8px 8px 0;padding:16px 20px;margin:18px 0;}
+.danger-box h4{color:#7b241c;margin-bottom:6px;}
+
+.green-box{background:#e8f5e9;border-left:5px solid #27ae60;border-radius:0 8px 8px 0;padding:16px 20px;margin:18px 0;}
+.green-box h4{color:#145a32;margin-bottom:6px;}
+
+.key-idea{background:#003366;color:#fff;border-radius:10px;padding:18px 22px;margin:24px 0;text-align:center;}
+.key-idea h4{font-size:1rem;margin-bottom:6px;color:#87CEEB;}
+.key-idea p{font-size:.95rem;line-height:1.6;}
+
+/* ===== TABLES ===== */
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.9rem;}
+th{background:#003366;color:#fff;padding:10px 12px;text-align:left;}
+td{padding:9px 12px;border-bottom:1px solid #d0dde8;vertical-align:top;}
+tr:nth-child(even) td{background:#f5f9fd;}
+
+/* ===== SECTION HEADINGS ===== */
+.section-title{font-size:1.3rem;color:#003366;margin:24px 0 12px;padding-bottom:6px;border-bottom:2px solid #87CEEB;}
+.intro-text{font-size:1rem;color:#2c3e50;margin-bottom:16px;}
+
+/* ===== REPASO ===== */
+.repaso-card{background:#fff;border-radius:10px;padding:16px 20px;margin:12px 0;box-shadow:0 2px 8px rgba(0,51,102,.08);border-top:4px solid #87CEEB;}
+.repaso-card h4{color:#003366;font-size:.95rem;margin-bottom:6px;}
+.repaso-card p{font-size:.88rem;color:#444;}
+
+/* ===== QUIZ & EJERCICIO ===== */
+.q-block{background:#fff;border-radius:10px;padding:20px;margin:16px 0;box-shadow:0 2px 8px rgba(0,51,102,.08);}
+.q-num{font-weight:700;color:#003366;font-size:.85rem;margin-bottom:6px;}
+.q-text{font-weight:600;margin-bottom:12px;line-height:1.5;}
+.q-badge{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 9px;border-radius:20px;margin-bottom:8px;}
+.badge-teorica{background:#dce8ff;color:#003366;}
+.badge-analisis{background:#ffe4b5;color:#7a4f00;}
+.options label{display:block;padding:8px 12px;margin:5px 0;border-radius:6px;cursor:pointer;border:1px solid #d0dde8;transition:background .15s;}
+.options label:hover{background:#f0f4f8;}
+.options input[type=radio]{margin-right:8px;accent-color:#003366;}
+.options label.correct{background:#d4edda;border-color:#27ae60;font-weight:600;}
+.options label.incorrect{background:#f8d7da;border-color:#c0392b;}
+.feedback-msg{margin-top:10px;padding:10px 14px;border-radius:6px;font-size:.88rem;display:none;}
+.feedback-msg.show{display:block;}
+.feedback-msg.ok{background:#d4edda;color:#155724;border:1px solid #c3e6cb;}
+.feedback-msg.fail{background:#f8d7da;color:#721c24;border:1px solid #f5c6cb;}
+
+/* ===== VERIFY BTN ===== */
+.verify-btn{background:#003366;color:#fff;border:none;padding:12px 32px;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:20px;transition:background .2s;}
+.verify-btn:hover{background:#00509e;}
+.reset-btn{background:#87CEEB;color:#003366;border:none;padding:10px 28px;border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer;margin-top:12px;display:none;}
+
+/* ===== SCORE ===== */
+.score-box{background:#003366;color:#fff;border-radius:12px;padding:24px;text-align:center;margin-top:24px;display:none;}
+.score-box .score-num{font-size:2.4rem;font-weight:700;font-family:'Lora',serif;}
+.score-box .score-msg{font-size:1rem;margin-top:8px;color:#87CEEB;}
+.progress-bar-wrap{background:rgba(255,255,255,.2);border-radius:20px;height:14px;margin:14px auto;max-width:320px;overflow:hidden;}
+.progress-bar-fill{height:100%;border-radius:20px;background:#87CEEB;transition:width 1s ease;}
+
+/* ===== BIBILOGRAPHY ===== */
+.ref-card{background:#fff;border-radius:8px;padding:16px 20px;margin:12px 0;box-shadow:0 2px 6px rgba(0,51,102,.07);border-left:5px solid #003366;}
+.ref-card .ref-author{font-weight:700;color:#003366;font-size:.9rem;}
+.ref-card .ref-title{font-style:italic;color:#2c3e50;font-size:.9rem;}
+.ref-card .ref-source{font-size:.85rem;color:#555;}
+.ref-note{background:#fff3cd;border-radius:8px;padding:14px 18px;margin-top:20px;font-size:.88rem;color:#7a4f00;border:1px solid #f0d080;}
+
+/* ===== IA ACTIVITY ===== */
+.ia-step{background:#fff;border-radius:10px;padding:18px 20px;margin:14px 0;box-shadow:0 2px 6px rgba(0,51,102,.07);border-top:4px solid #003366;}
+.ia-step h4{color:#003366;margin-bottom:8px;}
+.prompt-box{background:#1a1a2e;color:#87CEEB;font-family:monospace;font-size:.85rem;padding:18px;border-radius:8px;white-space:pre-wrap;line-height:1.6;margin:10px 0;}
+
+/* ===== REFLECTION ===== */
+.reflect-card{background:#fff;border-radius:10px;padding:18px 20px;margin:14px 0;box-shadow:0 2px 6px rgba(0,51,102,.07);border-left:5px solid #00BCD4;}
+.reflect-card .r-num{background:#00BCD4;color:#fff;border-radius:50%;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;margin-bottom:10px;}
+.reflect-card p{color:#2c3e50;font-size:.95rem;}
+
+/* ===== EJERCICIO ITEMS ===== */
+.ej-item{background:#fff;border-radius:10px;padding:18px 20px;margin:14px 0;box-shadow:0 2px 8px rgba(0,51,102,.08);}
+.ej-item .ej-label{font-weight:700;color:#003366;margin-bottom:8px;font-size:.9rem;}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:600px){
+  .header{flex-direction:column;align-items:flex-start;}
+  .tab-btn{padding:10px 12px;font-size:.76rem;}
+  .tab-content{padding:18px 14px;}
+  .score-box .score-num{font-size:1.8rem;}
+}
+
+ul.styled{padding-left:20px;}
+ul.styled li{margin-bottom:6px;}
+ol.styled{padding-left:20px;}
+ol.styled li{margin-bottom:6px;}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Logo_ug.png/320px-Logo_ug.png" alt="Universidad de Guayaquil" onerror="this.style.display='none'"/>
+  <div class="header-text">
+    <p style="font-size:.8rem;opacity:.7;">Universidad de Guayaquil | Facultad de Ciencias Administrativas | Contabilidad y Auditoría</p>
+    <h1>Democracia, Ciudadanía y Globalización</h1>
+    <p>Unidad 2: La Democracia</p>
+    <span class="badge-semana">Semana 7 · Derecho a la Libre Expresión en Internet</span>
+  </div>
+</header>
+
+<!-- ===== TAB BAR ===== -->
+<div class="tab-bar-wrap">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('repaso')">📋 Repaso</button>
+    <button class="tab-btn" onclick="showTab('tema1')">1. Libertad de expresión: definición y límites</button>
+    <button class="tab-btn" onclick="showTab('tema2')">2. Expresión asertiva y responsabilidad</button>
+    <button class="tab-btn" onclick="showTab('tema3')">3. La expresión en Internet: imágenes y palabras</button>
+    <button class="tab-btn" onclick="showTab('tema4')">4. Marco legal y ético en Ecuador</button>
+    <button class="tab-btn" onclick="showTab('tema5')">5. El contador/auditor y la expresión pública</button>
+    <button class="tab-btn" onclick="showTab('ejercicio')">✏️ Ejercicio Interactivo</button>
+    <button class="tab-btn" onclick="showTab('cuestionario')">📝 Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia')">🤖 Actividad con IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion')">💭 Reflexión</button>
+    <button class="tab-btn" onclick="showTab('biblio')">📚 Bibliografía</button>
+  </div>
+</div>
+
+<!-- ===== REPASO ===== -->
+<div id="repaso" class="tab-content active">
+  <h2 class="section-title">📋 Repaso de Semanas Anteriores</h2>
+  <p class="intro-text">Esta semana llegamos al corazón de la democracia activa: cómo ejercemos uno de sus derechos más preciados —la libre expresión— en el entorno digital. Para entender bien este tema, recordemos el camino recorrido:</p>
+
+  <div class="repaso-card">
+    <h4>Semana 1 · Organización política y administrativa del Estado ecuatoriano</h4>
+    <p>Estudiamos cómo el Estado ecuatoriano se organiza territorialmente (regiones, provincias, cantones, parroquias) y funcionalmente en cinco funciones constitucionales: Ejecutiva, Legislativa, Judicial, Electoral y de Transparencia y Control Social. Comprendimos que el Estado no es una abstracción: es la estructura que nos permite vivir en sociedad organizada y que define las reglas del juego para todos, incluidos los derechos de expresión.</p>
+  </div>
+
+  <div class="repaso-card">
+    <h4>Semana 2 · La soberanía del Estado</h4>
+    <p>Analizamos el concepto de soberanía como el poder supremo del Estado sobre su territorio y su pueblo. Vimos que la soberanía no reside en el gobierno de turno, sino en el pueblo. Esta base es crucial: si la soberanía reside en los ciudadanos, entonces cada ciudadano tiene derechos —pero también responsabilidades— en el ejercicio del poder, incluido el poder de la palabra.</p>
+  </div>
+
+  <div class="repaso-card">
+    <h4>Semana 3 · Estado de derecho y realidad socioeconómica del Ecuador</h4>
+    <p>Comprendimos que en un Estado de derecho nadie —ni el gobierno ni los ciudadanos— está por encima de la ley. Revisamos la realidad socioeconómica del Ecuador: índices de pobreza, desigualdad, informalidad. Este contexto importa: la desigualdad social alimenta el discurso de odio digital en países como el nuestro, donde la frustración busca salida en las redes.</p>
+  </div>
+
+  <div class="repaso-card">
+    <h4>Semana 4 · Conceptualización crítica de la democracia</h4>
+    <p>Diferenciamos democracia formal (normas e instituciones) de democracia sustancial (vivencia real de derechos). Introdujimos la idea de que la democracia no es solo votar: es la calidad de la deliberación pública, del debate, del disenso respetuoso. La libre expresión es el oxígeno de la democracia deliberativa.</p>
+  </div>
+
+  <div class="repaso-card">
+    <h4>Semana 5 · Modelos de ciudadanía</h4>
+    <p>Estudiamos los modelos liberal (derechos individuales), republicano (participación cívica), comunitarista (bien común) e intercultural (reconocimiento de la diversidad). Cada modelo tiene una visión distinta de hasta dónde llega la libertad de expresión individual antes de colisionar con los derechos del colectivo.</p>
+  </div>
+
+  <div class="repaso-card">
+    <h4>Semana 6 · Democracia, derechos humanos y convivencia democrática</h4>
+    <p>Conectamos los derechos humanos con la democracia: sin derechos humanos garantizados, no hay democracia real. Revisamos los pilares de la convivencia democrática: tolerancia, diálogo, reconocimiento del otro. Esta semana es el puente directo hacia hoy: ¿cómo ejercer la libre expresión sin destruir la convivencia?</p>
+  </div>
+
+  <div class="key-idea">
+    <h4>Hilo conductor hacia la Semana 7</h4>
+    <p>Seis semanas construyendo el andamiaje teórico del Estado, la soberanía, la democracia y los derechos. Hoy aterrizamos todo eso en uno de los derechos más ejercidos y más mal entendidos del siglo XXI: <strong>la libertad de expresión en el entorno digital.</strong> El desafío no es saber que tenemos ese derecho —eso ya lo sabemos. El desafío es saber <em>cómo</em> ejercerlo con dignidad, rigor y responsabilidad.</p>
+  </div>
+</div>
+
+<!-- ===== TEMA 1 ===== -->
+<div id="tema1" class="tab-content">
+  <h2 class="section-title">1. Libertad de Expresión: Definición, Alcances y Límites</h2>
+
+  <div class="concept-box">
+    <h4>¿Qué es la libertad de expresión?</h4>
+    <p>La <strong>libertad de expresión</strong> es el derecho fundamental de toda persona a manifestar libremente sus pensamientos, ideas, opiniones y sentimientos a través de cualquier medio, sin censura previa por parte del Estado. Es reconocida en la Declaración Universal de Derechos Humanos (artículo 19), en la Convención Americana sobre Derechos Humanos (artículo 13) y en la Constitución del Ecuador (artículo 66, numeral 6).</p>
+  </div>
+
+  <p class="intro-text">Sin embargo, existe una confusión peligrosa y muy extendida en el mundo digital: <strong>confundir libertad de expresión con impunidad de expresión.</strong> Libertad no significa ausencia de consecuencias. Libertad significa poder expresarse sin que el Estado te calle <em>antes</em> de hablar; pero lo que dices tiene efectos en otras personas, y esos efectos generan responsabilidades.</p>
+
+  <div class="warning-box">
+    <h4>⚠️ El error más común</h4>
+    <p>"Tengo libertad de expresión, puedo decir lo que quiera." Esta afirmación es <strong>parcialmente verdadera y completamente peligrosa</strong> si se toma sin contexto. Sí puedes expresarte sin censura previa. No puedes hacerlo sin consecuencias jurídicas, éticas y sociales. Un cuchillo es una herramienta de cocina; en las manos equivocadas, con la intención equivocada, es un arma. Las palabras funcionan igual.</p>
+  </div>
+
+  <h3 class="section-title">Tres dimensiones de la libertad de expresión</h3>
+
+  <table>
+    <tr><th>Dimensión</th><th>Qué protege</th><th>Qué NO protege</th></tr>
+    <tr><td><strong>Individual</strong></td><td>Tu derecho a hablar, escribir, opinar sin censura previa</td><td>El daño que causes con esas palabras a personas concretas</td></tr>
+    <tr><td><strong>Colectiva</strong></td><td>El debate público, la prensa, la crítica al poder</td><td>El discurso de odio que incite a la violencia contra grupos</td></tr>
+    <tr><td><strong>Digital</strong></td><td>Expresarse en redes, blogs, foros, sin filtros estatales previos</td><td>La difamación, el acoso, la desinformación deliberada</td></tr>
+  </table>
+
+  <h3 class="section-title">Los límites reconocidos internacionalmente</h3>
+  <p>Ningún sistema democrático reconoce la libertad de expresión como absoluta. Los organismos internacionales (OEA, ONU, Corte Interamericana de DDHH) establecen que puede limitarse cuando:</p>
+
+  <ul class="styled">
+    <li>Afecta el <strong>honor, la reputación y la dignidad</strong> de otras personas (calumnias, injurias, difamación).</li>
+    <li>Constituye <strong>incitación a la violencia</strong> o al odio por motivos de raza, etnia, género, religión o nacionalidad.</li>
+    <li>Pone en riesgo la <strong>seguridad nacional</strong> o el orden público en una sociedad democrática.</li>
+    <li>Viola la <strong>intimidad y privacidad</strong> de personas que no han consentido la exposición.</li>
+    <li>Afecta los <strong>derechos de niños, niñas y adolescentes</strong> (protección especial reforzada).</li>
+  </ul>
+
+  <div class="example-box">
+    <div class="ex-title">📍 Caso ecuatoriano: El límite entre crítica y difamación</div>
+    <p>En Ecuador, durante la campaña electoral de 2023, circularon en redes sociales decenas de montajes fotográficos y videos manipulados (deepfakes) de candidatos cometiendo supuestos actos delictivos. Aunque los autores argumentaron "libertad de expresión", la Fiscalía inició investigaciones por injuria calumniosa. La Constitución protege la crítica política, pero no la fabricación de hechos falsos que dañen la honra. La frontera: <em>opinar es legítimo; mentir sobre hechos concretos para dañar no lo es.</em></p>
+  </div>
+
+  <h3 class="section-title">Libertad de expresión vs. discurso de odio: la línea más difícil</h3>
+  <p>El <strong>discurso de odio</strong> (hate speech) es aquel que incita a la discriminación, hostilidad o violencia contra personas o grupos por características como etnia, género, religión u orientación sexual. El debate sobre cuándo el discurso de odio deja de estar protegido por la libertad de expresión es uno de los más activos en el derecho internacional.</p>
+
+  <div class="concept-box">
+    <h4>Test de los tres pasos (ONU, Comité de Derechos Humanos)</h4>
+    <p>Para determinar si una restricción a la expresión es legítima, debe pasar tres filtros: (1) estar prevista en la ley, (2) perseguir un objetivo legítimo (proteger derechos de terceros, el orden público o la moral), y (3) ser <strong>necesaria y proporcional</strong>. Si un gobierno restringe expresión sin cumplir estos tres pasos, incurre en censura.</p>
+  </div>
+
+  <div class="key-idea">
+    <h4>💡 Idea clave</h4>
+    <p>La libertad de expresión es el derecho a hablar sin que te callen <em>antes</em>. No es el derecho a dañar impunemente. Todo derecho coexiste con el derecho de los demás. En democracia, la frontera entre mi libertad y tu dignidad no la traza mi estado de ánimo: la traza el ordenamiento jurídico y, sobre todo, la ética.</p>
+  </div>
+</div>
+
+<!-- ===== TEMA 2 ===== -->
+<div id="tema2" class="tab-content">
+  <h2 class="section-title">2. Expresión Asertiva, Responsabilidad y el Poder de las Palabras</h2>
+
+  <p class="intro-text">Existe una diferencia fundamental entre lo que <em>podemos</em> decir y lo que <em>debemos</em> decir. La libertad de expresión nos da el <em>derecho</em> a hablar; pero la ética, la inteligencia emocional y el sentido cívico nos dictan <em>cómo</em> hacerlo. Esta diferencia es la que separa al ciudadano maduro del que convierte el espacio público —físico o digital— en un escenario de destrucción.</p>
+
+  <div class="concept-box">
+    <h4>¿Qué es la comunicación asertiva?</h4>
+    <p>La <strong>comunicación asertiva</strong> es la capacidad de expresar pensamientos, sentimientos y necesidades de manera honesta, directa y respetuosa, sin agredir a los demás ni someterse pasivamente. Es el punto de equilibrio entre la agresividad (que destruye) y la pasividad (que calla lo que importa). Ser asertivo es decir la verdad con valentía y con cuidado simultáneamente.</p>
+  </div>
+
+  <h3 class="section-title">Las palabras como herramientas y como armas</h3>
+  <p>La neurociencia ha demostrado que las palabras negativas, humillantes o amenazantes activan el sistema límbico del cerebro (centro de las emociones) con la misma intensidad que una amenaza física. Un insulto en redes puede causar daño psicológico medible. Un comentario hiriente repetido ante miles de seguidores puede destruir una reputación en horas y la autoestima de una persona en semanas.</p>
+
+  <div class="danger-box">
+    <h4>🚫 Expresiones que no son "libertad": son violencia verbal</h4>
+    <ul class="styled">
+      <li>Insultar a alguien porque "me cayó mal" o "me hizo enojar"</li>
+      <li>Publicar comentarios hirientes cuando estamos frustrados o en estado emocional alterado</li>
+      <li>Usar el anonimato en redes para decir lo que nunca diríamos de frente</li>
+      <li>Hacer "justicia pública" exponiendo a alguien antes de conocer todos los hechos</li>
+      <li>Repetir rumores sin verificar porque "todo el mundo lo dice"</li>
+    </ul>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-title">📍 Caso real — Ecuador 2022: el linchamiento digital</div>
+    <p>Una profesora de Cuenca fue acusada en redes sociales de maltratar a sus estudiantes, con base en un video de 30 segundos descontextualizado. En horas, miles de usuarios publicaron su nombre, dirección y número de teléfono. Recibió amenazas de muerte. La investigación posterior demostró que el video mostraba solo una parte de un ejercicio pedagógico. El daño —psicológico, familiar, laboral— fue irreversible. <em>Nadie fue sancionado.</em> La libertad de expresión fue invocada por cada uno de los miles que participaron en el linchamiento.</p>
+  </div>
+
+  <h3 class="section-title">No todo lo que puedo decir, debo decirlo</h3>
+  <p>Este principio tiene raíces filosóficas profundas. Aristóteles enseñó que la virtud es el punto medio entre el exceso y el defecto. Demasiado silencio es cobardía; demasiada verborrea es imprudencia. El filósofo alemán Immanuel Kant propuso el imperativo categórico: <em>"Actúa solo según la máxima que puedas desear que se convierta en ley universal."</em> Pregúntate: ¿qué pasaría si todo el mundo publicara lo que yo estoy a punto de publicar?</p>
+
+  <table>
+    <tr><th>Situación</th><th>Puedo decirlo</th><th>¿Debo decirlo así?</th><th>Alternativa asertiva</th></tr>
+    <tr><td>Me enojé con un compañero de trabajo</td><td>Sí, técnicamente</td><td>No, si es para humillarlo</td><td>Conversar directamente con esa persona</td></tr>
+    <tr><td>Creo que un político está robando</td><td>Sí, si tengo evidencias</td><td>Sí, citando fuentes verificadas</td><td>"Según el informe X, los datos muestran…"</td></tr>
+    <tr><td>Un producto del mercado me estafó</td><td>Sí, compartir la experiencia</td><td>Sí, describiendo hechos, no insultando</td><td>"Mi experiencia fue… y esto fue lo que pasó…"</td></tr>
+    <tr><td>Alguien compartió algo que me parece idiota</td><td>Técnicamente sí</td><td>No, eso no aporta nada</td><td>Argumentar por qué no estás de acuerdo con ideas</td></tr>
+  </table>
+
+  <h3 class="section-title">La lectura como fundamento del buen decir</h3>
+  <p>Uno de los problemas más serios del discurso digital contemporáneo es la <strong>pobreza léxica</strong>: personas que expresan ideas complejas con vocabulario de tres palabras, que por tanto recurren al insulto porque no tienen herramientas lingüísticas para el argumento. La lectura —de libros, ensayos, buena periodística— amplía el vocabulario, mejora la capacidad de razonamiento y proporciona las herramientas para expresar matices.</p>
+
+  <div class="green-box">
+    <h4>📚 Leer para expresarse mejor: el círculo virtuoso</h4>
+    <p>Un ciudadano que lee comprende mejor la realidad → puede argumentar con más precisión → puede identificar la manipulación informativa → puede disentir sin destruir → contribuye a un debate público de calidad. El buen lector es el antídoto al troll. No se trata solo de leer para "pasar el rato": los libros construyen la humanidad de una persona. Alimentan la mente, ensanchan el corazón y afinan el juicio moral.</p>
+  </div>
+
+  <div class="concept-box">
+    <h4>Responsabilidad: asumir las consecuencias de las propias palabras</h4>
+    <p><strong>Responsabilidad</strong> significa, literalmente, "la capacidad de responder por nuestros actos". En el ámbito de la expresión, responsabilizarse no es "pedir disculpas después de insultar"; es pensar <em>antes</em> de expresar. Es asumir que lo que publico en internet puede quedar accesible durante años, puede ser visto por miles de personas, puede afectar la vida real de personas reales. El ejercicio de la libertad de expresión responsable es incompatible con la impulsividad digital.</p>
+  </div>
+
+  <div class="key-idea">
+    <h4>💡 Idea clave</h4>
+    <p>"No todo lo que se puede decir, se debe decir; y no todo lo que se debe decir, se debe decir de cualquier manera." La madurez ciudadana se mide no solo en lo que elegimos callar, sino en la elegancia ética con la que elegimos hablar.</p>
+  </div>
+</div>
+
+<!-- ===== TEMA 3 ===== -->
+<div id="tema3" class="tab-content">
+  <h2 class="section-title">3. La Expresión en Internet: Imágenes, Palabras y sus Consecuencias</h2>
+
+  <p class="intro-text">Internet no es solo un canal de texto. Es un ecosistema de palabras, imágenes, videos, audios, memes, historias y datos. Cada uno de estos formatos tiene el potencial de informar, educar, conectar… o de destruir reputaciones, vulnerar intimidades y causar daños irreparables. En esta pestaña analizamos las dimensiones específicas de la expresión digital.</p>
+
+  <h3 class="section-title">El alcance exponencial de lo digital</h3>
+  <div class="concept-box">
+    <h4>¿Por qué internet cambia las reglas?</h4>
+    <p>Antes de internet, si insultabas a alguien, lo escuchaban quienes estuvieran presentes. Hoy, un tuit puede llegar a millones en minutos, una foto puede compartirse en 190 países, un video puede ser visto 50 millones de veces. Esta <strong>escalabilidad instantánea</strong> del daño cambia radicalmente el peso moral y jurídico de lo que expresamos en línea.</p>
+  </div>
+
+  <h3 class="section-title">El derecho a la propia imagen y a la intimidad</h3>
+  <p>Publicar fotos, videos o información de otras personas sin su consentimiento viola el <strong>derecho a la intimidad personal y familiar</strong> (Constitución del Ecuador, Art. 66, núm. 20) y el <strong>derecho a la propia imagen</strong>. Esto incluye:</p>
+
+  <ul class="styled">
+    <li>Compartir fotos comprometedoras de ex parejas (revenge porn — delito en Ecuador desde 2021)</li>
+    <li>Difundir imágenes privadas tomadas sin consentimiento</li>
+    <li>Etiquetar a personas en contextos que dañen su imagen pública</li>
+    <li>Crear montajes fotográficos con rostros reales de personas</li>
+  </ul>
+
+  <div class="danger-box">
+    <h4>🚨 Incluso la conducta aborrecible merece un proceso, no un linchamiento</h4>
+    <p>Una de las tensiones más complejas del entorno digital es la de las personas que han cometido actos realmente graves —corrupción, maltrato, abuso—. La indignación ciudadana es comprensible y a veces necesaria. Pero existe una diferencia crucial entre <strong>denuncia legítima</strong> (con hechos verificados, ante autoridades competentes, de manera respetuosa) y el <strong>linchamiento digital</strong> (exposición masiva, sin proceso, con el objetivo de destruir). Incluso quien ha cometido un delito grave tiene derechos: presunción de inocencia, derecho a la defensa, prohibición de tratos degradantes. Violarlos no nos convierte en justiciero: nos convierte en parte del problema.</p>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-title">📍 El caso de abuso infantil y la responsabilidad de denuncia</div>
+    <p>Cuando en redes circula material que involucra el abuso o explotación de niños, niñas y adolescentes, la reacción ciudadana adecuada NO es compartir ese material —incluso con fines de "denunciar"— porque compartirlo constituye <strong>distribución de material de abuso infantil</strong>, delito penado en Ecuador con prisión de 7 a 10 años (Código Orgánico Integral Penal, Art. 103). Lo correcto es: (1) no compartir el material, (2) denunciarlo a la Fiscalía General del Estado (1800-FISCAL), (3) reportarlo a la plataforma digital. La indignación moral no justifica la comisión de un delito.</p>
+  </div>
+
+  <h3 class="section-title">Gritar las injusticias en internet: cuándo es legítimo</h3>
+  <p>La denuncia pública digital tiene un rol democrático vital. Ha derrocado gobiernos, detenido guerras, liberado presos políticos, expuesto corporaciones corruptas. El activismo digital, el periodismo ciudadano y la denuncia en redes son herramientas de la democracia. Pero para que sean legítimas, deben cumplir estándares mínimos:</p>
+
+  <table>
+    <tr><th>Criterio</th><th>Denuncia legítima ✅</th><th>Linchamiento digital ❌</th></tr>
+    <tr><td>Verificación</td><td>Basada en hechos comprobables y fuentes</td><td>Basada en rumores, suposiciones o montajes</td></tr>
+    <tr><td>Proporcionalidad</td><td>Proporcional a la gravedad del hecho</td><td>Exagerada, busca destrucción total</td></tr>
+    <tr><td>Objetivo</td><td>Busca justicia, cambio, rendición de cuentas</td><td>Busca venganza, humillación, daño</td></tr>
+    <tr><td>Tono</td><td>Informativo, descriptivo, con evidencia</td><td>Emocional, insultante, incendiario</td></tr>
+    <tr><td>Respeto a la persona</td><td>Critica el acto, no la persona en su totalidad</td><td>Ataca la dignidad humana completa</td></tr>
+    <tr><td>Privacidad de terceros</td><td>Protege a familiares no involucrados</td><td>Expone a hijos, pareja, entorno sin razón</td></tr>
+  </table>
+
+  <h3 class="section-title">La desinformación: cuando mentimos creyendo que hacemos justicia</h3>
+  <p>La <strong>desinformación</strong> es la difusión de información falsa o engañosa, con o sin intención deliberada de engañar. En el entorno digital, la desinformación se propaga más rápido que la verdad, según estudios del MIT (Vosoughi, Roy & Aral, 2018). Compartir una noticia falsa "porque parece verdad" o "porque encaja con lo que ya creo" no nos exime de responsabilidad moral —y en Ecuador, tampoco de responsabilidad jurídica.</p>
+
+  <div class="green-box">
+    <h4>🔍 Antes de compartir: el filtro de los cinco segundos</h4>
+    <p>Antes de compartir cualquier contenido en redes: (1) ¿Quién lo publicó originalmente? (2) ¿Hay una fuente verificable? (3) ¿Otras fuentes confiables lo confirman? (4) ¿La imagen/video parece editado o manipulado? (5) ¿Estoy compartiendo esto por información o por emoción? Si no puedes responder positivamente al menos 3 de estas preguntas, no compartas.</p>
+  </div>
+
+  <div class="key-idea">
+    <h4>💡 Idea clave</h4>
+    <p>En internet, lo que escribes, compartes o publicas no desaparece cuando "lo eliminas". Existe en servidores, en capturas de pantalla, en el recuerdo de quienes lo vieron. Piensa en cada publicación como si la firmaras con tu nombre completo, la proyectaras en una pantalla gigante en el centro de Guayaquil y la enviaras a tu familia, a tu empleador y a un juez simultáneamente.</p>
+  </div>
+</div>
+
+<!-- ===== TEMA 4 ===== -->
+<div id="tema4" class="tab-content">
+  <h2 class="section-title">4. Marco Legal y Ético en Ecuador: Lo que la Ley Dice y lo que la Ética Exige</h2>
+
+  <p class="intro-text">En Ecuador existe un marco legal que regula la libertad de expresión tanto en medios tradicionales como en el entorno digital. Conocer este marco no es opcional para un futuro profesional: es parte de la formación ciudadana básica. Pero el derecho establece mínimos; la ética exige más.</p>
+
+  <h3 class="section-title">Marco constitucional</h3>
+  <div class="concept-box">
+    <h4>Constitución de la República del Ecuador, 2008</h4>
+    <p><strong>Art. 16:</strong> Toda persona tiene derecho a una comunicación libre, intercultural, incluyente, diversa y participativa.<br/>
+    <strong>Art. 18:</strong> Derecho a buscar, recibir, intercambiar, producir y difundir información veraz, verificada, oportuna, contextualizada.<br/>
+    <strong>Art. 66, núm. 6:</strong> Derecho a opinar y expresar el pensamiento libremente y en todas sus formas y manifestaciones.<br/>
+    <strong>Art. 66, núm. 18:</strong> Derecho al honor y al buen nombre. Las personas tienen derecho a acceder a los documentos, datos genéticos, bancos o archivos de datos personales.<br/>
+    <strong>Art. 66, núm. 19:</strong> Derecho a la protección de datos personales.<br/>
+    <strong>Art. 66, núm. 20:</strong> Derecho a la intimidad personal y familiar.</p>
+  </div>
+
+  <h3 class="section-title">Ley Orgánica de Comunicación (LOC) — aspectos clave</h3>
+  <p>La Ley Orgánica de Comunicación (2013, reformada en 2019) establece responsabilidades para medios de comunicación y personas naturales que difunden información públicamente:</p>
+
+  <ul class="styled">
+    <li>Prohibición de difundir información que atente contra la dignidad de las personas.</li>
+    <li>Derecho a la réplica para quien ha sido perjudicado por información inexacta.</li>
+    <li>Prohibición de censura previa, pero responsabilidad ulterior por contenidos dañinos.</li>
+    <li>Protección especial de niños, niñas y adolescentes frente a contenidos inadecuados.</li>
+  </ul>
+
+  <h3 class="section-title">Código Orgánico Integral Penal (COIP) — delitos digitales relevantes</h3>
+
+  <table>
+    <tr><th>Delito</th><th>Artículo COIP</th><th>Pena</th></tr>
+    <tr><td>Injuria calumniosa (afirmar hechos falsos que dañen el honor)</td><td>Art. 182</td><td>6 meses a 2 años de privación de libertad</td></tr>
+    <tr><td>Pornografía con utilización de niños, niñas y adolescentes</td><td>Art. 103</td><td>13 a 16 años de privación de libertad</td></tr>
+    <tr><td>Acoso por medios digitales (ciberacoso)</td><td>Art. 173, 174</td><td>1 a 3 años de privación de libertad</td></tr>
+    <tr><td>Violación a la intimidad (revenge porn)</td><td>Art. 178-A (reforma 2021)</td><td>1 a 3 años + multa</td></tr>
+    <tr><td>Acceso no autorizado a sistemas informáticos</td><td>Art. 234</td><td>3 a 5 años de privación de libertad</td></tr>
+    <tr><td>Interceptación ilegal de datos</td><td>Art. 230</td><td>3 años de privación de libertad</td></tr>
+  </table>
+
+  <div class="warning-box">
+    <h4>⚠️ Lo que muchos ignoran: la responsabilidad civil</h4>
+    <p>Además de la responsabilidad penal, quien difame o dañe la honra de otra persona puede ser demandado civilmente por <strong>daños y perjuicios</strong>. Esto significa pagar una indemnización económica cuantificable. En Ecuador, casos de este tipo han resultado en indemnizaciones de decenas de miles de dólares. "Pensé que era solo un comentario en internet" no es defensa válida ante un juez.</p>
+  </div>
+
+  <h3 class="section-title">El nivel ético: más allá de lo legal</h3>
+  <p>Lo legal establece el piso mínimo de conducta: lo que no se puede hacer bajo amenaza de sanción. Lo ético establece el techo de lo que <em>debería</em> hacerse en términos de dignidad, respeto y cuidado del otro. Un ciudadano ético no se pregunta "¿puedo decir esto sin ir preso?", sino "¿es justo, verdadero, útil y respetuoso lo que voy a decir?"</p>
+
+  <div class="concept-box">
+    <h4>El filtro de las tres preguntas (adaptado de la filosofía estoica)</h4>
+    <p>Antes de expresar algo —en persona o en internet—, pasa tu mensaje por tres filtros:<br/>
+    <strong>1. ¿Es verdad?</strong> ¿Puedes verificarlo?<br/>
+    <strong>2. ¿Es útil?</strong> ¿Aporta algo a quien lo escucha?<br/>
+    <strong>3. ¿Es amable?</strong> ¿Lo expresas con respeto a la dignidad humana?<br/>
+    Si no pasa los tres filtros, lo que quieres expresar merece, al menos, una reformulación.</p>
+  </div>
+
+  <div class="key-idea">
+    <h4>💡 Idea clave</h4>
+    <p>En Ecuador, la libertad de expresión está consagrada constitucionalmente y protegida. Pero el mismo ordenamiento jurídico protege el honor, la intimidad y la dignidad de todas las personas. La ignorancia de la ley no exime de su cumplimiento. Y la ética exige ir siempre un paso más allá de lo que la ley manda.</p>
+  </div>
+</div>
+
+<!-- ===== TEMA 5 ===== -->
+<div id="tema5" class="tab-content">
+  <h2 class="section-title">5. El Contador/Auditor y la Expresión Pública: Dimensión Profesional</h2>
+
+  <p class="intro-text">Todo lo que hemos aprendido esta semana tiene una dimensión especialmente relevante para quienes serán contadores y auditores. El contador público es un profesional cuya función tiene una dimensión pública: certifica la veracidad de información financiera de la que dependen miles de decisiones. Su expresión —pública y profesional— tiene consecuencias que van más allá de lo personal.</p>
+
+  <h3 class="section-title">El contador como persona natural</h3>
+  <div class="concept-box">
+    <h4>Vida digital y reputación profesional</h4>
+    <p>Un contador o auditor que en sus redes sociales personales difunde desinformación, participa en linchamientos digitales, usa lenguaje ofensivo o comparte contenido irresponsable no solo se daña a sí mismo: daña la percepción de toda la profesión. La <strong>Superintendencia de Compañías, Valores y Seguros (SCVS)</strong> y los empleadores verifican cada vez más la presencia digital de sus candidatos. Una publicación impulsiva puede costar un empleo.</p>
+  </div>
+
+  <h3 class="section-title">El contador como persona jurídica / representante de entidades</h3>
+  <p>Cuando el contador actúa en representación de una empresa o firma auditora, sus expresiones públicas pueden comprometer a la entidad. Los comunicados oficiales, los informes de auditoría, los estados financieros y cualquier declaración pública son actos de comunicación con efectos jurídicos y económicos directos.</p>
+
+  <div class="example-box">
+    <div class="ex-title">📍 Escenario real: El auditor que habló de más</div>
+    <p>Un auditor externo que trabaja con una empresa cotizada en bolsa descubre irregularidades. Antes de presentar su informe formal, comenta los hallazgos en una reunión social y alguien lo publica en redes. El resultado: (1) la empresa pierde valor en bolsa antes del proceso formal, (2) se genera pánico entre inversionistas, (3) el auditor puede ser demandado por divulgar información privilegiada. La lección: la expresión del profesional contable está regulada por el <strong>secreto profesional</strong> (Código de Ética del IFAC, normas SCVS), que no es opcional.</p>
+  </div>
+
+  <h3 class="section-title">El derecho a denunciar irregularidades: whistleblowing</h3>
+  <p>El <strong>whistleblowing</strong> (ser "soplón" o denunciante de irregularidades) es un mecanismo de democracia organizacional. El contador o auditor que detecta fraude, corrupción o irregularidades contables tiene no solo el derecho, sino —en ciertos casos— la <strong>obligación legal</strong> de denunciar a las autoridades competentes. Sin embargo, esta denuncia debe seguir canales formales y legales, no hacerse por redes sociales.</p>
+
+  <table>
+    <tr><th>Vía correcta</th><th>Vía incorrecta</th></tr>
+    <tr><td>Denuncia formal ante Fiscalía o SCVS</td><td>Publicar en redes antes del proceso formal</td></tr>
+    <tr><td>Informe de auditoría con evidencia documentada</td><td>Comentar en redes "creo que esta empresa roba"</td></tr>
+    <tr><td>Comunicación interna a la junta directiva</td><td>Filtrar información a la prensa sin proceso</td></tr>
+    <tr><td>Activar mecanismos de protección al denunciante</td><td>Hacer pública la identidad del presunto responsable antes del proceso</td></tr>
+  </table>
+
+  <h3 class="section-title">El buen gusto como dimensión profesional</h3>
+  <p>Aristóteles hablaba de <em>phronesis</em> —la prudencia, el buen juicio práctico— como la virtud más importante para quien toma decisiones en la vida pública. Para el contador o auditor, el buen gusto en la expresión no es un lujo estético: es una competencia profesional. Saber <em>qué</em> decir, <em>cómo</em> decirlo, <em>cuándo</em> callarlo y <em>a quién</em> decírselo es tan importante como dominar las NIIF o el COIP.</p>
+
+  <div class="green-box">
+    <h4>✅ El estándar del profesional íntegro</h4>
+    <p>El contador/auditor ecuatoriano del siglo XXI debe ser capaz de: (1) comunicar hallazgos difíciles con claridad y sin eufemismos cobardes, (2) defender su criterio técnico con argumentos, no con golpes verbales, (3) proteger información confidencial con el mismo rigor que un secreto bancario, (4) denunciar irregularidades por los canales adecuados con evidencia sólida, y (5) mantener una presencia digital coherente con los valores que firma en su código ético profesional.</p>
+  </div>
+
+  <div class="key-idea">
+    <h4>💡 Idea clave</h4>
+    <p>Ser contador o auditor significa que tus palabras —escritas u orales, formales o informales— tienen siempre un peso institucional. La integridad no se divide: no puede haber contador íntegro en el trabajo y troll irresponsable en las redes. La coherencia entre la persona privada y el profesional público es la base de la confianza que la sociedad deposita en esta profesión.</p>
+  </div>
+</div>
+
+<!-- ===== EJERCICIO INTERACTIVO ===== -->
+<div id="ejercicio" class="tab-content">
+  <h2 class="section-title">✏️ Ejercicio Interactivo: ¿Lo digo o no lo digo? ¿Cómo lo digo?</h2>
+  <p class="intro-text">A continuación encontrarás <strong>9 situaciones reales del entorno digital</strong>. Para cada una, debes elegir la respuesta más correcta ética y legalmente. Responde TODAS primero, luego presiona "Verificar respuestas".</p>
+
+  <!-- EI 1 -->
+  <div class="ej-item">
+    <div class="ej-label">Situación 1</div>
+    <p class="q-text">Tu ex jefe te despidió injustamente. Estás furioso. Quieres publicar en LinkedIn: "¡Empresa corrupta! Mi ex jefe es un ladrón y un mentiroso. ¡Eviten trabajar aquí!" ¿Cuál es la acción correcta?</p>
+    <div class="options" id="ei1-opts">
+      <label><input type="radio" name="ei1" value="a"/> A. Publicar la experiencia de manera objetiva: "Trabajé en [empresa] y mi experiencia fue negativa por las siguientes razones verificables: [detalles concretos]."</label>
+      <label><input type="radio" name="ei1" value="b"/> B. Publicar exactamente lo que planeabas: tienes libertad de expresión y es tu experiencia personal.</label>
+      <label><input type="radio" name="ei1" value="c"/> C. No publicar nada porque cualquier comentario negativo sobre una empresa es ilegal en Ecuador.</label>
+      <label><input type="radio" name="ei1" value="d"/> D. Publicar el insulto pero con seudónimo para evitar responsabilidades.</label>
+    </div>
+    <div id="ei1-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- EI 2 -->
+  <div class="ej-item">
+    <div class="ej-label">Situación 2</div>
+    <p class="q-text">En un grupo de WhatsApp te comparten un video que supuestamente muestra a un funcionario público ecuatoriano recibiendo un soborno. Cientos de personas ya lo han compartido. ¿Qué haces?</p>
+    <div class="options" id="ei2-opts">
+      <label><input type="radio" name="ei2" value="a"/> A. Verificas si el video tiene fecha, fuente y contexto identificables; si no los tiene, no lo compartes y alertas al grupo sobre la necesidad de verificar.</label>
+      <label><input type="radio" name="ei2" value="b"/> B. Lo compartes inmediatamente porque "si todos lo comparten, debe ser verdad".</label>
+      <label><input type="radio" name="ei2" value="c"/> C. Lo compartes con un comentario de condena porque aunque no puedas verificarlo, la corrupción debe denunciarse.</label>
+      <label><input type="radio" name="ei2" value="d"/> D. Lo borras del grupo porque cualquier contenido sobre funcionarios públicos es peligroso.</label>
+    </div>
+    <div id="ei2-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- EI 3 -->
+  <div class="ej-item">
+    <div class="ej-label">Situación 3</div>
+    <p class="q-text">Descubres que una persona de tu comunidad cometió un acto gravemente inapropiado (pero no ilegal). Tienes pruebas fotográficas. Varios amigos te presionan para que publiques las fotos "para que todos sepan cómo es". ¿Qué haces?</p>
+    <div class="options" id="ei3-opts">
+      <label><input type="radio" name="ei3" value="a"/> A. No publicas las fotos. Si el acto no es ilegal, lo más que puedes hacer es expresar tu desacuerdo con el comportamiento sin exponer la identidad o imagen de la persona.</label>
+      <label><input type="radio" name="ei3" value="b"/> B. Publicas las fotos porque el comportamiento merece ser conocido por todos.</label>
+      <label><input type="radio" name="ei3" value="c"/> C. Publicas las fotos con el rostro difuminado, así proteges parcialmente la identidad.</label>
+      <label><input type="radio" name="ei3" value="d"/> D. Las compartes en un grupo privado solo con personas de confianza, lo cual es legal y éticamente aceptable siempre.</label>
+    </div>
+    <div id="ei3-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- EI 4 -->
+  <div class="ej-item">
+    <div class="ej-label">Situación 4</div>
+    <p class="q-text">Como estudiante de contabilidad, en un trabajo de grupo descubres que los datos financieros de un caso que están estudiando revelan lo que parece ser un fraude real de una empresa conocida. Un compañero quiere publicarlo en redes para "dar la exclusiva". ¿Cuál es la postura correcta?</p>
+    <div class="options" id="ei4-opts">
+      <label><input type="radio" name="ei4" value="a"/> A. No publicar: los datos deben reportarse a tu docente o a las autoridades competentes, no difundirse en redes sin proceso formal de verificación y sin competencia legal para hacerlo.</label>
+      <label><input type="radio" name="ei4" value="b"/> B. Publicarlo en redes para que la ciudadanía sepa lo que está pasando.</label>
+      <label><input type="radio" name="ei4" value="c"/> C. Compartirlo solo con periodistas de investigación para que ellos lo publiquen.</label>
+      <label><input type="radio" name="ei4" value="d"/> D. Ignorarlo porque como estudiantes no tienen responsabilidad de denunciar.</label>
+    </div>
+    <div id="ei4-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- EI 5 -->
+  <div class="ej-item">
+    <div class="ej-label">Situación 5</div>
+    <p class="q-text">Un conocido publica en redes información falsa sobre ti que daña tu reputación. Tienes pruebas de que es mentira. ¿Cuál es el camino correcto?</p>
+    <div class="options" id="ei5-opts">
+      <label><input type="radio" name="ei5" value="a"/> A. Documentar la publicación con capturas de pantalla, solicitar la rectificación pública a la persona y, si se niega, presentar una denuncia por injuria calumniosa ante la Fiscalía.</label>
+      <label><input type="radio" name="ei5" value="b"/> B. Responder públicamente con insultos proporcionales al daño que te causó.</label>
+      <label><input type="radio" name="ei5" value="c"/> C. Movilizar a tus seguidores para que ataquen la cuenta de quien te difamó.</label>
+      <label><input type="radio" name="ei5" value="d"/> D. Ignorarlo porque "responder le da más visibilidad al problema".</label>
+    </div>
+    <div id="ei5-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- EI 6 -->
+  <div class="ej-item">
+    <div class="ej-label">Situación 6</div>
+    <p class="q-text">En redes sociales, alguien comparte un meme racista sobre una comunidad indígena del Ecuador. Muchos ríen y lo reenvían. ¿Cuál es tu postura éticamente correcta?</p>
+    <div class="options" id="ei6-opts">
+      <label><input type="radio" name="ei6" value="a"/> A. No compartirlo; si es posible, comentar respetuosamente por qué ese contenido es ofensivo y constituye discurso de odio, explicando el daño que causa.</label>
+      <label><input type="radio" name="ei6" value="b"/> B. Compartirlo con una advertencia de que "es solo un chiste".</label>
+      <label><input type="radio" name="ei6" value="c"/> C. Ignorarlo porque los memes son humor y no tienen consecuencias reales.</label>
+      <label><input type="radio" name="ei6" value="d"/> D. Reportarlo a la plataforma y luego publicar el nombre de quien lo creó para que todos lo juzguen.</label>
+    </div>
+    <div id="ei6-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- EI 7 -->
+  <div class="ej-item">
+    <div class="ej-label">Situación 7</div>
+    <p class="q-text">Un político que no te gusta toma una decisión que consideras equivocada. Quieres expresarlo en tus redes. ¿Cuál es la forma más adecuada?</p>
+    <div class="options" id="ei7-opts">
+      <label><input type="radio" name="ei7" value="a"/> A. "La decisión del ministro X sobre la política Y me parece equivocada porque [argumento concreto]. Los datos del informe Z muestran que [evidencia]. Creo que el camino debería ser [propuesta]."</label>
+      <label><input type="radio" name="ei7" value="b"/> B. "El ministro X es un idiota y un corrupto. ¡Que se vaya ya!"</label>
+      <label><input type="radio" name="ei7" value="c"/> C. No expresar ninguna opinión política en redes para evitar conflictos.</label>
+      <label><input type="radio" name="ei7" value="d"/> D. Compartir memes que ridiculicen al político porque es una forma de crítica política protegida.</label>
+    </div>
+    <div id="ei7-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- EI 8 -->
+  <div class="ej-item">
+    <div class="ej-label">Situación 8</div>
+    <p class="q-text">Recibes en WhatsApp un audio en el que una voz supuestamente de un médico dice que cierta vacuna es peligrosa. La persona que te lo envía es de confianza. ¿Qué haces?</p>
+    <div class="options" id="ei8-opts">
+      <label><input type="radio" name="ei8" value="a"/> A. No lo reenvías. Buscas información en fuentes oficiales (MSP Ecuador, OMS) y, si la información resulta falsa, informas a quien te lo envió sobre la desinformación.</label>
+      <label><input type="radio" name="ei8" value="b"/> B. Lo reenvías a tus contactos por precaución: "más vale que lo sepan".</label>
+      <label><input type="radio" name="ei8" value="c"/> C. Lo ignoras pero tampoco alertas a nadie porque no es tu responsabilidad.</label>
+      <label><input type="radio" name="ei8" value="d"/> D. Lo compartes con la advertencia "no sé si es verdad" para no responsabilizarte.</label>
+    </div>
+    <div id="ei8-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- EI 9 -->
+  <div class="ej-item">
+    <div class="ej-label">Situación 9</div>
+    <p class="q-text">Como futuro auditor, eres contratado para auditar una ONG. Encuentras irregularidades menores (gastos no justificados, pero no fraude). Un amigo periodista te pregunta al respecto. ¿Qué haces?</p>
+    <div class="options" id="ei9-opts">
+      <label><input type="radio" name="ei9" value="a"/> A. Le dices que no puedes compartir información cubierta por el secreto profesional y que los hallazgos serán comunicados a las instancias formales correspondientes según el proceso de auditoría.</label>
+      <label><input type="radio" name="ei9" value="b"/> B. Le cuentas los hallazgos en confianza porque "es solo entre amigos".</label>
+      <label><input type="radio" name="ei9" value="c"/> C. Le dices que "no hay nada relevante" para no complicarte.</label>
+      <label><input type="radio" name="ei9" value="d"/> D. Publicas en redes un informe propio antes de terminar la auditoría formal para que la ciudadanía esté informada.</label>
+    </div>
+    <div id="ei9-feedback" class="feedback-msg"></div>
+  </div>
+
+  <button class="verify-btn" onclick="verificarEjercicio()">✔ Verificar respuestas</button>
+  <div id="ej-score" class="score-box"></div>
+  <button class="reset-btn" id="ej-reset" onclick="resetEjercicio()">🔄 Reiniciar ejercicio</button>
+</div>
+
+<!-- ===== CUESTIONARIO ===== -->
+<div id="cuestionario" class="tab-content">
+  <h2 class="section-title">📝 Cuestionario — 10 Preguntas</h2>
+  <p class="intro-text">Responde las 10 preguntas. Selecciona tu respuesta en cada una. Al terminar, presiona "Verificar respuestas" para conocer tus resultados.</p>
+
+  <!-- Q1 -->
+  <div class="q-block">
+    <div class="q-num">Pregunta 1 de 10</div>
+    <span class="q-badge badge-teorica">Teórica</span>
+    <p class="q-text">¿Cuál es la diferencia esencial entre "libertad de expresión" y "libertad de expresión irresponsable"?</p>
+    <div class="options">
+      <label><input type="radio" name="qi1" value="a"/> A. La libertad de expresión responsable reconoce que el derecho a expresarse coexiste con la obligación de no dañar la dignidad, el honor y los derechos de terceros; la irresponsable ignora esa coexistencia.</label>
+      <label><input type="radio" name="qi1" value="b"/> B. La libertad de expresión irresponsable es la que ejerce el Estado; la responsable la ejercen los ciudadanos.</label>
+      <label><input type="radio" name="qi1" value="c"/> C. La diferencia es solo de tono: si eres amable, puedes decir cualquier cosa aunque sea falsa.</label>
+      <label><input type="radio" name="qi1" value="d"/> D. No existe diferencia legal; la responsabilidad solo existe en el ámbito moral.</label>
+    </div>
+    <div id="qi1-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-block">
+    <div class="q-num">Pregunta 2 de 10</div>
+    <span class="q-badge badge-teorica">Teórica</span>
+    <p class="q-text">Según la Constitución del Ecuador (Art. 66), ¿qué derechos relacionados con la expresión y la privacidad reconoce expresamente?</p>
+    <div class="options">
+      <label><input type="radio" name="qi2" value="a"/> A. El derecho a opinar y expresar el pensamiento libremente, el derecho al honor y al buen nombre, la protección de datos personales y el derecho a la intimidad personal y familiar.</label>
+      <label><input type="radio" name="qi2" value="b"/> B. Únicamente el derecho a expresarse libremente, sin restricciones de ningún tipo.</label>
+      <label><input type="radio" name="qi2" value="c"/> C. El derecho a la expresión pública y el derecho a publicar en redes sociales sin moderación del Estado.</label>
+      <label><input type="radio" name="qi2" value="d"/> D. El derecho al anonimato digital y la prohibición de que el Estado monitoree las redes sociales.</label>
+    </div>
+    <div id="qi2-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-block">
+    <div class="q-num">Pregunta 3 de 10</div>
+    <span class="q-badge badge-teorica">Teórica</span>
+    <p class="q-text">¿Qué distingue a la "denuncia legítima" del "linchamiento digital"?</p>
+    <div class="options">
+      <label><input type="radio" name="qi3" value="a"/> A. La denuncia legítima se basa en hechos verificados, es proporcional al hecho, busca justicia y respeta la dignidad del señalado; el linchamiento busca destruir, humillar o vengarse sin proceso formal.</label>
+      <label><input type="radio" name="qi3" value="b"/> B. La denuncia legítima solo puede hacerla un abogado; el linchamiento lo hace cualquier ciudadano.</label>
+      <label><input type="radio" name="qi3" value="c"/> C. No existe diferencia real; ambos son formas válidas de ejercer la libertad de expresión en democracia.</label>
+      <label><input type="radio" name="qi3" value="d"/> D. El linchamiento digital es legal si quien lo protagoniza tiene más de 10,000 seguidores en redes.</label>
+    </div>
+    <div id="qi3-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-block">
+    <div class="q-num">Pregunta 4 de 10</div>
+    <span class="q-badge badge-teorica">Teórica</span>
+    <p class="q-text">¿Qué establece el "Test de los tres pasos" del Comité de Derechos Humanos de la ONU para determinar si una restricción a la expresión es legítima?</p>
+    <div class="options">
+      <label><input type="radio" name="qi4" value="a"/> A. Que la restricción esté prevista en la ley, que persiga un objetivo legítimo y que sea necesaria y proporcional en una sociedad democrática.</label>
+      <label><input type="radio" name="qi4" value="b"/> B. Que la restricción sea aprobada por el Parlamento, validada por el Ejecutivo y refrendada en referéndum.</label>
+      <label><input type="radio" name="qi4" value="c"/> C. Que quien restringe la expresión demuestre que el hablante actuó con mala fe, con conocimiento de causa y con intención de daño.</label>
+      <label><input type="radio" name="qi4" value="d"/> D. Que la restricción sea temporal, reversible y aplicada solo en estados de excepción.</label>
+    </div>
+    <div id="qi4-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-block">
+    <div class="q-num">Pregunta 5 de 10</div>
+    <span class="q-badge badge-teorica">Teórica</span>
+    <p class="q-text">¿Qué es la "comunicación asertiva" en el contexto de la libre expresión?</p>
+    <div class="options">
+      <label><input type="radio" name="qi5" value="a"/> A. La capacidad de expresar pensamientos y necesidades de manera honesta, directa y respetuosa, sin agredir a los demás ni someterse pasivamente, encontrando el equilibrio entre agresividad y pasividad.</label>
+      <label><input type="radio" name="qi5" value="b"/> B. La habilidad de hablar en público con seguridad y sin nerviosismo, usando un vocabulario técnico adecuado.</label>
+      <label><input type="radio" name="qi5" value="c"/> C. La comunicación que utiliza afirmaciones positivas y evita todo tipo de crítica o desacuerdo.</label>
+      <label><input type="radio" name="qi5" value="d"/> D. El tipo de comunicación que usa únicamente canales escritos para evitar malentendidos.</label>
+    </div>
+    <div id="qi5-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-block">
+    <div class="q-num">Pregunta 6 de 10</div>
+    <span class="q-badge badge-teorica">Teórica</span>
+    <p class="q-text">En Ecuador, ¿qué delito comete quien difunde sin consentimiento imágenes íntimas de otra persona (revenge porn)?</p>
+    <div class="options">
+      <label><input type="radio" name="qi6" value="a"/> A. Viola el Art. 178-A del COIP (reforma 2021), delito de violación a la intimidad sexual, sancionado con 1 a 3 años de prisión y multa.</label>
+      <label><input type="radio" name="qi6" value="b"/> B. No existe un tipo penal específico; solo puede demandarse civilmente por daños y perjuicios.</label>
+      <label><input type="radio" name="qi6" value="c"/> C. Comete el delito de estafa si recibió beneficio económico por la difusión.</label>
+      <label><input type="radio" name="qi6" value="d"/> D. Solo es un delito si la persona afectada es menor de edad; entre adultos es una falta administrativa.</label>
+    </div>
+    <div id="qi6-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-block">
+    <div class="q-num">Pregunta 7 de 10</div>
+    <span class="q-badge badge-teorica">Teórica</span>
+    <p class="q-text">¿Por qué el "secreto profesional" del contador/auditor limita su libertad de expresión en ciertas circunstancias?</p>
+    <div class="options">
+      <label><input type="radio" name="qi7" value="a"/> A. Porque el contador/auditor accede a información financiera confidencial de sus clientes, y divulgarla fuera de los canales formales establecidos viola normas éticas del IFAC y puede constituir un delito de revelación de información privilegiada.</label>
+      <label><input type="radio" name="qi7" value="b"/> B. Porque los contadores no tienen derecho a la libre expresión mientras estén ejerciendo su profesión.</label>
+      <label><input type="radio" name="qi7" value="c"/> C. Porque la información financiera siempre es de dominio público y el contador no puede opiniar sobre ella.</label>
+      <label><input type="radio" name="qi7" value="d"/> D. Porque la SCVS prohíbe a todos los profesionales contables tener cuentas en redes sociales.</label>
+    </div>
+    <div id="qi7-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- Q8 - ANÁLISIS -->
+  <div class="q-block">
+    <div class="q-num">Pregunta 8 de 10</div>
+    <span class="q-badge badge-analisis">Análisis</span>
+    <p class="q-text">Valeria, estudiante de contabilidad, descubre en redes un video viral donde un hombre maltrata a un perro. Identificó al hombre como vecino suyo. Furiosa, publica su nombre completo, dirección y teléfono con el mensaje: "¡Este monstruo vive aquí! ¡Vayan a cobrarle lo que merece!" Cientos de personas comienzan a llamar al número y amenazarlo. ¿Cómo evalúas la conducta de Valeria?</p>
+    <div class="options">
+      <label><input type="radio" name="qi8" value="a"/> A. Valeria cometió varios errores: expuso datos personales sin consentimiento (violación a la intimidad), y su publicación incitó a la violencia y el acoso, lo que puede hacerla coresponsable de los daños causados. La vía correcta era denunciar ante las autoridades competentes.</label>
+      <label><input type="radio" name="qi8" value="b"/> B. Valeria actuó correctamente porque el maltrato animal es aborrecible y la ciudadanía tiene derecho a hacer justicia pública.</label>
+      <label><input type="radio" name="qi8" value="c"/> C. Valeria no cometió ningún error legal porque los datos que publicó (nombre y dirección) son información pública.</label>
+      <label><input type="radio" name="qi8" value="d"/> D. Valeria fue impulsiva pero no tiene responsabilidad jurídica porque ella no amenazó directamente al vecino.</label>
+    </div>
+    <div id="qi8-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- Q9 - ANÁLISIS -->
+  <div class="q-block">
+    <div class="q-num">Pregunta 9 de 10</div>
+    <span class="q-badge badge-analisis">Análisis</span>
+    <p class="q-text">Un influencer ecuatoriano con 500,000 seguidores publica un video afirmando que una empresa de telecomunicaciones "estafa a sus clientes" sin presentar ninguna evidencia específica. Miles de usuarios cancelan sus contratos. La empresa demuestra que la información era falsa. ¿Qué consecuencias jurídicas puede enfrentar el influencer?</p>
+    <div class="options">
+      <label><input type="radio" name="qi9" value="a"/> A. Puede enfrentar una demanda penal por injuria calumniosa (Art. 182 COIP) y una demanda civil por daños y perjuicios económicos cuantificables, ya que difundió hechos falsos que causaron daño concreto a la empresa.</label>
+      <label><input type="radio" name="qi9" value="b"/> B. No puede enfrentarse a ninguna consecuencia porque las opiniones personales están protegidas por la libertad de expresión.</label>
+      <label><input type="radio" name="qi9" value="c"/> C. Solo puede ser demandado si la empresa demuestra que el influencer actuó con premeditación.</label>
+      <label><input type="radio" name="qi9" value="d"/> D. Las redes sociales son espacios informales sin consecuencias jurídicas en Ecuador.</label>
+    </div>
+    <div id="qi9-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- Q10 - ANÁLISIS -->
+  <div class="q-block">
+    <div class="q-num">Pregunta 10 de 10</div>
+    <span class="q-badge badge-analisis">Análisis</span>
+    <p class="q-text">Sebastián es auditor externo de una empresa que cotiza en bolsa. Durante la auditoría descubre indicios serios de fraude financiero. Un periodista amigo le llama para preguntarle "¿cómo va la auditoría?". Sebastián dice: "Hay cosas muy raras, creo que hay fraude." Al día siguiente, el periódico publica la noticia y las acciones de la empresa caen un 40%. ¿Cuál es el problema ético y legal de la conducta de Sebastián?</p>
+    <div class="options">
+      <label><input type="radio" name="qi10" value="a"/> A. Sebastián violó el secreto profesional y puede haber cometido el delito de divulgación de información privilegiada, generando además un perjuicio económico a terceros inversionistas y a la empresa antes de que concluyera el proceso formal de auditoría.</label>
+      <label><input type="radio" name="qi10" value="b"/> B. Sebastián actuó correctamente porque la sociedad tiene derecho a saber sobre el fraude financiero.</label>
+      <label><input type="radio" name="qi10" value="c"/> C. Sebastián no tiene responsabilidad porque fue el periodista quien publicó la información.</label>
+      <label><input type="radio" name="qi10" value="d"/> D. El problema es solo ético, no legal, porque Sebastián no firmó ningún acuerdo de confidencialidad por escrito.</label>
+    </div>
+    <div id="qi10-feedback" class="feedback-msg"></div>
+  </div>
+
+  <button class="verify-btn" onclick="verificarCuestionario()">✔ Verificar respuestas</button>
+  <div id="quiz-score" class="score-box"></div>
+  <button class="reset-btn" id="quiz-reset" onclick="resetCuestionario()">🔄 Reiniciar cuestionario</button>
+</div>
+
+<!-- ===== ACTIVIDAD CON IA ===== -->
+<div id="ia" class="tab-content">
+  <h2 class="section-title">🤖 Actividad con Inteligencia Artificial</h2>
+  <p class="intro-text">Esta actividad está diseñada para que uses la inteligencia artificial no como fuente de respuestas, sino como <strong>interlocutor para desarrollar tu pensamiento crítico</strong>. La IA puede estar equivocada, puede ser parcial, puede omitir matices. Tu trabajo es detectarlo, cuestionarlo y superarlo.</p>
+
+  <div class="ia-step">
+    <h4>🎯 Objetivo de la actividad</h4>
+    <p>Analizar críticamente los límites de la libertad de expresión en un caso real o hipotético del contexto ecuatoriano, usando la IA como punto de partida para construir tu propio argumento fundamentado.</p>
+  </div>
+
+  <div class="ia-step">
+    <h4>🛠️ Herramienta recomendada</h4>
+    <p>Ingresa a <a href="https://claude.ai" target="_blank" style="color:#003366;font-weight:700;">claude.ai</a> (Anthropic Claude — gratuito). También puedes usar ChatGPT (chatgpt.com) o Gemini (gemini.google.com). Se recomienda Claude por la calidad de su razonamiento ético y jurídico.</p>
+  </div>
+
+  <div class="ia-step">
+    <h4>📋 Paso 1: Usa este prompt exacto con la IA</h4>
+    <div class="prompt-box">Actúa como experto en derecho constitucional ecuatoriano y ética de la comunicación digital.
+
+Analiza el siguiente caso hipotético:
+
+"Daniela, una ciudadana ecuatoriana, descubrió que su vecino —un médico respetado de la comunidad— cobró a pacientes por una consulta telemática que duró 2 minutos y no resolvió el problema de salud. Daniela tiene el recibo y una grabación del encuentro. Furiosa, publicó en su cuenta de Instagram con 8,000 seguidores: 'El Dr. [nombre completo] del consultorio [dirección completa] es un estafador. No lo consulten. Les cobra por no atender.'"
+
+Responde lo siguiente:
+1. ¿Qué derechos fundamentales están en tensión en este caso?
+2. ¿La publicación de Daniela está protegida por la libertad de expresión según la Constitución ecuatoriana y la Convención Americana de DDHH?
+3. ¿Qué consecuencias jurídicas puede enfrentar Daniela en Ecuador?
+4. ¿Qué debería haber hecho Daniela para ejercer su derecho de expresión de manera legítima y responsable?
+5. ¿Cambia algo en tu análisis si el médico efectivamente cometió una mala práctica comprobada?
+
+Sé preciso, cita los artículos legales relevantes y distingue claramente entre lo legal y lo ético.</div>
+  </div>
+
+  <div class="ia-step">
+    <h4>🔍 Paso 2: Analiza críticamente la respuesta de la IA</h4>
+    <p>Una vez obtengas la respuesta, examínala con estas preguntas:</p>
+    <ul class="styled">
+      <li>¿La IA cita artículos específicos de la Constitución ecuatoriana y el COIP? ¿Son correctos los que menciona?</li>
+      <li>¿Distingue claramente entre lo que es <em>legal</em> y lo que es <em>ético</em>? ¿O los mezcla?</li>
+      <li>¿La IA toma partido por Daniela o por el médico, o mantiene una posición equilibrada?</li>
+      <li>¿Hay algún argumento que la IA no consideró y que te parece importante?</li>
+      <li>¿La IA reconoció explícitamente los límites de su conocimiento del derecho ecuatoriano?</li>
+    </ul>
+  </div>
+
+  <div class="ia-step">
+    <h4>💬 Paso 3: Contra-argumenta a la IA</h4>
+    <p>Elige UN punto de la respuesta de la IA con el que estés en desacuerdo o que consideres incompleto. Envía este segundo mensaje a la IA:</p>
+    <div class="prompt-box">En tu respuesta anterior dijiste que [copia aquí el punto específico con el que no estás de acuerdo]. 
+
+Sin embargo, yo considero que [escribe aquí tu argumento propio].
+
+¿Puedes reconsiderar tu análisis a la luz de este argumento? ¿En qué estás de acuerdo con mi punto y en qué no, y por qué?</div>
+  </div>
+
+  <div class="ia-step">
+    <h4>📝 Paso 4: Produce tu entregable</h4>
+    <p>Escribe un texto propio (entre 300 y 500 palabras) que responda a esta pregunta:</p>
+    <p style="font-weight:700;color:#003366;margin:10px 0;">"¿Qué debería haber hecho Daniela? ¿Y cómo debería actuar yo si estuviera en su lugar, siendo estudiante de Contabilidad y Auditoría?"</p>
+    <p>Tu texto debe: (1) mostrar que leíste y cuestionaste la respuesta de la IA, (2) incluir al menos 2 referencias legales concretas del marco ecuatoriano, (3) proponer una acción concreta alternativa a lo que Daniela hizo, y (4) reflexionar sobre cómo este caso se relaciona con tu futura práctica profesional.</p>
+  </div>
+
+  <div class="ia-step">
+    <h4>⚖️ Criterio de evaluación: ¿Pensamiento crítico o copia simple?</h4>
+    <table>
+      <tr><th>Indicador</th><th>Pensamiento crítico ✅</th><th>Copia simple ❌</th></tr>
+      <tr><td>Uso de la IA</td><td>Cuestiona, rebate o matiza algún punto de la respuesta</td><td>Copia y pega la respuesta de la IA sin modificación</td></tr>
+      <tr><td>Referencias legales</td><td>Cita artículos específicos y los explica con sus propias palabras</td><td>Menciona "la ley dice" sin citar nada específico</td></tr>
+      <tr><td>Propuesta alternativa</td><td>Propone una acción concreta, paso a paso, viable en Ecuador</td><td>Solo describe lo que Daniela hizo mal sin proponer alternativa</td></tr>
+      <tr><td>Conexión profesional</td><td>Establece una conexión genuina con su rol como contador/auditor</td><td>No conecta el caso con la profesión</td></tr>
+      <tr><td>Voz propia</td><td>El texto refleja su criterio personal fundamentado</td><td>El texto podría haber sido escrito por cualquier persona o por la IA</td></tr>
+    </table>
+  </div>
+
+  <div class="key-idea">
+    <h4>💡 Recuerda</h4>
+    <p>La IA es una herramienta poderosa, pero no tiene conciencia moral, no vive en Ecuador, no conoce tu contexto y puede equivocarse. Tu valor como profesional no está en saber usar la IA —eso lo hará cualquiera. Está en saber cuándo la IA se equivoca y por qué.</p>
+  </div>
+</div>
+
+<!-- ===== REFLEXIÓN ===== -->
+<div id="reflexion" class="tab-content">
+  <h2 class="section-title">💭 Preguntas para la Reflexión Personal</h2>
+  <p class="intro-text">Estas preguntas no tienen respuestas correctas ni incorrectas. Son una invitación a mirarte honestamente, a conectar lo que estudiaste con lo que vives. El contenido de esta semana no está separado de tu realidad: está en cada publicación que haces, cada comentario que lees, cada vez que decides hablar o callar.</p>
+
+  <div class="reflect-card">
+    <div class="r-num">1</div>
+    <p><strong>El espejo de tus redes sociales.</strong> Si alguien que no te conoce viera solo tus últimas 20 publicaciones o comentarios en redes, ¿qué persona pensaría que eres? ¿Coincide esa imagen con quien quieres ser? ¿Hay algo de lo que publicaste que, con el tiempo, te avergüenza o te incomoda? ¿Qué te dice eso sobre ti?</p>
+  </div>
+
+  <div class="reflect-card">
+    <div class="r-num">2</div>
+    <p><strong>El termómetro emocional.</strong> Recuerda la última vez que publicaste algo o escribiste un comentario cuando estabas enojado, frustrado o herido. ¿Lo habrías escrito igual si hubieras esperado 24 horas? ¿Qué te movía realmente: ¿querer que se hiciera justicia o querer descargar algo que sentías? ¿Cuál fue el efecto de esa publicación en la otra persona?</p>
+  </div>
+
+  <div class="reflect-card">
+    <div class="r-num">3</div>
+    <p><strong>La trampa del anonimato.</strong> ¿Has dicho en internet algo que nunca dirías en persona y de frente? ¿Por qué? ¿Qué nos dice eso sobre la relación entre nuestra identidad real y nuestra identidad digital? Si eres diferente detrás de una pantalla, ¿cuál de las dos versiones es la verdadera?</p>
+  </div>
+
+  <div class="reflect-card">
+    <div class="r-num">4</div>
+    <p><strong>Las palabras que te formaron.</strong> Piensa en las personas que más te han marcado positivamente en la vida. ¿Cómo hablaban? ¿Qué tenía de especial su forma de expresarse? Ahora piensa en alguien cuyas palabras te hicieron daño, aunque quizás esa persona pensó que "solo estaba siendo honesta". ¿Qué diferencia había entre ambas formas de comunicar?</p>
+  </div>
+
+  <div class="reflect-card">
+    <div class="r-num">5</div>
+    <p><strong>La indignación y la justicia.</strong> Cuando ves una injusticia en redes —un video de maltrato, una denuncia de corrupción, una acusación pública— ¿cómo reaccionas? ¿Verificas primero o compartes primero? ¿Qué porcentaje de las veces esa indignación te llevó a actuar de forma que realmente ayudó a resolver el problema, versus cuántas veces fue simplemente emoción descargada en la pantalla?</p>
+  </div>
+
+  <div class="reflect-card">
+    <div class="r-num">6</div>
+    <p><strong>Tu reputación profesional futura.</strong> Imagina que ya eres contador o auditor certificado. Un cliente potencial o un empleador revisa tu historial de redes sociales de los últimos 5 años. ¿Qué encontraría? ¿Te daría esa persona el trabajo o el contrato, o al contrario? ¿Qué estás construyendo hoy con tu presencia digital para el profesional que serás mañana?</p>
+  </div>
+
+  <div class="reflect-card">
+    <div class="r-num">7</div>
+    <p><strong>La lectura como alimento del alma.</strong> ¿Cuándo fue la última vez que terminaste un libro —no una serie, no un video corto, sino un libro completo? ¿Cómo te sentiste al terminar de leerlo? ¿Hay diferencia en la calidad de tus pensamientos y tu forma de expresarte cuando lees regularmente versus cuando no lo haces? ¿Qué dice esa diferencia sobre el lugar que le das a tu crecimiento intelectual?</p>
+  </div>
+
+  <div class="reflect-card">
+    <div class="r-num">8</div>
+    <p><strong>El buen gusto como virtud, no como lujo.</strong> El concepto de "buen gusto" no se refiere a lo caro ni a lo sofisticado: se refiere a la capacidad de distinguir lo que es bueno, verdadero y bello de lo que no lo es. ¿Tienes criterio propio para distinguir una noticia bien fundamentada de una manipulación? ¿Una crítica legítima de un insulto disfrazado de crítica? ¿Un meme gracioso de uno que humilla a alguien? ¿Cómo cultivas ese criterio?</p>
+  </div>
+
+  <div class="reflect-card">
+    <div class="r-num">9</div>
+    <p><strong>Responsabilidad: la consecuencia como maestra.</strong> ¿Hubo alguna vez en tu vida en que dijiste algo —en persona o en digital— que tuvo consecuencias que no habías previsto, y que esas consecuencias te enseñaron algo? ¿Qué aprendiste? ¿Cambió tu forma de comunicarte? Si nunca has tenido esa experiencia, ¿crees que eso significa que siempre has comunicado bien, o que simplemente no te has dado cuenta de los efectos que has causado?</p>
+  </div>
+
+  <div class="reflect-card">
+    <div class="r-num">10</div>
+    <p><strong>La persona que quieres ser.</strong> Más allá del contador o auditor que te graduarás siendo, ¿qué tipo de persona quieres ser? ¿Quieres ser alguien de cuyas palabras las personas se fíen? ¿Alguien que cuando habla, las personas escuchan porque saben que lo que dice es verdadero, verificado y dicho con respeto? ¿Qué estás haciendo hoy —en cada conversación, en cada publicación, en cada libro que decides leer o no leer— para construir a esa persona?</p>
+  </div>
+
+  <div class="key-idea">
+    <h4>💡 Para cerrar esta reflexión</h4>
+    <p>La libertad de expresión no se defiende con el caos del decir todo sin pensar. Se defiende con la disciplina del decir bien lo que importa. El ciudadano libre no es el que grita más fuerte, sino el que, cuando habla, transforma algo en la realidad de los otros. Eso es lo que construye una democracia real: personas que piensan antes de hablar, que leen antes de opinar, y que entienden que sus palabras son siempre un acto de poder, y el poder tiene siempre un nombre: <em>responsabilidad</em>.</p>
+  </div>
+</div>
+
+<!-- ===== BIBLIOGRAFÍA ===== -->
+<div id="biblio" class="tab-content">
+  <h2 class="section-title">📚 Referencias Bibliográficas</h2>
+  <p class="intro-text">Se presentan las referencias en formato APA 7.ª edición. Se recomienda verificar cada referencia antes de citarla en trabajos académicos.</p>
+
+  <div class="ref-card">
+    <div class="ref-author">Asamblea Nacional del Ecuador. (2008).</div>
+    <div class="ref-title">Constitución de la República del Ecuador.</div>
+    <div class="ref-source">Registro Oficial N.° 449. Artículos 16, 18, 66 (núm. 6, 18, 19, 20). https://www.asambleanacional.gob.ec/es/contenido/constitucion-de-la-republica-del-ecuador</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-author">Asamblea Nacional del Ecuador. (2014).</div>
+    <div class="ref-title">Código Orgánico Integral Penal (COIP).</div>
+    <div class="ref-source">Registro Oficial Suplemento N.° 180. Artículos 103, 178-A, 182, 230, 234. https://www.fiscalia.gob.ec/coip/</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-author">Comisión Interamericana de Derechos Humanos. (2013).</div>
+    <div class="ref-title"><em>Libertad de expresión e internet.</em></div>
+    <div class="ref-source">OEA/Ser.L/V/II. CIDH/RELE/INF. 11/13. Relatoría Especial para la Libertad de Expresión. https://www.oas.org/es/cidh/expresion/docs/informes/2013_04_16_Internet_WEB.pdf</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-author">Organización de las Naciones Unidas. (1966).</div>
+    <div class="ref-title"><em>Pacto Internacional de Derechos Civiles y Políticos.</em></div>
+    <div class="ref-source">Adoptado por la Asamblea General de la ONU, resolución 2200A (XXI). Artículo 19. https://www.ohchr.org/es/instruments-mechanisms/instruments/international-covenant-civil-and-political-rights</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-author">Vosoughi, S., Roy, D., & Aral, S. (2018).</div>
+    <div class="ref-title"><em>The spread of true and false news online.</em></div>
+    <div class="ref-source"><em>Science, 359</em>(6380), 1146–1151. https://doi.org/10.1126/science.aap9559</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-author">Organización de Estados Americanos. (1969).</div>
+    <div class="ref-title"><em>Convención Americana sobre Derechos Humanos (Pacto de San José).</em></div>
+    <div class="ref-source">Artículos 11 y 13. https://www.oas.org/dil/esp/tratados_B-32_Convencion_Americana_sobre_Derechos_Humanos.htm</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-author">International Federation of Accountants (IFAC). (2021).</div>
+    <div class="ref-title"><em>Código de Ética para Profesionales de la Contabilidad (Edición 2021).</em></div>
+    <div class="ref-source">International Ethics Standards Board for Accountants (IESBA). https://www.ifac.org/system/files/publications/files/IESBA-2021-Handbook-Code-of-Ethics.pdf</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-author">Castells, M. (2012).</div>
+    <div class="ref-title"><em>Redes de indignación y esperanza: Los movimientos sociales en la era de Internet.</em></div>
+    <div class="ref-source">Alianza Editorial.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-author">Zuboff, S. (2020).</div>
+    <div class="ref-title"><em>La era del capitalismo de la vigilancia: La lucha por un futuro humano frente a las nuevas fronteras del poder.</em></div>
+    <div class="ref-source">Paidós.</div>
+  </div>
+
+  <div class="ref-note">
+    📌 <strong>Nota importante:</strong> Se recomienda verificar cada referencia en <a href="https://scholar.google.com" target="_blank">Google Scholar (scholar.google.com)</a> o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos. Las URLs pueden cambiar; los DOI son los identificadores más estables.
+  </div>
+</div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ===== TAB NAVIGATION =====
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ===== EJERCICIO INTERACTIVO =====
+const ejercicioCorrects = {
+  ei1: 'a', ei2: 'a', ei3: 'a', ei4: 'a', ei5: 'a',
+  ei6: 'a', ei7: 'a', ei8: 'a', ei9: 'a'
+};
+
+const ejercicioFeedbacks = {
+  ei1: {
+    ok: "✅ Correcto. La crítica laboral es legítima cuando se basa en hechos concretos y verificables, expresada sin insultos ni afirmaciones falsas. Afirmar que alguien es 'ladrón' sin sentencia judicial puede ser injuria calumniosa (Art. 182 COIP).",
+    fail: "❌ La opción correcta es A. Publicar insultos o afirmaciones falsas (como 'ladrón' sin sentencia) constituye injuria calumniosa en Ecuador. La crítica legítima describe hechos reales, no insulta personas. El anonimato tampoco elimina la responsabilidad legal."
+  },
+  ei2: {
+    ok: "✅ Correcto. Verificar antes de compartir es el estándar ético mínimo. La desinformación se propaga más rápido que la verdad (Vosoughi et al., 2018). Compartir sin verificar convierte al ciudadano en amplificador del daño.",
+    fail: "❌ La opción correcta es A. 'Si todos lo comparten' no es criterio de veracidad. Compartir contenido no verificado te convierte en difusor de potencial desinformación, con consecuencias morales y, si el contenido daña a una persona identificada, también jurídicas."
+  },
+  ei3: {
+    ok: "✅ Correcto. Publicar imágenes de una persona sin su consentimiento vulnera el derecho a la propia imagen y a la intimidad (Art. 66, núm. 20, Constitución del Ecuador), independientemente de la conducta que se quiera denunciar.",
+    fail: "❌ La opción correcta es A. Publicar fotos de alguien sin consentimiento viola su derecho a la imagen y la intimidad. El difuminado parcial no elimina la violación. Compartir en privado tampoco: el contenido puede redistribuirse. Un acto cuestionable no autoriza una violación de derechos para denunciarlo."
+  },
+  ei4: {
+    ok: "✅ Correcto. El proceso formal de denuncia —ante docentes, supervisores o autoridades competentes— es el canal adecuado. Publicar hallazgos contables en redes sin proceso formal puede ser violación del secreto profesional y generar responsabilidades.",
+    fail: "❌ La opción correcta es A. Como futuro profesional contable, los hallazgos de irregularidades deben reportarse por canales formales. Publicar en redes puede constituir violación del secreto profesional. Ignorarlo también sería incorrecto, pues existe deber ético de reportar."
+  },
+  ei5: {
+    ok: "✅ Correcto. La respuesta jurídica correcta ante la difamación en Ecuador es documentar, solicitar rectificación y, si procede, denunciar por injuria calumniosa (Art. 182 COIP). Responder con insultos o movilizar ataques aumenta el daño.",
+    fail: "❌ La opción correcta es A. Responder con insultos puede hacerte incurrir también en responsabilidad legal. Movilizar ataques es incitación al acoso. Ignorarlo completamente puede permitir que el daño continúe. El camino correcto: documentar, solicitar rectificación formal, y si persiste, denunciar judicialmente."
+  },
+  ei6: {
+    ok: "✅ Correcto. El discurso de odio —incluyendo el racismo expresado como 'humor'— no está protegido por la libertad de expresión. Lo correcto es no compartirlo y, si es posible, explicar el daño que causa. Reportarlo a la plataforma es también una opción válida.",
+    fail: "❌ La opción correcta es A. Los memes racistas perpetúan discriminación y pueden constituir discurso de odio. 'Es solo un chiste' no exime de responsabilidad moral ni legal. Publicar el nombre del autor para que 'todos lo juzguen' podría convertirse en un linchamiento digital, lo cual tampoco es correcto."
+  },
+  ei7: {
+    ok: "✅ Correcto. La crítica política argumentada, basada en datos y con propuesta alternativa, es el ejercicio más valioso de la libertad de expresión en democracia. Es distinguible del insulto, que no aporta al debate público.",
+    fail: "❌ La opción correcta es A. Insultar a un político ('idiota', 'corrupto' sin evidencia) puede constituir injuria calumniosa. Los memes ridiculizadores, aunque protegidos en parte como sátira, no reemplazan el argumento. El silencio tampoco es la respuesta: la democracia necesita ciudadanos que critiquen con fundamento."
+  },
+  ei8: {
+    ok: "✅ Correcto. La desinformación médica puede causar daño real de salud pública. La respuesta ética es verificar en fuentes oficiales (MSP, OMS) y comunicar la corrección a quien te lo envió. Reenviar con o sin advertencia amplifica el problema.",
+    fail: "❌ La opción correcta es A. 'No sé si es verdad' no te exime de responsabilidad si lo compartes y resulta falso y dañino. Las fuentes oficiales de salud pública (MSP Ecuador, OMS) son el estándar de verificación para este tipo de contenido."
+  },
+  ei9: {
+    ok: "✅ Correcto. El secreto profesional del auditor es un pilar del Código de Ética del IFAC y de la normativa de la SCVS en Ecuador. Los hallazgos de auditoría deben comunicarse exclusivamente a través de los canales formales establecidos en el proceso de auditoría.",
+    fail: "❌ La opción correcta es A. Decirle al periodista 'en confianza' no protege al auditor: esa conversación puede ser la fuente de una filtración con consecuencias graves. Decir 'no hay nada' siendo mentira también viola el código ético. Publicar antes de concluir la auditoría viola el proceso formal y puede generar pánico injustificado."
+  }
+};
+
+function verificarEjercicio() {
+  const names = ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8','ei9'];
+  let allAnswered = true;
+  names.forEach(n => {
+    if (!document.querySelector(`input[name="${n}"]:checked`)) allAnswered = false;
+  });
+  if (!allAnswered) { alert('Por favor responde todas las situaciones antes de verificar.'); return; }
+
+  let correct = 0;
+  names.forEach(n => {
+    const sel = document.querySelector(`input[name="${n}"]:checked`).value;
+    const fb = document.getElementById(`${n}-feedback`);
+    const opts = document.getElementById(`${n}-opts`);
+    opts.querySelectorAll('label').forEach(l => {
+      const v = l.querySelector('input').value;
+      if (v === ejercicioCorrects[n]) l.classList.add('correct');
+      else if (v === sel && sel !== ejercicioCorrects[n]) l.classList.add('incorrect');
+    });
+    opts.querySelectorAll('input').forEach(i => i.disabled = true);
+    if (sel === ejercicioCorrects[n]) {
+      correct++;
+      fb.className = 'feedback-msg show ok';
+      fb.innerHTML = ejercicioFeedbacks[n].ok;
+    } else {
+      fb.className = 'feedback-msg show fail';
+      fb.innerHTML = ejercicioFeedbacks[n].fail;
+    }
+  });
+
+  const pct = Math.round((correct / names.length) * 100);
+  const scoreBox = document.getElementById('ej-score');
+  scoreBox.style.display = 'block';
+  let emoji, msg;
+  if (pct === 100) { emoji = '🏆'; msg = 'Excelente dominio del tema. Tu criterio ético es sólido.'; }
+  else if (pct >= 80) { emoji = '🎯'; msg = 'Muy bien. Tienes buen criterio ético-legal. Repasa los puntos fallados.'; }
+  else if (pct >= 60) { emoji = '📘'; msg = 'Vas por buen camino. Revisa los casos que te generaron duda.'; }
+  else if (pct >= 40) { emoji = '⚠️'; msg = 'Necesitas reforzar el contenido. Vuelve a leer los temas del widget.'; }
+  else { emoji = '📖'; msg = 'Regresa al material con calma. Cada situación tiene su fundamento en los temas estudiados.'; }
+  scoreBox.innerHTML = `
+    <div class="score-num">${emoji} ${correct}/${names.length}</div>
+    <div class="score-msg">${pct}% — ${msg}</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%" id="ej-bar"></div></div>`;
+  setTimeout(() => { document.getElementById('ej-bar').style.width = pct + '%'; }, 100);
+  document.getElementById('ej-reset').style.display = 'inline-block';
+}
+
+function resetEjercicio() {
+  ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8','ei9'].forEach(n => {
+    document.querySelectorAll(`input[name="${n}"]`).forEach(i => { i.checked = false; i.disabled = false; });
+    const fb = document.getElementById(`${n}-feedback`);
+    fb.className = 'feedback-msg';
+    fb.innerHTML = '';
+    document.getElementById(`${n}-opts`).querySelectorAll('label').forEach(l => {
+      l.classList.remove('correct','incorrect');
+    });
+  });
+  document.getElementById('ej-score').style.display = 'none';
+  document.getElementById('ej-reset').style.display = 'none';
+}
+
+// ===== CUESTIONARIO =====
+const quizCorrects = {
+  qi1:'a', qi2:'a', qi3:'a', qi4:'a', qi5:'a',
+  qi6:'a', qi7:'a', qi8:'a', qi9:'a', qi10:'a'
+};
+
+const quizFeedbacks = {
+  qi1: {
+    ok: "✅ Correcto. La libertad de expresión responsable reconoce la coexistencia de derechos: el mío de expresarme y el del otro de no ser dañado en su honor, intimidad y dignidad. La irresponsable ignora esa coexistencia.",
+    fail: "❌ La opción correcta es A. La libertad de expresión coexiste siempre con los derechos de terceros. No es una dicotomía Estado vs. ciudadanos, ni se reduce al tono; implica contenido verdadero y que no vulnere derechos. La responsabilidad existe tanto en lo moral como en lo legal."
+  },
+  qi2: {
+    ok: "✅ Correcto. El Art. 66 de la Constitución ecuatoriana reconoce expresamente el derecho a opinar (núm. 6), el honor y buen nombre (núm. 18), la protección de datos personales (núm. 19) y la intimidad personal y familiar (núm. 20).",
+    fail: "❌ La opción correcta es A. La Constitución ecuatoriana establece un sistema de derechos en equilibrio: no solo protege la expresión sino también el honor, la intimidad y los datos personales. Ninguno de estos derechos es absoluto ni cancela a los demás."
+  },
+  qi3: {
+    ok: "✅ Correcto. La denuncia legítima está basada en hechos verificados, es proporcional, busca justicia y respeta la dignidad; el linchamiento busca destruir sin proceso, con frecuencia basado en emociones no en evidencia.",
+    fail: "❌ La opción correcta es A. La diferencia no reside en quién hace la denuncia ni en su popularidad digital, sino en la base de hechos, la proporcionalidad, el objetivo y el respeto a la dignidad del denunciado."
+  },
+  qi4: {
+    ok: "✅ Correcto. El Test de los tres pasos del Comité de DDHH de la ONU establece que una restricción a la expresión es legítima si: está prevista en la ley, persigue un objetivo legítimo, y es necesaria y proporcional en una sociedad democrática.",
+    fail: "❌ La opción correcta es A. Los tres pasos son: legalidad, legitimidad del objetivo y necesidad-proporcionalidad. No se trata de procesos parlamentarios, de demostrar mala fe del hablante, ni de restricciones temporales exclusivamente."
+  },
+  qi5: {
+    ok: "✅ Correcto. La comunicación asertiva es el equilibrio entre la agresividad (que destruye) y la pasividad (que calla lo importante): honesta, directa y respetuosa simultáneamente.",
+    fail: "❌ La opción correcta es A. Asertividad no es hablar en público con confianza (eso es oratoria), ni evitar toda crítica (eso sería pasividad), ni comunicarse solo por escrito. Es la capacidad de decir la verdad con valentía y con respeto al mismo tiempo."
+  },
+  qi6: {
+    ok: "✅ Correcto. En Ecuador, la reforma de 2021 al COIP incorporó el Art. 178-A que tipifica la violación a la intimidad sexual (revenge porn) con pena de 1 a 3 años de prisión más multa.",
+    fail: "❌ La opción correcta es A. Desde la reforma de 2021, Ecuador sí tiene un tipo penal específico para la difusión no consentida de imágenes íntimas (revenge porn), recogido en el Art. 178-A del COIP. No se limita a menores de edad: protege a cualquier persona."
+  },
+  qi7: {
+    ok: "✅ Correcto. El secreto profesional del contador/auditor está regulado por el Código de Ética del IFAC y las normas de la SCVS. Divulgar información financiera confidencial fuera de canales formales puede constituir delito de revelación de información privilegiada.",
+    fail: "❌ La opción correcta es A. Los contadores sí tienen libertad de expresión, pero su acceso a información financiera confidencial de clientes los obliga a guardar secreto profesional. Esto no los priva de derechos; establece responsabilidades proporcionales a su función social."
+  },
+  qi8: {
+    ok: "✅ Correcto. Valeria cometió múltiples errores: expuso datos personales sin consentimiento (violación de intimidad), y su publicación incitó directamente a la violencia y el acoso, lo que puede hacerla coresponsable de los daños causados. La denuncia debió hacerse ante las autoridades competentes.",
+    fail: "❌ La opción correcta es A. La indignación moral, aunque comprensible, no justifica violar derechos. Publicar datos personales de alguien para que 'vayan a cobrarle' es incitación al acoso, potencialmente ilegal. La vía correcta siempre es la denuncia formal ante autoridades."
+  },
+  qi9: {
+    ok: "✅ Correcto. Afirmar hechos falsos sobre una empresa que causen daño económico concreto y verificable puede constituir injuria calumniosa (Art. 182 COIP) y generar responsabilidad civil por daños y perjuicios. La libertad de expresión protege opiniones, no falsedades dañinas presentadas como hechos.",
+    fail: "❌ La opción correcta es A. Aunque la libertad de expresión protege las opiniones, no protege la afirmación de hechos falsos que causen daño verificable. El influencer puede enfrentar proceso penal por injuria calumniosa y proceso civil por daños y perjuicios."
+  },
+  qi10: {
+    ok: "✅ Correcto. Sebastián violó el secreto profesional, uno de los pilares del Código de Ética del IFAC. Su declaración informal al periodista fue la fuente que desencadenó consecuencias económicas graves. Puede haber cometido el delito de revelación de información privilegiada, independientemente de si firmó un contrato de confidencialidad.",
+    fail: "❌ La opción correcta es A. El secreto profesional del auditor no depende de la firma de un contrato específico: es una obligación ética y legal inherente al ejercicio de la profesión. La responsabilidad de Sebastián existe aunque él no haya publicado directamente: fue la fuente. El periodista también puede tener responsabilidades propias."
+  }
+};
+
+function verificarCuestionario() {
+  const names = ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'];
+  let allAnswered = true;
+  names.forEach(n => {
+    if (!document.querySelector(`input[name="${n}"]:checked`)) allAnswered = false;
+  });
+  if (!allAnswered) { alert('Por favor responde todas las preguntas antes de verificar.'); return; }
+
+  let correct = 0;
+  names.forEach(n => {
+    const sel = document.querySelector(`input[name="${n}"]:checked`).value;
+    const fb = document.getElementById(`${n}-feedback`);
+    const block = fb.closest('.q-block');
+    block.querySelectorAll('label').forEach(l => {
+      const v = l.querySelector('input').value;
+      if (v === quizCorrects[n]) l.classList.add('correct');
+      else if (v === sel && sel !== quizCorrects[n]) l.classList.add('incorrect');
+    });
+    block.querySelectorAll('input').forEach(i => i.disabled = true);
+    if (sel === quizCorrects[n]) {
+      correct++;
+      fb.className = 'feedback-msg show ok';
+      fb.innerHTML = quizFeedbacks[n].ok;
+    } else {
+      fb.className = 'feedback-msg show fail';
+      fb.innerHTML = quizFeedbacks[n].fail;
+    }
+  });
+
+  const pct = Math.round((correct / names.length) * 100);
+  const scoreBox = document.getElementById('quiz-score');
+  scoreBox.style.display = 'block';
+  let emoji, msg;
+  if (pct === 100) { emoji = '🏆'; msg = 'Dominio excepcional. Tienes claro el marco ético y legal de la libre expresión.'; }
+  else if (pct >= 80) { emoji = '🎯'; msg = 'Muy buen resultado. Repasa los temas donde tuviste dudas.'; }
+  else if (pct >= 60) { emoji = '📘'; msg = 'Resultado aceptable. Vuelve a los temas del widget para reforzar.'; }
+  else if (pct >= 40) { emoji = '⚠️'; msg = 'Hay conceptos importantes que necesitan refuerzo. Revisa el material con detenimiento.'; }
+  else { emoji = '📖'; msg = 'Dedica tiempo a releer el contenido del widget. Los fundamentos son clave para este tema.'; }
+  scoreBox.innerHTML = `
+    <div class="score-num">${emoji} ${correct}/10</div>
+    <div class="score-msg">${pct}% — ${msg}</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%" id="quiz-bar"></div></div>`;
+  setTimeout(() => { document.getElementById('quiz-bar').style.width = pct + '%'; }, 100);
+  document.getElementById('quiz-reset').style.display = 'inline-block';
+}
+
+function resetCuestionario() {
+  ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'].forEach(n => {
+    document.querySelectorAll(`input[name="${n}"]`).forEach(i => { i.checked = false; i.disabled = false; });
+    const fb = document.getElementById(`${n}-feedback`);
+    fb.className = 'feedback-msg';
+    fb.innerHTML = '';
+    fb.closest('.q-block').querySelectorAll('label').forEach(l => l.classList.remove('correct','incorrect'));
+  });
+  document.getElementById('quiz-score').style.display = 'none';
+  document.getElementById('quiz-reset').style.display = 'none';
+}
+</script>
+</body>
+</html>

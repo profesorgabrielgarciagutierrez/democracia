@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 2 | La Soberanía del Estado | DCG</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #f0f4f8;
+    color: #1a1a2e;
+    min-height: 100vh;
+  }
+  h1, h2, h3, h4 { font-family: 'Lora', serif; }
+
+  /* ===== HEADER ===== */
+  header {
+    background: #003366;
+    color: #fff;
+    padding: 0;
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 16px 28px 10px;
+  }
+  .header-logo {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #fff;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+  .header-text h1 {
+    font-size: 1.18rem;
+    font-weight: 700;
+    letter-spacing: .3px;
+    color: #fff;
+  }
+  .header-text p {
+    font-size: .85rem;
+    color: #cde;
+    margin-top: 2px;
+  }
+  .header-meta {
+    background: #002244;
+    padding: 7px 28px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .header-meta span {
+    font-size: .82rem;
+    color: #87CEEB;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .header-meta strong { color: #fff; }
+
+  /* ===== TABS ===== */
+  .tab-bar-wrap {
+    background: #87CEEB;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 3px solid #003366;
+  }
+  .tab-bar {
+    display: inline-flex;
+    min-width: 100%;
+  }
+  .tab-btn {
+    padding: 10px 18px;
+    border: none;
+    background: transparent;
+    color: #1a1a2e;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: .84rem;
+    cursor: pointer;
+    white-space: nowrap;
+    border-right: 1px solid rgba(0,51,102,.15);
+    transition: background .2s;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,.5); }
+  .tab-btn.active {
+    background: #fff;
+    color: #003366;
+    font-weight: 700;
+    border-bottom: 3px solid #fff;
+    margin-bottom: -3px;
+  }
+
+  /* ===== CONTENT ===== */
+  .tab-panel { display: none; padding: 28px 24px 40px; max-width: 960px; margin: 0 auto; }
+  .tab-panel.active { display: block; }
+
+  /* ===== TYPOGRAPHY HELPERS ===== */
+  .section-title {
+    font-size: 1.45rem;
+    color: #003366;
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #87CEEB;
+  }
+  .subtitle {
+    font-size: 1.1rem;
+    color: #003366;
+    margin: 22px 0 8px;
+  }
+  p { line-height: 1.75; margin-bottom: 12px; font-size: .97rem; }
+
+  /* ===== BOXES ===== */
+  .box-concept {
+    border-left: 5px solid #003366;
+    background: #f0f6ff;
+    padding: 14px 18px;
+    margin: 18px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .box-concept strong { color: #003366; font-family: 'Lora', serif; }
+  .box-example {
+    background: #dff0fb;
+    border: 1px solid #87CEEB;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 18px 0;
+  }
+  .box-example .ex-title {
+    font-weight: 700;
+    color: #003366;
+    margin-bottom: 6px;
+    font-size: .93rem;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+  .box-key {
+    background: #003366;
+    color: #fff;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 22px 0;
+  }
+  .box-key .key-title {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #87CEEB;
+  }
+  .box-key p { color: #e8f0fe; margin-bottom: 0; font-size: .94rem; }
+  .box-warn {
+    background: #fff8e1;
+    border-left: 5px solid #f59e0b;
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+  }
+
+  /* ===== TABLE ===== */
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: .93rem; }
+  th { background: #003366; color: #fff; padding: 10px 12px; text-align: left; }
+  td { padding: 9px 12px; border-bottom: 1px solid #dde; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f8ff; }
+  tr:hover td { background: #eaf2ff; }
+
+  /* ===== REPASO CARDS ===== */
+  .repaso-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 14px; margin: 18px 0; }
+  .repaso-card {
+    background: #fff;
+    border: 1px solid #c5d8f0;
+    border-top: 4px solid #003366;
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .repaso-card h4 { color: #003366; font-size: .95rem; margin-bottom: 6px; }
+  .repaso-card p { font-size: .87rem; margin: 0; color: #444; }
+
+  /* ===== QUIZ & EXERCISE ===== */
+  .quiz-question {
+    background: #fff;
+    border: 1px solid #c5d8f0;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+  }
+  .quiz-question .q-num {
+    font-size: .78rem;
+    font-weight: 700;
+    color: #003366;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .badge {
+    display: inline-block;
+    font-size: .72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .badge-theory { background: #003366; color: #fff; }
+  .badge-case { background: #0077b6; color: #fff; }
+  .q-text { font-weight: 600; margin-bottom: 12px; font-size: .97rem; line-height: 1.5; }
+  .options label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 6px;
+    border: 1px solid #dde;
+    background: #fafbff;
+    transition: background .15s;
+    font-size: .93rem;
+  }
+  .options label:hover { background: #eaf2ff; }
+  .options input[type="radio"] { margin-top: 2px; flex-shrink: 0; }
+  .feedback-item { display: none; margin-top: 8px; padding: 8px 12px; border-radius: 6px; font-size: .88rem; }
+  .feedback-item.correct { background: #d1fae5; color: #065f46; display: block; }
+  .feedback-item.incorrect { background: #fee2e2; color: #991b1b; display: block; }
+
+  .btn-verify {
+    background: #003366;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Source Sans 3', sans-serif;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background .2s;
+  }
+  .btn-verify:hover { background: #0055a5; }
+  .btn-reset {
+    background: #87CEEB;
+    color: #003366;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: .95rem;
+    font-family: 'Source Sans 3', sans-serif;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-weight: 700;
+    transition: background .2s;
+  }
+  .btn-reset:hover { background: #5bb8e0; }
+
+  .score-box {
+    display: none;
+    background: #fff;
+    border: 2px solid #003366;
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-top: 22px;
+    text-align: center;
+  }
+  .score-box .score-emoji { font-size: 2.5rem; }
+  .score-box .score-num { font-size: 2rem; font-weight: 700; color: #003366; font-family: 'Lora', serif; }
+  .score-box .score-msg { font-size: 1rem; color: #444; margin-top: 6px; }
+  .progress-bar-wrap { background: #e0e8f0; border-radius: 20px; height: 14px; margin: 14px 0 6px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; border-radius: 20px; background: #003366; transition: width .8s ease; }
+
+  /* ===== AI ACTIVITY ===== */
+  .ai-step {
+    background: #fff;
+    border: 1px solid #c5d8f0;
+    border-left: 5px solid #0077b6;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+  }
+  .ai-step .step-label {
+    font-size: .78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #0077b6;
+    margin-bottom: 4px;
+  }
+  .ai-prompt-box {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-family: monospace;
+    font-size: .88rem;
+    line-height: 1.7;
+    margin: 12px 0;
+    white-space: pre-wrap;
+  }
+
+  /* ===== REFLECTION ===== */
+  .reflect-card {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #c5d8f0;
+    border-top: 4px solid #87CEEB;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .reflect-card .r-num {
+    font-size: .78rem;
+    font-weight: 700;
+    color: #87CEEB;
+    background: #003366;
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+  .reflect-card p { margin: 0; font-size: .96rem; line-height: 1.7; }
+
+  /* ===== BIBLIOGRAPHY ===== */
+  .bib-card {
+    background: #fff;
+    border: 1px solid #c5d8f0;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+  }
+  .bib-card .bib-authors { font-weight: 700; color: #003366; font-size: .93rem; }
+  .bib-card .bib-ref { font-size: .9rem; color: #333; margin-top: 4px; line-height: 1.6; }
+  .bib-card .bib-ref em { font-style: italic; }
+  .bib-note {
+    background: #fff8e1;
+    border-left: 4px solid #f59e0b;
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    font-size: .85rem;
+    margin-top: 20px;
+    color: #555;
+  }
+
+  /* ===== EXERCISE DRAG/DROP (clasificar) ===== */
+  .ejercicio-item {
+    background: #fff;
+    border: 1px solid #c5d8f0;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+  }
+  .ejercicio-item .ei-text { font-weight: 600; font-size: .96rem; margin-bottom: 10px; line-height: 1.5; }
+  .ei-options label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 6px;
+    border: 1px solid #dde;
+    background: #fafbff;
+    font-size: .91rem;
+    transition: background .15s;
+  }
+  .ei-options label:hover { background: #eaf2ff; }
+
+  @media (max-width: 600px) {
+    .header-top { padding: 12px 14px; }
+    .header-meta { padding: 7px 14px; gap: 12px; }
+    .tab-panel { padding: 18px 12px 32px; }
+    .header-text h1 { font-size: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-top">
+    <img src="ug.png" alt="Logo Universidad de Guayaquil" class="header-logo" onerror="this.style.display='none'">
+    <div class="header-text">
+      <h1>Universidad de Guayaquil &mdash; Facultad de Ciencias Administrativas</h1>
+      <p>Carrera en Contabilidad y Auditoría &nbsp;|&nbsp; Democracia, Ciudadanía y Globalización</p>
+    </div>
+  </div>
+  <div class="header-meta">
+    <span><strong>Unidad 1:</strong> El Estado ecuatoriano</span>
+    <span><strong>Semana:</strong> 2</span>
+    <span><strong>Tema:</strong> La soberanía del Estado</span>
+    <span><strong>Modalidad:</strong> Virtual autónoma</span>
+  </div>
+</header>
+
+<!-- ===== TAB BAR ===== -->
+<div class="tab-bar-wrap">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('repaso')">📋 Repaso Sem. 1</button>
+    <button class="tab-btn" onclick="showTab('t1')">1. ¿Qué es soberanía?</button>
+    <button class="tab-btn" onclick="showTab('t2')">2. Soberanía interna y externa</button>
+    <button class="tab-btn" onclick="showTab('t3')">3. Soberanía popular</button>
+    <button class="tab-btn" onclick="showTab('t4')">4. Soberanía en Ecuador</button>
+    <button class="tab-btn" onclick="showTab('t5')">5. Amenazas a la soberanía</button>
+    <button class="tab-btn" onclick="showTab('ejercicio')">6. Ejercicio interactivo</button>
+    <button class="tab-btn" onclick="showTab('cuestionario')">7. Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia')">8. Actividad con IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion')">9. Reflexión</button>
+    <button class="tab-btn" onclick="showTab('biblio')">10. Bibliografía</button>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PESTAÑA 1: REPASO -->
+<!-- ============================================================ -->
+<div id="tab-repaso" class="tab-panel active">
+  <h2 class="section-title">📋 Repaso — Semana 1: Organización política y administrativa del Ecuador</h2>
+  <p>Durante la primera semana exploramos la arquitectura fundamental del Estado ecuatoriano: cómo está organizado, quién lo compone y cómo se distribuye el poder en el territorio. A continuación encontrarás un resumen analítico de los conceptos clave que debes tener presentes para comprender la soberanía.</p>
+
+  <div class="repaso-grid">
+    <div class="repaso-card">
+      <h4>🏛️ El Estado como institución</h4>
+      <p>El Estado es una organización política permanente que ejerce poder soberano sobre una población dentro de un territorio delimitado. No es el gobierno de turno: es la estructura que lo sustenta.</p>
+    </div>
+    <div class="repaso-card">
+      <h4>📜 Constitución 2008</h4>
+      <p>Ecuador se rige por la Constitución aprobada en Montecristi. Establece un Estado constitucional de derechos y justicia, social, democrático, soberano, independiente y unitario.</p>
+    </div>
+    <div class="repaso-card">
+      <h4>⚖️ Las cinco funciones del Estado</h4>
+      <p>Ejecutivo, Legislativo, Judicial, Electoral y de Transparencia y Control Social. Cada una cumple un rol específico para que el poder no se concentre en una sola mano.</p>
+    </div>
+    <div class="repaso-card">
+      <h4>🗺️ Organización territorial</h4>
+      <p>Ecuador se divide en regiones, provincias (24), cantones y parroquias. Esta organización descentraliza el poder y acerca los servicios públicos a la ciudadanía.</p>
+    </div>
+    <div class="repaso-card">
+      <h4>👥 Los GAD</h4>
+      <p>Los Gobiernos Autónomos Descentralizados (provinciales, municipales, parroquiales) gestionan el desarrollo local con autonomía administrativa y financiera.</p>
+    </div>
+    <div class="repaso-card">
+      <h4>🔗 Conexión con esta semana</h4>
+      <p>Toda esa organización solo es posible porque el Estado tiene soberanía. Sin soberanía, no hay autoridad legítima para gobernar, legislar ni impartir justicia.</p>
+    </div>
+  </div>
+
+  <div class="box-key">
+    <div class="key-title">💡 Pregunta puente</div>
+    <p>Si el Estado ecuatoriano tiene cinco funciones y 221 GAD, ¿quién les da el poder de actuar? ¿De dónde viene la autoridad que los hace legítimos? Esa respuesta es la <strong>soberanía</strong> — el tema de esta semana.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PESTAÑA T1: ¿Qué es soberanía? -->
+<!-- ============================================================ -->
+<div id="tab-t1" class="tab-panel">
+  <h2 class="section-title">1. ¿Qué es la soberanía? Fundamentos conceptuales</h2>
+
+  <p>La palabra <strong>soberanía</strong> proviene del latín <em>superanus</em>, que significa "el que está por encima de todo". Es uno de los conceptos más importantes — y más disputados — de la ciencia política y el derecho constitucional. Entenderla es esencial para cualquier ciudadano y, especialmente, para quienes ejercerán profesiones vinculadas a la institucionalidad del Estado, como los contadores y auditores.</p>
+
+  <div class="box-concept">
+    <strong>Definición fundamental:</strong> La soberanía es el poder supremo, independiente y legítimo de un Estado para gobernarse a sí mismo, dictar sus propias leyes, administrar su territorio y relacionarse con otros Estados sin subordinación a ninguna autoridad externa.
+  </div>
+
+  <h3 class="subtitle">1.1 Jean Bodin: el fundador del concepto moderno</h3>
+  <p>El jurista y filósofo francés <strong>Jean Bodin</strong> (1529–1596) fue el primero en sistematizar el concepto en su obra <em>Los seis libros de la República</em> (1576). Para Bodin, la soberanía es <em>perpetua y absoluta</em>: no está limitada en el tiempo ni condicionada por nadie. La soberanía era, en su época, la del monarca.</p>
+
+  <div class="box-example">
+    <div class="ex-title">📖 Contexto histórico</div>
+    <p>Bodin escribió en plenas guerras de religión en Francia. Necesitaba justificar por qué el rey debía tener autoridad incuestionable para imponer orden. Hoy ese concepto ha evolucionado: la soberanía ya no reside en el rey, sino en el pueblo — pero la idea de poder supremo permanece.</p>
+  </div>
+
+  <h3 class="subtitle">1.2 Thomas Hobbes: soberanía como contrato social</h3>
+  <p><strong>Thomas Hobbes</strong> (1588–1679), en su obra <em>Leviatán</em> (1651), argumentó que los seres humanos en estado natural viven en un "estado de guerra de todos contra todos". Para escapar de ese caos, los individuos firman un <strong>contrato social</strong>: ceden parte de su libertad a un soberano (el Estado) a cambio de seguridad y orden. El soberano tiene poder absoluto precisamente porque los ciudadanos se lo delegaron voluntariamente.</p>
+
+  <h3 class="subtitle">1.3 Jean-Jacques Rousseau: soberanía popular</h3>
+  <p><strong>Jean-Jacques Rousseau</strong> (1712–1778), en <em>El contrato social</em> (1762), dio un giro radical: la soberanía no puede cederse ni delegarse permanentemente. Reside siempre en el pueblo y se expresa como <strong>voluntad general</strong>. Los gobernantes son solo mandatarios del pueblo; si traicionan esa voluntad, el pueblo puede revocarles el mandato. Esta idea es el fundamento de la democracia moderna y está explícitamente recogida en la Constitución ecuatoriana de 2008.</p>
+
+  <div class="box-concept">
+    <strong>Evolución del concepto:</strong>
+    <ul style="margin-top:8px;padding-left:20px;line-height:2">
+      <li><strong>Bodin (s. XVI):</strong> Soberanía del monarca — absoluta y perpetua.</li>
+      <li><strong>Hobbes (s. XVII):</strong> Soberanía contractual — delegada al Estado por seguridad.</li>
+      <li><strong>Rousseau (s. XVIII):</strong> Soberanía popular — inalienable, reside siempre en el pueblo.</li>
+      <li><strong>Siglo XXI:</strong> Soberanía limitada por el derecho internacional y los derechos humanos.</li>
+    </ul>
+  </div>
+
+  <h3 class="subtitle">1.4 Características esenciales de la soberanía</h3>
+  <table>
+    <thead>
+      <tr><th>Característica</th><th>Significado</th><th>Ejemplo en Ecuador</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Suprema</strong></td>
+        <td>No hay poder político mayor dentro del territorio.</td>
+        <td>La Constitución ecuatoriana está por encima de cualquier ley o decreto.</td>
+      </tr>
+      <tr>
+        <td><strong>Permanente</strong></td>
+        <td>No desaparece cuando cambia el gobierno.</td>
+        <td>Ecuador sigue siendo soberano independientemente de quién sea presidente.</td>
+      </tr>
+      <tr>
+        <td><strong>Inalienable</strong></td>
+        <td>No puede cederse ni venderse a otro Estado.</td>
+        <td>Ecuador no puede ceder su territorio al mejor postor.</td>
+      </tr>
+      <tr>
+        <td><strong>Indivisible</strong></td>
+        <td>No puede partirse en fracciones.</td>
+        <td>La soberanía sobre las Galápagos es tan completa como sobre Quito.</td>
+      </tr>
+      <tr>
+        <td><strong>Imprescriptible</strong></td>
+        <td>No caduca con el tiempo.</td>
+        <td>Ecuador mantiene soberanía sobre su Amazonía aunque existan presiones externas.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box-key">
+    <div class="key-title">💡 Idea clave</div>
+    <p>La soberanía no es un privilegio del gobierno: es el fundamento jurídico-político que hace posible la existencia misma del Estado. Sin soberanía, no hay Estado; sin Estado, no hay orden, derechos ni instituciones. Para un contador o auditor, entender esto significa comprender por qué las normas contables emitidas por el Estado tienen fuerza obligatoria.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PESTAÑA T2: Soberanía interna y externa -->
+<!-- ============================================================ -->
+<div id="tab-t2" class="tab-panel">
+  <h2 class="section-title">2. Las dos dimensiones de la soberanía: interna y externa</h2>
+
+  <p>Los politólogos y juristas distinguen dos dimensiones complementarias de la soberanía. Comprenderlas por separado permite analizar con mayor precisión los retos que enfrenta Ecuador en el siglo XXI.</p>
+
+  <h3 class="subtitle">2.1 Soberanía interna</h3>
+  <div class="box-concept">
+    <strong>Definición:</strong> Es la capacidad del Estado de ejercer autoridad suprema sobre su propia población y territorio. Implica el poder de dictar leyes, hacerlas cumplir, impartir justicia y establecer políticas públicas sin que ningún actor interno pueda desafiar esa autoridad de manera legítima.
+  </div>
+
+  <p>La soberanía interna incluye:</p>
+  <ul style="padding-left:22px;line-height:2.1;font-size:.96rem">
+    <li><strong>Poder legislativo:</strong> Solo la Asamblea Nacional puede crear leyes nacionales en Ecuador.</li>
+    <li><strong>Poder coercitivo:</strong> El Estado tiene el monopolio legítimo de la fuerza (Policía Nacional, Fuerzas Armadas).</li>
+    <li><strong>Poder tributario:</strong> El Estado puede exigir el pago de impuestos a personas y empresas en su territorio.</li>
+    <li><strong>Poder regulatorio:</strong> El Estado norma la actividad económica, contable, ambiental, laboral, etc.</li>
+  </ul>
+
+  <div class="box-example">
+    <div class="ex-title">🇪🇨 Ejemplo ecuatoriano — El SRI y la soberanía tributaria</div>
+    <p>El Servicio de Rentas Internas (SRI) es una expresión directa de la soberanía interna: tiene la facultad legal de requerir información contable a cualquier empresa que opere en Ecuador, auditar sus estados financieros y sancionar incumplimientos. Ninguna empresa extranjera puede invocar su legislación de origen para evadir esa obligación mientras opere en territorio ecuatoriano. Eso es soberanía interna en acción.</p>
+  </div>
+
+  <h3 class="subtitle">2.2 Soberanía externa</h3>
+  <div class="box-concept">
+    <strong>Definición:</strong> Es el reconocimiento internacional de que un Estado es independiente e igual en dignidad a los demás Estados. Implica el derecho a relacionarse con otros países en igualdad de condiciones, sin subordinación ni interferencia en sus asuntos internos.
+  </div>
+
+  <p>La soberanía externa se expresa en:</p>
+  <ul style="padding-left:22px;line-height:2.1;font-size:.96rem">
+    <li><strong>Reconocimiento diplomático:</strong> Otros países reconocen a Ecuador como Estado soberano.</li>
+    <li><strong>Tratados internacionales:</strong> Ecuador negocia y firma acuerdos en igualdad de condiciones.</li>
+    <li><strong>Membresía en organismos internacionales:</strong> ONU, OEA, CELAC, OMC, etc.</li>
+    <li><strong>No intervención:</strong> Ningún Estado puede interferir en los asuntos internos de Ecuador.</li>
+  </ul>
+
+  <div class="box-example">
+    <div class="ex-title">🌎 Ejemplo — El caso Assange y la soberanía externa</div>
+    <p>Entre 2012 y 2019, Ecuador concedió asilo político a Julian Assange en su embajada en Londres. Esa decisión fue posible gracias a la soberanía externa: el edificio de la embajada ecuatoriana en el Reino Unido es territorio inviolable bajo el derecho internacional. Sin soberanía, Ecuador no podría haber tomado esa decisión ante la presión de potencias extranjeras, independientemente de si se comparte o no la decisión política. El caso ilustra tanto el poder como los límites de la soberanía en el siglo XXI.</p>
+  </div>
+
+  <h3 class="subtitle">2.3 Cuadro comparativo</h3>
+  <table>
+    <thead>
+      <tr><th>Dimensión</th><th>¿Sobre quién?</th><th>¿Quién la reconoce?</th><th>Amenazas típicas</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Interna</strong></td>
+        <td>Ciudadanos, empresas y grupos dentro del territorio</td>
+        <td>La propia Constitución y el ordenamiento jurídico</td>
+        <td>Corrupción, crimen organizado, grupos armados</td>
+      </tr>
+      <tr>
+        <td><strong>Externa</strong></td>
+        <td>Otros Estados e instituciones internacionales</td>
+        <td>La comunidad internacional y el derecho internacional</td>
+        <td>Intervención extranjera, presión de potencias, deuda</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box-key">
+    <div class="key-title">💡 Idea clave</div>
+    <p>Un Estado puede ser soberano externamente (reconocido por el mundo) pero débil internamente (sin capacidad real de hacer cumplir sus leyes). El gran desafío de Ecuador — como de muchos países latinoamericanos — es fortalecer ambas dimensiones simultáneamente. Para un auditor, la soberanía interna es especialmente relevante: sin ella, las normas contables y fiscales no tendrían fuerza coercitiva.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PESTAÑA T3: Soberanía popular -->
+<!-- ============================================================ -->
+<div id="tab-t3" class="tab-panel">
+  <h2 class="section-title">3. Soberanía popular: el pueblo como fuente del poder</h2>
+
+  <p>De todos los tipos de soberanía, la <strong>soberanía popular</strong> es el más revolucionario y el más relevante para la democracia contemporánea. A diferencia de la soberanía monárquica (que reside en el rey) o de la soberanía nacional (que reside en la nación como entidad abstracta), la soberanía popular afirma que el poder político pertenece, de forma concreta y activa, al conjunto de los ciudadanos.</p>
+
+  <div class="box-concept">
+    <strong>Definición:</strong> La soberanía popular es el principio según el cual la autoridad política suprema reside en el pueblo, que la ejerce directamente o mediante representantes libremente elegidos. Todo poder del Estado deriva del pueblo y a él debe rendir cuentas.
+  </div>
+
+  <h3 class="subtitle">3.1 Rousseau y la voluntad general</h3>
+  <p>Rousseau distinguía entre la <strong>voluntad de todos</strong> (suma de intereses particulares y egoístas) y la <strong>voluntad general</strong> (el interés común del conjunto de la sociedad). La soberanía popular, en sentido auténtico, expresa la voluntad general: lo que beneficia a todos, no solo a un grupo.</p>
+
+  <div class="box-warn">
+    <strong>⚠️ Distinción importante:</strong> Una mayoría electoral que apoya medidas que dañan a minorías no está ejerciendo voluntad general — está imponiendo la voluntad de todos. La auténtica soberanía popular incluye la protección de los derechos de las minorías.
+  </div>
+
+  <h3 class="subtitle">3.2 Mecanismos de ejercicio de la soberanía popular</h3>
+  <table>
+    <thead>
+      <tr><th>Mecanismo</th><th>¿Cómo funciona?</th><th>Ejemplo en Ecuador</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Sufragio (voto)</strong></td>
+        <td>El pueblo elige a sus representantes periódicamente.</td>
+        <td>Elecciones presidenciales, legislativas y seccionales.</td>
+      </tr>
+      <tr>
+        <td><strong>Referéndum</strong></td>
+        <td>El pueblo vota directamente sobre una pregunta específica.</td>
+        <td>Consulta popular de 2024 sobre extradición de narcos.</td>
+      </tr>
+      <tr>
+        <td><strong>Iniciativa popular</strong></td>
+        <td>Los ciudadanos proponen leyes o reformas si reúnen firmas suficientes.</td>
+        <td>Art. 103 de la Constitución 2008.</td>
+      </tr>
+      <tr>
+        <td><strong>Revocatoria del mandato</strong></td>
+        <td>El pueblo puede destituir a un funcionario electo antes de que concluya su período.</td>
+        <td>Art. 105 de la Constitución 2008.</td>
+      </tr>
+      <tr>
+        <td><strong>Consulta popular</strong></td>
+        <td>El presidente o los GAD pueden convocar consultas sobre temas específicos.</td>
+        <td>Consulta sobre minería en el Yasuní (2023).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="subtitle">3.3 Soberanía popular vs. soberanía nacional</h3>
+  <p>Es importante distinguir entre estos dos conceptos que suelen confundirse:</p>
+
+  <div class="box-concept">
+    <strong>Soberanía nacional:</strong> El poder reside en la <em>nación</em> como entidad abstracta, continua e independiente de sus miembros actuales. Los representantes no son delegados del pueblo sino representantes de la nación; no están sujetos a mandato imperativo. Es el modelo del liberalismo clásico (Sieyès, Burke).<br><br>
+    <strong>Soberanía popular:</strong> El poder reside en el <em>pueblo concreto</em>, en los ciudadanos vivos. Los representantes son mandatarios que deben responder ante sus electores. Si traicionan el mandato, pueden ser revocados. Es el modelo de la democracia participativa (Rousseau, Constitución Ecuador 2008).
+  </div>
+
+  <div class="box-example">
+    <div class="ex-title">🇪🇨 Ecuador como caso de estudio: soberanía popular reforzada</div>
+    <p>La Constitución ecuatoriana de 2008 es considerada una de las más avanzadas del mundo en materia de democracia participativa. El Art. 1 establece: "La soberanía radica en el pueblo, cuya voluntad es el fundamento de la autoridad." Además, el Art. 95 reconoce el derecho de participación ciudadana no solo como voto, sino como fiscalización, propuesta y control del poder público. Esto convierte a cada ciudadano ecuatoriano — incluido cada estudiante de contabilidad — en un titular activo de la soberanía.</p>
+  </div>
+
+  <div class="box-key">
+    <div class="key-title">💡 Conexión con la profesión contable</div>
+    <p>Los contadores y auditores trabajan con recursos que, en última instancia, son del pueblo: tributos, presupuesto público, fondos de entidades estatales. La soberanía popular significa que esos recursos deben manejarse con transparencia absoluta y rendir cuentas al verdadero soberano: la ciudadanía. Un auditor que encubre irregularidades no solo comete un delito — traiciona la soberanía popular.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PESTAÑA T4: Soberanía en Ecuador -->
+<!-- ============================================================ -->
+<div id="tab-t4" class="tab-panel">
+  <h2 class="section-title">4. La soberanía en la Constitución y el ordenamiento jurídico ecuatoriano</h2>
+
+  <p>Ecuador tiene un marco constitucional que desarrolla el concepto de soberanía con una profundidad notable. No se limita a la soberanía política: incorpora dimensiones económicas, alimentarias, energéticas y tecnológicas que reflejan el debate global del siglo XXI.</p>
+
+  <h3 class="subtitle">4.1 Artículos constitucionales fundamentales</h3>
+
+  <div class="box-concept">
+    <strong>Art. 1 — Ecuador como Estado soberano:</strong> "El Ecuador es un Estado constitucional de derechos y justicia, social, democrático, <strong>soberano</strong>, independiente, unitario, intercultural, plurinacional y laico."
+  </div>
+
+  <div class="box-concept">
+    <strong>Art. 1, inciso 2 — Fuente del poder:</strong> "La soberanía radica en el pueblo, cuya voluntad es el fundamento de la autoridad, y se ejerce a través de los órganos del poder público y de las formas de participación directa previstas en la Constitución."
+  </div>
+
+  <div class="box-concept">
+    <strong>Art. 3 — Deberes primordiales del Estado:</strong> Entre ellos: "Garantizar sin discriminación alguna el efectivo goce de los derechos establecidos en la Constitución y en los instrumentos internacionales." La soberanía tiene límites: los derechos humanos.
+  </div>
+
+  <div class="box-concept">
+    <strong>Art. 416 — Principios de las relaciones internacionales:</strong> Ecuador proclama la no intervención, la igualdad soberana de los Estados, la solución pacífica de controversias y el rechazo a toda forma de colonialismo o imperialismo.
+  </div>
+
+  <h3 class="subtitle">4.2 Las soberanías sectoriales en la Constitución 2008</h3>
+  <p>Una de las innovaciones más interesantes de la Constitución 2008 es que extiende el concepto de soberanía más allá de lo político-territorial:</p>
+
+  <table>
+    <thead>
+      <tr><th>Tipo de soberanía</th><th>Artículo</th><th>¿Qué significa?</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Soberanía alimentaria</strong></td>
+        <td>Art. 281</td>
+        <td>Derecho del Estado y el pueblo a definir su política agrícola y alimentaria sin depender de empresas transnacionales.</td>
+      </tr>
+      <tr>
+        <td><strong>Soberanía energética</strong></td>
+        <td>Art. 314</td>
+        <td>El Estado controla los recursos energéticos (petróleo, electricidad) como activos estratégicos nacionales.</td>
+      </tr>
+      <tr>
+        <td><strong>Soberanía económica</strong></td>
+        <td>Art. 283–334</td>
+        <td>El Estado regula el sistema económico, los mercados financieros y prioriza el Buen Vivir sobre el mercado libre.</td>
+      </tr>
+      <tr>
+        <td><strong>Soberanía del conocimiento</strong></td>
+        <td>Art. 385–388</td>
+        <td>Ecuador busca generar ciencia y tecnología propias, no ser consumidor dependiente del conocimiento externo.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box-example">
+    <div class="ex-title">🛢️ Ejemplo — El petróleo y la soberanía energética</div>
+    <p>Ecuador nacionalizó su industria petrolera en la década de 1970 bajo el gobierno de Rodríguez Lara, declarando que el petróleo del subsuelo pertenecía a todos los ecuatorianos. Hoy, el Art. 408 de la Constitución establece que los recursos naturales no renovables son propiedad inalienable e imprescriptible del Estado. Esto significa que ningún contrato con empresas privadas puede transferir la propiedad del petróleo — solo el derecho de explotación bajo condiciones establecidas por el Estado soberano.</p>
+  </div>
+
+  <h3 class="subtitle">4.3 El Yasuní-ITT: soberanía ambiental y dilema nacional</h3>
+  <div class="box-example">
+    <div class="ex-title">🌿 Caso — Consulta popular Yasuní (2023)</div>
+    <p>En agosto de 2023, los ecuatorianos votaron en consulta popular para detener la explotación petrolera del bloque 43 (ITT) en el Parque Nacional Yasuní. El resultado fue histórico: el 59% votó a favor del no a la extracción. Este hecho demuestra la soberanía popular en su máxima expresión: el pueblo, mediante votación directa, decidió no explotar sus propios recursos naturales, anteponiendo la preservación ambiental y los derechos de la naturaleza (Art. 71 de la Constitución) sobre los ingresos petroleros. Fue la primera vez en el mundo que una consulta popular directa ordenó dejar el petróleo bajo tierra.</p>
+  </div>
+
+  <div class="box-key">
+    <div class="key-title">💡 Idea clave</div>
+    <p>La soberanía ecuatoriana del siglo XXI no es solo política: es integral. Abarca la alimentación, la energía, el conocimiento y el medio ambiente. Esto refleja una visión del Estado que va más allá del liberalismo clásico: el Estado soberano tiene la responsabilidad de proteger no solo el territorio, sino el bienestar presente y futuro de su pueblo.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PESTAÑA T5: Amenazas a la soberanía -->
+<!-- ============================================================ -->
+<div id="tab-t5" class="tab-panel">
+  <h2 class="section-title">5. Amenazas contemporáneas a la soberanía estatal</h2>
+
+  <p>En el siglo XXI, la soberanía enfrenta desafíos que los teóricos clásicos no pudieron anticipar. La globalización, la digitalización y el crimen organizado crean tensiones que obligan a repensar qué significa ser un Estado soberano en la práctica.</p>
+
+  <h3 class="subtitle">5.1 La globalización económica como tensión soberana</h3>
+  <p>La <strong>globalización</strong> implica la integración creciente de los mercados financieros, comerciales y culturales a nivel mundial. Esto beneficia al comercio y la inversión, pero también limita la capacidad de los Estados de tomar decisiones económicas autónomas.</p>
+
+  <div class="box-example">
+    <div class="ex-title">💵 Ejemplo — La dolarización de Ecuador (2000)</div>
+    <p>En enero del año 2000, Ecuador adoptó el dólar estadounidense como moneda oficial. Esta decisión, tomada en medio de una crisis económica devastadora, implicó ceder la soberanía monetaria: Ecuador no puede emitir dinero, no puede devaluar su moneda ni aplicar política monetaria propia. Las decisiones de la Reserva Federal de EE.UU. afectan directamente la economía ecuatoriana. Es el ejemplo más claro de cómo una decisión soberana puede limitar la soberanía futura.</p>
+  </div>
+
+  <h3 class="subtitle">5.2 Deuda externa y condicionalidades</h3>
+  <p>Cuando un país como Ecuador solicita créditos al <strong>Fondo Monetario Internacional (FMI)</strong> o al Banco Mundial, generalmente debe aceptar un conjunto de reformas económicas como condición para recibir los préstamos. Estas "condicionalidades" pueden incluir reducción del gasto público, privatización de empresas estatales o ajustes fiscales. Los críticos argumentan que esto constituye una limitación a la soberanía económica del Estado deudor.</p>
+
+  <div class="box-warn">
+    <strong>⚠️ Reflexión crítica:</strong> La soberanía no es un bien gratuito: cuesta mantenerla. Un Estado con finanzas débiles, dependiente de deuda externa, tiene menos margen para tomar decisiones soberanas. La solidez de las cuentas públicas — auditadas rigurosamente — es condición de la soberanía real.
+  </div>
+
+  <h3 class="subtitle">5.3 Crimen organizado y soberanía interna</h3>
+  <p>El narco-tráfico y el crimen organizado representan la amenaza más directa a la soberanía interna en Ecuador en la actualidad. Cuando organizaciones criminales controlan territorios, extorsionan a empresas, corrompen a funcionarios y operan con impunidad, están ejerciendo un poder paralelo que desafía la autoridad del Estado.</p>
+
+  <div class="box-example">
+    <div class="ex-title">🇪🇨 Caso Ecuador — La crisis de seguridad 2023–2024</div>
+    <p>En enero de 2024, Ecuador vivió una crisis de seguridad sin precedentes: toma de instalaciones de televisión en vivo, motines en cárceles y ataques a instalaciones públicas. El presidente Noboa declaró conflicto armado interno y desplegó a las Fuerzas Armadas. Este episodio demostró que la soberanía interna es frágil cuando el Estado pierde el control sobre el monopolio de la violencia legítima. La respuesta del Estado — con toda su institucionalidad — fue precisamente una afirmación de soberanía.</p>
+  </div>
+
+  <h3 class="subtitle">5.4 Soberanía digital: el nuevo campo de batalla</h3>
+  <p>En el siglo XXI, los datos de los ciudadanos, la infraestructura tecnológica y las plataformas digitales se han convertido en un nuevo espacio donde se disputa la soberanía. Los Estados enfrentan preguntas nuevas: ¿Quién controla los datos de los ecuatorianos almacenados en servidores de empresas norteamericanas o chinas? ¿Puede un gobierno apagar Internet en su territorio? ¿Las redes sociales tienen más influencia que el Estado sobre la opinión pública?</p>
+
+  <table>
+    <thead>
+      <tr><th>Amenaza</th><th>Naturaleza</th><th>Respuesta posible del Estado</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Globalización económica</td><td>Limita política monetaria y fiscal</td><td>Integración regional, regulación multilateral</td></tr>
+      <tr><td>Deuda y condicionalidades</td><td>Limita autonomía de política pública</td><td>Finanzas sólidas, diversificación de acreedores</td></tr>
+      <tr><td>Crimen organizado</td><td>Crea poder paralelo en el territorio</td><td>Fortalecimiento institucional, cooperación internacional</td></tr>
+      <tr><td>Empresas transnacionales</td><td>Evaden normativa nacional mediante paraísos fiscales</td><td>Cooperación fiscal internacional, normas BEPS</td></tr>
+      <tr><td>Soberanía digital</td><td>Datos y comunicación fuera del control estatal</td><td>Legislación de datos, infraestructura propia</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box-key">
+    <div class="key-title">💡 Conexión directa con la auditoría y contabilidad</div>
+    <p>Una de las amenazas más silenciosas a la soberanía económica es la evasión fiscal de empresas transnacionales mediante estructuras contables diseñadas para trasladar utilidades a paraísos fiscales. Los auditores forenses y los contadores fiscales son la primera línea de defensa de la soberanía tributaria del Estado. Conocer cómo funciona la soberanía es entender por qué su trabajo tiene un valor cívico más allá de lo técnico.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PESTAÑA EJERCICIO -->
+<!-- ============================================================ -->
+<div id="tab-ejercicio" class="tab-panel">
+  <h2 class="section-title">6. Ejercicio Interactivo — Clasificación de expresiones de soberanía</h2>
+  <p>Lee cada situación y selecciona si corresponde a <strong>soberanía interna</strong>, <strong>soberanía externa</strong>, <strong>soberanía popular</strong> u otro concepto trabajado en esta semana. Responde todos los ítems antes de verificar.</p>
+
+  <div id="ejercicio-form">
+
+    <!-- EI1 -->
+    <div class="ejercicio-item">
+      <div class="ei-text">1. La Asamblea Nacional aprueba una reforma tributaria que obliga a todas las empresas con sede en Ecuador a declarar sus ingresos bajo las normas del SRI.</div>
+      <div class="ei-options">
+        <label><input type="radio" name="ei1" value="a"> A) Soberanía interna — el Estado ejerce su poder legislativo y tributario sobre actores en su territorio.</label>
+        <label><input type="radio" name="ei1" value="b"> B) Soberanía externa — se regula el comercio con otros países.</label>
+        <label><input type="radio" name="ei1" value="c"> C) Soberanía popular — el pueblo votó directamente por esta reforma.</label>
+        <label><input type="radio" name="ei1" value="d"> D) No corresponde a ningún tipo de soberanía.</label>
+      </div>
+      <div id="fb-ei1" class="feedback-item"></div>
+    </div>
+
+    <!-- EI2 -->
+    <div class="ejercicio-item">
+      <div class="ei-text">2. En 2023, los ciudadanos ecuatorianos votaron en consulta popular para detener la extracción petrolera en el Yasuní-ITT.</div>
+      <div class="ei-options">
+        <label><input type="radio" name="ei2" value="a"> A) Soberanía popular — el pueblo ejerció directamente su poder de decisión sobre un asunto de interés nacional.</label>
+        <label><input type="radio" name="ei2" value="b"> B) Soberanía externa — la decisión afectó contratos con empresas extranjeras.</label>
+        <label><input type="radio" name="ei2" value="c"> C) Soberanía interna — el gobierno impuso una restricción a la industria petrolera.</label>
+        <label><input type="radio" name="ei2" value="d"> D) Soberanía alimentaria — trata de recursos naturales.</label>
+      </div>
+      <div id="fb-ei2" class="feedback-item"></div>
+    </div>
+
+    <!-- EI3 -->
+    <div class="ejercicio-item">
+      <div class="ei-text">3. Ecuador firma un tratado de libre comercio con la Unión Europea en igualdad de condiciones, negociado por representantes del gobierno nacional.</div>
+      <div class="ei-options">
+        <label><input type="radio" name="ei3" value="a"> A) Soberanía externa — Ecuador se relaciona con otro bloque internacional como Estado independiente e igual.</label>
+        <label><input type="radio" name="ei3" value="b"> B) Soberanía interna — el tratado crea normas que aplican dentro del territorio.</label>
+        <label><input type="radio" name="ei3" value="c"> C) Soberanía popular — los ciudadanos eligieron a los negociadores.</label>
+        <label><input type="radio" name="ei3" value="d"> D) No tiene relación con la soberanía.</label>
+      </div>
+      <div id="fb-ei3" class="feedback-item"></div>
+    </div>
+
+    <!-- EI4 -->
+    <div class="ejercicio-item">
+      <div class="ei-text">4. Jean Bodin definió la soberanía como perpetua y absoluta, concentrada en el monarca. ¿Cuál fue el aporte principal de Rousseau que transformó este concepto?</div>
+      <div class="ei-options">
+        <label><input type="radio" name="ei4" value="a"> A) Rousseau trasladó la soberanía del monarca al pueblo, afirmando que es inalienable y se expresa como voluntad general.</label>
+        <label><input type="radio" name="ei4" value="b"> B) Rousseau eliminó el concepto de soberanía y lo reemplazó por el de democracia directa.</label>
+        <label><input type="radio" name="ei4" value="c"> C) Rousseau propuso dividir la soberanía entre el rey y el parlamento en proporciones iguales.</label>
+        <label><input type="radio" name="ei4" value="d"> D) Rousseau argumentó que la soberanía debe residir en los jueces para garantizar la justicia.</label>
+      </div>
+      <div id="fb-ei4" class="feedback-item"></div>
+    </div>
+
+    <!-- EI5 -->
+    <div class="ejercicio-item">
+      <div class="ei-text">5. Una organización criminal controla un barrio completo en Guayaquil, cobra "impuestos" ilegales a los comerciantes y resuelve conflictos por sus propias reglas, sin que la Policía pueda operar allí.</div>
+      <div class="ei-options">
+        <label><input type="radio" name="ei5" value="a"> A) Es una amenaza directa a la soberanía interna: el Estado pierde el monopolio legítimo de la fuerza en ese territorio.</label>
+        <label><input type="radio" name="ei5" value="b"> B) Es un problema de soberanía externa porque el dinero de esa organización va al extranjero.</label>
+        <label><input type="radio" name="ei5" value="c"> C) No afecta la soberanía porque el Estado sigue existiendo en el resto del país.</label>
+        <label><input type="radio" name="ei5" value="d"> D) Es un asunto exclusivamente policial sin relación con la soberanía.</label>
+      </div>
+      <div id="fb-ei5" class="feedback-item"></div>
+    </div>
+
+    <!-- EI6 -->
+    <div class="ejercicio-item">
+      <div class="ei-text">6. La Constitución ecuatoriana de 2008 establece en su Art. 281 la "soberanía alimentaria". ¿Qué significa este concepto?</div>
+      <div class="ei-options">
+        <label><input type="radio" name="ei6" value="a"> A) El derecho del Estado y el pueblo a definir sus propias políticas agrícolas y alimentarias, sin depender de empresas transnacionales ni de imposiciones externas.</label>
+        <label><input type="radio" name="ei6" value="b"> B) La obligación del Estado de importar alimentos para garantizar que no haya escasez en el país.</label>
+        <label><input type="radio" name="ei6" value="c"> C) El monopolio del gobierno para producir y distribuir todos los alimentos del país.</label>
+        <label><input type="radio" name="ei6" value="d"> D) La prohibición constitucional de exportar productos agrícolas ecuatorianos al exterior.</label>
+      </div>
+      <div id="fb-ei6" class="feedback-item"></div>
+    </div>
+
+    <!-- EI7 -->
+    <div class="ejercicio-item">
+      <div class="ei-text">7. Ecuador adoptó el dólar estadounidense como moneda oficial en el año 2000. ¿Qué implicación tiene esto desde el punto de vista de la soberanía?</div>
+      <div class="ei-options">
+        <label><input type="radio" name="ei7" value="a"> A) Implicó ceder la soberanía monetaria: Ecuador no puede emitir dinero ni aplicar política monetaria propia, dependiendo de las decisiones de la Reserva Federal de EE.UU.</label>
+        <label><input type="radio" name="ei7" value="b"> B) Fortaleció la soberanía económica porque el dólar es una moneda más estable que el sucre.</label>
+        <label><input type="radio" name="ei7" value="c"> C) No tiene relación con la soberanía porque fue una decisión tomada libremente por el Estado ecuatoriano.</label>
+        <label><input type="radio" name="ei7" value="d"> D) Solo afecta la soberanía externa, pues cambia la posición de Ecuador en el sistema financiero internacional.</label>
+      </div>
+      <div id="fb-ei7" class="feedback-item"></div>
+    </div>
+
+    <!-- EI8 -->
+    <div class="ejercicio-item">
+      <div class="ei-text">8. ¿Cuál de las siguientes opciones describe mejor la característica de "inalienabilidad" de la soberanía?</div>
+      <div class="ei-options">
+        <label><input type="radio" name="ei8" value="a"> A) La soberanía no puede venderse, cederse ni transferirse permanentemente a otro Estado o entidad, ni siquiera por decisión del propio pueblo.</label>
+        <label><input type="radio" name="ei8" value="b"> B) La soberanía dura exactamente el tiempo que dura el mandato del presidente en funciones.</label>
+        <label><input type="radio" name="ei8" value="c"> C) La soberanía puede cederse temporalmente a organizaciones internacionales si el parlamento lo aprueba por mayoría calificada.</label>
+        <label><input type="radio" name="ei8" value="d"> D) La soberanía es inalienable solo en tiempos de paz; en guerra puede transferirse a aliados.</label>
+      </div>
+      <div id="fb-ei8" class="feedback-item"></div>
+    </div>
+
+    <div style="margin-top:20px">
+      <button class="btn-verify" onclick="verificarEjercicio()">✅ Verificar respuestas</button>
+      <button class="btn-reset" onclick="reiniciarEjercicio()">🔄 Reiniciar</button>
+    </div>
+  </div>
+
+  <div id="score-ejercicio" class="score-box">
+    <div class="score-emoji" id="ej-emoji"></div>
+    <div class="score-num" id="ej-num"></div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="ej-bar"></div></div>
+    <div class="score-msg" id="ej-msg"></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PESTAÑA CUESTIONARIO -->
+<!-- ============================================================ -->
+<div id="tab-cuestionario" class="tab-panel">
+  <h2 class="section-title">7. Cuestionario — La soberanía del Estado</h2>
+  <p>Responde las 10 preguntas. Cuando hayas seleccionado una opción en cada pregunta, presiona "Verificar respuestas".</p>
+
+  <div id="quiz-form">
+
+    <!-- Q1 -->
+    <div class="quiz-question">
+      <div class="q-num">Pregunta 1 <span class="badge badge-theory">Teórica</span></div>
+      <div class="q-text">¿Cuál es la definición más completa y precisa de soberanía en el contexto del derecho político moderno?</div>
+      <div class="options">
+        <label><input type="radio" name="qi1" value="a"> A) El poder supremo, independiente y legítimo de un Estado para gobernarse a sí mismo, dictar sus leyes, administrar su territorio y relacionarse con otros Estados sin subordinación a ninguna autoridad externa.</label>
+        <label><input type="radio" name="qi1" value="b"> B) La facultad exclusiva del presidente de la República para firmar tratados internacionales y declarar el estado de excepción.</label>
+        <label><input type="radio" name="qi1" value="c"> C) El conjunto de normas constitucionales que regula la relación entre los ciudadanos y el gobierno nacional.</label>
+        <label><input type="radio" name="qi1" value="d"> D) La capacidad de un Estado de mantener un ejército permanente para defender sus fronteras de amenazas externas.</label>
+      </div>
+      <div id="fb-qi1" class="feedback-item"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-question">
+      <div class="q-num">Pregunta 2 <span class="badge badge-theory">Teórica</span></div>
+      <div class="q-text">¿Qué filósofo es considerado el fundador del concepto moderno de soberanía y en qué obra lo sistematizó?</div>
+      <div class="options">
+        <label><input type="radio" name="qi2" value="a"> A) Jean Bodin, en Los seis libros de la República (1576), donde definió la soberanía como perpetua y absoluta.</label>
+        <label><input type="radio" name="qi2" value="b"> B) Jean-Jacques Rousseau, en El contrato social (1762), donde trasladó la soberanía al pueblo.</label>
+        <label><input type="radio" name="qi2" value="c"> C) Thomas Hobbes, en el Leviatán (1651), donde justificó el poder absoluto del soberano para garantizar la paz.</label>
+        <label><input type="radio" name="qi2" value="d"> D) John Locke, en el Segundo tratado sobre el gobierno civil (1689), donde fundamentó la soberanía en el consentimiento de los gobernados.</label>
+      </div>
+      <div id="fb-qi2" class="feedback-item"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-question">
+      <div class="q-num">Pregunta 3 <span class="badge badge-theory">Teórica</span></div>
+      <div class="q-text">¿Cuál es la diferencia fundamental entre soberanía interna y soberanía externa?</div>
+      <div class="options">
+        <label><input type="radio" name="qi3" value="a"> A) La soberanía interna se refiere al poder supremo del Estado sobre su propia población y territorio; la externa, al reconocimiento internacional de la independencia del Estado entre sus pares.</label>
+        <label><input type="radio" name="qi3" value="b"> B) La soberanía interna la ejerce el presidente; la externa, la Asamblea Nacional mediante tratados.</label>
+        <label><input type="radio" name="qi3" value="c"> C) La soberanía interna aplica en tiempo de paz y la externa se activa solo cuando hay conflicto armado con otro Estado.</label>
+        <label><input type="radio" name="qi3" value="d"> D) La soberanía interna la garantiza la Policía y la externa, las Fuerzas Armadas.</label>
+      </div>
+      <div id="fb-qi3" class="feedback-item"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-question">
+      <div class="q-num">Pregunta 4 <span class="badge badge-theory">Teórica</span></div>
+      <div class="q-text">Según el artículo 1 de la Constitución del Ecuador de 2008, ¿dónde reside la soberanía?</div>
+      <div class="options">
+        <label><input type="radio" name="qi4" value="a"> A) En el pueblo, cuya voluntad es el fundamento de la autoridad, y se ejerce a través de los órganos del poder público y las formas de participación directa.</label>
+        <label><input type="radio" name="qi4" value="b"> B) En la Asamblea Nacional, que representa a todos los ciudadanos ecuatorianos en su conjunto.</label>
+        <label><input type="radio" name="qi4" value="c"> C) En el presidente de la República, como jefe del Estado y máximo representante de la nación.</label>
+        <label><input type="radio" name="qi4" value="d"> D) En la Corte Constitucional, como garante supremo de la Constitución y los derechos ciudadanos.</label>
+      </div>
+      <div id="fb-qi4" class="feedback-item"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-question">
+      <div class="q-num">Pregunta 5 <span class="badge badge-theory">Teórica</span></div>
+      <div class="q-text">¿Cuál de las siguientes características describe correctamente la "imprescriptibilidad" de la soberanía?</div>
+      <div class="options">
+        <label><input type="radio" name="qi5" value="a"> A) La soberanía no caduca con el paso del tiempo; el Estado mantiene su poder soberano indefinidamente, independientemente de los cambios de gobierno.</label>
+        <label><input type="radio" name="qi5" value="b"> B) La soberanía prescribe cada vez que se renueva el mandato presidencial mediante elecciones generales.</label>
+        <label><input type="radio" name="qi5" value="c"> C) La soberanía no puede ejercerse sobre territorios que llevan más de 50 años sin ser habitados por ciudadanos del Estado.</label>
+        <label><input type="radio" name="qi5" value="d"> D) La soberanía vence cuando el Estado incumple por más de diez años sus obligaciones internacionales.</label>
+      </div>
+      <div id="fb-qi5" class="feedback-item"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-question">
+      <div class="q-num">Pregunta 6 <span class="badge badge-theory">Teórica</span></div>
+      <div class="q-text">¿Cuál es la principal diferencia entre "soberanía nacional" y "soberanía popular" según la teoría política?</div>
+      <div class="options">
+        <label><input type="radio" name="qi6" value="a"> A) La soberanía nacional reside en la nación como entidad abstracta (los representantes no tienen mandato imperativo); la popular reside en los ciudadanos concretos, que pueden revocar a sus representantes.</label>
+        <label><input type="radio" name="qi6" value="b"> B) La soberanía nacional corresponde al gobierno central y la popular, a los gobiernos locales y municipios.</label>
+        <label><input type="radio" name="qi6" value="c"> C) La soberanía nacional se ejerce mediante referéndums y la popular, mediante las elecciones presidenciales.</label>
+        <label><input type="radio" name="qi6" value="d"> D) La soberanía nacional la teorizó Rousseau y la popular la teorizó Montesquieu como parte de la separación de poderes.</label>
+      </div>
+      <div id="fb-qi6" class="feedback-item"></div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quiz-question">
+      <div class="q-num">Pregunta 7 <span class="badge badge-theory">Teórica</span></div>
+      <div class="q-text">¿Qué significa la "soberanía alimentaria" reconocida en el artículo 281 de la Constitución ecuatoriana de 2008?</div>
+      <div class="options">
+        <label><input type="radio" name="qi7" value="a"> A) El derecho del Estado y el pueblo a definir sus propias políticas agrícolas y alimentarias, garantizando la autonomía frente a empresas transnacionales e imposiciones externas.</label>
+        <label><input type="radio" name="qi7" value="b"> B) La obligación constitucional del Estado de producir el 100% de los alimentos que consume la población ecuatoriana sin importar ningún producto.</label>
+        <label><input type="radio" name="qi7" value="c"> C) La prohibición de exportar productos agrícolas mientras exista desnutrición en alguna provincia del país.</label>
+        <label><input type="radio" name="qi7" value="d"> D) El monopolio estatal sobre la distribución de alimentos de primera necesidad a través de empresas públicas.</label>
+      </div>
+      <div id="fb-qi7" class="feedback-item"></div>
+    </div>
+
+    <!-- Q8 — CASO -->
+    <div class="quiz-question">
+      <div class="q-num">Pregunta 8 <span class="badge badge-case">Análisis</span></div>
+      <div class="q-text">Una empresa auditora multinacional opera en Ecuador y recibe instrucciones de su casa matriz en Nueva York de no reportar al SRI ciertas transacciones porque "en EE.UU. están exentas". El gerente local, contador ecuatoriano certificado, cumple la instrucción. ¿Qué principio de soberanía viola esta situación?</div>
+      <div class="options">
+        <label><input type="radio" name="qi8" value="a"> A) Viola la soberanía interna del Ecuador: toda empresa que opera en territorio ecuatoriano está sujeta a la normativa nacional, independientemente de las leyes de su país de origen.</label>
+        <label><input type="radio" name="qi8" value="b"> B) Viola la soberanía externa porque la empresa usa normas extranjeras para operar en Ecuador.</label>
+        <label><input type="radio" name="qi8" value="c"> C) No viola ningún principio de soberanía; las empresas multinacionales pueden acogerse a la legislación más favorable de cualquier país donde operen.</label>
+        <label><input type="radio" name="qi8" value="d"> D) Viola la soberanía popular porque los accionistas de la empresa no son ciudadanos ecuatorianos.</label>
+      </div>
+      <div id="fb-qi8" class="feedback-item"></div>
+    </div>
+
+    <!-- Q9 — CASO -->
+    <div class="quiz-question">
+      <div class="q-num">Pregunta 9 <span class="badge badge-case">Análisis</span></div>
+      <div class="q-text">El gobierno ecuatoriano necesita financiamiento urgente y negocia un crédito con el FMI. Como condición, el FMI exige reducir el presupuesto de salud pública en un 20% y privatizar la empresa eléctrica estatal. ¿Cómo debe analizarse esta situación desde la perspectiva de la soberanía?</div>
+      <div class="options">
+        <label><input type="radio" name="qi9" value="a"> A) Representa una tensión entre soberanía económica y necesidad financiera: aceptar las condicionalidades implica ceder autonomía en la definición de política pública, lo cual limita la soberanía real aunque el acuerdo sea formalmente voluntario.</label>
+        <label><input type="radio" name="qi9" value="b"> B) No afecta la soberanía porque Ecuador firmó voluntariamente el acuerdo y el FMI es un organismo legítimo de derecho internacional.</label>
+        <label><input type="radio" name="qi9" value="c"> C) Viola exclusivamente la soberanía popular porque el pueblo no fue consultado mediante referéndum sobre las condiciones del préstamo.</label>
+        <label><input type="radio" name="qi9" value="d"> D) Fortalece la soberanía económica porque el financiamiento externo da al Estado más recursos para ejecutar su política pública.</label>
+      </div>
+      <div id="fb-qi9" class="feedback-item"></div>
+    </div>
+
+    <!-- Q10 — CASO -->
+    <div class="quiz-question">
+      <div class="q-num">Pregunta 10 <span class="badge badge-case">Análisis</span></div>
+      <div class="q-text">En una parroquia rural de la Amazonía, los ciudadanos convocan una asamblea comunitaria y deciden que no permitirán actividades mineras en su territorio, aunque el gobierno nacional haya otorgado concesiones. ¿Qué principio constitucional están invocando?</div>
+      <div class="options">
+        <label><input type="radio" name="qi10" value="a"> A) La consulta previa, libre e informada y el ejercicio de soberanía popular a nivel comunitario, reconocidos en la Constitución 2008 para pueblos y comunidades sobre decisiones que afecten su territorio.</label>
+        <label><input type="radio" name="qi10" value="b"> B) La soberanía externa, porque están rechazando la intervención de empresas extranjeras en su comunidad.</label>
+        <label><input type="radio" name="qi10" value="c"> C) La soberanía interna, porque el gobierno nacional tiene el derecho absoluto de otorgar concesiones sin restricciones comunitarias.</label>
+        <label><input type="radio" name="qi10" value="d"> D) La desobediencia civil, que no tiene respaldo constitucional en Ecuador y puede ser sancionada penalmente.</label>
+      </div>
+      <div id="fb-qi10" class="feedback-item"></div>
+    </div>
+
+    <div style="margin-top:20px">
+      <button class="btn-verify" onclick="verificarCuestionario()">✅ Verificar respuestas</button>
+      <button class="btn-reset" onclick="reiniciarCuestionario()">🔄 Reiniciar</button>
+    </div>
+  </div>
+
+  <div id="score-cuestionario" class="score-box">
+    <div class="score-emoji" id="qz-emoji"></div>
+    <div class="score-num" id="qz-num"></div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="qz-bar"></div></div>
+    <div class="score-msg" id="qz-msg"></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PESTAÑA IA -->
+<!-- ============================================================ -->
+<div id="tab-ia" class="tab-panel">
+  <h2 class="section-title">8. Actividad con Inteligencia Artificial</h2>
+
+  <div class="box-concept">
+    <strong>Herramienta recomendada:</strong> <a href="https://claude.ai" target="_blank" style="color:#003366">Claude en claude.ai</a> (Anthropic) — gratuito, sin necesidad de tarjeta de crédito. Alternativas: ChatGPT (chatgpt.com) o Gemini (gemini.google.com).
+  </div>
+
+  <h3 class="subtitle" style="margin-top:22px">🎯 Actividad: "El auditor como guardián de la soberanía"</h3>
+  <p>Esta actividad te invita a usar la IA como un interlocutor para analizar una situación real y compleja, desarrollando tu pensamiento crítico sobre la conexión entre soberanía, ética profesional y contabilidad.</p>
+
+  <div class="ai-step">
+    <div class="step-label">Paso 1 — Copia y usa este prompt exacto con Claude</div>
+    <div class="ai-prompt-box">Actúa como un experto en derecho constitucional ecuatoriano y ética contable. 
+
+Quiero analizar el siguiente dilema: Una empresa transnacional petrolera opera en Ecuador bajo una concesión legal. Sus auditores internos (todos contadores ecuatorianos) descubren que la empresa registra como "gastos operativos" en Ecuador pagos que en realidad son comisiones enviadas a una filial en un paraíso fiscal, reduciendo artificialmente sus utilidades gravables en Ecuador.
+
+Por favor:
+1. Explica cómo esta práctica viola la soberanía tributaria del Ecuador desde el punto de vista constitucional (Art. 300-305 de la Constitución 2008).
+2. ¿Qué responsabilidad ética y legal tienen los contadores ecuatorianos que auditan esta empresa si descubren la práctica y no la reportan?
+3. ¿Cómo se relaciona esta situación con el concepto de "soberanía popular" — es decir, ¿a quién está dañando en última instancia esta evasión?
+4. Propón tres acciones concretas que podría tomar un auditor íntegro frente a esta situación.
+
+Usa un lenguaje claro y académico, apropiado para un estudiante universitario de primer semestre de Contabilidad y Auditoría.</div>
+  </div>
+
+  <div class="ai-step">
+    <div class="step-label">Paso 2 — ¿Qué hacer con la respuesta de la IA?</div>
+    <p>NO copies la respuesta. En cambio, realiza las siguientes tareas de análisis crítico:</p>
+    <ol style="padding-left:22px;line-height:2.2;font-size:.95rem">
+      <li><strong>Identifica</strong> cuál de las cuatro respuestas de la IA te parece más sólida y justifica por qué, usando conceptos de esta semana.</li>
+      <li><strong>Cuestiona</strong> al menos un punto de la respuesta de la IA: ¿hay algo que no consideró? ¿algo que simplificó demasiado?</li>
+      <li><strong>Conecta</strong> la situación con la realidad ecuatoriana: ¿conoces algún caso similar? ¿cómo se relaciona con el Caso Metástasis o con la evasión fiscal en Ecuador?</li>
+      <li><strong>Añade tu postura personal:</strong> Si fueras el contador en esa empresa, ¿qué harías? ¿Y si reportar la irregularidad implicara perder tu empleo?</li>
+    </ol>
+  </div>
+
+  <div class="ai-step">
+    <div class="step-label">Paso 3 — Producto final</div>
+    <p>Redacta un texto de entre 300 y 400 palabras que incluya: resumen crítico de la respuesta de la IA + tu postura personal razonada + conexión con al menos dos conceptos de soberanía vistos en esta semana. Entrega este texto como parte de tu portafolio de aprendizaje.</p>
+  </div>
+
+  <div class="box-key" style="margin-top:24px">
+    <div class="key-title">📊 Criterio de evaluación: ¿pensamiento crítico vs. copia simple?</div>
+    <p><strong>Pensamiento crítico (alta calificación):</strong> El estudiante identifica fortalezas y debilidades de la respuesta de la IA, la conecta con casos reales ecuatorianos, añade su postura personal fundamentada y usa vocabulario técnico del tema.<br><br>
+    <strong>Copia simple (calificación baja o nula):</strong> El estudiante reproduce textualmente la respuesta de la IA sin análisis, sin ejemplos propios ni postura personal identificable.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PESTAÑA REFLEXIÓN -->
+<!-- ============================================================ -->
+<div id="tab-reflexion" class="tab-panel">
+  <h2 class="section-title">9. Preguntas para la Reflexión Personal</h2>
+  <p style="margin-bottom:20px">Esta sección no tiene respuestas correctas ni incorrectas. Su propósito es conectar los conceptos de soberanía con tu vida cotidiana, tu historia personal y tu identidad. Tómate el tiempo que necesites para pensar con honestidad.</p>
+
+  <div class="reflect-card">
+    <div class="r-num">🔹 Reflexión 1</div>
+    <p>La soberanía popular dice que el poder reside en el pueblo — en ti. Pero cuando fue la última vez que <em>sentiste</em> que tenías poder real sobre algo que te afecta colectivamente: en tu barrio, en tu universidad, en tu ciudad. ¿Ejerces tu soberanía cotidianamente, o la delegas completamente? ¿Hay diferencia entre tener derechos y usarlos?</p>
+  </div>
+
+  <div class="reflect-card">
+    <div class="r-num">🔹 Reflexión 2</div>
+    <p>Rousseau hablaba de la diferencia entre la "voluntad de todos" (lo que cada uno quiere para sí) y la "voluntad general" (lo que beneficia a todos). ¿Puedes identificar momentos en tu vida donde tu interés personal chocó con el bien común? ¿Qué elegiste? ¿Qué deberías haber elegido? ¿Es fácil o difícil actuar según el bien común cuando te cuesta algo a ti?</p>
+  </div>
+
+  <div class="reflect-card">
+    <div class="r-num">🔹 Reflexión 3</div>
+    <p>Ecuador cedió su soberanía monetaria al adoptar el dólar. A nivel personal, ¿hay áreas de tu vida donde cediste tu "soberanía personal" — tu poder de decisión sobre ti mismo — a presiones externas (familia, amigos, redes sociales, la moda, el mercado)? ¿Te das cuenta de cuándo lo haces? ¿La cesión fue consciente o automática?</p>
+  </div>
+
+  <div class="reflect-card">
+    <div class="r-num">🔹 Reflexión 4</div>
+    <p>El crimen organizado amenaza la soberanía interna del Estado porque crea un poder paralelo. ¿Has vivido situaciones donde alguien ejercía un "poder paralelo" informal sobre ti o tu entorno — una persona que imponía sus reglas sin legitimidad formal? ¿Cómo respondiste? ¿Qué dice eso sobre la diferencia entre poder legítimo y poder impuesto?</p>
+  </div>
+
+  <div class="reflect-card">
+    <div class="r-num">🔹 Reflexión 5</div>
+    <p>La soberanía tiene una característica llamada "inalienabilidad": no puede venderse ni regalarse. ¿Tienes valores personales — principios sobre quién eres — que consideras inalienables? ¿O hay situaciones de presión (económica, social, laboral) en las que sientes que podrías "vender" esos principios? ¿Qué tiene que pasar para que una persona mantenga su integridad cuando el precio de mantenerla es muy alto?</p>
+  </div>
+
+  <div class="reflect-card">
+    <div class="r-num">🔹 Reflexión 6</div>
+    <p>Como futuro contador o auditor, tú serás, en cierta medida, un guardián de la soberanía tributaria del Estado ecuatoriano. ¿Sientes esa responsabilidad como algo real o como algo abstracto? ¿Qué necesitas desarrollar en ti mismo — no técnicamente, sino en términos de carácter, valores y fortaleza interior — para estar a la altura de esa responsabilidad cuando llegue el momento?</p>
+  </div>
+
+  <div class="box-key" style="margin-top:24px">
+    <div class="key-title">🌱 Para llevar contigo</div>
+    <p>La soberanía no es solo un concepto jurídico: es una actitud. Un ciudadano soberano es aquel que piensa por sí mismo, ejerce sus derechos, asume sus responsabilidades y se niega a ser gobernado por el miedo, la presión o la comodidad de "no involucrarse". La primera soberanía que debes conquistar es la tuya propia.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PESTAÑA BIBLIOGRAFÍA -->
+<!-- ============================================================ -->
+<div id="tab-biblio" class="tab-panel">
+  <h2 class="section-title">10. Bibliografía</h2>
+  <p style="margin-bottom:20px">Referencias seleccionadas en formato APA 7.ª edición para profundizar en los temas trabajados en esta semana.</p>
+
+  <div class="bib-card">
+    <div class="bib-authors">Bodin, J. (1576/1992).</div>
+    <div class="bib-ref"><em>On sovereignty: Four chapters from The Six Books of the Commonwealth</em>. Cambridge University Press.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Rousseau, J.-J. (1762/2001).</div>
+    <div class="bib-ref"><em>El contrato social</em> (M. J. Villaverde, Trad.). Alianza Editorial. (Obra original publicada en 1762)</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Hobbes, T. (1651/2009).</div>
+    <div class="bib-ref"><em>Leviatán, o la materia, forma y poder de una república eclesiástica y civil</em> (C. Mellizo, Trad.). Alianza Editorial. (Obra original publicada en 1651)</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Asamblea Constituyente del Ecuador. (2008).</div>
+    <div class="bib-ref"><em>Constitución de la República del Ecuador</em>. Registro Oficial N.° 449. <a href="https://www.asambleanacional.gob.ec/es/contenido/constitucion_de_la_republica_del_ecuador" target="_blank" style="color:#0077b6">https://www.asambleanacional.gob.ec</a></div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Held, D. (1997).</div>
+    <div class="bib-ref"><em>La democracia y el orden global: Del Estado moderno al gobierno cosmopolita</em>. Paidós.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Ferrajoli, L. (2010).</div>
+    <div class="bib-ref"><em>Democracia y garantismo</em> (M. Carbonell, Ed.). Trotta.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Sassen, S. (2010).</div>
+    <div class="bib-ref"><em>Territorio, autoridad y derechos: De los ensamblajes medievales a los ensamblajes globales</em>. Katz Editores.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Zurbriggen, C. (2011).</div>
+    <div class="bib-ref">Gobernanza: una mirada desde América Latina. <em>Perfiles Latinoamericanos</em>, <em>19</em>(38), 39–64. <a href="https://www.scielo.org.mx/scielo.php?pid=S0188-76532011000200002" target="_blank" style="color:#0077b6">https://www.scielo.org.mx</a></div>
+  </div>
+
+  <div class="bib-note">
+    ℹ️ <strong>Nota:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos.
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- JAVASCRIPT -->
+<!-- ============================================================ -->
+<script>
+// ===== TAB NAVIGATION =====
+function showTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ===== EJERCICIO =====
+const ejercicioCorrects = {
+  ei1: 'a',
+  ei2: 'a',
+  ei3: 'a',
+  ei4: 'a',
+  ei5: 'a',
+  ei6: 'a',
+  ei7: 'a',
+  ei8: 'a'
+};
+
+const ejercicioFeedbacks = {
+  ei1: {
+    correct: '✅ Correcto. La aprobación de una reforma tributaria que obliga a todas las empresas dentro del territorio ecuatoriano es una expresión clásica de soberanía interna: el Estado ejerce su poder legislativo y coercitivo sobre los actores bajo su jurisdicción.',
+    incorrect: '❌ Incorrecto. Esta situación describe la soberanía interna, que es la capacidad del Estado de dictar normas y hacerlas cumplir dentro de su propio territorio, incluyendo el poder tributario del SRI.'
+  },
+  ei2: {
+    correct: '✅ Correcto. La consulta popular del Yasuní-ITT (2023) es el ejemplo más reciente y poderoso de soberanía popular en Ecuador: el pueblo ejerció directamente — sin intermediarios — su poder de decisión sobre un recurso natural de importancia nacional.',
+    incorrect: '❌ Incorrecto. La respuesta correcta es soberanía popular. El pueblo votó directamente en una consulta, ejerciendo el poder constitucional que le reconoce el Art. 1 y Art. 104 de la Constitución 2008.'
+  },
+  ei3: {
+    correct: '✅ Correcto. Cuando Ecuador firma un tratado internacional como Estado independiente, en igualdad de condiciones y sin subordinación, está ejerciendo su soberanía externa, que es precisamente el reconocimiento internacional de esa independencia.',
+    incorrect: '❌ Incorrecto. La firma de tratados internacionales entre Estados en igualdad de condiciones es una expresión de soberanía externa, no interna ni popular.'
+  },
+  ei4: {
+    correct: '✅ Correcto. El aporte central de Rousseau fue trasladar el titular de la soberanía: ya no el monarca sino el pueblo, cuya "voluntad general" — el interés común — es la única fuente legítima del poder. Esta idea es el fundamento de la democracia moderna.',
+    incorrect: '❌ Incorrecto. Rousseau no eliminó la soberanía ni la dividió. Su aporte fue hacerla popular e inalienable: el pueblo siempre es el titular del poder, y la voluntad general es superior a cualquier interés particular o mandato monárquico.'
+  },
+  ei5: {
+    correct: '✅ Correcto. Cuando una organización criminal controla un territorio, cobra impuestos ilegales y resuelve conflictos sin que el Estado pueda operar, está creando un "poder paralelo" que desafía directamente la soberanía interna, que incluye el monopolio estatal legítimo de la fuerza.',
+    incorrect: '❌ Incorrecto. Esta situación sí afecta la soberanía, y específicamente la soberanía interna. El Estado pierde su atributo fundamental: el monopolio legítimo de la violencia y la autoridad en su propio territorio.'
+  },
+  ei6: {
+    correct: '✅ Correcto. La soberanía alimentaria (Art. 281) es el derecho del Estado y el pueblo a definir sus propias políticas agrícolas y alimentarias con autonomía, sin depender de empresas transnacionales como Monsanto/Bayer ni de organismos como la OMC que imponen condiciones de mercado.',
+    incorrect: '❌ Incorrecto. La soberanía alimentaria no significa autarquía ni monopolio estatal sobre los alimentos. Significa autonomía para definir las políticas propias: qué se produce, cómo, con qué prioridades y sin imposición externa.'
+  },
+  ei7: {
+    correct: '✅ Correcto. La dolarización implicó ceder la soberanía monetaria de Ecuador: al no poder emitir su propia moneda, Ecuador depende de las decisiones de la Reserva Federal de EE.UU. sobre tasas de interés y oferta monetaria, lo que limita su autonomía económica.',
+    incorrect: '❌ Incorrecto. Aunque la dolarización fue una decisión soberana tomada libremente, sus consecuencias incluyen la pérdida permanente de la soberanía monetaria: Ecuador ya no puede devaluar, emitir dinero ni aplicar política monetaria propia.'
+  },
+  ei8: {
+    correct: '✅ Correcto. La inalienabilidad significa que la soberanía no puede cederse, venderse ni transferirse permanentemente, ni siquiera por decisión del propio Estado. Es inherente a la condición de Estado soberano y no puede desprenderse de ella.',
+    incorrect: '❌ Incorrecto. La inalienabilidad no tiene que ver con plazos de mandato ni con condiciones especiales. Significa simplemente que la soberanía no es un bien transferible: ningún Estado puede venderla, regalarla ni cederla definitivamente a otro.'
+  }
+};
+
+function verificarEjercicio() {
+  const names = ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8'];
+  let unanswered = [];
+  names.forEach(n => {
+    if (!document.querySelector(`input[name="${n}"]:checked`)) unanswered.push(n);
+  });
+  if (unanswered.length > 0) {
+    alert('Por favor responde todos los ítems antes de verificar. Te faltan: ' + unanswered.length + ' respuesta(s).');
+    return;
+  }
+  let score = 0;
+  names.forEach(n => {
+    const selected = document.querySelector(`input[name="${n}"]:checked`).value;
+    const fbEl = document.getElementById('fb-' + n);
+    const correct = ejercicioCorrects[n];
+    // Style selected label
+    document.querySelectorAll(`input[name="${n}"]`).forEach(inp => {
+      inp.closest('label').style.background = '';
+    });
+    if (selected === correct) {
+      score++;
+      fbEl.textContent = ejercicioFeedbacks[n].correct;
+      fbEl.className = 'feedback-item correct';
+      document.querySelector(`input[name="${n}"]:checked`).closest('label').style.background = '#d1fae5';
+    } else {
+      fbEl.textContent = ejercicioFeedbacks[n].incorrect;
+      fbEl.className = 'feedback-item incorrect';
+      document.querySelector(`input[name="${n}"]:checked`).closest('label').style.background = '#fee2e2';
+      document.querySelector(`input[name="${n}"][value="${correct}"]`).closest('label').style.background = '#d1fae5';
+    }
+    // Disable
+    document.querySelectorAll(`input[name="${n}"]`).forEach(inp => inp.disabled = true);
+  });
+  // Show score
+  const pct = Math.round((score / names.length) * 100);
+  const scoreBox = document.getElementById('score-ejercicio');
+  scoreBox.style.display = 'block';
+  document.getElementById('ej-num').textContent = score + ' / ' + names.length + ' — ' + pct + '%';
+  document.getElementById('ej-bar').style.width = pct + '%';
+  let emoji, msg;
+  if (pct === 100) { emoji = '🏆'; msg = '¡Excelente! Dominas plenamente los conceptos de soberanía. ¡Sigue así!'; }
+  else if (pct >= 80) { emoji = '🎯'; msg = 'Muy bien. Tienes una comprensión sólida. Revisa los ítems incorrectos para consolidar.'; }
+  else if (pct >= 60) { emoji = '📘'; msg = 'Buen intento. Hay conceptos que necesitan refuerzo. Revisa las pestañas del tema y vuelve a intentarlo.'; }
+  else if (pct >= 40) { emoji = '⚠️'; msg = 'Necesitas repasar el material con más detenimiento. ¡No te rindas, la soberanía es un tema fundamental!'; }
+  else { emoji = '📖'; msg = 'Te recomendamos releer todas las pestañas de contenido antes de volver a intentar el ejercicio.'; }
+  document.getElementById('ej-emoji').textContent = emoji;
+  document.getElementById('ej-msg').textContent = msg;
+  scoreBox.scrollIntoView({ behavior: 'smooth' });
+}
+
+function reiniciarEjercicio() {
+  ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8'].forEach(n => {
+    document.querySelectorAll(`input[name="${n}"]`).forEach(inp => {
+      inp.checked = false;
+      inp.disabled = false;
+      inp.closest('label').style.background = '';
+    });
+    const fb = document.getElementById('fb-' + n);
+    fb.className = 'feedback-item';
+    fb.textContent = '';
+  });
+  document.getElementById('score-ejercicio').style.display = 'none';
+}
+
+// ===== CUESTIONARIO =====
+const quizCorrects = {
+  qi1: 'a',
+  qi2: 'a',
+  qi3: 'a',
+  qi4: 'a',
+  qi5: 'a',
+  qi6: 'a',
+  qi7: 'a',
+  qi8: 'a',
+  qi9: 'a',
+  qi10: 'a'
+};
+
+const quizFeedbacks = {
+  qi1: {
+    correct: '✅ Correcto. Esta es la definición integral de soberanía que integra sus dimensiones interna (gobierno propio, leyes propias) y externa (independencia frente a otros Estados), y su fundamento en la legitimidad.',
+    incorrect: '❌ Incorrecto. La soberanía no se reduce a la firma de tratados ni a la capacidad militar. Es el poder supremo, independiente y legítimo para gobernarse sin subordinación externa.'
+  },
+  qi2: {
+    correct: '✅ Correcto. Jean Bodin sistematizó el concepto moderno de soberanía en Los seis libros de la República (1576), definiéndola como perpetua y absoluta, concentrada en el monarca. Fue el punto de partida para toda la teoría política posterior.',
+    incorrect: '❌ Incorrecto. Aunque Rousseau, Hobbes y Locke también teorizaron sobre la soberanía, fue Jean Bodin quien la sistematizó por primera vez en Los seis libros de la República (1576), siendo reconocido como su fundador moderno.'
+  },
+  qi3: {
+    correct: '✅ Correcto. Esta distinción es fundamental: la soberanía interna opera "hacia adentro" (ciudadanos, territorio, leyes); la externa opera "hacia afuera" (relaciones internacionales, reconocimiento entre Estados). Ambas son necesarias para un Estado plenamente soberano.',
+    incorrect: '❌ Incorrecto. La distinción interna/externa no tiene que ver con quién la ejerce dentro del gobierno ni con el tiempo de paz o guerra. Es sobre la dirección: soberanía sobre los propios ciudadanos (interna) vs. entre Estados en el sistema internacional (externa).'
+  },
+  qi4: {
+    correct: '✅ Correcto. El Art. 1 de la Constitución 2008 establece explícitamente que la soberanía "radica en el pueblo" y que la voluntad del pueblo es el fundamento de toda autoridad. Esto consagra la democracia participativa como modelo.',
+    incorrect: '❌ Incorrecto. Según el Art. 1 de la Constitución de 2008, la soberanía radica en el pueblo, no en la Asamblea, el presidente ni la Corte Constitucional. Estos son órganos que la ejercen por delegación del pueblo.'
+  },
+  qi5: {
+    correct: '✅ Correcto. La imprescriptibilidad significa que la soberanía no tiene fecha de vencimiento: el Estado sigue siendo soberano independientemente del tiempo transcurrido, los cambios de régimen o las transformaciones históricas.',
+    incorrect: '❌ Incorrecto. La imprescriptibilidad no tiene que ver con mandatos presidenciales, territorios despoblados ni incumplimientos internacionales. Simplemente significa que la soberanía no caduca con el tiempo.'
+  },
+  qi6: {
+    correct: '✅ Correcto. La distinción clave es el titular: en la soberanía nacional, la nación es abstracta y los representantes tienen libertad de mandato; en la popular, el pueblo es concreto y puede revocar a sus representantes si traicionan su mandato.',
+    incorrect: '❌ Incorrecto. La diferencia no es geográfica (central vs. local) ni de mecanismo (referéndum vs. elecciones). Es sobre el titular del poder y la relación representante-representado: mandato libre vs. mandato imperativo.'
+  },
+  qi7: {
+    correct: '✅ Correcto. La soberanía alimentaria (Art. 281) es el derecho a definir políticas propias de producción y consumo de alimentos, garantizando la autonomía del pueblo frente a presiones de mercados globales y empresas transnacionales.',
+    incorrect: '❌ Incorrecto. La soberanía alimentaria no implica autarquía, monopolio estatal ni prohibición de exportaciones. Es el derecho a la autonomía en la definición de políticas, no una restricción al comercio.'
+  },
+  qi8: {
+    correct: '✅ Correcto. La soberanía interna implica que toda empresa que opera en territorio ecuatoriano — sin importar su origen — está sujeta a la normativa ecuatoriana. Aplicar leyes extranjeras para evadir obligaciones locales viola directamente ese principio.',
+    incorrect: '❌ Incorrecto. El principio violado es la soberanía interna: la empresa debe cumplir las normas ecuatorianas mientras opere en Ecuador. No puede invocar exenciones de EE.UU. para eludir obligaciones ante el SRI.'
+  },
+  qi9: {
+    correct: '✅ Correcto. Aunque el acuerdo es formalmente voluntario, las condicionalidades del FMI limitan la autonomía del Estado para definir su política pública (en salud, energía, etc.), creando una tensión real entre necesidad financiera y soberanía económica.',
+    incorrect: '❌ Incorrecto. La voluntariedad formal de un acuerdo no elimina la tensión soberana. Cuando un acuerdo externo limita la capacidad del Estado de decidir libremente sobre sus políticas internas, hay una restricción real de la soberanía, aunque sea auto-impuesta por necesidad.'
+  },
+  qi10: {
+    correct: '✅ Correcto. La consulta previa, libre e informada (Arts. 57 y 398 de la Constitución 2008) reconoce el derecho de comunidades indígenas y afroecuatorianas a ser consultadas antes de que se tomen decisiones que afecten su territorio, como concesiones mineras.',
+    incorrect: '❌ Incorrecto. La Constitución ecuatoriana reconoce explícitamente este derecho en los Arts. 57 y 398. No es desobediencia civil — es un derecho constitucional. La comunidad no está violando la ley; el Estado podría estarlo al no respetar la consulta previa.'
+  }
+};
+
+function verificarCuestionario() {
+  const names = ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'];
+  let unanswered = [];
+  names.forEach(n => {
+    if (!document.querySelector(`input[name="${n}"]:checked`)) unanswered.push(n);
+  });
+  if (unanswered.length > 0) {
+    alert('Por favor responde todas las preguntas antes de verificar. Te faltan: ' + unanswered.length + ' pregunta(s).');
+    return;
+  }
+  let score = 0;
+  names.forEach(n => {
+    const selected = document.querySelector(`input[name="${n}"]:checked`).value;
+    const fbEl = document.getElementById('fb-' + n);
+    const correct = quizCorrects[n];
+    document.querySelectorAll(`input[name="${n}"]`).forEach(inp => {
+      inp.closest('label').style.background = '';
+    });
+    if (selected === correct) {
+      score++;
+      fbEl.textContent = quizFeedbacks[n].correct;
+      fbEl.className = 'feedback-item correct';
+      document.querySelector(`input[name="${n}"]:checked`).closest('label').style.background = '#d1fae5';
+    } else {
+      fbEl.textContent = quizFeedbacks[n].incorrect;
+      fbEl.className = 'feedback-item incorrect';
+      document.querySelector(`input[name="${n}"]:checked`).closest('label').style.background = '#fee2e2';
+      document.querySelector(`input[name="${n}"][value="${correct}"]`).closest('label').style.background = '#d1fae5';
+    }
+    document.querySelectorAll(`input[name="${n}"]`).forEach(inp => inp.disabled = true);
+  });
+  const pct = Math.round((score / names.length) * 100);
+  const scoreBox = document.getElementById('score-cuestionario');
+  scoreBox.style.display = 'block';
+  document.getElementById('qz-num').textContent = score + ' / ' + names.length + ' — ' + pct + '%';
+  document.getElementById('qz-bar').style.width = pct + '%';
+  let emoji, msg;
+  if (pct === 100) { emoji = '🏆'; msg = '¡Perfecto! Dominas completamente los fundamentos de la soberanía. ¡Excelente trabajo!'; }
+  else if (pct >= 80) { emoji = '🎯'; msg = '¡Muy bien! Comprendes sólidamente el tema. Revisa las preguntas incorrectas para cerrar cualquier brecha.'; }
+  else if (pct >= 60) { emoji = '📘'; msg = 'Resultado aceptable, pero hay conceptos que necesitan refuerzo. Revisa especialmente las pestañas de soberanía interna/externa y popular.'; }
+  else if (pct >= 40) { emoji = '⚠️'; msg = 'Necesitas repasar el material con más detalle. Te recomendamos releer todas las pestañas antes de volver a intentarlo.'; }
+  else { emoji = '📖'; msg = 'Este resultado indica que el material necesita más tiempo de estudio. ¡Empieza desde el principio, con calma y confianza!'; }
+  document.getElementById('qz-emoji').textContent = emoji;
+  document.getElementById('qz-msg').textContent = msg;
+  scoreBox.scrollIntoView({ behavior: 'smooth' });
+}
+
+function reiniciarCuestionario() {
+  ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'].forEach(n => {
+    document.querySelectorAll(`input[name="${n}"]`).forEach(inp => {
+      inp.checked = false;
+      inp.disabled = false;
+      inp.closest('label').style.background = '';
+    });
+    const fb = document.getElementById('fb-' + n);
+    fb.className = 'feedback-item';
+    fb.textContent = '';
+  });
+  document.getElementById('score-cuestionario').style.display = 'none';
+}
+</script>
+</body>
+</html>

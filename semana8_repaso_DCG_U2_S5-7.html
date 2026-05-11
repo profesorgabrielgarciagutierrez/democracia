@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- PLANIFICACIÓN: 7 semanas | 2 archivos | Archivo 2: S5-S7 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repaso S5–S7 | Democracia, Ciudadanía y Globalización</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Sans 3', sans-serif; background: #f0f4f8; color: #1a1a2e; min-height: 100vh; }
+
+  /* ENCABEZADO */
+  header { background: #003366; color: #fff; padding: 18px 24px; display: flex; align-items: center; gap: 18px; }
+  header img { height: 64px; width: auto; border-radius: 6px; background: #fff; padding: 4px; }
+  .header-text h1 { font-family: 'Lora', serif; font-size: 1.25rem; font-weight: 700; line-height: 1.3; }
+  .header-text p { font-size: 0.88rem; opacity: 0.88; margin-top: 3px; }
+  .badge-repaso { display: inline-block; background: #87CEEB; color: #003366; font-weight: 700; font-size: 0.8rem; padding: 3px 10px; border-radius: 20px; margin-top: 5px; }
+
+  /* BARRA DE PESTAÑAS */
+  .tab-bar-wrapper { background: #87CEEB; overflow-x: auto; white-space: nowrap; border-bottom: 3px solid #003366; }
+  .tab-bar { display: inline-flex; padding: 0 8px; }
+  .tab-btn { display: inline-block; padding: 12px 18px; cursor: pointer; font-family: 'Source Sans 3', sans-serif; font-size: 0.85rem; font-weight: 600; color: #1a1a2e; background: transparent; border: none; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; }
+  .tab-btn:hover { background: rgba(0,51,102,0.1); }
+  .tab-btn.active { background: #fff; color: #003366; font-weight: 700; border-bottom: 3px solid #003366; }
+
+  /* CONTENIDO */
+  .tab-content { display: none; padding: 28px 24px; max-width: 960px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  /* SEMANA HEADER */
+  .semana-header { background: #003366; color: #fff; border-radius: 10px; padding: 18px 22px; margin-bottom: 24px; }
+  .semana-header h2 { font-family: 'Lora', serif; font-size: 1.35rem; }
+  .semana-header p { font-size: 0.9rem; opacity: 0.85; margin-top: 4px; }
+
+  /* BLOQUES */
+  .bloque { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 22px; margin-bottom: 20px; }
+  .bloque-titulo { font-family: 'Lora', serif; font-size: 1.1rem; color: #003366; font-weight: 700; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #87CEEB; }
+  .separador { height: 4px; background: linear-gradient(90deg, #003366, #87CEEB); border-radius: 2px; margin: 28px 0; }
+
+  /* ÍTEMS */
+  .item { background: #f8faff; border: 1px solid #d0ddf0; border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; }
+  .item p { font-size: 0.95rem; font-weight: 600; color: #003366; margin-bottom: 10px; }
+  .item label { display: flex; align-items: flex-start; gap: 8px; font-size: 0.9rem; padding: 5px 6px; border-radius: 5px; cursor: pointer; transition: background 0.15s; }
+  .item label:hover { background: #e8f0fe; }
+  .item input[type=radio] { margin-top: 2px; accent-color: #003366; flex-shrink: 0; }
+
+  /* BADGE */
+  .badge { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 12px; margin-left: 8px; vertical-align: middle; }
+  .badge-teorica { background: #003366; color: #fff; }
+  .badge-analisis { background: #e65c00; color: #fff; }
+
+  /* BOTONES */
+  .btn-verificar { background: #003366; color: #fff; border: none; padding: 11px 28px; border-radius: 8px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: background 0.2s; margin-top: 10px; }
+  .btn-verificar:hover { background: #00509e; }
+  .btn-reiniciar { background: #87CEEB; color: #003366; border: none; padding: 9px 22px; border-radius: 8px; font-size: 0.9rem; font-weight: 700; cursor: pointer; margin-top: 8px; margin-left: 10px; transition: background 0.2s; display: none; }
+  .btn-reiniciar:hover { background: #5fb8e0; }
+
+  /* RESULTADOS */
+  .resultado-item { border-radius: 7px; padding: 10px 14px; margin-top: 8px; font-size: 0.88rem; display: none; }
+  .correcto { background: #d4edda; border-left: 4px solid #28a745; color: #155724; }
+  .incorrecto { background: #f8d7da; border-left: 4px solid #dc3545; color: #721c24; }
+
+  /* CALIFICACIÓN */
+  .calificacion { background: #003366; color: #fff; border-radius: 10px; padding: 18px 20px; margin-top: 16px; display: none; text-align: center; }
+  .calificacion .puntaje { font-family: 'Lora', serif; font-size: 2rem; font-weight: 700; }
+  .calificacion .porcentaje { font-size: 1rem; opacity: 0.85; }
+  .calificacion .mensaje { font-size: 1rem; margin-top: 8px; font-weight: 600; }
+  .barra-wrap { background: rgba(255,255,255,0.2); border-radius: 20px; height: 12px; margin: 10px 0; overflow: hidden; }
+  .barra-fill { height: 100%; background: #87CEEB; border-radius: 20px; width: 0; transition: width 1s ease; }
+
+  .alerta { background: #fff3cd; border: 1px solid #ffc107; color: #856404; padding: 10px 14px; border-radius: 7px; font-size: 0.88rem; margin-top: 8px; display: none; }
+
+  @media(max-width:600px) {
+    .tab-btn { font-size: 0.78rem; padding: 10px 12px; }
+    .header-text h1 { font-size: 1rem; }
+    .tab-content { padding: 16px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ENCABEZADO -->
+<header>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Escudo_de_la_Universidad_de_Guayaquil.png/200px-Escudo_de_la_Universidad_de_Guayaquil.png" alt="UG" onerror="this.style.display='none'">
+  <div class="header-text">
+    <h1>Democracia, Ciudadanía y Globalización</h1>
+    <p>Universidad de Guayaquil | Facultad de Ciencias Administrativas | Contabilidad y Auditoría</p>
+    <span class="badge-repaso">📚 REPASO INTEGRAL — Semanas 5 a 7</span>
+  </div>
+</header>
+
+<!-- BARRA DE PESTAÑAS -->
+<div class="tab-bar-wrapper">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('s5', this)">S5 — Modelos de Ciudadanía</button>
+    <button class="tab-btn" onclick="showTab('s6', this)">S6 — Democracia y DDHH</button>
+    <button class="tab-btn" onclick="showTab('s7', this)">S7 — Libre Expresión e Internet</button>
+  </div>
+</div>
+
+<!-- ============================================================ SEMANA 5 ============================================================ -->
+<div id="s5" class="tab-content active">
+  <div class="semana-header">
+    <h2>Semana 5 — Análisis de los Modelos de Ciudadanía</h2>
+    <p>Unidad 2: La Democracia | Ciudadanía liberal, republicana, comunitarista e intercultural</p>
+  </div>
+
+  <!-- EJERCICIO S5 -->
+  <div class="bloque">
+    <div class="bloque-titulo">🧩 Ejercicio Interactivo — Semana 5</div>
+    <p style="font-size:0.9rem;color:#555;margin-bottom:14px;">Tipo: <strong>Identificar el modelo de ciudadanía</strong>. Para cada descripción, selecciona el modelo al que corresponde.</p>
+
+    <div class="item">
+      <p>1. "El ciudadano es ante todo un individuo con derechos civiles y políticos que el Estado debe garantizar sin interferir en su vida privada." Este énfasis corresponde al modelo:</p>
+      <label><input type="radio" name="s5ei1" value="a"> a) Liberal</label>
+      <label><input type="radio" name="s5ei1" value="b"> b) Republicano</label>
+      <label><input type="radio" name="s5ei1" value="c"> c) Comunitarista</label>
+      <label><input type="radio" name="s5ei1" value="d"> d) Diferenciado / Intercultural</label>
+      <div id="s5ei1-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>2. "La ciudadanía implica participación activa en la vida pública y el compromiso con el bien común, no solo el disfrute de derechos individuales." Este principio define el modelo:</p>
+      <label><input type="radio" name="s5ei2" value="a"> a) Republicano</label>
+      <label><input type="radio" name="s5ei2" value="b"> b) Liberal</label>
+      <label><input type="radio" name="s5ei2" value="c"> c) Diferenciado</label>
+      <label><input type="radio" name="s5ei2" value="d"> d) Cosmopolita</label>
+      <div id="s5ei2-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>3. "La identidad del ciudadano se construye dentro de su comunidad cultural; los derechos no pueden desvincularse de los vínculos comunitarios." Esto describe el modelo:</p>
+      <label><input type="radio" name="s5ei3" value="a"> a) Comunitarista</label>
+      <label><input type="radio" name="s5ei3" value="b"> b) Liberal clásico</label>
+      <label><input type="radio" name="s5ei3" value="c"> c) Republicano cívico</label>
+      <label><input type="radio" name="s5ei3" value="d"> d) Procedimental</label>
+      <div id="s5ei3-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>4. La Constitución del Ecuador de 2008 reconoce derechos colectivos de los pueblos indígenas, afroecuatorianos y montubios. Esto refleja el modelo de ciudadanía:</p>
+      <label><input type="radio" name="s5ei4" value="a"> a) Diferenciado e intercultural</label>
+      <label><input type="radio" name="s5ei4" value="b"> b) Liberal individualista</label>
+      <label><input type="radio" name="s5ei4" value="c"> c) Republicano clásico</label>
+      <label><input type="radio" name="s5ei4" value="d"> d) Cosmopolita supranacional</label>
+      <div id="s5ei4-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>5. Will Kymlicka es el teórico asociado principalmente con la defensa de:</p>
+      <label><input type="radio" name="s5ei5" value="a"> a) Los derechos de las minorías culturales y la ciudadanía multicultural</label>
+      <label><input type="radio" name="s5ei5" value="b"> b) El liberalismo clásico del laissez-faire económico</label>
+      <label><input type="radio" name="s5ei5" value="c"> c) El republicanismo cívico de la participación obligatoria</label>
+      <label><input type="radio" name="s5ei5" value="d"> d) El comunitarismo religioso conservador</label>
+      <div id="s5ei5-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>6. La "minga" andina como práctica colectiva de trabajo comunitario puede vincularse con el modelo de ciudadanía:</p>
+      <label><input type="radio" name="s5ei6" value="a"> a) Comunitarista, porque antepone el bien de la comunidad a los intereses individuales</label>
+      <label><input type="radio" name="s5ei6" value="b"> b) Liberal, porque respeta la autonomía individual de cada participante</label>
+      <label><input type="radio" name="s5ei6" value="c"> c) Procedimental, porque sigue reglas formales de votación mayoritaria</label>
+      <label><input type="radio" name="s5ei6" value="d"> d) Cosmopolita, porque trasciende las fronteras del Estado-nación</label>
+      <div id="s5ei6-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>7. El modelo republicano de ciudadanía considera que la "virtud cívica" es:</p>
+      <label><input type="radio" name="s5ei7" value="a"> a) La disposición activa del ciudadano a participar en los asuntos públicos y a subordinar intereses privados al bien común</label>
+      <label><input type="radio" name="s5ei7" value="b"> b) La capacidad del individuo de acumular riqueza respetando la ley</label>
+      <label><input type="radio" name="s5ei7" value="c"> c) El derecho a no participar en política si así lo prefiere el ciudadano</label>
+      <label><input type="radio" name="s5ei7" value="d"> d) La lealtad exclusiva a la cultura de origen por encima del Estado</label>
+      <div id="s5ei7-res" class="resultado-item"></div>
+    </div>
+
+    <div id="s5-ej-alerta" class="alerta">⚠️ Por favor, responde todos los ítems antes de verificar.</div>
+    <div style="margin-top:14px;">
+      <button class="btn-verificar" onclick="verificarEjercicio_s5()">✔ Verificar respuestas</button>
+      <button class="btn-reiniciar" id="s5-ej-reiniciar" onclick="reiniciarEjercicio_s5()">🔄 Reiniciar</button>
+    </div>
+    <div id="s5-ej-cal" class="calificacion">
+      <div class="puntaje" id="s5-ej-puntaje"></div>
+      <div class="porcentaje" id="s5-ej-pct"></div>
+      <div class="barra-wrap"><div class="barra-fill" id="s5-ej-barra"></div></div>
+      <div class="mensaje" id="s5-ej-msg"></div>
+    </div>
+  </div>
+
+  <div class="separador"></div>
+
+  <!-- CUESTIONARIO S5 -->
+  <div class="bloque">
+    <div class="bloque-titulo">📋 Cuestionario — Semana 5</div>
+    <p style="font-size:0.9rem;color:#555;margin-bottom:14px;">Selecciona UNA opción por pregunta. Al terminar presiona <em>Verificar respuestas</em>.</p>
+
+    <div class="item">
+      <p>1. ¿Cuál es el núcleo central del modelo liberal de ciudadanía? <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s5qi1" value="a"> a) La primacía de los derechos individuales y la autonomía personal frente al Estado y la comunidad</label>
+      <label><input type="radio" name="s5qi1" value="b"> b) La participación obligatoria en la vida política comunitaria</label>
+      <label><input type="radio" name="s5qi1" value="c"> c) El reconocimiento de derechos colectivos de grupos culturales específicos</label>
+      <label><input type="radio" name="s5qi1" value="d"> d) La subordinación del individuo a los valores de la comunidad de origen</label>
+      <div id="s5qi1-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>2. ¿Qué filósofo comunitarista argumentó que el "yo" no puede separarse de sus vínculos comunitarios y que la identidad es siempre situada? <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s5qi2" value="a"> a) Michael Sandel, en Liberalism and the Limits of Justice</label>
+      <label><input type="radio" name="s5qi2" value="b"> b) John Rawls, en A Theory of Justice</label>
+      <label><input type="radio" name="s5qi2" value="c"> c"> c) John Stuart Mill, en On Liberty</label>
+      <label><input type="radio" name="s5qi2" value="d"> d) Jürgen Habermas, en la Teoría de la Acción Comunicativa</label>
+      <div id="s5qi2-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>3. La ciudadanía intercultural propuesta para sociedades pluriétnicas como Ecuador implica: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s5qi3" value="a"> a) El reconocimiento de derechos diferenciados según la identidad cultural, étnica o nacional de los grupos</label>
+      <label><input type="radio" name="s5qi3" value="b"> b) La asimilación de todas las culturas a una identidad nacional única y homogénea</label>
+      <label><input type="radio" name="s5qi3" value="c"> c) La eliminación de cualquier distinción entre grupos para garantizar igualdad formal</label>
+      <label><input type="radio" name="s5qi3" value="d"> d) La prohibición de que grupos indígenas ejerzan derechos políticos propios</label>
+      <div id="s5qi3-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>4. La T.H. Marshall clasificó la ciudadanía en tres generaciones de derechos. El orden correcto (cronológico) es: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s5qi4" value="a"> a) Civiles (siglo XVIII) → Políticos (siglo XIX) → Sociales (siglo XX)</label>
+      <label><input type="radio" name="s5qi4" value="b"> b) Sociales → Políticos → Civiles</label>
+      <label><input type="radio" name="s5qi4" value="c"> c) Políticos → Civiles → Sociales</label>
+      <label><input type="radio" name="s5qi4" value="d"> d) Civiles → Sociales → Políticos</label>
+      <div id="s5qi4-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>5. La crítica republicana al modelo liberal sostiene que: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s5qi5" value="a"> a) Reducir la ciudadanía a derechos individuales genera pasividad política y debilita el autogobierno colectivo</label>
+      <label><input type="radio" name="s5qi5" value="b"> b) El liberalismo es excesivamente colectivista y descuida las libertades personales</label>
+      <label><input type="radio" name="s5qi5" value="c"> c) Los derechos sociales son incompatibles con la democracia representativa</label>
+      <label><input type="radio" name="s5qi5" value="d"> d) La comunidad debe imponer sus valores culturales a todos sus miembros sin excepción</label>
+      <div id="s5qi5-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>6. El Estado plurinacional e intercultural reconocido en la Constitución ecuatoriana de 2008 se vincula con el modelo de ciudadanía: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s5qi6" value="a"> a) Diferenciado e intercultural, al reconocer derechos colectivos de nacionalidades indígenas y pueblos afroecuatorianos</label>
+      <label><input type="radio" name="s5qi6" value="b"> b) Liberal clásico, al garantizar solo derechos individuales universales</label>
+      <label><input type="radio" name="s5qi6" value="c"> c) Republicano, al exigir participación obligatoria de todos en asambleas públicas</label>
+      <label><input type="radio" name="s5qi6" value="d"> d) Cosmopolita, al eliminar las fronteras entre grupos étnicos y el Estado</label>
+      <div id="s5qi6-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>7. La "ciudadanía cosmopolita" propone que los deberes morales y los derechos fundamentales: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s5qi7" value="a"> a) Trascienden las fronteras nacionales y pertenecen a todos los seres humanos por su condición de personas</label>
+      <label><input type="radio" name="s5qi7" value="b"> b) Solo aplican dentro del territorio del Estado-nación al que pertenece el individuo</label>
+      <label><input type="radio" name="s5qi7" value="c"> c) Están determinados exclusivamente por la cultura de origen del ciudadano</label>
+      <label><input type="radio" name="s5qi7" value="d"> d) Solo se reconocen a quienes posean documentos de ciudadanía legal</label>
+      <div id="s5qi7-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>8. <span class="badge badge-analisis">Análisis</span> Una empresa auditora contrata solo a personas de su mismo grupo étnico, excluyendo a candidatos calificados de otras culturas. ¿Qué modelo de ciudadanía y qué principio están siendo violados?</p>
+      <label><input type="radio" name="s5qi8" value="a"> a) Se viola el principio de igualdad y no discriminación, pilares tanto del modelo liberal como del intercultural</label>
+      <label><input type="radio" name="s5qi8" value="b"> b) Se aplica correctamente el modelo comunitarista al priorizar los vínculos de comunidad</label>
+      <label><input type="radio" name="s5qi8" value="c"> c) Se ejerce el derecho republicano a la autonomía corporativa</label>
+      <label><input type="radio" name="s5qi8" value="d"> d) No hay violación, pues las empresas privadas no están sujetas a principios de ciudadanía</label>
+      <div id="s5qi8-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>9. <span class="badge badge-analisis">Análisis</span> Un estudiante argumenta: "Si voto cada cuatro años, ya cumplí mi deber ciudadano." Desde el modelo republicano, esta postura es:</p>
+      <label><input type="radio" name="s5qi9" value="a"> a) Insuficiente, porque el republicanismo exige participación activa y continua en los asuntos públicos, no solo el voto periódico</label>
+      <label><input type="radio" name="s5qi9" value="b"> b) Correcta, porque el voto es la máxima expresión de la ciudadanía en cualquier modelo</label>
+      <label><input type="radio" name="s5qi9" value="c"> c) Irrelevante, porque el modelo republicano no valora la participación individual</label>
+      <label><input type="radio" name="s5qi9" value="d"> d) Adecuada para un Estado plurinacional como Ecuador</label>
+      <div id="s5qi9-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>10. <span class="badge badge-analisis">Análisis</span> Un auditor de una comunidad indígena aplica normas contables internacionales sin considerar las prácticas de gestión colectiva propias de esa comunidad. ¿Qué perspectiva de ciudadanía puede iluminar este conflicto?</p>
+      <label><input type="radio" name="s5qi10" value="a"> a) La ciudadanía intercultural, que reconoce que los sistemas de organización y gestión de las comunidades indígenas tienen validez y deben ser considerados</label>
+      <label><input type="radio" name="s5qi10" value="b"> b) La ciudadanía liberal, que impone normas universales iguales para todos sin excepción</label>
+      <label><input type="radio" name="s5qi10" value="c"> c) La ciudadanía cosmopolita, que elimina toda referencia a la identidad cultural</label>
+      <label><input type="radio" name="s5qi10" value="d"> d) La ciudadanía republicana, que exige participación comunitaria en la aprobación de normas contables</label>
+      <div id="s5qi10-res" class="resultado-item"></div>
+    </div>
+
+    <div id="s5-qz-alerta" class="alerta">⚠️ Por favor, responde todas las preguntas antes de verificar.</div>
+    <div style="margin-top:14px;">
+      <button class="btn-verificar" onclick="verificarQuiz_s5()">✔ Verificar respuestas</button>
+      <button class="btn-reiniciar" id="s5-qz-reiniciar" onclick="reiniciarQuiz_s5()">🔄 Reiniciar</button>
+    </div>
+    <div id="s5-qz-cal" class="calificacion">
+      <div class="puntaje" id="s5-qz-puntaje"></div>
+      <div class="porcentaje" id="s5-qz-pct"></div>
+      <div class="barra-wrap"><div class="barra-fill" id="s5-qz-barra"></div></div>
+      <div class="mensaje" id="s5-qz-msg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ SEMANA 6 ============================================================ -->
+<div id="s6" class="tab-content">
+  <div class="semana-header">
+    <h2>Semana 6 — La Democracia, los Derechos Humanos y la Convivencia Democrática</h2>
+    <p>Unidad 2: La Democracia | Derechos humanos, tolerancia, diálogo y cultura democrática</p>
+  </div>
+
+  <!-- EJERCICIO S6 -->
+  <div class="bloque">
+    <div class="bloque-titulo">🧩 Ejercicio Interactivo — Semana 6</div>
+    <p style="font-size:0.9rem;color:#555;margin-bottom:14px;">Tipo: <strong>Verdadero o Falso con justificación</strong>. Selecciona tu respuesta en cada ítem.</p>
+
+    <div class="item">
+      <p>1. La Declaración Universal de los Derechos Humanos (DUDH) fue adoptada por la ONU en 1948 y es jurídicamente vinculante para todos los Estados miembros.</p>
+      <label><input type="radio" name="s6ei1" value="F"> Falso</label>
+      <label><input type="radio" name="s6ei1" value="V"> Verdadero</label>
+      <div id="s6ei1-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>2. Los derechos humanos son universales, indivisibles e interdependientes: violar uno afecta inevitablemente a los demás.</p>
+      <label><input type="radio" name="s6ei2" value="V"> Verdadero</label>
+      <label><input type="radio" name="s6ei2" value="F"> Falso</label>
+      <div id="s6ei2-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>3. La convivencia democrática se basa exclusivamente en el cumplimiento de las leyes, sin necesidad de valores como tolerancia, respeto o diálogo.</p>
+      <label><input type="radio" name="s6ei3" value="F"> Falso</label>
+      <label><input type="radio" name="s6ei3" value="V"> Verdadero</label>
+      <div id="s6ei3-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>4. En un Estado democrático, los derechos humanos pueden ser suspendidos definitivamente por el gobierno cuando así lo decida la mayoría en referéndum.</p>
+      <label><input type="radio" name="s6ei4" value="F"> Falso</label>
+      <label><input type="radio" name="s6ei4" value="V"> Verdadero</label>
+      <div id="s6ei4-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>5. La tolerancia democrática implica aceptar pasivamente todas las ideas sin poder cuestionarlas ni debatirlas públicamente.</p>
+      <label><input type="radio" name="s6ei5" value="F"> Falso</label>
+      <label><input type="radio" name="s6ei5" value="V"> Verdadero</label>
+      <div id="s6ei5-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>6. La Comisión Interamericana de Derechos Humanos (CIDH) es el principal organismo regional para la protección de los DDHH en el continente americano.</p>
+      <label><input type="radio" name="s6ei6" value="V"> Verdadero</label>
+      <label><input type="radio" name="s6ei6" value="F"> Falso</label>
+      <div id="s6ei6-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>7. La cultura democrática incluye el reconocimiento del adversario político como legítimo, no como enemigo a destruir.</p>
+      <label><input type="radio" name="s6ei7" value="V"> Verdadero</label>
+      <label><input type="radio" name="s6ei7" value="F"> Falso</label>
+      <div id="s6ei7-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>8. La corrupción en el sector público no afecta a los derechos humanos porque es un problema administrativo, no de derechos.</p>
+      <label><input type="radio" name="s6ei8" value="F"> Falso</label>
+      <label><input type="radio" name="s6ei8" value="V"> Verdadero</label>
+      <div id="s6ei8-res" class="resultado-item"></div>
+    </div>
+
+    <div id="s6-ej-alerta" class="alerta">⚠️ Por favor, responde todos los ítems antes de verificar.</div>
+    <div style="margin-top:14px;">
+      <button class="btn-verificar" onclick="verificarEjercicio_s6()">✔ Verificar respuestas</button>
+      <button class="btn-reiniciar" id="s6-ej-reiniciar" onclick="reiniciarEjercicio_s6()">🔄 Reiniciar</button>
+    </div>
+    <div id="s6-ej-cal" class="calificacion">
+      <div class="puntaje" id="s6-ej-puntaje"></div>
+      <div class="porcentaje" id="s6-ej-pct"></div>
+      <div class="barra-wrap"><div class="barra-fill" id="s6-ej-barra"></div></div>
+      <div class="mensaje" id="s6-ej-msg"></div>
+    </div>
+  </div>
+
+  <div class="separador"></div>
+
+  <!-- CUESTIONARIO S6 -->
+  <div class="bloque">
+    <div class="bloque-titulo">📋 Cuestionario — Semana 6</div>
+
+    <div class="item">
+      <p>1. ¿Cuál es la característica de los derechos humanos que indica que no pueden fragmentarse: garantizar unos y negar otros? <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s6qi1" value="a"> a) Indivisibilidad</label>
+      <label><input type="radio" name="s6qi1" value="b"> b) Universalidad</label>
+      <label><input type="radio" name="s6qi1" value="c"> c) Progresividad</label>
+      <label><input type="radio" name="s6qi1" value="d"> d) Inalienabilidad</label>
+      <div id="s6qi1-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>2. La Declaración Universal de los Derechos Humanos de 1948 nació como respuesta a: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s6qi2" value="a"> a) Los horrores de la Segunda Guerra Mundial y el Holocausto, para que nunca volvieran a repetirse</label>
+      <label><input type="radio" name="s6qi2" value="b"> b) La Guerra Fría entre Estados Unidos y la Unión Soviética</label>
+      <label><input type="radio" name="s6qi2" value="c"> c) Las revoluciones de independencia de América Latina en el siglo XIX</label>
+      <label><input type="radio" name="s6qi2" value="d"> d) El movimiento feminista de la primera ola en Europa occidental</label>
+      <div id="s6qi2-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>3. ¿Qué se entiende por "derechos de tercera generación"? <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s6qi3" value="a"> a) Derechos colectivos y de solidaridad: paz, desarrollo, medio ambiente sano y autodeterminación de los pueblos</label>
+      <label><input type="radio" name="s6qi3" value="b"> b) Derechos civiles como la libertad de expresión y el derecho al voto</label>
+      <label><input type="radio" name="s6qi3" value="c"> c) Derechos sociales como educación, salud y vivienda</label>
+      <label><input type="radio" name="s6qi3" value="d"> d) Derechos digitales reconocidos en la era de Internet</label>
+      <div id="s6qi3-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>4. La convivencia democrática requiere del ciudadano la práctica del "diálogo deliberativo", que consiste en: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s6qi4" value="a"> a) Intercambiar razones en el espacio público, escuchar al otro y llegar a acuerdos mediante argumentos, no mediante la imposición</label>
+      <label><input type="radio" name="s6qi4" value="b"> b) Imponer la posición mayoritaria sin necesidad de escuchar a las minorías</label>
+      <label><input type="radio" name="s6qi4" value="c"> c) Evitar el debate político para mantener la paz social</label>
+      <label><input type="radio" name="s6qi4" value="d"> d) Delegar todas las decisiones en los representantes elegidos sin participar directamente</label>
+      <div id="s6qi4-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>5. El principio de "no regresividad" en materia de derechos humanos implica que: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s6qi5" value="a"> a) El Estado no puede reducir el nivel de protección ya alcanzado en derechos sociales, económicos y culturales</label>
+      <label><input type="radio" name="s6qi5" value="b"> b) Los derechos solo pueden ampliarse, nunca pueden ser objeto de regulación estatal</label>
+      <label><input type="radio" name="s6qi5" value="c"> c) Las generaciones futuras no pueden exigir derechos que las generaciones anteriores no tuvieron</label>
+      <label><input type="radio" name="s6qi5" value="d"> d) El gobierno puede suspender derechos en época de crisis económica sin límites</label>
+      <div id="s6qi5-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>6. La democracia es incompatible con la violación sistemática de derechos humanos porque: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s6qi6" value="a"> a) La democracia requiere ciudadanos libres e informados; sin derechos garantizados, la participación política es vacía o coactada</label>
+      <label><input type="radio" name="s6qi6" value="b"> b) Los organismos internacionales sancionan automáticamente a los países con violaciones</label>
+      <label><input type="radio" name="s6qi6" value="c"> c) La Constitución ecuatoriana prohíbe cualquier forma de gobierno no democrático</label>
+      <label><input type="radio" name="s6qi6" value="d"> d) Los partidos políticos tienen la obligación de proteger los DDHH en sus estatutos</label>
+      <div id="s6qi6-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>7. El "pluralismo" como valor democrático implica: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s6qi7" value="a"> a) El reconocimiento y la coexistencia legítima de múltiples visiones, intereses e identidades en la sociedad</label>
+      <label><input type="radio" name="s6qi7" value="b"> b) La supremacía de la cultura mayoritaria sobre las minorías</label>
+      <label><input type="radio" name="s6qi7" value="c"> c) La obligación del Estado de imponer una sola visión del bien común</label>
+      <label><input type="radio" name="s6qi7" value="d"> d) La fragmentación del Estado en múltiples naciones independientes</label>
+      <div id="s6qi7-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>8. <span class="badge badge-analisis">Análisis</span> El gobierno de un país latinoamericano recorta el presupuesto de salud pública argumentando ajuste fiscal. ¿Qué principio de derechos humanos puede verse afectado?</p>
+      <label><input type="radio" name="s6qi8" value="a"> a) El principio de no regresividad, pues el Estado estaría reduciendo la protección ya alcanzada en el derecho a la salud</label>
+      <label><input type="radio" name="s6qi8" value="b"> b) El principio de universalidad, pues el recorte aplica solo a algunos ciudadanos</label>
+      <label><input type="radio" name="s6qi8" value="c"> c) El principio de inalienabilidad, pues el gobierno vendería el derecho a la salud</label>
+      <label><input type="radio" name="s6qi8" value="d"> d) Ninguno, porque los ajustes fiscales son atribuciones soberanas del Estado</label>
+      <div id="s6qi8-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>9. <span class="badge badge-analisis">Análisis</span> En una empresa, el gerente silencia a un empleado que denuncia irregularidades contables amenazándolo con despido. ¿Qué derecho humano está siendo vulnerado?</p>
+      <label><input type="radio" name="s6qi9" value="a"> a) El derecho a la libertad de expresión y el derecho al trabajo, ambos reconocidos en la DUDH y la Constitución ecuatoriana</label>
+      <label><input type="radio" name="s6qi9" value="b"> b) Únicamente el derecho a la propiedad privada del empleado</label>
+      <label><input type="radio" name="s6qi9" value="c"> c) El derecho a la educación y capacitación laboral continua</label>
+      <label><input type="radio" name="s6qi9" value="d"> d) Solo el derecho de asociación sindical, no la libertad de expresión</label>
+      <div id="s6qi9-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>10. <span class="badge badge-analisis">Análisis</span> Dos vecinos tienen posiciones políticas opuestas y en lugar de debatir, se agreden verbalmente e intentan silenciarse mutuamente. ¿Qué valor de la convivencia democrática están violando?</p>
+      <label><input type="radio" name="s6qi10" value="a"> a) El pluralismo y el respeto al adversario político como legítimo, valores esenciales de la cultura democrática</label>
+      <label><input type="radio" name="s6qi10" value="b"> b) El principio de representación proporcional en las elecciones</label>
+      <label><input type="radio" name="s6qi10" value="c"> c) El derecho a la propiedad y a la seguridad económica personal</label>
+      <label><input type="radio" name="s6qi10" value="d"> d) El principio de no regresividad en materia de derechos sociales</label>
+      <div id="s6qi10-res" class="resultado-item"></div>
+    </div>
+
+    <div id="s6-qz-alerta" class="alerta">⚠️ Por favor, responde todas las preguntas antes de verificar.</div>
+    <div style="margin-top:14px;">
+      <button class="btn-verificar" onclick="verificarQuiz_s6()">✔ Verificar respuestas</button>
+      <button class="btn-reiniciar" id="s6-qz-reiniciar" onclick="reiniciarQuiz_s6()">🔄 Reiniciar</button>
+    </div>
+    <div id="s6-qz-cal" class="calificacion">
+      <div class="puntaje" id="s6-qz-puntaje"></div>
+      <div class="porcentaje" id="s6-qz-pct"></div>
+      <div class="barra-wrap"><div class="barra-fill" id="s6-qz-barra"></div></div>
+      <div class="mensaje" id="s6-qz-msg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ SEMANA 7 ============================================================ -->
+<div id="s7" class="tab-content">
+  <div class="semana-header">
+    <h2>Semana 7 — Derecho a la Libre Expresión e Internet</h2>
+    <p>Unidad 2: La Democracia | Libertad de expresión digital, desinformación y democracia en red</p>
+  </div>
+
+  <!-- EJERCICIO S7 -->
+  <div class="bloque">
+    <div class="bloque-titulo">🧩 Ejercicio Interactivo — Semana 7</div>
+    <p style="font-size:0.9rem;color:#555;margin-bottom:14px;">Tipo: <strong>Elegir la afirmación correcta</strong>. Solo una opción es completamente correcta en cada ítem.</p>
+
+    <div class="item">
+      <p>1. La libertad de expresión en Internet está protegida porque:</p>
+      <label><input type="radio" name="s7ei1" value="a"> a) El Art. 19 del Pacto Internacional de Derechos Civiles y Políticos (ONU) reconoce el derecho a buscar, recibir y difundir información a través de cualquier medio, incluido Internet</label>
+      <label><input type="radio" name="s7ei1" value="b"> b) Las redes sociales son empresas privadas y por tanto están fuera del alcance de los derechos humanos</label>
+      <label><input type="radio" name="s7ei1" value="c"> c) Solo está protegida en países con democracias consolidadas, no en Ecuador</label>
+      <div id="s7ei1-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>2. La "desinformación" (disinformation) se diferencia de la "información errónea" (misinformation) en que:</p>
+      <label><input type="radio" name="s7ei2" value="a"> a) La desinformación es falsa y se difunde intencionalmente para engañar; la información errónea puede ser falsa pero sin intención de engañar</label>
+      <label><input type="radio" name="s7ei2" value="b"> b) La desinformación es verdadera pero se presenta de forma exagerada</label>
+      <label><input type="radio" name="s7ei2" value="c"> c) Ambos términos son sinónimos usados indistintamente en los medios</label>
+      <div id="s7ei2-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>3. Los "algoritmos de filtro" de las redes sociales pueden dañar la democracia porque:</p>
+      <label><input type="radio" name="s7ei3" value="a"> a) Crean "cámaras de eco" que exponen al usuario solo a contenido que confirma sus creencias, limitando el acceso a perspectivas diversas</label>
+      <label><input type="radio" name="s7ei3" value="b"> b) Garantizan que todos los ciudadanos reciban la misma información de forma equitativa</label>
+      <label><input type="radio" name="s7ei3" value="c"> c) Son regulados por la ONU para garantizar el pluralismo informativo</label>
+      <div id="s7ei3-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>4. La censura de Internet por parte de un gobierno autoritario es una violación de:</p>
+      <label><input type="radio" name="s7ei4" value="a"> a) La libertad de expresión y el acceso a la información, derechos reconocidos en la DUDH y el PIDCP</label>
+      <label><input type="radio" name="s7ei4" value="b"> b) Únicamente las normas de comercio electrónico internacional</label>
+      <label><input type="radio" name="s7ei4" value="c"> c) El derecho a la propiedad intelectual de las empresas tecnológicas</label>
+      <div id="s7ei4-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>5. El "anonimato en Internet" presenta una tensión democrática porque:</p>
+      <label><input type="radio" name="s7ei5" value="a"> a) Puede proteger a denunciantes y activistas, pero también facilitar el discurso de odio y la desinformación sin responsabilidad</label>
+      <label><input type="radio" name="s7ei5" value="b"> b) Es siempre perjudicial y debe ser eliminado para proteger la democracia</label>
+      <label><input type="radio" name="s7ei5" value="c"> c) No tiene ninguna relación con el ejercicio de derechos democráticos</label>
+      <div id="s7ei5-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>6. La "brecha digital" amenaza la democracia en Ecuador porque:</p>
+      <label><input type="radio" name="s7ei6" value="a"> a) Excluye a quienes no tienen acceso a Internet o carecen de habilidades digitales del ejercicio pleno de derechos y de la participación ciudadana en línea</label>
+      <label><input type="radio" name="s7ei6" value="b"> b) Solo afecta a la economía, sin impacto en los derechos políticos de los ciudadanos</label>
+      <label><input type="radio" name="s7ei6" value="c"> c) Ha sido completamente superada gracias a la cobertura de telefonía celular en todo el territorio nacional</label>
+      <div id="s7ei6-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>7. La libertad de expresión, incluso en Internet, tiene límites legítimos reconocidos internacionalmente, como:</p>
+      <label><input type="radio" name="s7ei7" value="a"> a) La prohibición del discurso de odio, la incitación a la violencia y la pornografía infantil, siempre que estén definidos claramente por la ley</label>
+      <label><input type="radio" name="s7ei7" value="b"> b) La censura de cualquier crítica al gobierno de turno para mantener la estabilidad política</label>
+      <label><input type="radio" name="s7ei7" value="c"> c) La obligación de las personas de publicar su identidad real en todas las plataformas digitales</label>
+      <div id="s7ei7-res" class="resultado-item"></div>
+    </div>
+
+    <div id="s7-ej-alerta" class="alerta">⚠️ Por favor, responde todos los ítems antes de verificar.</div>
+    <div style="margin-top:14px;">
+      <button class="btn-verificar" onclick="verificarEjercicio_s7()">✔ Verificar respuestas</button>
+      <button class="btn-reiniciar" id="s7-ej-reiniciar" onclick="reiniciarEjercicio_s7()">🔄 Reiniciar</button>
+    </div>
+    <div id="s7-ej-cal" class="calificacion">
+      <div class="puntaje" id="s7-ej-puntaje"></div>
+      <div class="porcentaje" id="s7-ej-pct"></div>
+      <div class="barra-wrap"><div class="barra-fill" id="s7-ej-barra"></div></div>
+      <div class="mensaje" id="s7-ej-msg"></div>
+    </div>
+  </div>
+
+  <div class="separador"></div>
+
+  <!-- CUESTIONARIO S7 -->
+  <div class="bloque">
+    <div class="bloque-titulo">📋 Cuestionario — Semana 7</div>
+
+    <div class="item">
+      <p>1. ¿Qué artículo del Pacto Internacional de Derechos Civiles y Políticos protege la libertad de expresión, incluyendo el entorno digital? <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s7qi1" value="a"> a) El Artículo 19, que reconoce el derecho a buscar, recibir y difundir información por cualquier medio</label>
+      <label><input type="radio" name="s7qi1" value="b"> b) El Artículo 1, sobre la libre determinación de los pueblos</label>
+      <label><input type="radio" name="s7qi1" value="c"> c) El Artículo 27, sobre derechos de las minorías</label>
+      <label><input type="radio" name="s7qi1" value="d"> d) El Artículo 14, sobre el derecho a un juicio justo</label>
+      <div id="s7qi1-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>2. El concepto de "posverdad" (post-truth) en el contexto digital se refiere a: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s7qi2" value="a"> a) Un entorno en que las apelaciones a las emociones y creencias personales influyen más en la opinión pública que los hechos objetivos</label>
+      <label><input type="radio" name="s7qi2" value="b"> b) La era posterior a la invención de Internet, donde la información es siempre verificable</label>
+      <label><input type="radio" name="s7qi2" value="c"> c) La práctica de publicar primero y verificar después en los medios digitales</label>
+      <label><input type="radio" name="s7qi2" value="d"> d) El uso de inteligencia artificial para generar noticias verdaderas automáticamente</label>
+      <div id="s7qi2-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>3. Las "noticias falsas" (fake news) son especialmente peligrosas para la democracia porque: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s7qi3" value="a"> a) Distorsionan la percepción de la realidad ciudadana, lo que conduce a decisiones electorales y políticas basadas en información falsa</label>
+      <label><input type="radio" name="s7qi3" value="b"> b) Aumentan la participación electoral al generar mayor interés en los temas políticos</label>
+      <label><input type="radio" name="s7qi3" value="c"> c) Solo afectan a usuarios sin educación universitaria, no a ciudadanos con formación académica</label>
+      <label><input type="radio" name="s7qi3" value="d"> d) Son fácilmente identificables por cualquier usuario de redes sociales con sentido común</label>
+      <div id="s7qi3-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>4. El "derecho al olvido" digital reconocido en legislaciones como el RGPD europeo implica: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s7qi4" value="a"> a) La facultad de una persona de solicitar la eliminación de sus datos personales de plataformas digitales cuando ya no son necesarios o son inexactos</label>
+      <label><input type="radio" name="s7qi4" value="b"> b) La obligación de los medios de comunicación de no publicar noticias negativas sobre personas públicas</label>
+      <label><input type="radio" name="s7qi4" value="c"> c) El derecho del gobierno a borrar información incómoda de las plataformas digitales</label>
+      <label><input type="radio" name="s7qi4" value="d"> d) La potestad de las empresas tecnológicas para eliminar cuentas sin previo aviso</label>
+      <div id="s7qi4-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>5. Manuel Castells describe la sociedad contemporánea como una "sociedad red" porque: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s7qi5" value="a"> a) El poder, la información y las identidades se organizan y fluyen a través de redes digitales que reconfiguran las relaciones sociales y políticas</label>
+      <label><input type="radio" name="s7qi5" value="b"> b) Los ciudadanos ya no necesitan instituciones físicas para participar en la democracia</label>
+      <label><input type="radio" name="s7qi5" value="c"> c) Internet ha eliminado las desigualdades sociales al dar acceso igual a todos</label>
+      <label><input type="radio" name="s7qi5" value="d"> d) Las redes sociales han reemplazado completamente a los partidos políticos en la democracia moderna</label>
+      <div id="s7qi5-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>6. ¿Cuál de los siguientes casos ilustra un uso legítimo del anonimato digital desde la perspectiva de los derechos humanos? <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s7qi6" value="a"> a) Un periodista que publica denuncias de corrupción en un país autoritario protegiéndose con un seudónimo para evitar represalias</label>
+      <label><input type="radio" name="s7qi6" value="b"> b) Un ciudadano que usa seudónimo para difundir noticias falsas sobre candidatos electorales</label>
+      <label><input type="radio" name="s7qi6" value="c"> c) Una empresa que oculta su identidad para evadir impuestos en plataformas de comercio electrónico</label>
+      <label><input type="radio" name="s7qi6" value="d"> d) Un hacker que roba datos personales de usuarios de una red bancaria</label>
+      <div id="s7qi6-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>7. La regulación estatal de contenidos en Internet debe cumplir tres condiciones para ser legítima según los estándares internacionales de DDHH: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s7qi7" value="a"> a) Estar prevista en la ley, perseguir un objetivo legítimo (como proteger derechos de terceros) y ser necesaria y proporcional en una sociedad democrática</label>
+      <label><input type="radio" name="s7qi7" value="b"> b) Ser aprobada por el Ejecutivo, tener respaldo de la mayoría parlamentaria y contar con el apoyo de los medios de comunicación</label>
+      <label><input type="radio" name="s7qi7" value="c"> c) Ser temporal, no afectar a medios internacionales y respetar los intereses económicos de las plataformas</label>
+      <label><input type="radio" name="s7qi7" value="d"> d) Ser aprobada por referéndum, implementada por el Ministerio de Telecomunicaciones y revisada cada año</label>
+      <div id="s7qi7-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>8. <span class="badge badge-analisis">Análisis</span> Durante una campaña electoral en Ecuador, un partido difunde masivamente en WhatsApp un video falso que muestra a un candidato rival cometiendo un delito. Este acto es:</p>
+      <label><input type="radio" name="s7qi8" value="a"> a) Desinformación electoral que atenta contra la democracia y los derechos del candidato afectado, y puede constituir un delito según la legislación ecuatoriana</label>
+      <label><input type="radio" name="s7qi8" value="b"> b) Un ejercicio legítimo de la libertad de expresión protegido por la Constitución</label>
+      <label><input type="radio" name="s7qi8" value="c"> c) Una práctica aceptable en la política siempre que sea eliminada después de las elecciones</label>
+      <label><input type="radio" name="s7qi8" value="d"> d) Un problema técnico de las plataformas digitales sin implicaciones jurídicas</label>
+      <div id="s7qi8-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>9. <span class="badge badge-analisis">Análisis</span> Un contador público denuncia en Twitter irregularidades en una empresa donde trabaja y es despedido horas después. ¿Qué derechos están en conflicto en esta situación?</p>
+      <label><input type="radio" name="s7qi9" value="a"> a) La libertad de expresión y el derecho al trabajo del empleado, frente al interés de la empresa en mantener confidencialidad sobre información que puede ser de interés público</label>
+      <label><input type="radio" name="s7qi9" value="b"> b) El derecho a la propiedad privada de la empresa frente al derecho a vacaciones del empleado</label>
+      <label><input type="radio" name="s7qi9" value="c"> c) El derecho al voto del empleado frente al derecho de asociación de la empresa</label>
+      <label><input type="radio" name="s7qi9" value="d"> d) El derecho a la educación del empleado frente al secreto comercial de la empresa</label>
+      <div id="s7qi9-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>10. <span class="badge badge-analisis">Análisis</span> Un estudiante universitario comparte en sus redes sociales un artículo sin verificar su fuente porque "muchos lo están compartiendo". ¿Qué competencia ciudadana digital le falta desarrollar?</p>
+      <label><input type="radio" name="s7qi10" value="a"> a) Alfabetización mediática e informacional: la capacidad de evaluar críticamente la credibilidad, origen y veracidad de la información antes de compartirla</label>
+      <label><input type="radio" name="s7qi10" value="b"> b) Habilidades de programación y desarrollo web</label>
+      <label><input type="radio" name="s7qi10" value="c"> c) Conocimiento de las leyes de propiedad intelectual en Ecuador</label>
+      <label><input type="radio" name="s7qi10" value="d"> d) Acceso a una conexión de Internet de mayor velocidad para verificar datos</label>
+      <div id="s7qi10-res" class="resultado-item"></div>
+    </div>
+
+    <div id="s7-qz-alerta" class="alerta">⚠️ Por favor, responde todas las preguntas antes de verificar.</div>
+    <div style="margin-top:14px;">
+      <button class="btn-verificar" onclick="verificarQuiz_s7()">✔ Verificar respuestas</button>
+      <button class="btn-reiniciar" id="s7-qz-reiniciar" onclick="reiniciarQuiz_s7()">🔄 Reiniciar</button>
+    </div>
+    <div id="s7-qz-cal" class="calificacion">
+      <div class="puntaje" id="s7-qz-puntaje"></div>
+      <div class="porcentaje" id="s7-qz-pct"></div>
+      <div class="barra-wrap"><div class="barra-fill" id="s7-qz-barra"></div></div>
+      <div class="mensaje" id="s7-qz-msg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ JAVASCRIPT ============================================================ -->
+<script>
+// ── NAVEGACIÓN DE PESTAÑAS ────────────────────────────────────────
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── UTILIDADES COMUNES ───────────────────────────────────────────
+function getMensaje(pct) {
+  if (pct === 100) return '🏆 ¡Excelente dominio del tema!';
+  if (pct >= 80)  return '🎯 ¡Muy buen trabajo!';
+  if (pct >= 60)  return '📘 Vas por buen camino, repasa los ítems en rojo.';
+  if (pct >= 40)  return '⚠️ Necesitas reforzar. Vuelve al material.';
+  return '📖 Te recomendamos releer el contenido antes de continuar.';
+}
+
+function mostrarCalificacion(idCal, idPuntaje, idPct, idBarra, idMsg, correctas, total) {
+  const pct = Math.round((correctas / total) * 100);
+  document.getElementById(idPuntaje).textContent = correctas + ' / ' + total;
+  document.getElementById(idPct).textContent = pct + '%';
+  document.getElementById(idMsg).textContent = getMensaje(pct);
+  const cal = document.getElementById(idCal);
+  cal.style.display = 'block';
+  setTimeout(() => { document.getElementById(idBarra).style.width = pct + '%'; }, 100);
+}
+
+function allAnswered(names) {
+  return names.every(n => document.querySelector('input[name="' + n + '"]:checked'));
+}
+
+function showAlert(id) {
+  const el = document.getElementById(id);
+  el.style.display = 'block';
+  setTimeout(() => { el.style.display = 'none'; }, 3500);
+}
+
+function mostrarResultados(corrects, feedbacks) {
+  let ok = 0;
+  Object.keys(corrects).forEach(name => {
+    const sel = document.querySelector('input[name="' + name + '"]:checked');
+    const res = document.getElementById(name + '-res');
+    res.style.display = 'block';
+    if (sel && sel.value === corrects[name]) {
+      res.className = 'resultado-item correcto';
+      res.innerHTML = '✅ ' + feedbacks[name].ok;
+      ok++;
+    } else {
+      res.className = 'resultado-item incorrecto';
+      res.innerHTML = '❌ ' + feedbacks[name].err;
+    }
+  });
+  return ok;
+}
+
+function resetBlock(names, resIds, btnId, calId, barraId) {
+  names.forEach(n => { document.querySelectorAll('input[name="' + n + '"]').forEach(r => r.checked = false); });
+  resIds.forEach(id => { const el = document.getElementById(id); if (el) { el.style.display = 'none'; el.className = 'resultado-item'; } });
+  document.getElementById(calId).style.display = 'none';
+  document.getElementById(barraId).style.width = '0';
+  document.getElementById(btnId).style.display = 'none';
+}
+
+// ══════════════════════════════════════════════════════════════════
+// SEMANA 5
+// ══════════════════════════════════════════════════════════════════
+
+const ejercicioCorrects_s5 = { s5ei1:'a', s5ei2:'a', s5ei3:'a', s5ei4:'a', s5ei5:'a', s5ei6:'a', s5ei7:'a' };
+const ejercicioFeedbacks_s5 = {
+  s5ei1: { ok:'Correcto. El modelo liberal enfatiza los derechos individuales y la no interferencia del Estado en la vida privada del ciudadano.', err:'Incorrecto. La descripción del individuo con derechos civiles y políticos que el Estado debe garantizar sin interferir corresponde al modelo LIBERAL.' },
+  s5ei2: { ok:'Correcto. El modelo republicano exige participación activa en la vida pública y compromiso con el bien común, no solo titularidad de derechos.', err:'Incorrecto. La participación activa en los asuntos públicos y el compromiso con el bien común son el núcleo del modelo REPUBLICANO.' },
+  s5ei3: { ok:'Correcto. El modelo comunitarista sostiene que la identidad del ciudadano es inseparable de su comunidad cultural y sus vínculos comunitarios.', err:'Incorrecto. Vincular la identidad con la comunidad cultural de pertenencia es el núcleo del modelo COMUNITARISTA.' },
+  s5ei4: { ok:'Correcto. El reconocimiento de derechos colectivos de pueblos indígenas y afroecuatorianos expresa el modelo de ciudadanía diferenciado e intercultural.', err:'Incorrecto. Los derechos colectivos para pueblos indígenas y afroecuatorianos expresan el modelo DIFERENCIADO E INTERCULTURAL.' },
+  s5ei5: { ok:'Correcto. Will Kymlicka es el principal teórico de la ciudadanía multicultural y los derechos de las minorías culturales.', err:'Incorrecto. Will Kymlicka es reconocido por defender los derechos de las minorías culturales y la ciudadanía multicultural.' },
+  s5ei6: { ok:'Correcto. La minga andina es una práctica colectiva que antepone el bien de la comunidad, característica del modelo comunitarista.', err:'Incorrecto. La minga antepone el bien comunitario al individual, lo que la vincula con el modelo COMUNITARISTA.' },
+  s5ei7: { ok:'Correcto. Para el republicanismo, la virtud cívica es la disposición activa a participar en lo público y subordinar intereses privados al bien común.', err:'Incorrecto. La virtud cívica republicana es la disposición activa a participar en lo público y anteponer el bien común al interés privado.' }
+};
+
+function verificarEjercicio_s5() {
+  const names = Object.keys(ejercicioCorrects_s5);
+  if (!allAnswered(names)) { showAlert('s5-ej-alerta'); return; }
+  const ok = mostrarResultados(ejercicioCorrects_s5, ejercicioFeedbacks_s5);
+  mostrarCalificacion('s5-ej-cal','s5-ej-puntaje','s5-ej-pct','s5-ej-barra','s5-ej-msg', ok, names.length);
+  document.getElementById('s5-ej-reiniciar').style.display = 'inline-block';
+}
+
+function reiniciarEjercicio_s5() {
+  const names = Object.keys(ejercicioCorrects_s5);
+  resetBlock(names, names.map(n => n + '-res'), 's5-ej-reiniciar', 's5-ej-cal', 's5-ej-barra');
+}
+
+const quizCorrects_s5 = { s5qi1:'a', s5qi2:'a', s5qi3:'a', s5qi4:'a', s5qi5:'a', s5qi6:'a', s5qi7:'a', s5qi8:'a', s5qi9:'a', s5qi10:'a' };
+const quizFeedbacks_s5 = {
+  s5qi1: { ok:'Correcto. El núcleo del modelo liberal es la primacía de los derechos individuales y la autonomía personal frente al Estado.', err:'Incorrecto. El modelo liberal se centra en la primacía de los derechos individuales y la autonomía personal.' },
+  s5qi2: { ok:'Correcto. Michael Sandel (Liberalism and the Limits of Justice) argumentó que el yo no puede separarse de sus vínculos comunitarios.', err:'Incorrecto. Es Michael Sandel quien argumenta que la identidad es siempre situada en vínculos comunitarios.' },
+  s5qi3: { ok:'Correcto. La ciudadanía intercultural reconoce derechos diferenciados según la identidad cultural, étnica o nacional de los grupos.', err:'Incorrecto. La ciudadanía intercultural implica reconocimiento de derechos diferenciados por identidad cultural, no asimilación.' },
+  s5qi4: { ok:'Correcto. Marshall planteó que los derechos civiles (s. XVIII) precedieron a los políticos (s. XIX), que a su vez precedieron a los sociales (s. XX).', err:'Incorrecto. El orden cronológico según Marshall es: Civiles (s. XVIII) → Políticos (s. XIX) → Sociales (s. XX).' },
+  s5qi5: { ok:'Correcto. El republicanismo critica que el liberalismo genera pasividad política y debilita el autogobierno colectivo al reducir todo a derechos individuales.', err:'Incorrecto. La crítica republicana al liberalismo es que genera pasividad política y debilita el autogobierno colectivo.' },
+  s5qi6: { ok:'Correcto. El Estado plurinacional con derechos colectivos de nacionalidades y pueblos expresa el modelo diferenciado e intercultural.', err:'Incorrecto. El Estado plurinacional con derechos colectivos corresponde al modelo DIFERENCIADO E INTERCULTURAL.' },
+  s5qi7: { ok:'Correcto. La ciudadanía cosmopolita reconoce que los derechos fundamentales pertenecen a todos los seres humanos, trascendiendo fronteras nacionales.', err:'Incorrecto. El cosmopolitismo sostiene que los derechos morales trascienden las fronteras nacionales.' },
+  s5qi8: { ok:'Correcto. La exclusión por etnia viola el principio de igualdad y no discriminación, transversal a los modelos liberal e intercultural.', err:'Incorrecto. Contratar solo por etnia viola el principio de igualdad y no discriminación, presente en los modelos liberal e intercultural.' },
+  s5qi9: { ok:'Correcto. El republicanismo exige participación activa y continua en los asuntos públicos; votar cada cuatro años es insuficiente desde esa perspectiva.', err:'Incorrecto. Desde el republicanismo, votar cada cuatro años es insuficiente; se requiere participación activa y continua.' },
+  s5qi10: { ok:'Correcto. La ciudadanía intercultural reconoce que los sistemas indígenas de gestión colectiva tienen validez y deben considerarse en contextos de auditoría.', err:'Incorrecto. Este conflicto lo ilumina la ciudadanía INTERCULTURAL, que reconoce la validez de los sistemas de organización indígena.' }
+};
+
+function verificarQuiz_s5() {
+  const names = Object.keys(quizCorrects_s5);
+  if (!allAnswered(names)) { showAlert('s5-qz-alerta'); return; }
+  const ok = mostrarResultados(quizCorrects_s5, quizFeedbacks_s5);
+  mostrarCalificacion('s5-qz-cal','s5-qz-puntaje','s5-qz-pct','s5-qz-barra','s5-qz-msg', ok, names.length);
+  document.getElementById('s5-qz-reiniciar').style.display = 'inline-block';
+}
+
+function reiniciarQuiz_s5() {
+  const names = Object.keys(quizCorrects_s5);
+  resetBlock(names, names.map(n => n + '-res'), 's5-qz-reiniciar', 's5-qz-cal', 's5-qz-barra');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// SEMANA 6
+// ══════════════════════════════════════════════════════════════════
+
+const ejercicioCorrects_s6 = { s6ei1:'F', s6ei2:'V', s6ei3:'F', s6ei4:'F', s6ei5:'F', s6ei6:'V', s6ei7:'V', s6ei8:'F' };
+const ejercicioFeedbacks_s6 = {
+  s6ei1: { ok:'Correcto. La DUDH de 1948 es una DECLARACIÓN, no un tratado vinculante. Los instrumentos vinculantes son los Pactos de 1966 (PIDCP y PIDESC).', err:'Incorrecto. La DUDH es una declaración de principios, NO es jurídicamente vinculante por sí misma. Los tratados vinculantes son los Pactos Internacionales de 1966.' },
+  s6ei2: { ok:'Correcto. Los DDHH son universales, indivisibles e interdependientes: no se puede garantizar unos y negar otros sin afectar al sistema completo.', err:'Incorrecto. Sí son universales, indivisibles e interdependientes. Violar un derecho afecta inevitablemente a los demás.' },
+  s6ei3: { ok:'Correcto. La convivencia democrática requiere, además de leyes, valores como tolerancia, respeto, diálogo y reconocimiento del otro. Las leyes por sí solas son insuficientes.', err:'Incorrecto. La convivencia democrática requiere TAMBIÉN valores como tolerancia, respeto y diálogo. Las leyes solas no son suficientes.' },
+  s6ei4: { ok:'Correcto. Los derechos humanos fundamentales son inalienables; no pueden ser suspendidos definitivamente ni siquiera por mayoría. Hay derechos inderogables incluso en estados de excepción.', err:'Incorrecto. Los DDHH fundamentales son inalienables. Existen derechos inderogables que no pueden suprimirse definitivamente bajo ninguna circunstancia.' },
+  s6ei5: { ok:'Correcto. La tolerancia democrática no es pasividad: implica respetar el derecho de otros a expresarse, mientras se mantiene la capacidad de debatir y cuestionar sus ideas.', err:'Incorrecto. La tolerancia democrática NO es pasividad; incluye el derecho y la capacidad de cuestionar y debatir ideas en el espacio público.' },
+  s6ei6: { ok:'Correcto. La CIDH, junto con la Corte Interamericana de Derechos Humanos, es el principal mecanismo regional de protección de DDHH en el continente americano.', err:'Incorrecto. La CIDH sí es el principal organismo regional de protección de DDHH en América, dentro del sistema de la OEA.' },
+  s6ei7: { ok:'Correcto. La cultura democrática exige reconocer al adversario político como legítimo, no como enemigo; esto es fundamental para la convivencia pacífica.', err:'Incorrecto. La cultura democrática sí implica reconocer al adversario político como legítimo, no como enemigo a eliminar.' },
+  s6ei8: { ok:'Correcto. La corrupción SÍ viola derechos humanos: desvía recursos que debían garantizar salud, educación y otros derechos sociales, afectando especialmente a los más vulnerables.', err:'Incorrecto. La corrupción SÍ afecta los derechos humanos, pues desvía recursos destinados a salud, educación y otros derechos de la población más vulnerable.' }
+};
+
+function verificarEjercicio_s6() {
+  const names = Object.keys(ejercicioCorrects_s6);
+  if (!allAnswered(names)) { showAlert('s6-ej-alerta'); return; }
+  const ok = mostrarResultados(ejercicioCorrects_s6, ejercicioFeedbacks_s6);
+  mostrarCalificacion('s6-ej-cal','s6-ej-puntaje','s6-ej-pct','s6-ej-barra','s6-ej-msg', ok, names.length);
+  document.getElementById('s6-ej-reiniciar').style.display = 'inline-block';
+}
+
+function reiniciarEjercicio_s6() {
+  const names = Object.keys(ejercicioCorrects_s6);
+  resetBlock(names, names.map(n => n + '-res'), 's6-ej-reiniciar', 's6-ej-cal', 's6-ej-barra');
+}
+
+const quizCorrects_s6 = { s6qi1:'a', s6qi2:'a', s6qi3:'a', s6qi4:'a', s6qi5:'a', s6qi6:'a', s6qi7:'a', s6qi8:'a', s6qi9:'a', s6qi10:'a' };
+const quizFeedbacks_s6 = {
+  s6qi1: { ok:'Correcto. La indivisibilidad es el principio que impide fragmentar los DDHH: no se pueden garantizar unos y negar otros.', err:'Incorrecto. El principio que impide fragmentar los DDHH es la INDIVISIBILIDAD.' },
+  s6qi2: { ok:'Correcto. La DUDH nació como respuesta a los horrores de la Segunda Guerra Mundial y el Holocausto.', err:'Incorrecto. La DUDH fue respuesta directa a los horrores de la Segunda Guerra Mundial y el Holocausto.' },
+  s6qi3: { ok:'Correcto. Los derechos de tercera generación son colectivos y de solidaridad: paz, desarrollo, medio ambiente y autodeterminación.', err:'Incorrecto. Los derechos de tercera generación son colectivos: paz, desarrollo, medio ambiente, autodeterminación de los pueblos.' },
+  s6qi4: { ok:'Correcto. El diálogo deliberativo implica intercambiar razones, escuchar al otro y llegar a acuerdos mediante argumentos, no por imposición.', err:'Incorrecto. El diálogo deliberativo consiste en intercambiar razones y escuchar al otro, no en imponer ni en evitar el debate.' },
+  s6qi5: { ok:'Correcto. La no regresividad prohíbe al Estado reducir el nivel de protección ya alcanzado en derechos sociales, económicos y culturales.', err:'Incorrecto. La no regresividad prohíbe al Estado reducir el nivel de protección ya alcanzado en derechos sociales y económicos.' },
+  s6qi6: { ok:'Correcto. Sin derechos garantizados, la participación política se vuelve vacía o coaccionada, lo que hace incompatibles democracia y violación sistemática de DDHH.', err:'Incorrecto. La democracia requiere ciudadanos libres e informados; sin derechos garantizados, la participación política es vacía.' },
+  s6qi7: { ok:'Correcto. El pluralismo reconoce y acepta la coexistencia legítima de múltiples visiones, intereses e identidades en la sociedad democrática.', err:'Incorrecto. El pluralismo es el reconocimiento de múltiples visiones e identidades coexistiendo legítimamente.' },
+  s6qi8: { ok:'Correcto. El recorte en salud puede violar el principio de no regresividad, pues reduce la protección ya alcanzada en ese derecho.', err:'Incorrecto. El principio amenazado es la NO REGRESIVIDAD, pues el Estado estaría reduciendo la protección del derecho a la salud.' },
+  s6qi9: { ok:'Correcto. La situación pone en conflicto la libertad de expresión y el derecho al trabajo del empleado frente al interés empresarial en la confidencialidad.', err:'Incorrecto. Están en conflicto la libertad de expresión y el derecho al trabajo del empleado.' },
+  s6qi10: { ok:'Correcto. Agredir y silenciar al adversario político viola el pluralismo y el respeto al adversario como legítimo, valores esenciales de la cultura democrática.', err:'Incorrecto. El valor violado es el PLURALISMO y el reconocimiento del adversario político como legítimo.' }
+};
+
+function verificarQuiz_s6() {
+  const names = Object.keys(quizCorrects_s6);
+  if (!allAnswered(names)) { showAlert('s6-qz-alerta'); return; }
+  const ok = mostrarResultados(quizCorrects_s6, quizFeedbacks_s6);
+  mostrarCalificacion('s6-qz-cal','s6-qz-puntaje','s6-qz-pct','s6-qz-barra','s6-qz-msg', ok, names.length);
+  document.getElementById('s6-qz-reiniciar').style.display = 'inline-block';
+}
+
+function reiniciarQuiz_s6() {
+  const names = Object.keys(quizCorrects_s6);
+  resetBlock(names, names.map(n => n + '-res'), 's6-qz-reiniciar', 's6-qz-cal', 's6-qz-barra');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// SEMANA 7
+// ══════════════════════════════════════════════════════════════════
+
+const ejercicioCorrects_s7 = { s7ei1:'a', s7ei2:'a', s7ei3:'a', s7ei4:'a', s7ei5:'a', s7ei6:'a', s7ei7:'a' };
+const ejercicioFeedbacks_s7 = {
+  s7ei1: { ok:'Correcto. El Art. 19 del PIDCP protege la libertad de expresión a través de cualquier medio, incluyendo Internet.', err:'Incorrecto. El Art. 19 del PIDCP (ONU) protege explícitamente la libertad de expresión a través de cualquier medio, incluido Internet.' },
+  s7ei2: { ok:'Correcto. La desinformación es intencionalmente falsa; la información errónea (misinformation) puede ser falsa pero sin intención deliberada de engañar.', err:'Incorrecto. La diferencia clave es la INTENCIÓN: la desinformación es falsa y deliberada; la información errónea puede ser involuntaria.' },
+  s7ei3: { ok:'Correcto. Los algoritmos crean cámaras de eco que exponen al usuario solo a contenido que confirma sus creencias, limitando perspectivas diversas.', err:'Incorrecto. Los algoritmos crean cámaras de eco que limitan el acceso a perspectivas diversas, lo cual daña la democracia.' },
+  s7ei4: { ok:'Correcto. La censura de Internet viola la libertad de expresión y el acceso a la información, reconocidos en la DUDH y el PIDCP.', err:'Incorrecto. La censura de Internet viola la libertad de expresión y el acceso a la información, derechos reconocidos internacionalmente.' },
+  s7ei5: { ok:'Correcto. El anonimato tiene un doble filo: protege a denunciantes y activistas, pero también puede facilitar el discurso de odio sin responsabilidad.', err:'Incorrecto. El anonimato tiene ventajas (protege activistas) y riesgos (facilita discurso de odio); es una tensión genuina, no una condena absoluta.' },
+  s7ei6: { ok:'Correcto. La brecha digital excluye a quienes no tienen acceso o habilidades digitales del ejercicio pleno de derechos y de la participación ciudadana en línea.', err:'Incorrecto. La brecha digital sí afecta los derechos políticos y la participación ciudadana de quienes no tienen acceso o habilidades digitales.' },
+  s7ei7: { ok:'Correcto. La libertad de expresión tiene límites legítimos: discurso de odio, incitación a la violencia y pornografía infantil, definidos claramente en la ley.', err:'Incorrecto. Los límites legítimos incluyen el discurso de odio, incitación a la violencia y pornografía infantil, cuando están definidos por ley.' }
+};
+
+function verificarEjercicio_s7() {
+  const names = Object.keys(ejercicioCorrects_s7);
+  if (!allAnswered(names)) { showAlert('s7-ej-alerta'); return; }
+  const ok = mostrarResultados(ejercicioCorrects_s7, ejercicioFeedbacks_s7);
+  mostrarCalificacion('s7-ej-cal','s7-ej-puntaje','s7-ej-pct','s7-ej-barra','s7-ej-msg', ok, names.length);
+  document.getElementById('s7-ej-reiniciar').style.display = 'inline-block';
+}
+
+function reiniciarEjercicio_s7() {
+  const names = Object.keys(ejercicioCorrects_s7);
+  resetBlock(names, names.map(n => n + '-res'), 's7-ej-reiniciar', 's7-ej-cal', 's7-ej-barra');
+}
+
+const quizCorrects_s7 = { s7qi1:'a', s7qi2:'a', s7qi3:'a', s7qi4:'a', s7qi5:'a', s7qi6:'a', s7qi7:'a', s7qi8:'a', s7qi9:'a', s7qi10:'a' };
+const quizFeedbacks_s7 = {
+  s7qi1: { ok:'Correcto. El Art. 19 del PIDCP reconoce el derecho a buscar, recibir y difundir información por cualquier medio, incluyendo Internet.', err:'Incorrecto. El Art. 19 del Pacto Internacional de Derechos Civiles y Políticos protege la libertad de expresión en cualquier medio.' },
+  s7qi2: { ok:'Correcto. La posverdad describe un entorno donde las emociones y creencias personales influyen más que los hechos objetivos en la opinión pública.', err:'Incorrecto. La posverdad se refiere a un contexto donde las emociones y creencias pesan más que los hechos en la formación de la opinión pública.' },
+  s7qi3: { ok:'Correcto. Las fake news distorsionan la percepción de la realidad y llevan a decisiones electorales y políticas basadas en información falsa.', err:'Incorrecto. Las fake news son peligrosas porque distorsionan la percepción ciudadana y contaminan la toma de decisiones democráticas.' },
+  s7qi4: { ok:'Correcto. El derecho al olvido permite a una persona solicitar la eliminación de sus datos personales cuando ya no son necesarios o son inexactos.', err:'Incorrecto. El derecho al olvido es la facultad de solicitar la eliminación de datos personales en plataformas digitales cuando ya no son pertinentes.' },
+  s7qi5: { ok:'Correcto. Para Castells, el poder, la información y las identidades se organizan y fluyen a través de redes digitales que reconfiguran la sociedad y la política.', err:'Incorrecto. Castells describe que el poder e identidades fluyen a través de redes digitales que reconfiguran las relaciones sociales y políticas.' },
+  s7qi6: { ok:'Correcto. El uso de seudónimo por un periodista que denuncia corrupción en un país autoritario es un ejercicio legítimo del anonimato para protegerse de represalias.', err:'Incorrecto. El uso legítimo del anonimato es el del periodista que se protege de represalias al denunciar corrupción en un contexto represivo.' },
+  s7qi7: { ok:'Correcto. La regulación legítima debe: estar prevista en la ley, perseguir un objetivo legítimo, y ser necesaria y proporcional en una sociedad democrática.', err:'Incorrecto. Los tres requisitos internacionales son: legalidad, objetivo legítimo, y necesidad/proporcionalidad en una sociedad democrática.' },
+  s7qi8: { ok:'Correcto. Difundir un video falso para dañar a un candidato es desinformación electoral que atenta contra la democracia y puede constituir un delito.', err:'Incorrecto. Difundir intencionalmente un video falso para dañar a un candidato es desinformación electoral, no un ejercicio legítimo de la libertad de expresión.' },
+  s7qi9: { ok:'Correcto. Están en conflicto la libertad de expresión y el derecho al trabajo del empleado frente al interés empresarial en la confidencialidad de información que puede ser de interés público.', err:'Incorrecto. El conflicto central es entre la libertad de expresión y el derecho al trabajo del empleado frente al interés de confidencialidad de la empresa.' },
+  s7qi10: { ok:'Correcto. Le falta alfabetización mediática e informacional: la capacidad de evaluar críticamente la credibilidad y veracidad de la información antes de compartirla.', err:'Incorrecto. La competencia faltante es la ALFABETIZACIÓN MEDIÁTICA E INFORMACIONAL: evaluar críticamente fuentes y veracidad antes de compartir.' }
+};
+
+function verificarQuiz_s7() {
+  const names = Object.keys(quizCorrects_s7);
+  if (!allAnswered(names)) { showAlert('s7-qz-alerta'); return; }
+  const ok = mostrarResultados(quizCorrects_s7, quizFeedbacks_s7);
+  mostrarCalificacion('s7-qz-cal','s7-qz-puntaje','s7-qz-pct','s7-qz-barra','s7-qz-msg', ok, names.length);
+  document.getElementById('s7-qz-reiniciar').style.display = 'inline-block';
+}
+
+function reiniciarQuiz_s7() {
+  const names = Object.keys(quizCorrects_s7);
+  resetBlock(names, names.map(n => n + '-res'), 's7-qz-reiniciar', 's7-qz-cal', 's7-qz-barra');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 1 | Organización Política y Administrativa | DCG</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #f0f4f8;
+    color: #1a1a2e;
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: #003366;
+    color: #fff;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 12px 24px;
+  }
+  .header-logo {
+    height: 56px;
+    width: auto;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: #fff;
+    padding: 4px;
+  }
+  .header-text h1 {
+    font-family: 'Lora', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+  }
+  .header-text p {
+    font-size: 0.82rem;
+    color: #b3d4f5;
+    margin-top: 2px;
+  }
+  .header-badges {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+  .badge {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .badge.accent { background: #00BCD4; color: #fff; }
+
+  /* ===== TAB NAV ===== */
+  .tab-nav-wrapper {
+    background: #87CEEB;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 3px solid #003366;
+  }
+  .tab-nav-wrapper::-webkit-scrollbar { height: 4px; }
+  .tab-nav-wrapper::-webkit-scrollbar-thumb { background: #003366; border-radius: 2px; }
+  .tab-nav {
+    display: inline-flex;
+    padding: 0 8px;
+  }
+  .tab-btn {
+    padding: 11px 18px;
+    border: none;
+    background: transparent;
+    color: #1a1a2e;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.83rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,0.5); }
+  .tab-btn.active {
+    background: #fff;
+    color: #003366;
+    font-weight: 700;
+    border-bottom: 3px solid #003366;
+  }
+
+  /* ===== CONTENT AREA ===== */
+  .tab-content { display: none; padding: 28px 24px 48px; max-width: 960px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  /* ===== TYPOGRAPHY ===== */
+  h2 { font-family: 'Lora', serif; font-size: 1.6rem; color: #003366; margin-bottom: 10px; }
+  h3 { font-family: 'Lora', serif; font-size: 1.15rem; color: #003366; margin: 22px 0 8px; }
+  h4 { font-family: 'Source Sans 3', sans-serif; font-size: 1rem; font-weight: 700; color: #003366; margin: 16px 0 6px; }
+  p { line-height: 1.75; margin-bottom: 12px; font-size: 0.97rem; }
+  ul, ol { padding-left: 22px; margin-bottom: 12px; }
+  li { line-height: 1.7; margin-bottom: 4px; font-size: 0.97rem; }
+
+  /* ===== BOXES ===== */
+  .concept-box {
+    border-left: 5px solid #003366;
+    background: #f0f6ff;
+    padding: 16px 20px;
+    margin: 18px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .concept-box strong { color: #003366; }
+
+  .example-box {
+    background: #ddeeff;
+    border: 1px solid #a8c8ee;
+    padding: 16px 20px;
+    margin: 18px 0;
+    border-radius: 8px;
+  }
+  .example-box .ex-label {
+    font-weight: 700;
+    color: #003366;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+
+  .key-idea {
+    background: #003366;
+    color: #fff;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 22px 0;
+    font-size: 0.97rem;
+    line-height: 1.7;
+  }
+  .key-idea strong { color: #87CEEB; }
+
+  .highlight-box {
+    background: #e8f5e9;
+    border-left: 5px solid #2e7d32;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+  }
+
+  .warning-box {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+  }
+
+  /* ===== SECTION DIVIDER ===== */
+  .section-divider {
+    height: 2px;
+    background: linear-gradient(to right, #003366, #87CEEB, transparent);
+    margin: 28px 0;
+    border-radius: 2px;
+  }
+
+  /* ===== TABLE ===== */
+  .table-wrap { overflow-x: auto; margin: 18px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th { background: #003366; color: #fff; padding: 10px 14px; text-align: left; font-weight: 600; }
+  td { padding: 9px 14px; border-bottom: 1px solid #dce6f0; vertical-align: top; }
+  tr:nth-child(even) td { background: #f0f6ff; }
+  tr:hover td { background: #ddeeff; }
+
+  /* ===== CARD GRID ===== */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 18px 0; }
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: 0 2px 8px rgba(0,51,102,0.1);
+    border-top: 4px solid #003366;
+  }
+  .card h4 { margin-top: 0; font-size: 0.95rem; }
+  .card p { font-size: 0.88rem; margin-bottom: 0; }
+  .card.teal { border-top-color: #00BCD4; }
+  .card.green { border-top-color: #2e7d32; }
+  .card.orange { border-top-color: #e65100; }
+
+  /* ===== INTRO BANNER ===== */
+  .intro-banner {
+    background: linear-gradient(135deg, #003366 0%, #005099 100%);
+    color: #fff;
+    padding: 28px 28px 22px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+  }
+  .intro-banner h2 { color: #87CEEB; margin-bottom: 8px; font-size: 1.4rem; }
+  .intro-banner p { color: #d9eeff; margin-bottom: 0; }
+
+  /* ===== REPASO TIMELINE ===== */
+  .timeline { position: relative; padding-left: 28px; margin: 18px 0; }
+  .timeline::before { content:''; position: absolute; left: 10px; top: 0; bottom: 0; width: 3px; background: #87CEEB; border-radius: 2px; }
+  .timeline-item { position: relative; margin-bottom: 22px; }
+  .timeline-item::before { content:''; position: absolute; left: -22px; top: 6px; width: 14px; height: 14px; background: #003366; border-radius: 50%; border: 3px solid #87CEEB; }
+  .timeline-item h4 { margin-top: 0; }
+
+  /* ===== INTERACTIVE EXERCISE ===== */
+  .exercise-container { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,51,102,0.1); }
+  .exercise-item { margin-bottom: 22px; padding: 18px; background: #f8faff; border-radius: 8px; border: 1px solid #dce6f0; }
+  .exercise-item p { font-weight: 600; margin-bottom: 10px; color: #003366; }
+  .exercise-options { display: flex; flex-direction: column; gap: 8px; }
+  .exercise-options label {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 14px; border-radius: 6px; cursor: pointer;
+    border: 1px solid #dce6f0; background: #fff;
+    transition: background 0.2s;
+    font-size: 0.93rem; line-height: 1.5;
+  }
+  .exercise-options label:hover { background: #ddeeff; }
+  .exercise-options input[type="radio"] { margin-top: 3px; flex-shrink: 0; accent-color: #003366; }
+  .feedback-item { display: none; margin-top: 8px; padding: 10px 14px; border-radius: 6px; font-size: 0.9rem; line-height: 1.6; }
+  .feedback-item.correct { background: #e8f5e9; border-left: 4px solid #2e7d32; color: #1b5e20; display: block; }
+  .feedback-item.incorrect { background: #ffebee; border-left: 4px solid #c62828; color: #b71c1c; display: block; }
+
+  /* ===== QUIZ ===== */
+  .quiz-container { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,51,102,0.1); }
+  .quiz-question { margin-bottom: 24px; padding: 18px; background: #f8faff; border-radius: 8px; border: 1px solid #dce6f0; }
+  .quiz-question-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .quiz-num { font-weight: 700; color: #003366; font-size: 1rem; }
+  .badge-tipo {
+    font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 10px;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .badge-teorica { background: #003366; color: #fff; }
+  .badge-analisis { background: #00BCD4; color: #fff; }
+  .quiz-question p.q-text { font-weight: 600; color: #1a1a2e; margin-bottom: 10px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-options label {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 14px; border-radius: 6px; cursor: pointer;
+    border: 1px solid #dce6f0; background: #fff;
+    transition: background 0.2s; font-size: 0.92rem; line-height: 1.5;
+  }
+  .quiz-options label:hover { background: #ddeeff; }
+  .quiz-options input[type="radio"] { margin-top: 3px; flex-shrink: 0; accent-color: #003366; }
+
+  /* ===== BUTTONS ===== */
+  .btn-verificar {
+    display: block; width: 100%; padding: 14px; margin-top: 20px;
+    background: #003366; color: #fff; border: none; border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif; font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .btn-verificar:hover { background: #005099; }
+  .btn-reiniciar {
+    display: none; width: 100%; padding: 12px; margin-top: 10px;
+    background: #87CEEB; color: #003366; border: none; border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif; font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .btn-reiniciar:hover { background: #5bb8e0; }
+
+  /* ===== SCORE ===== */
+  .score-panel {
+    display: none; margin-top: 22px; padding: 24px; background: #f0f6ff;
+    border-radius: 10px; text-align: center;
+  }
+  .score-emoji { font-size: 2.5rem; }
+  .score-number { font-size: 2rem; font-weight: 700; color: #003366; margin: 8px 0 4px; font-family: 'Lora', serif; }
+  .score-message { font-size: 1rem; color: #333; margin-bottom: 12px; }
+  .progress-bar-wrap { background: #dce6f0; border-radius: 10px; height: 16px; overflow: hidden; margin: 12px 0; }
+  .progress-bar-fill {
+    height: 100%; border-radius: 10px;
+    background: linear-gradient(to right, #003366, #00BCD4);
+    transition: width 1s ease;
+  }
+
+  /* ===== AI ACTIVITY ===== */
+  .ai-activity { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,51,102,0.1); }
+  .ai-prompt-box {
+    background: #1a1a2e; color: #e0f0ff; padding: 20px;
+    border-radius: 8px; font-family: 'Source Sans 3', monospace;
+    font-size: 0.88rem; line-height: 1.7; margin: 16px 0;
+    white-space: pre-wrap; border-left: 4px solid #00BCD4;
+  }
+  .ai-step { display: flex; gap: 14px; margin-bottom: 16px; }
+  .ai-step-num {
+    min-width: 32px; height: 32px; background: #003366; color: #fff;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.9rem; flex-shrink: 0;
+  }
+  .ai-step-text { font-size: 0.95rem; line-height: 1.65; padding-top: 5px; }
+
+  /* ===== REFLECTION ===== */
+  .reflection-container { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,51,102,0.1); }
+  .reflection-item {
+    display: flex; gap: 16px; padding: 18px; margin-bottom: 16px;
+    background: #f8faff; border-radius: 10px; border: 1px solid #dce6f0;
+  }
+  .reflection-icon { font-size: 1.8rem; flex-shrink: 0; }
+  .reflection-text h4 { margin-top: 0; color: #003366; }
+  .reflection-text p { font-size: 0.93rem; margin-bottom: 0; }
+
+  /* ===== BIBLIOGRAPHY ===== */
+  .bib-card {
+    background: #fff; border-radius: 10px; padding: 18px 20px;
+    box-shadow: 0 2px 8px rgba(0,51,102,0.08); margin-bottom: 14px;
+    border-left: 5px solid #003366;
+  }
+  .bib-card .bib-authors { font-weight: 700; color: #003366; font-size: 0.88rem; }
+  .bib-card .bib-year { color: #555; font-size: 0.88rem; }
+  .bib-card .bib-title { font-style: italic; color: #1a1a2e; font-size: 0.95rem; margin: 4px 0; }
+  .bib-card .bib-source { font-size: 0.85rem; color: #555; }
+  .bib-note { background: #fff8e1; border: 1px solid #f9a825; border-radius: 8px; padding: 14px 18px; margin-top: 22px; font-size: 0.88rem; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 640px) {
+    .header-inner { flex-wrap: wrap; }
+    .header-badges { margin-left: 0; align-items: flex-start; }
+    .tab-content { padding: 18px 14px 40px; }
+    h2 { font-size: 1.35rem; }
+    .card-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-inner">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Logo_Universidad_de_Guayaquil.png/320px-Logo_Universidad_de_Guayaquil.png"
+         alt="Logo Universidad de Guayaquil" class="header-logo"
+         onerror="this.style.display='none'">
+    <div class="header-text">
+      <h1>Democracia, Ciudadanía y Globalización</h1>
+      <p>Facultad de Ciencias Administrativas · Carrera: Contabilidad y Auditoría · Universidad de Guayaquil</p>
+    </div>
+    <div class="header-badges">
+      <span class="badge accent">Semana 1</span>
+      <span class="badge">Unidad 1 · El Estado Ecuatoriano</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== TAB NAV ===== -->
+<div class="tab-nav-wrapper">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('tab0')">🌐 Bienvenida</button>
+    <button class="tab-btn" onclick="showTab('tab1')">1. Estado y Nación</button>
+    <button class="tab-btn" onclick="showTab('tab2')">2. Forma de Estado</button>
+    <button class="tab-btn" onclick="showTab('tab3')">3. División Territorial</button>
+    <button class="tab-btn" onclick="showTab('tab4')">4. Organización Política</button>
+    <button class="tab-btn" onclick="showTab('tab5')">5. Ejercicio Interactivo</button>
+    <button class="tab-btn" onclick="showTab('tab6')">6. Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('tab7')">7. Actividad con IA</button>
+    <button class="tab-btn" onclick="showTab('tab8')">8. Reflexión</button>
+    <button class="tab-btn" onclick="showTab('tab9')">9. Bibliografía</button>
+  </div>
+</div>
+
+<!-- ========================================================
+     PESTAÑA 0 — BIENVENIDA / CONTEXTUALIZACIÓN
+     ======================================================== -->
+<div id="tab0" class="tab-content active">
+  <div class="intro-banner">
+    <h2>¡Bienvenido/a a tu primera semana!</h2>
+    <p>Esta es la primera clase de <strong>Democracia, Ciudadanía y Globalización</strong>. Antes de entrar en detalle sobre la organización del Estado ecuatoriano, es fundamental que entiendas <em>por qué esta materia importa</em>, especialmente si tu vocación es la <strong>Contabilidad y Auditoría</strong>.</p>
+  </div>
+
+  <h2>¿De qué trata esta materia?</h2>
+  <p>Esta asignatura integra tres grandes conceptos que, a primera vista, pueden parecer abstractos: <strong>Democracia</strong>, <strong>Ciudadanía</strong> y <strong>Globalización</strong>. Sin embargo, estos tres conceptos están presentes en tu vida cotidiana y en tu futura carrera profesional. Revisemos cada uno de manera sencilla y práctica.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>🗳️ Democracia</h4>
+      <p>Sistema político donde el poder reside en el pueblo. Es el "contrato social" que permite que convivamos con reglas aceptadas por todos. Cuando votamos, pagamos impuestos o exigimos rendición de cuentas, ejercemos democracia.</p>
+    </div>
+    <div class="card teal">
+      <h4>🪪 Ciudadanía</h4>
+      <p>Conjunto de derechos y responsabilidades que tenemos como miembros de una sociedad organizada. No es solo tener cédula: implica participar, opinar, respetar y contribuir al bien común.</p>
+    </div>
+    <div class="card green">
+      <h4>🌐 Globalización</h4>
+      <p>Proceso de interconexión mundial en lo económico, cultural, político y tecnológico. Lo que sucede en Wall Street, Bruselas o Pekín afecta los precios, el empleo y las normas contables en Ecuador.</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>¿Qué tiene que ver esto con ser Contador o Auditor?</h3>
+  <p>Quizás te preguntas: <em>"¿Por qué un contador necesita saber de democracia?"</em> La respuesta es contundente:</p>
+
+  <div class="example-box">
+    <div class="ex-label">📊 Ejemplo real — El contador como guardián de la democracia</div>
+    <p>En el Ecuador, escándalos como el <strong>Caso Metástasis</strong> (2023) o el desvío de fondos del <strong>ISSPOL</strong> involucraron directamente a contadores y auditores que firmaron estados financieros falsos o que miraron hacia otro lado. Su complicidad no fue solo un delito contable: <strong>dañó instituciones democráticas, empobrecció a miles de afiliados y erosionó la confianza ciudadana en el Estado</strong>.</p>
+    <p>Un contador íntegro es, en el fondo, un <em>guardián de la transparencia institucional</em>. Y la transparencia es oxígeno de la democracia.</p>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">🌍 Ejemplo — Globalización y las NIIF</div>
+    <p>Las <strong>Normas Internacionales de Información Financiera (NIIF)</strong> que aplicarás en tu carrera fueron creadas por el <strong>IASB</strong> (organismo internacional con sede en Londres). Ecuador las adoptó porque la globalización exige que los estados financieros sean comparables entre países. Lo que ocurre en los mercados de capitales globales incide directamente en las normas que debes aplicar como profesional.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>La cadena causal que veremos en todo el curso</h3>
+  <p>A lo largo del semestre trabajaremos con una idea central que llamaremos <strong>la cadena causal</strong>:</p>
+  <div class="key-idea">
+    <strong>Decisión profesional individual</strong> → impacta en la organización donde trabajas → afecta al sistema financiero nacional → influye en la confianza ciudadana → fortalece o debilita la democracia.<br><br>
+    Ejemplo: Un auditor que certifica un balance falso → la empresa colapsa → empleados pierden trabajos → el Estado pierde recaudación → se recortan servicios públicos → los ciudadanos más pobres sufren → la democracia se fragiliza.
+  </div>
+
+  <h3>¿Qué aprenderás esta semana?</h3>
+  <p>En esta <strong>Semana 1</strong> nos enfocamos en el <em>punto de partida</em>: conocer la estructura del Estado ecuatoriano. No puedes exigir tus derechos, cumplir tus obligaciones ni entender las normas que rigen tu profesión si no sabes cómo está organizado el poder en Ecuador. Navega por las pestañas para descubrirlo.</p>
+
+  <div class="highlight-box">
+    <strong>💡 Guía de estudio:</strong> Este widget es autosuficiente. Puedes estudiarlo sin necesidad de internet adicional (salvo las fuentes bibliográficas). Léelo con calma, realiza el ejercicio interactivo y el cuestionario al final. ¡Mucho éxito!
+  </div>
+</div>
+
+<!-- ========================================================
+     PESTAÑA 1 — ESTADO Y NACIÓN
+     ======================================================== -->
+<div id="tab1" class="tab-content">
+  <h2>1. Estado y Nación: conceptos fundamentales</h2>
+  <p>Para comprender la organización política del Ecuador, debemos partir de dos conceptos que frecuentemente se confunden: <strong>Estado</strong> y <strong>Nación</strong>. Aunque están relacionados, no son sinónimos.</p>
+
+  <div class="concept-box">
+    <strong>Estado:</strong> Es una organización política soberana que ejerce autoridad sobre un territorio definido y una población. Para existir, necesita tres elementos indispensables: <em>territorio</em>, <em>población</em> y <em>poder soberano</em> (gobierno capaz de crear y aplicar leyes). El Estado es una construcción jurídica y política.
+  </div>
+
+  <div class="concept-box">
+    <strong>Nación:</strong> Es un conjunto de personas que comparten historia, cultura, idioma, tradiciones y un sentido de identidad colectiva. La nación es un vínculo cultural y sentimental, no necesariamente político. Puede haber naciones sin Estado (como el pueblo kurdo durante décadas) y Estados plurinacionales (como Ecuador).
+  </div>
+
+  <h3>Los tres elementos clásicos del Estado</h3>
+  <div class="card-grid">
+    <div class="card">
+      <h4>🗺️ Territorio</h4>
+      <p>Espacio geográfico donde el Estado ejerce soberanía: tierra firme, aguas territoriales, espacio aéreo y —en el caso ecuatoriano— el territorio insular (Galápagos) y la Antártida (zona de interés).</p>
+    </div>
+    <div class="card teal">
+      <h4>👥 Población</h4>
+      <p>Conjunto de personas que habitan el territorio. En Ecuador, incluye ciudadanos nacionales y extranjeros residentes. La Constitución de 2008 reconoce 14 nacionalidades indígenas y el pueblo afroecuatoriano.</p>
+    </div>
+    <div class="card green">
+      <h4>⚖️ Poder Soberano</h4>
+      <p>Capacidad del Estado de dictar normas, hacerlas cumplir y ejercer autoridad sin depender de otro poder externo. En democracia, este poder emana del pueblo y se ejerce a través de instituciones.</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>Ecuador como Estado Plurinacional e Intercultural</h3>
+  <p>La <strong>Constitución de la República del Ecuador de 2008</strong> (vigente) establece en su <strong>Artículo 1</strong> algo que nos distingue de muchos países:</p>
+
+  <div class="example-box">
+    <div class="ex-label">📜 Art. 1 de la Constitución del Ecuador (2008)</div>
+    <p>"El Ecuador es un Estado constitucional de derechos y justicia, social, democrático, soberano, independiente, unitario, intercultural, <strong>plurinacional</strong> y laico. Se organiza en forma de república y se gobierna de manera descentralizada."</p>
+  </div>
+
+  <p>Esto significa que Ecuador reconoce oficialmente la diversidad de naciones y pueblos que conviven en su territorio (quichuas, shuar, achuar, waorani, etc.) sin que ello implique separación territorial. Todos son ecuatorianos, pero con derechos específicos a su cultura, idioma y formas de organización comunitaria.</p>
+
+  <div class="example-box">
+    <div class="ex-label">🌿 Ejemplo cotidiano — Plurinacionalidad en la práctica</div>
+    <p>Cuando una empresa minera quiere explotar recursos en territorio de la comunidad Shuar en la Amazonía, debe seguir el proceso de <strong>Consulta Previa, Libre e Informada</strong> garantizado en la Constitución. Un auditor que trabaje en esa empresa debe conocer este derecho: ignorarlo puede derivar en conflictos legales, paralizaciones y pérdidas financieras que afectan los estados financieros.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>¿Por qué importa distinguir Estado de Nación para un contador?</h3>
+  <p>El <strong>Estado</strong> es el principal ente regulador de la actividad contable en Ecuador: crea leyes tributarias (Servicio de Rentas Internas - SRI), regula el mercado de valores (Superintendencia de Compañías, SCVS) y fiscaliza las instituciones financieras (Superintendencia de Bancos). El contador debe responder al Estado, no solo a su empleador.</p>
+
+  <div class="key-idea">
+    <strong>Idea clave:</strong> Un contador que ignora la estructura del Estado ecuatoriano ignora el marco regulatorio en el que operará toda su vida profesional. Las leyes tributarias, las normas de auditoría, los contratos públicos y los organismos de control son todos expresiones del <strong>poder soberano del Estado</strong>. Conocerlos no es un lujo intelectual — es una obligación profesional.
+  </div>
+</div>
+
+<!-- ========================================================
+     PESTAÑA 2 — FORMA DE ESTADO Y GOBIERNO
+     ======================================================== -->
+<div id="tab2" class="tab-content">
+  <h2>2. Forma de Estado y Forma de Gobierno</h2>
+  <p>Existen distintas maneras en que los Estados pueden organizarse internamente. Ecuador ha adoptado decisiones específicas que determinan cómo se distribuye el poder y cómo se toman las decisiones colectivas.</p>
+
+  <h3>2.1 Forma de Estado: Unitario vs. Federal</h3>
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Característica</th>
+        <th>Estado Unitario (Ecuador)</th>
+        <th>Estado Federal (EE. UU., Brasil, México)</th>
+      </tr>
+      <tr>
+        <td><strong>Poder central</strong></td>
+        <td>Un solo centro de poder soberano nacional</td>
+        <td>Poder compartido entre gobierno federal y estados</td>
+      </tr>
+      <tr>
+        <td><strong>Constituciones</strong></td>
+        <td>Una sola Constitución nacional</td>
+        <td>Constitución federal + constituciones estatales</td>
+      </tr>
+      <tr>
+        <td><strong>Legislación</strong></td>
+        <td>Un Parlamento nacional crea las leyes para todo el país</td>
+        <td>Congreso federal + legislaturas estatales independientes</td>
+      </tr>
+      <tr>
+        <td><strong>Descentralización</strong></td>
+        <td>Existe, pero el poder local es delegado, no autónomo</td>
+        <td>Los estados tienen poderes propios garantizados</td>
+      </tr>
+      <tr>
+        <td><strong>Ejemplo</strong></td>
+        <td>Ecuador, Francia, Chile, Colombia</td>
+        <td>EE. UU., Brasil, México, Argentina</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="concept-box">
+    <strong>Ecuador es un Estado Unitario Descentralizado:</strong> Existe un único gobierno central (con sede en Quito), pero se delega ciertos poderes a los gobiernos autónomos descentralizados (GAD): provincias, cantones y parroquias. Esto significa que el Municipio de Guayaquil no tiene soberanía propia — administra funciones delegadas por la Constitución y la ley.
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>2.2 Forma de Gobierno: República Presidencialista</h3>
+  <p>Ecuador adopta la forma de <strong>República</strong>, lo que implica que el Jefe de Estado es electo por el pueblo y tiene mandato temporal (no vitalicio). Se diferencia de una <strong>Monarquía</strong> (donde el Jefe de Estado hereda el poder). Además, nuestro sistema es <strong>presidencialista</strong>, no parlamentarista.</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Característica</th>
+        <th>Presidencialismo (Ecuador)</th>
+        <th>Parlamentarismo (Reino Unido, Alemania)</th>
+      </tr>
+      <tr>
+        <td><strong>Elección del Ejecutivo</strong></td>
+        <td>El Presidente es electo directamente por el voto popular</td>
+        <td>El Primer Ministro es elegido por el Parlamento</td>
+      </tr>
+      <tr>
+        <td><strong>Duración en el cargo</strong></td>
+        <td>Período fijo (4 años en Ecuador); no puede ser removido fácilmente por el Legislativo</td>
+        <td>Depende de la confianza del Parlamento</td>
+      </tr>
+      <tr>
+        <td><strong>Separación de poderes</strong></td>
+        <td>Clara: Ejecutivo, Legislativo, Judicial y otros órganos son independientes</td>
+        <td>El Ejecutivo emana del Legislativo; menos separación</td>
+      </tr>
+      <tr>
+        <td><strong>Ventaja principal</strong></td>
+        <td>Estabilidad del gobierno independiente del Parlamento</td>
+        <td>Mayor control parlamentario sobre el Ejecutivo</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>2.3 Estado Constitucional de Derechos y Justicia</h3>
+  <p>La Constitución de 2008 fue innovadora al declarar a Ecuador como un <strong>Estado constitucional de derechos</strong>, no simplemente un "Estado de Derecho" clásico. ¿Cuál es la diferencia?</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Estado de Derecho (clásico)</th>
+        <th>Estado Constitucional de Derechos (Ecuador 2008)</th>
+      </tr>
+      <tr>
+        <td>La ley (norma positiva) es la máxima autoridad</td>
+        <td>La Constitución y los derechos fundamentales están por encima de cualquier ley</td>
+      </tr>
+      <tr>
+        <td>Los derechos existen solo si la ley los reconoce</td>
+        <td>Los derechos preexisten al Estado; la Constitución los garantiza y amplía</td>
+      </tr>
+      <tr>
+        <td>Los jueces aplican la ley literalmente</td>
+        <td>Los jueces pueden inaplicar leyes inconstitucionales (control difuso)</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">⚖️ Ejemplo aplicado — Un auditor y el Estado de Derechos</div>
+    <p>Imagina que una empresa te presiona para que certifiques un estado financiero que oculta deudas con trabajadores. Aunque la empresa argumente que "la ley no prohíbe explícitamente esta presentación", el <strong>Estado constitucional de derechos</strong> garantiza el derecho al trabajo justo (Art. 33 Constitución) y la buena fe en las relaciones laborales. Un tribunal podría anular ese contrato y responsabilizarte. Conocer el modelo de Estado te protege también a ti.</p>
+  </div>
+
+  <div class="key-idea">
+    <strong>Idea clave:</strong> Ecuador no es solo un Estado que aplica leyes — es un Estado que garantiza derechos. Esto significa que como contador o auditor, no basta con cumplir la norma técnica: debes actuar con <strong>justicia material</strong>, considerando el impacto real de tus decisiones sobre los derechos de las personas.
+  </div>
+</div>
+
+<!-- ========================================================
+     PESTAÑA 3 — DIVISIÓN TERRITORIAL
+     ======================================================== -->
+<div id="tab3" class="tab-content">
+  <h2>3. División Territorial del Ecuador</h2>
+  <p>La organización territorial determina cómo se distribuye el poder y los recursos del Estado en el espacio geográfico. En Ecuador, esta organización está regulada por la <strong>Constitución de 2008</strong> y el <strong>Código Orgánico de Organización Territorial, Autonomía y Descentralización (COOTAD)</strong>, aprobado en 2010.</p>
+
+  <h3>3.1 Regiones naturales</h3>
+  <p>Ecuador se divide en <strong>cuatro regiones naturales</strong>, cada una con características geográficas, culturales y económicas propias:</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>🏔️ Sierra</h4>
+      <p>Cordillera de los Andes. Incluye Quito (capital), Cuenca, Ambato. Concentra actividad agrícola de altura, industria textil y manufactura.</p>
+    </div>
+    <div class="card teal">
+      <h4>🌊 Costa</h4>
+      <p>Franja del Océano Pacífico. Incluye Guayaquil (mayor ciudad), Manta, Machala. Principal polo comercial, exportador y financiero del país.</p>
+    </div>
+    <div class="card green">
+      <h4>🌿 Amazonía</h4>
+      <p>Selva tropical al este. Rica en petróleo, biodiversidad y comunidades indígenas. Genera más del 70% de los ingresos petroleros del Estado.</p>
+    </div>
+    <div class="card orange">
+      <h4>🦭 Galápagos</h4>
+      <p>Archipiélago en el Pacífico, a ~1.000 km de la costa. Patrimonio Natural de la Humanidad. Régimen especial de gobierno y economía.</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>3.2 División político-administrativa</h3>
+  <p>La organización político-administrativa establece los niveles de gobierno y los territorios donde cada nivel ejerce sus competencias. Ecuador se organiza en:</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Nivel</th>
+        <th>Cantidad (aprox.)</th>
+        <th>Autoridad</th>
+        <th>Competencias principales</th>
+      </tr>
+      <tr>
+        <td><strong>Regiones</strong></td>
+        <td>0 (aún no conformadas legalmente)</td>
+        <td>Gobernador Regional (electo)</td>
+        <td>Planificación regional, grandes proyectos</td>
+      </tr>
+      <tr>
+        <td><strong>Provincias</strong></td>
+        <td>24</td>
+        <td>Prefecto/a (electo)</td>
+        <td>Vialidad rural, gestión ambiental provincial</td>
+      </tr>
+      <tr>
+        <td><strong>Cantones</strong></td>
+        <td>221</td>
+        <td>Alcalde/sa (electo)</td>
+        <td>Agua potable, alcantarillado, urbanismo, mercados</td>
+      </tr>
+      <tr>
+        <td><strong>Parroquias</strong></td>
+        <td>~1.200 (rurales y urbanas)</td>
+        <td>Junta Parroquial (electa)</td>
+        <td>Obras menores, gestión comunitaria</td>
+      </tr>
+      <tr>
+        <td><strong>Regímenes especiales</strong></td>
+        <td>3 (Galápagos, distritos metropolitanos, circunscripciones)</td>
+        <td>Específico por ley</td>
+        <td>Gestión diferenciada por condiciones especiales</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="concept-box">
+    <strong>GAD — Gobiernos Autónomos Descentralizados:</strong> Es el nombre técnico que la Constitución y el COOTAD dan a los gobiernos subnacionales (provinciales, cantonales y parroquiales). Son "autónomos" porque eligen sus propias autoridades y toman decisiones en sus competencias, pero son "descentralizados" porque su autoridad proviene de la delegación del gobierno central, no de soberanía propia.
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>3.3 Distritos y circuitos: la planificación del Estado</h3>
+  <p>Para la planificación y prestación de servicios públicos (salud, educación, seguridad, etc.), el Estado ha creado una división adicional basada en <strong>distritos</strong> y <strong>circuitos</strong>:</p>
+
+  <ul>
+    <li><strong>Zona de planificación:</strong> Agrupación de provincias (9 zonas en Ecuador)</li>
+    <li><strong>Distrito:</strong> Unidad básica de planificación (aproximadamente un cantón o unión de cantones con 90.000 habitantes promedio). Ecuador tiene 140 distritos.</li>
+    <li><strong>Circuito:</strong> Subdivisión del distrito, equivalente a una parroquia o conjunto de barrios. Permite ubicar servicios públicos cerca de la ciudadanía.</li>
+  </ul>
+
+  <div class="example-box">
+    <div class="ex-label">🏥 Ejemplo — Distritos y servicios públicos en Guayaquil</div>
+    <p>El Distrito 09D01 de Guayaquil agrupa varios circuitos urbanos. Cuando el Ministerio de Salud planifica cuántos centros de atención primaria necesita Guayas, lo hace a nivel distrital. Un auditor del sector público que revise el presupuesto del Ministerio de Salud debe entender esta lógica territorial para verificar si los recursos están siendo asignados correctamente a cada distrito.</p>
+  </div>
+
+  <div class="key-idea">
+    <strong>Idea clave:</strong> La división territorial no es solo geografía — es la arquitectura del poder y los recursos públicos. Cada nivel de gobierno tiene un presupuesto, obligaciones legales y competencias. Un auditor que trabaje con el sector público <strong>debe conocer qué nivel de gobierno ejecuta qué tipo de gasto</strong> y cuál es el ente de control correspondiente (Contraloría General del Estado, Superintendencia de Compañías, etc.).
+  </div>
+</div>
+
+<!-- ========================================================
+     PESTAÑA 4 — ORGANIZACIÓN POLÍTICA: LAS 5 FUNCIONES
+     ======================================================== -->
+<div id="tab4" class="tab-content">
+  <h2>4. Organización Política: Las Cinco Funciones del Estado</h2>
+  <p>La Constitución de 2008 introdujo una innovación importante en el diseño institucional del Ecuador: en lugar del tradicional modelo de <strong>tres poderes</strong> (Ejecutivo, Legislativo, Judicial), reconoce <strong>cinco funciones del Estado</strong>. Esto amplía la distribución del poder y refuerza la democracia.</p>
+
+  <div class="warning-box">
+    <strong>⚠️ Importante:</strong> En Ecuador no se habla de "poderes del Estado" sino de <strong>"funciones del Estado"</strong>. Este cambio terminológico es intencional: refleja que el poder soberano pertenece al pueblo, y las instituciones son instrumentos para ejercerlo, no poderes en sí mismas.
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>4.1 Función Ejecutiva</h3>
+  <div class="concept-box">
+    <strong>¿Qué es?</strong> Es la función encargada de gobernar, administrar el Estado y ejecutar las políticas públicas. La encabeza el <strong>Presidente de la República</strong>, acompañado del Vicepresidente y los Ministros de Estado.
+  </div>
+  <p><strong>Estructura:</strong> El Presidente dirige 21+ ministerios organizados en sectores (Economía, Educación, Salud, Defensa, etc.). La <strong>Secretaría Nacional de Planificación (SENPLADES / ahora SEMPLADES/SENESCYT)</strong> coordina la planificación nacional.</p>
+  <p><strong>Para un contador:</strong> El Ministerio de Economía y Finanzas regula la contabilidad gubernamental. El SRI (Servicio de Rentas Internas) —adscrito al Ejecutivo— recauda impuestos y fiscaliza declaraciones. Cada norma tributaria que aplicarás proviene de decisiones del Ejecutivo.</p>
+
+  <div class="section-divider"></div>
+
+  <h3>4.2 Función Legislativa</h3>
+  <div class="concept-box">
+    <strong>¿Qué es?</strong> Es la función encargada de crear, reformar y derogar leyes, y de fiscalizar la acción del Ejecutivo. La ejerce la <strong>Asamblea Nacional</strong>, integrada por 137 asambleístas electos por el pueblo.
+  </div>
+  <p><strong>Distribución de asambleístas:</strong> 15 nacionales + 116 provinciales (en proporción a la población) + 6 del exterior.</p>
+  <p><strong>Para un contador:</strong> La Asamblea aprueba el <strong>Código Tributario, la Ley de Régimen Tributario Interno, la Ley de Compañías</strong> y el <strong>Presupuesto General del Estado</strong>. Cada reforma tributaria que cambia tus obligaciones pasa primero por la Asamblea Nacional.</p>
+
+  <div class="example-box">
+    <div class="ex-label">📋 Ejemplo — La Ley de Simplificación Tributaria (2019)</div>
+    <p>En 2019, la Asamblea Nacional aprobó la <em>Ley Orgánica de Simplificación y Progresividad Tributaria</em>, que modificó el IVA, el Impuesto a la Renta y creó el RIMPE (Régimen Impositivo para Microempresas). Todo contador en Ecuador debió actualizar sus conocimientos de inmediato. Esta es la Asamblea en acción directa sobre tu carrera.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>4.3 Función Judicial</h3>
+  <div class="concept-box">
+    <strong>¿Qué es?</strong> Administra justicia, resuelve conflictos legales y garantiza los derechos constitucionales. Su máximo órgano es la <strong>Corte Nacional de Justicia</strong>. También incluye la <strong>Corte Constitucional</strong> (que interpreta la Constitución), el <strong>Consejo de la Judicatura</strong> (que administra el sistema judicial) y la <strong>Fiscalía General del Estado</strong>.
+  </div>
+  <p><strong>Para un contador:</strong> Un auditor que identifica delitos de lavado de activos, fraude financiero o defraudación tributaria debe coordinarse con la Fiscalía. El Código Orgánico Integral Penal (COIP) tipifica delitos contables específicos. Un contador puede ser llamado como perito judicial.</p>
+
+  <div class="section-divider"></div>
+
+  <h3>4.4 Función de Transparencia y Control Social</h3>
+  <div class="concept-box">
+    <strong>¿Qué es?</strong> Esta es una de las innovaciones más importantes de la Constitución de 2008. Su misión es garantizar la transparencia, la lucha contra la corrupción y la participación ciudadana en el control del Estado. Incluye:
+    <ul style="margin-top:8px;">
+      <li><strong>Consejo de Participación Ciudadana y Control Social (CPCCS)</strong></li>
+      <li><strong>Contraloría General del Estado</strong> — audita los recursos públicos</li>
+      <li><strong>Defensoría del Pueblo</strong> — protege derechos humanos</li>
+      <li><strong>Superintendencias</strong> (Compañías, Bancos, Economía Popular, etc.)</li>
+    </ul>
+  </div>
+  <p><strong>Para un contador:</strong> La <strong>Contraloría General del Estado</strong> es el organismo que audita el uso de recursos públicos. La <strong>Superintendencia de Compañías, Valores y Seguros (SCVS)</strong> regula las sociedades mercantiles y exige estados financieros auditados. Son tus principales interlocutores institucionales.</p>
+
+  <div class="section-divider"></div>
+
+  <h3>4.5 Función Electoral</h3>
+  <div class="concept-box">
+    <strong>¿Qué es?</strong> Organiza y garantiza la limpieza de los procesos electorales. La integran:
+    <ul style="margin-top:8px;">
+      <li><strong>Consejo Nacional Electoral (CNE)</strong> — organiza las elecciones</li>
+      <li><strong>Tribunal Contencioso Electoral (TCE)</strong> — resuelve impugnaciones electorales</li>
+    </ul>
+  </div>
+  <p><strong>Para un contador:</strong> Los partidos políticos y movimientos están obligados a presentar informes financieros al CNE. Existen contadores y auditores especializados en <em>financiamiento político</em>, una rama poco conocida pero muy relevante en democracia.</p>
+
+  <div class="section-divider"></div>
+
+  <h3>Resumen visual de las 5 Funciones</h3>
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Función</th>
+        <th>Institución principal</th>
+        <th>Vinculación con Contabilidad/Auditoría</th>
+      </tr>
+      <tr>
+        <td>⚡ Ejecutiva</td>
+        <td>Presidencia, Ministerios, SRI</td>
+        <td>Política tributaria, LORTI, contabilidad gubernamental</td>
+      </tr>
+      <tr>
+        <td>📜 Legislativa</td>
+        <td>Asamblea Nacional</td>
+        <td>Leyes tributarias, Ley de Compañías, Presupuesto</td>
+      </tr>
+      <tr>
+        <td>⚖️ Judicial</td>
+        <td>Corte Nacional, Fiscalía</td>
+        <td>Delitos contables, peritaje, COIP</td>
+      </tr>
+      <tr>
+        <td>🔍 Transparencia</td>
+        <td>Contraloría, SCVS, Superintendencias</td>
+        <td>Auditoría pública, estados financieros, control</td>
+      </tr>
+      <tr>
+        <td>🗳️ Electoral</td>
+        <td>CNE, TCE</td>
+        <td>Financiamiento político, auditoría electoral</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="key-idea">
+    <strong>Idea clave:</strong> Las cinco funciones no son compartimentos estancos — se relacionan y se controlan mutuamente. Este sistema de <em>frenos y contrapesos</em> existe para evitar que el poder se concentre en una sola institución. Un contador íntegro contribuye a este equilibrio cuando entrega información financiera verdadera, libre de presiones políticas o intereses corporativos.
+  </div>
+</div>
+
+<!-- ========================================================
+     PESTAÑA 5 — EJERCICIO INTERACTIVO
+     ======================================================== -->
+<div id="tab5" class="tab-content">
+  <h2>5. Ejercicio Interactivo</h2>
+  <p>Lee cada situación o afirmación y selecciona la opción correcta. Responde <strong>todas las preguntas primero</strong> y luego presiona <strong>"Verificar respuestas"</strong>.</p>
+
+  <div class="exercise-container">
+
+    <!-- Pregunta ei1 -->
+    <div class="exercise-item">
+      <p>1. La Constitución de 2008 define al Ecuador como un Estado "plurinacional". ¿Qué significa esto correctamente?</p>
+      <div class="exercise-options">
+        <label><input type="radio" name="ei1" value="a"> El Estado reconoce la existencia de diversas naciones y pueblos dentro del territorio ecuatoriano, con derechos culturales propios.</label>
+        <label><input type="radio" name="ei1" value="b"> El Ecuador está dividido en varias naciones independientes con gobiernos propios y soberanía separada.</label>
+        <label><input type="radio" name="ei1" value="c"> Solo las comunidades indígenas pueden participar en la política ecuatoriana.</label>
+        <label><input type="radio" name="ei1" value="d"> El Estado tiene dos constituciones: una para la Sierra y otra para la Costa.</label>
+      </div>
+      <div class="feedback-item" id="fb-ei1"></div>
+    </div>
+
+    <!-- Pregunta ei2 -->
+    <div class="exercise-item">
+      <p>2. Un auditor trabaja en una empresa constructora que ejecuta obras para el Municipio de Guayaquil. ¿Qué organismo del Estado sería el principal ente de control externo de esa contratación pública?</p>
+      <div class="exercise-options">
+        <label><input type="radio" name="ei2" value="a"> La Contraloría General del Estado, que forma parte de la Función de Transparencia y Control Social.</label>
+        <label><input type="radio" name="ei2" value="b"> La Asamblea Nacional, que aprueba el presupuesto de los municipios.</label>
+        <label><input type="radio" name="ei2" value="c"> El Consejo Nacional Electoral, que supervisa los gastos de campaña.</label>
+        <label><input type="radio" name="ei2" value="d"> El Tribunal Contencioso Electoral, que resuelve disputas sobre contratos públicos.</label>
+      </div>
+      <div class="feedback-item" id="fb-ei2"></div>
+    </div>
+
+    <!-- Pregunta ei3 -->
+    <div class="exercise-item">
+      <p>3. ¿Cuál es la diferencia fundamental entre un Estado Federal y un Estado Unitario como Ecuador?</p>
+      <div class="exercise-options">
+        <label><input type="radio" name="ei3" value="a"> En un Estado Unitario hay un solo centro de poder soberano nacional, mientras que en un Estado Federal el poder se distribuye entre el gobierno central y gobiernos estatales con autonomía propia garantizada.</label>
+        <label><input type="radio" name="ei3" value="b"> En un Estado Unitario el Presidente tiene más poder que en uno Federal.</label>
+        <label><input type="radio" name="ei3" value="c"> Un Estado Federal siempre es más democrático que uno Unitario.</label>
+        <label><input type="radio" name="ei3" value="d"> La diferencia es solo geográfica: los Estados Federales son más grandes en territorio.</label>
+      </div>
+      <div class="feedback-item" id="fb-ei3"></div>
+    </div>
+
+    <!-- Pregunta ei4 -->
+    <div class="exercise-item">
+      <p>4. La Asamblea Nacional aprobó una reforma al Código Tributario que aumenta el porcentaje del Impuesto a la Renta para personas naturales. ¿A qué función del Estado corresponde esta acción?</p>
+      <div class="exercise-options">
+        <label><input type="radio" name="ei4" value="a"> Función Legislativa, pues la Asamblea Nacional es la encargada de crear y reformar leyes.</label>
+        <label><input type="radio" name="ei4" value="b"> Función Ejecutiva, porque el SRI es quien aplica y modifica las leyes tributarias.</label>
+        <label><input type="radio" name="ei4" value="c"> Función de Transparencia y Control Social, por tratarse de una norma de control financiero.</label>
+        <label><input type="radio" name="ei4" value="d"> Función Judicial, ya que los cambios tributarios deben ser aprobados por la Corte Nacional.</label>
+      </div>
+      <div class="feedback-item" id="fb-ei4"></div>
+    </div>
+
+    <!-- Pregunta ei5 -->
+    <div class="exercise-item">
+      <p>5. ¿Cuál de los siguientes es un elemento indispensable para que exista un Estado?</p>
+      <div class="exercise-options">
+        <label><input type="radio" name="ei5" value="a"> Territorio, población y poder soberano (gobierno).</label>
+        <label><input type="radio" name="ei5" value="b"> Un idioma oficial, una moneda propia y un ejército.</label>
+        <label><input type="radio" name="ei5" value="c"> Una Constitución escrita, un sistema judicial y elecciones periódicas.</label>
+        <label><input type="radio" name="ei5" value="d"> Una religión oficial, una capital y tratados internacionales.</label>
+      </div>
+      <div class="feedback-item" id="fb-ei5"></div>
+    </div>
+
+    <!-- Pregunta ei6 -->
+    <div class="exercise-item">
+      <p>6. Un contador trabaja como perito en un juicio por defraudación tributaria. ¿Con qué función del Estado está interactuando directamente?</p>
+      <div class="exercise-options">
+        <label><input type="radio" name="ei6" value="a"> Función Judicial, dado que el peritaje es parte del proceso judicial ante la Fiscalía y los juzgados.</label>
+        <label><input type="radio" name="ei6" value="b"> Función Ejecutiva, porque el SRI es quien lleva el caso al juzgado.</label>
+        <label><input type="radio" name="ei6" value="c"> Función Electoral, pues los peritos son designados por el CNE.</label>
+        <label><input type="radio" name="ei6" value="d"> Función Legislativa, ya que la Asamblea aprueba los procedimientos periciales.</label>
+      </div>
+      <div class="feedback-item" id="fb-ei6"></div>
+    </div>
+
+    <!-- Pregunta ei7 -->
+    <div class="exercise-item">
+      <p>7. La <strong>Superintendencia de Compañías, Valores y Seguros (SCVS)</strong> pertenece a la Función de Transparencia y Control Social. ¿Cuál es su relevancia directa para un contador?</p>
+      <div class="exercise-options">
+        <label><input type="radio" name="ei7" value="a"> La SCVS regula las sociedades mercantiles y exige la presentación de estados financieros auditados, por lo que el trabajo del contador debe cumplir sus normas y plazos.</label>
+        <label><input type="radio" name="ei7" value="b"> La SCVS solo controla las empresas del Estado y no tiene relación con el sector privado.</label>
+        <label><input type="radio" name="ei7" value="c"> La SCVS es responsable de fijar el salario mínimo de los contadores.</label>
+        <label><input type="radio" name="ei7" value="d"> La SCVS aprueba las normas contables internacionales (NIIF) antes de que Ecuador las adopte.</label>
+      </div>
+      <div class="feedback-item" id="fb-ei7"></div>
+    </div>
+
+    <!-- Pregunta ei8 -->
+    <div class="exercise-item">
+      <p>8. En Ecuador, los Municipios (cantones) son Gobiernos Autónomos Descentralizados (GAD). Esto significa que:</p>
+      <div class="exercise-options">
+        <label><input type="radio" name="ei8" value="a"> Eligen sus propias autoridades y gestionan competencias delegadas por la Constitución, pero no tienen soberanía propia independiente del Estado nacional.</label>
+        <label><input type="radio" name="ei8" value="b"> Son totalmente independientes del gobierno central y pueden crear sus propias leyes tributarias.</label>
+        <label><input type="radio" name="ei8" value="c"> El Alcalde puede negarse a aplicar las leyes nacionales si el Concejo Municipal lo decide.</label>
+        <label><input type="radio" name="ei8" value="d"> Solo los cantones con más de 500.000 habitantes tienen derecho a ser GAD.</label>
+      </div>
+      <div class="feedback-item" id="fb-ei8"></div>
+    </div>
+
+    <button class="btn-verificar" onclick="verificarEjercicio()">✔ Verificar respuestas</button>
+    <div class="score-panel" id="ejercicio-score">
+      <div class="score-emoji" id="ej-emoji"></div>
+      <div class="score-number" id="ej-number"></div>
+      <div class="score-message" id="ej-message"></div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="ej-bar" style="width:0%"></div></div>
+    </div>
+    <button class="btn-reiniciar" id="btn-reiniciar-ej" onclick="reiniciarEjercicio()">↺ Reiniciar ejercicio</button>
+  </div>
+</div>
+
+<!-- ========================================================
+     PESTAÑA 6 — CUESTIONARIO
+     ======================================================== -->
+<div id="tab6" class="tab-content">
+  <h2>6. Cuestionario de Evaluación</h2>
+  <p>Responde las <strong>10 preguntas</strong> de opción múltiple. Selecciona todas tus respuestas primero y luego presiona <strong>"Verificar respuestas"</strong>. Las preguntas de análisis de caso son autónomas — puedes responderlas con razonamiento crítico.</p>
+
+  <div class="quiz-container">
+
+    <!-- Q1 -->
+    <div class="quiz-question">
+      <div class="quiz-question-header">
+        <span class="quiz-num">1.</span>
+        <span class="badge-tipo badge-teorica">Teórica</span>
+      </div>
+      <p class="q-text">Según el Artículo 1 de la Constitución del Ecuador de 2008, ¿cuál de las siguientes combinaciones de características define correctamente al Estado ecuatoriano?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi1" value="a"> Constitucional de derechos, social, democrático, soberano, unitario, intercultural, plurinacional y laico.</label>
+        <label><input type="radio" name="qi1" value="b"> Federal, presidencialista, laico, multicultural y con cuatro funciones del Estado.</label>
+        <label><input type="radio" name="qi1" value="c"> Unitario, confesional, centralizado, con tres poderes independientes y una sola nacionalidad.</label>
+        <label><input type="radio" name="qi1" value="d"> Parlamentarista, plurinacional, federal, con cinco funciones y dos idiomas oficiales.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-question">
+      <div class="quiz-question-header">
+        <span class="quiz-num">2.</span>
+        <span class="badge-tipo badge-teorica">Teórica</span>
+      </div>
+      <p class="q-text">¿Cuál es la diferencia principal entre un "Estado de Derecho" clásico y un "Estado Constitucional de Derechos" como el ecuatoriano?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi2" value="a"> En el Estado Constitucional de Derechos, los derechos fundamentales y la Constitución están por encima de cualquier ley ordinaria, y los jueces pueden inaplicar leyes inconstitucionales.</label>
+        <label><input type="radio" name="qi2" value="b"> En el Estado de Derecho clásico, los ciudadanos tienen más derechos que en el Estado Constitucional.</label>
+        <label><input type="radio" name="qi2" value="c"> El Estado Constitucional de Derechos elimina la separación de poderes para garantizar los derechos más rápido.</label>
+        <label><input type="radio" name="qi2" value="d"> La diferencia es solo nominal: ambos modelos funcionan de la misma manera en la práctica.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-question">
+      <div class="quiz-question-header">
+        <span class="quiz-num">3.</span>
+        <span class="badge-tipo badge-teorica">Teórica</span>
+      </div>
+      <p class="q-text">¿Cuántas funciones del Estado reconoce la Constitución ecuatoriana de 2008, y cuál fue la innovación más importante respecto a los modelos constitucionales anteriores?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi3" value="a"> Cinco funciones: Ejecutiva, Legislativa, Judicial, de Transparencia y Control Social, y Electoral. La innovación fue añadir la Función de Transparencia y la Electoral como funciones autónomas.</label>
+        <label><input type="radio" name="qi3" value="b"> Tres funciones clásicas (Ejecutiva, Legislativa, Judicial) mantenidas sin cambios respecto a la Constitución de 1998.</label>
+        <label><input type="radio" name="qi3" value="c"> Cuatro funciones: Ejecutiva, Legislativa, Judicial y Electoral, eliminando la función de control.</label>
+        <label><input type="radio" name="qi3" value="d"> Seis funciones, añadiendo una Función de Planificación y otra de Defensa Nacional.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi3"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-question">
+      <div class="quiz-question-header">
+        <span class="quiz-num">4.</span>
+        <span class="badge-tipo badge-teorica">Teórica</span>
+      </div>
+      <p class="q-text">¿Cuáles son los tres elementos clásicos que deben concurrir para que exista un Estado, según la teoría política y jurídica?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi4" value="a"> Territorio, población y poder soberano (gobierno).</label>
+        <label><input type="radio" name="qi4" value="b"> Constitución, ejército e idioma oficial.</label>
+        <label><input type="radio" name="qi4" value="c"> Moneda, fronteras reconocidas internacionalmente y elecciones democráticas.</label>
+        <label><input type="radio" name="qi4" value="d"> Idioma, cultura compartida y gobierno elegido democráticamente.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi4"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-question">
+      <div class="quiz-question-header">
+        <span class="quiz-num">5.</span>
+        <span class="badge-tipo badge-teorica">Teórica</span>
+      </div>
+      <p class="q-text">En la organización territorial del Ecuador, ¿cuál es el orden correcto de los niveles de los Gobiernos Autónomos Descentralizados (GAD), de mayor a menor ámbito territorial?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi5" value="a"> Provincias → Cantones → Parroquias.</label>
+        <label><input type="radio" name="qi5" value="b"> Cantones → Provincias → Distritos → Parroquias.</label>
+        <label><input type="radio" name="qi5" value="c"> Regiones → Cantones → Provincias → Parroquias.</label>
+        <label><input type="radio" name="qi5" value="d"> Parroquias → Cantones → Provincias → Regiones.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi5"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-question">
+      <div class="quiz-question-header">
+        <span class="quiz-num">6.</span>
+        <span class="badge-tipo badge-teorica">Teórica</span>
+      </div>
+      <p class="q-text">¿Por qué la Constitución de 2008 utiliza el término "funciones" del Estado en lugar de "poderes" del Estado?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi6" value="a"> Porque el poder soberano pertenece al pueblo, y las instituciones son instrumentos para ejercerlo, no poderes en sí mismas; el término "funciones" refleja que están al servicio de la ciudadanía.</label>
+        <label><input type="radio" name="qi6" value="b"> Porque en Ecuador las instituciones del Estado no tienen autoridad coercitiva real sobre los ciudadanos.</label>
+        <label><input type="radio" name="qi6" value="c"> Porque la Constitución de 2008 eliminó la separación de poderes para integrar todo el gobierno en una sola entidad.</label>
+        <label><input type="radio" name="qi6" value="d"> Es simplemente un cambio estilístico sin implicaciones jurídicas o filosóficas.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi6"></div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quiz-question">
+      <div class="quiz-question-header">
+        <span class="quiz-num">7.</span>
+        <span class="badge-tipo badge-teorica">Teórica</span>
+      </div>
+      <p class="q-text">¿Qué es una "Nación" y en qué se diferencia esencialmente de un "Estado"?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi7" value="a"> La Nación es un vínculo cultural, histórico e identitario compartido por un grupo humano, mientras que el Estado es una organización política y jurídica con territorio, población y poder soberano. Puede haber naciones sin Estado.</label>
+        <label><input type="radio" name="qi7" value="b"> Nación y Estado son sinónimos: todo Estado constituye automáticamente una Nación y viceversa.</label>
+        <label><input type="radio" name="qi7" value="c"> La Nación es la parte geográfica del Estado, mientras que el Estado es la parte cultural.</label>
+        <label><input type="radio" name="qi7" value="d"> Una Nación siempre tiene un gobierno propio, a diferencia del Estado que puede existir sin territorio definido.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi7"></div>
+    </div>
+
+    <!-- Q8 — ANÁLISIS -->
+    <div class="quiz-question">
+      <div class="quiz-question-header">
+        <span class="quiz-num">8.</span>
+        <span class="badge-tipo badge-analisis">Análisis</span>
+      </div>
+      <p class="q-text">Una empresa privada de construcción gana un contrato con el Estado para construir escuelas en zonas rurales de Esmeraldas. El contador de la empresa detecta que el gerente ha inflado artificialmente las facturas de materiales en un 30% para desviar fondos. ¿Qué función del Estado y qué organismo específico tiene competencia directa para investigar y sancionar esta situación?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi8" value="a"> La Función de Transparencia y Control Social a través de la Contraloría General del Estado (que audita el uso de recursos públicos), con posible intervención de la Función Judicial mediante la Fiscalía General del Estado.</label>
+        <label><input type="radio" name="qi8" value="b"> Solo la Función Ejecutiva, a través del Ministerio de Educación que fue el contratante.</label>
+        <label><input type="radio" name="qi8" value="c"> La Función Legislativa, porque la Asamblea Nacional debe aprobar una investigación antes de que actúe cualquier organismo de control.</label>
+        <label><input type="radio" name="qi8" value="d"> El Consejo Nacional Electoral, pues los contratos públicos están sujetos a su supervisión.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi8"></div>
+    </div>
+
+    <!-- Q9 — ANÁLISIS -->
+    <div class="quiz-question">
+      <div class="quiz-question-header">
+        <span class="quiz-num">9.</span>
+        <span class="badge-tipo badge-analisis">Análisis</span>
+      </div>
+      <p class="q-text">Una comunidad shuar en la provincia de Morona Santiago se opone a la explotación minera en su territorio. Alegan que no se realizó la "Consulta Previa, Libre e Informada" garantizada constitucionalmente. La empresa minera argumenta que tiene todos los permisos del Ministerio de Minería. ¿Qué principio constitucional está en juego y cuál debería ser la solución correcta?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi9" value="a"> El derecho de los pueblos indígenas a la Consulta Previa está en juego; los permisos administrativos del Ejecutivo no pueden sustituir este derecho constitucional, por lo que la Corte Constitucional podría anular los permisos si no hubo consulta.</label>
+        <label><input type="radio" name="qi9" value="b"> Los permisos del Ministerio son suficientes; la Consulta Previa es solo una recomendación sin fuerza vinculante en Ecuador.</label>
+        <label><input type="radio" name="qi9" value="c"> La comunidad no tiene derecho a detener proyectos de desarrollo nacional; el Estado puede expropiar el territorio sin consulta si hay interés público.</label>
+        <label><input type="radio" name="qi9" value="d"> Solo el Congreso puede decidir si se realiza o no la Consulta Previa en cada caso concreto.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi9"></div>
+    </div>
+
+    <!-- Q10 — ANÁLISIS -->
+    <div class="quiz-question">
+      <div class="quiz-question-header">
+        <span class="quiz-num">10.</span>
+        <span class="badge-tipo badge-analisis">Análisis</span>
+      </div>
+      <p class="q-text">Una firma de auditoría privada certifica los estados financieros de un partido político para presentarlos al Consejo Nacional Electoral (CNE). Los auditores descubren donaciones de origen no declarado que podrían provenir de grupos irregulares. ¿Con cuántas funciones del Estado deben coordinarse los auditores para actuar correctamente?</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="qi10" value="a"> Con al menos tres: la Función Electoral (CNE como organismo receptor del informe), la Función Judicial/Fiscalía (por el posible delito de lavado de activos o financiamiento ilícito), y la Función de Transparencia (Contraloría o Superintendencias según corresponda).</label>
+        <label><input type="radio" name="qi10" value="b"> Solo con la Función Electoral, ya que el CNE es el único ente competente en temas de partidos políticos.</label>
+        <label><input type="radio" name="qi10" value="c"> Con ninguna, porque la auditoría privada es confidencial y sus hallazgos no pueden ser divulgados a ningún organismo estatal.</label>
+        <label><input type="radio" name="qi10" value="d"> Solo con la Función Ejecutiva, a través del Ministerio de Gobierno.</label>
+      </div>
+      <div class="feedback-item" id="fb-qi10"></div>
+    </div>
+
+    <button class="btn-verificar" onclick="verificarQuiz()">✔ Verificar respuestas</button>
+    <div class="score-panel" id="quiz-score">
+      <div class="score-emoji" id="quiz-emoji"></div>
+      <div class="score-number" id="quiz-number"></div>
+      <div class="score-message" id="quiz-message"></div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="quiz-bar" style="width:0%"></div></div>
+    </div>
+    <button class="btn-reiniciar" id="btn-reiniciar-quiz" onclick="reiniciarQuiz()">↺ Reiniciar cuestionario</button>
+  </div>
+</div>
+
+<!-- ========================================================
+     PESTAÑA 7 — ACTIVIDAD CON IA
+     ======================================================== -->
+<div id="tab7" class="tab-content">
+  <h2>7. Actividad con Inteligencia Artificial</h2>
+
+  <div class="ai-activity">
+    <h3>🤖 "El Estado bajo la lupa del auditor"</h3>
+    <p>Esta actividad te ayudará a conectar la estructura del Estado ecuatoriano con tu futura práctica profesional, usando la IA como interlocutor crítico — no como fuente de respuestas para copiar.</p>
+
+    <div class="highlight-box">
+      <strong>🌐 Herramienta recomendada:</strong> <strong>Claude</strong> en <a href="https://claude.ai" target="_blank">claude.ai</a> (gratuito, sin necesidad de tarjeta de crédito). Alternativas: ChatGPT (chatgpt.com) o Gemini (gemini.google.com).
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h3>Prompt exacto para usar con la IA:</h3>
+    <div class="ai-prompt-box">Actúa como un experto en derecho constitucional ecuatoriano y ética profesional contable. 
+
+Tengo una pregunta de análisis:
+
+Ecuador tiene cinco funciones del Estado según su Constitución de 2008: Ejecutiva, Legislativa, Judicial, de Transparencia y Control Social, y Electoral.
+
+Por favor, explícame:
+1. ¿Con cuál de estas cinco funciones interactúa más frecuentemente un contador o auditor privado en Ecuador? ¿Por qué?
+2. Dame dos situaciones reales o hipotéticas donde un contador podría verse en conflicto entre sus obligaciones con su empleador y sus obligaciones con alguna de estas funciones del Estado.
+3. ¿Qué pasaría con la democracia ecuatoriana si los contadores y auditores en general decidieran ignorar sus obligaciones con los organismos de control?
+
+Responde con ejemplos concretos del contexto ecuatoriano y con un lenguaje accesible para un estudiante universitario de primer semestre.</div>
+
+    <div class="section-divider"></div>
+
+    <h3>¿Qué hacer con la respuesta de la IA?</h3>
+    <div class="ai-step">
+      <div class="ai-step-num">1</div>
+      <div class="ai-step-text"><strong>Lee críticamente:</strong> ¿La IA mencionó organismos reales ecuatorianos (SRI, SCVS, Contraloría)? ¿Sus ejemplos corresponden a la realidad ecuatoriana que estudiaste en este widget?</div>
+    </div>
+    <div class="ai-step">
+      <div class="ai-step-num">2</div>
+      <div class="ai-step-text"><strong>Evalúa y corrige:</strong> Si la IA cometió errores o generalizó demasiado, escribe en el chat: <em>"Creo que hay un error en tu respuesta sobre [tema]. Según la Constitución de 2008, en realidad..."</em> y corrígela. Esto desarrolla tu pensamiento crítico.</div>
+    </div>
+    <div class="ai-step">
+      <div class="ai-step-num">3</div>
+      <div class="ai-step-text"><strong>Crea tu propio argumento:</strong> Basándote en la respuesta de la IA y en lo que estudiaste en este widget, escribe un párrafo de 150-200 palabras con tu propia opinión sobre cuál función del Estado debería tener más peso en la supervisión de la profesión contable en Ecuador, y por qué.</div>
+    </div>
+    <div class="ai-step">
+      <div class="ai-step-num">4</div>
+      <div class="ai-step-text"><strong>Comparte en el foro:</strong> Publica en el foro del Moodle: (a) una cosa que la IA dijo con la que estás de acuerdo y por qué, (b) una cosa que la IA dijo con la que NO estás de acuerdo o que crees que está incompleta, y (c) tu párrafo de posición personal.</div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h3>📊 Criterios de evaluación</h3>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Criterio</th>
+          <th>Pensamiento crítico ✅</th>
+          <th>Copia simple ❌</th>
+        </tr>
+        <tr>
+          <td><strong>Análisis de la respuesta de la IA</strong></td>
+          <td>Señala errores, imprecisiones o vacíos en la respuesta de la IA</td>
+          <td>Copia la respuesta de la IA sin cuestionarla</td>
+        </tr>
+        <tr>
+          <td><strong>Conexión con el material</strong></td>
+          <td>Usa conceptos del widget (funciones del Estado, Art. 1, GAD, etc.) para argumentar</td>
+          <td>Habla en términos generales sin citar conceptos específicos</td>
+        </tr>
+        <tr>
+          <td><strong>Posición personal</strong></td>
+          <td>Expresa una opinión fundamentada y original, diferente a la de la IA</td>
+          <td>Reproduce la conclusión de la IA como si fuera propia</td>
+        </tr>
+        <tr>
+          <td><strong>Ejemplo ecuatoriano</strong></td>
+          <td>Incluye al menos un ejemplo de organismo o caso real ecuatoriano</td>
+          <td>Usa solo ejemplos genéricos o de otros países</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================
+     PESTAÑA 8 — REFLEXIÓN
+     ======================================================== -->
+<div id="tab8" class="tab-content">
+  <h2>8. Preguntas para la Reflexión Personal</h2>
+  <p>No hay respuestas correctas ni incorrectas. Estas preguntas buscan conectar lo que aprendiste hoy con tu vida real, tu historia personal y tus valores. Tómate tu tiempo. Puedes escribir tus respuestas en un cuaderno, en un documento privado, o simplemente reflexionar en silencio.</p>
+
+  <div class="reflection-container">
+
+    <div class="reflection-item">
+      <div class="reflection-icon">🏠</div>
+      <div class="reflection-text">
+        <h4>Tu barrio y el Estado</h4>
+        <p>Piensa en tu barrio o ciudad. ¿Quién pavimentó las calles? ¿Quién pone las señales de tránsito? ¿Quién recoge la basura? ¿Alguna vez pensaste en esas personas como representantes de alguna función del Estado? ¿Qué sientes cuando esos servicios fallan? ¿A quién culpas: al gobierno, a los ciudadanos, o a ambos?</p>
+      </div>
+    </div>
+
+    <div class="reflection-item">
+      <div class="reflection-icon">🪪</div>
+      <div class="reflection-text">
+        <h4>Tu identidad y la plurinacionalidad</h4>
+        <p>¿Conoces tu origen étnico o el de tu familia? ¿Tienes raíces indígenas, afroecuatorianas, montubias, mestizas? ¿Sabías que la Constitución reconoce ese origen como parte de la identidad nacional? ¿Cómo te hace sentir saber que el Estado ecuatoriano reconoce esa diversidad? ¿Crees que lo hace bien en la práctica?</p>
+      </div>
+    </div>
+
+    <div class="reflection-item">
+      <div class="reflection-icon">⚖️</div>
+      <div class="reflection-text">
+        <h4>Poder, reglas y tus límites personales</h4>
+        <p>Piensa en una situación donde alguien con más poder que tú (un jefe, un familiar, un profesor) te pidió hacer algo que no te parecía del todo correcto. ¿Cómo reaccionaste? ¿Cuánto de esa reacción fue miedo, cuánto fue cálculo racional y cuánto fue principio ético? Cuando seas contador/a y tu jefe te pida "ajustar" un número, ¿qué crees que harás?</p>
+      </div>
+    </div>
+
+    <div class="reflection-item">
+      <div class="reflection-icon">🗳️</div>
+      <div class="reflection-text">
+        <h4>Democracia y tu voto</h4>
+        <p>¿Has votado? ¿Si pudieras, votarías? ¿Crees que tu voto realmente cambia algo? Mucha gente joven siente que la democracia ecuatoriana está rota. ¿Tú qué piensas? ¿Qué tendría que pasar para que confiaras más en el sistema? ¿Cuánto de ese sistema depende de profesionales honestos como tú?</p>
+      </div>
+    </div>
+
+    <div class="reflection-item">
+      <div class="reflection-icon">🌐</div>
+      <div class="reflection-text">
+        <h4>Globalización y tu futuro profesional</h4>
+        <p>Las NIIF que aprenderás vienen de Londres. Las normas de lavado de activos vienen del GAFI (organismo internacional). Los precios del petróleo se fijan en Nueva York. ¿Sientes que eres parte de algo más grande que Ecuador cuando estudias Contabilidad? ¿Eso te genera entusiasmo o ansiedad? ¿Por qué?</p>
+      </div>
+    </div>
+
+    <div class="reflection-item">
+      <div class="reflection-icon">🧠</div>
+      <div class="reflection-text">
+        <h4>Tu imagen de "buen profesional"</h4>
+        <p>Cierra los ojos un momento. Imagina que ya tienes 35 años y eres un contador o auditor reconocido en tu comunidad. ¿Cómo te imaginas? ¿Qué tipo de clientes tienes? ¿Cómo toman tus decisiones? ¿Qué cosas nunca harías por dinero? Esa imagen de ti mismo/a es tu <em>brújula ética</em>. ¿Qué tan clara la ves hoy?</p>
+      </div>
+    </div>
+
+    <div class="reflection-item">
+      <div class="reflection-icon">🤝</div>
+      <div class="reflection-text">
+        <h4>Ubuntu, Minga y tú</h4>
+        <p>En África subsahariana existe el principio <em>Ubuntu</em>: "Soy porque nosotros somos." En el mundo andino existe la <em>Minga</em>: trabajo colectivo por el bien común. ¿Reconoces ese principio en tu familia, en tu barrio, en tu comunidad? ¿Qué pasaría si los contadores y auditores de Ecuador aplicaran ese principio en su trabajo diario? ¿Cómo cambiaría el país?</p>
+      </div>
+    </div>
+
+    <div class="key-idea" style="margin-top: 24px;">
+      <strong>Para llevar contigo:</strong> La organización del Estado no es una estructura fría de libros de texto — es el sistema que decide cómo se reparte el agua, cómo se educa a los niños, cómo se protege a los ancianos. Cada vez que actúas con integridad como profesional, estás contribuyendo a que ese sistema funcione mejor. Eso es lo que significa ser ciudadano/a — no solo tener cédula, sino <strong>tomar parte activa en el destino colectivo</strong>.
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================
+     PESTAÑA 9 — BIBLIOGRAFÍA
+     ======================================================== -->
+<div id="tab9" class="tab-content">
+  <h2>9. Bibliografía</h2>
+  <p>Referencias utilizadas y recomendadas para profundizar en los temas de esta semana. Formato APA 7.ª edición.</p>
+
+  <div class="bib-card">
+    <div class="bib-authors">Asamblea Constituyente del Ecuador.</div>
+    <div class="bib-year">(2008).</div>
+    <div class="bib-title">Constitución de la República del Ecuador.</div>
+    <div class="bib-source">Registro Oficial N.° 449. Asamblea Nacional del Ecuador. <a href="https://www.asambleanacional.gob.ec/sites/default/files/documents/old/constitucion_de_bolsillo.pdf" target="_blank">https://www.asambleanacional.gob.ec</a></div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Asamblea Nacional del Ecuador.</div>
+    <div class="bib-year">(2010).</div>
+    <div class="bib-title">Código Orgánico de Organización Territorial, Autonomía y Descentralización (COOTAD).</div>
+    <div class="bib-source">Registro Oficial Suplemento N.° 303. <a href="https://www.ame.gob.ec/ame/pdf/cootad_2012.pdf" target="_blank">https://www.ame.gob.ec</a></div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Borja, R.</div>
+    <div class="bib-year">(2018).</div>
+    <div class="bib-title">Enciclopedia de la política</div>
+    <div class="bib-source">(4.ª ed., Vols. I y II). Fondo de Cultura Económica.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Grijalva, A.</div>
+    <div class="bib-year">(2012).</div>
+    <div class="bib-title">Constitucionalismo en Ecuador.</div>
+    <div class="bib-source">Corte Constitucional del Ecuador / Centro de Estudios y Difusión del Derecho Constitucional (CEDEC).</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Held, D.</div>
+    <div class="bib-year">(2006).</div>
+    <div class="bib-title">Models of democracy</div>
+    <div class="bib-source">(3rd ed.). Polity Press.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Montaño, C.</div>
+    <div class="bib-year">(2015).</div>
+    <div class="bib-title">Derecho tributario: Principios e instituciones</div>
+    <div class="bib-source">Corporación de Estudios y Publicaciones (CEP). [Nota: texto de referencia para el derecho tributario ecuatoriano en contexto del Estado constitucional]</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Programa de las Naciones Unidas para el Desarrollo (PNUD).</div>
+    <div class="bib-year">(2004).</div>
+    <div class="bib-title">La democracia en América Latina: Hacia una democracia de ciudadanas y ciudadanos.</div>
+    <div class="bib-source">PNUD. <a href="https://www.undp.org/es/latin-america/publications/la-democracia-en-am%C3%A9rica-latina" target="_blank">https://www.undp.org</a></div>
+  </div>
+
+  <div class="bib-note">
+    📌 <strong>Nota académica:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos. Las normativas legales se actualizan periódicamente; consulta siempre la versión vigente en el Registro Oficial del Ecuador (<a href="https://www.registroficial.gob.ec" target="_blank">registroficial.gob.ec</a>).
+  </div>
+</div>
+
+<!-- ========================================================
+     JAVASCRIPT
+     ======================================================== -->
+<script>
+  /* ===== TAB NAVIGATION ===== */
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const idx = ['tab0','tab1','tab2','tab3','tab4','tab5','tab6','tab7','tab8','tab9'].indexOf(id);
+    document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  /* ===== EJERCICIO INTERACTIVO ===== */
+  const ejercicioCorrects = {
+    ei1: 'a', ei2: 'a', ei3: 'a', ei4: 'a',
+    ei5: 'a', ei6: 'a', ei7: 'a', ei8: 'a'
+  };
+
+  const ejercicioFeedbacks = {
+    ei1: {
+      correct: '✅ Correcto. La plurinacionalidad reconoce la existencia de diversas naciones y pueblos (quichuas, shuar, achuar, waorani, afroecuatorianos, etc.) dentro del Estado ecuatoriano, con derechos culturales propios, sin que esto implique separación territorial.',
+      incorrect: '❌ Incorrecto. La plurinacionalidad no implica separación territorial ni gobiernos independientes dentro de Ecuador. Significa que el Estado reconoce y garantiza los derechos de los distintos pueblos y nacionalidades que conviven en el territorio nacional (Art. 1, Constitución 2008).'
+    },
+    ei2: {
+      correct: '✅ Correcto. La Contraloría General del Estado es el organismo de la Función de Transparencia y Control Social encargado de auditar el uso de recursos públicos, incluidos los contratos estatales ejecutados por empresas privadas.',
+      incorrect: '❌ Incorrecto. La Contraloría General del Estado (Función de Transparencia y Control Social) es el ente competente para auditar contratos con el Estado. La Asamblea aprueba leyes; el CNE supervisa elecciones; el TCE resuelve disputas electorales.'
+    },
+    ei3: {
+      correct: '✅ Correcto. Ecuador es un Estado Unitario: existe un solo centro de poder soberano nacional. En un Estado Federal (como EE. UU. o Brasil), los estados miembros tienen autonomía propia garantizada constitucionalmente, no delegada.',
+      incorrect: '❌ Incorrecto. La diferencia no es de tamaño ni de nivel democrático, sino de distribución del poder soberano. En un Estado Unitario como Ecuador, el poder emana de un solo centro nacional; en uno Federal, los estados tienen autonomía propia garantizada por su constitución.'
+    },
+    ei4: {
+      correct: '✅ Correcto. La creación y reforma de leyes —incluidas las tributarias— corresponde a la Función Legislativa, ejercida por la Asamblea Nacional. El SRI aplica las leyes que la Asamblea aprueba; no las crea.',
+      incorrect: '❌ Incorrecto. Crear o reformar leyes es competencia exclusiva de la Función Legislativa (Asamblea Nacional). El SRI aplica la ley tributaria pero no la crea. La Función Judicial interpreta y aplica la ley; no la elabora.'
+    },
+    ei5: {
+      correct: '✅ Correcto. Los tres elementos clásicos del Estado según la teoría político-jurídica son: territorio (espacio geográfico bajo soberanía), población (conjunto de personas) y poder soberano o gobierno (capacidad de dictar y hacer cumplir normas).',
+      incorrect: '❌ Incorrecto. Ejército, moneda, idioma o constitución escrita son atributos frecuentes de los Estados modernos, pero no son los elementos constitutivos indispensables. Los tres elementos clásicos son: territorio, población y poder soberano.'
+    },
+    ei6: {
+      correct: '✅ Correcto. El peritaje judicial es parte del proceso ante los juzgados y la Fiscalía General del Estado, que pertenecen a la Función Judicial. Un contador puede ser designado perito en casos de fraude, defraudación tributaria o lavado de activos.',
+      incorrect: '❌ Incorrecto. El peritaje es una función auxiliar de la justicia, coordinada con la Función Judicial (juzgados y Fiscalía). El SRI puede iniciar el proceso administrativo, pero el juicio y el peritaje se desarrollan ante la Función Judicial.'
+    },
+    ei7: {
+      correct: '✅ Correcto. La SCVS regula las sociedades comerciales y exige la presentación anual de estados financieros auditados por auditores externos calificados. Todos los contadores que trabajan en empresas sujetas a su control deben cumplir sus normas y plazos.',
+      incorrect: '❌ Incorrecto. La SCVS regula tanto empresas públicas como privadas que tengan la forma de compañía. No fija salarios de contadores ni aprueba las NIIF (eso lo hace el IASB a nivel internacional). Su función principal es el control de las sociedades mercantiles.'
+    },
+    ei8: {
+      correct: '✅ Correcto. Los GAD son autónomos (eligen sus propias autoridades y gestionan sus competencias) pero descentralizados (su autoridad proviene de la delegación constitucional y legal del Estado nacional, no de soberanía propia). No pueden crear leyes tributarias propias ni desconocer la legislación nacional.',
+      incorrect: '❌ Incorrecto. Los GAD no son totalmente independientes del gobierno central. Son "autónomos" en la elección de autoridades y gestión de competencias delegadas, pero "descentralizados" significa que su autoridad viene de la Constitución y la ley nacional, no de soberanía propia.'
+    }
+  };
+
+  function verificarEjercicio() {
+    const preguntas = Object.keys(ejercicioCorrects);
+    let sinResponder = [];
+    preguntas.forEach(name => {
+      const sel = document.querySelector(`input[name="${name}"]:checked`);
+      if (!sel) sinResponder.push(name);
+    });
+    if (sinResponder.length > 0) {
+      alert(`Por favor responde todas las preguntas antes de verificar. Te faltan ${sinResponder.length} pregunta(s).`);
+      return;
+    }
+    let correctas = 0;
+    preguntas.forEach(name => {
+      const sel = document.querySelector(`input[name="${name}"]:checked`).value;
+      const fb = document.getElementById(`fb-${name}`);
+      const isCorrect = sel === ejercicioCorrects[name];
+      if (isCorrect) correctas++;
+      fb.className = `feedback-item ${isCorrect ? 'correct' : 'incorrect'}`;
+      fb.textContent = ejercicioFeedbacks[name][isCorrect ? 'correct' : 'incorrect'];
+      // Colorear opciones
+      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+        inp.parentElement.style.background = '';
+        inp.disabled = true;
+      });
+      const selectedLabel = document.querySelector(`input[name="${name}"]:checked`).parentElement;
+      selectedLabel.style.background = isCorrect ? '#e8f5e9' : '#ffebee';
+    });
+    const pct = Math.round((correctas / preguntas.length) * 100);
+    const scoreEl = document.getElementById('ejercicio-score');
+    scoreEl.style.display = 'block';
+    document.getElementById('ej-number').textContent = `${correctas} / ${preguntas.length}`;
+    document.getElementById('ej-bar').style.width = pct + '%';
+    let emoji, msg;
+    if (pct === 100) { emoji = '🏆'; msg = '¡Perfecto! Dominas la organización del Estado ecuatoriano.'; }
+    else if (pct >= 80) { emoji = '🎯'; msg = '¡Excelente! Tienes una comprensión sólida del tema.'; }
+    else if (pct >= 60) { emoji = '📘'; msg = 'Buen esfuerzo. Repasa las preguntas incorrectas y el material correspondiente.'; }
+    else if (pct >= 40) { emoji = '⚠️'; msg = 'Necesitas repasar el contenido. Vuelve a las pestañas 1-4 con atención.'; }
+    else { emoji = '📖'; msg = 'Te recomendamos releer el material completo antes de volver a intentarlo.'; }
+    document.getElementById('ej-emoji').textContent = emoji;
+    document.getElementById('ej-message').textContent = `${pct}% — ${msg}`;
+    document.getElementById('btn-reiniciar-ej').style.display = 'block';
+  }
+
+  function reiniciarEjercicio() {
+    Object.keys(ejercicioCorrects).forEach(name => {
+      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+        inp.checked = false;
+        inp.disabled = false;
+        inp.parentElement.style.background = '';
+      });
+      const fb = document.getElementById(`fb-${name}`);
+      fb.className = 'feedback-item';
+      fb.textContent = '';
+    });
+    document.getElementById('ejercicio-score').style.display = 'none';
+    document.getElementById('btn-reiniciar-ej').style.display = 'none';
+    document.getElementById('ej-bar').style.width = '0%';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  /* ===== CUESTIONARIO ===== */
+  const quizCorrects = {
+    qi1: 'a', qi2: 'a', qi3: 'a', qi4: 'a', qi5: 'a',
+    qi6: 'a', qi7: 'a', qi8: 'a', qi9: 'a', qi10: 'a'
+  };
+
+  const quizFeedbacks = {
+    qi1: {
+      correct: '✅ Correcto. El Art. 1 de la Constitución de 2008 define al Ecuador como Estado constitucional de derechos y justicia, social, democrático, soberano, independiente, unitario, intercultural, plurinacional y laico.',
+      incorrect: '❌ Incorrecto. Ecuador es un Estado Unitario (no federal), laico (no confesional), presidencialista (no parlamentarista) y con cinco funciones del Estado. El Art. 1 de la Constitución de 2008 contiene la definición completa y oficial.'
+    },
+    qi2: {
+      correct: '✅ Correcto. En un Estado Constitucional de Derechos (Ecuador 2008), los derechos fundamentales y la Constitución son superiores a cualquier ley ordinaria. Los jueces pueden inaplicar leyes que los violen (control de constitucionalidad). El Estado clásico de Derecho otorga primacía a la ley ordinaria.',
+      incorrect: '❌ Incorrecto. La diferencia es fundamental: en el Estado Constitucional de Derechos, la Constitución y los derechos son superiores a la ley. Los jueces pueden inaplicar leyes inconstitucionales, lo cual no ocurre en el modelo clásico de Estado de Derecho.'
+    },
+    qi3: {
+      correct: '✅ Correcto. La Constitución de 2008 reconoce cinco funciones del Estado. La gran innovación fue elevar a rango constitucional autónomo la Función de Transparencia y Control Social (con la Contraloría, Superintendencias y Defensoría) y la Función Electoral (CNE y TCE), separándolas del modelo clásico de tres poderes.',
+      incorrect: '❌ Incorrecto. La Constitución de 2008 reconoce cinco funciones (no tres ni cuatro): Ejecutiva, Legislativa, Judicial, de Transparencia y Control Social, y Electoral. Las dos últimas son la gran innovación respecto a modelos anteriores.'
+    },
+    qi4: {
+      correct: '✅ Correcto. Los tres elementos clásicos del Estado, establecidos por la teoría jurídico-política desde Jellinek (1900), son: territorio (espacio geográfico bajo soberanía), población (personas que lo habitan) y poder soberano o gobierno (autoridad para crear y aplicar normas).',
+      incorrect: '❌ Incorrecto. Los tres elementos clásicos e indispensables son: territorio, población y poder soberano. Constitución, ejército, moneda e idioma son atributos comunes de los Estados modernos pero no son los elementos constitutivos esenciales según la teoría clásica.'
+    },
+    qi5: {
+      correct: '✅ Correcto. La jerarquía territorial de los GAD en Ecuador, de mayor a menor ámbito, es: Provincias (24) → Cantones (221) → Parroquias (~1.200). Las Regiones están previstas constitucionalmente pero aún no han sido conformadas legalmente.',
+      incorrect: '❌ Incorrecto. El orden correcto de mayor a menor ámbito territorial es: Provincias → Cantones → Parroquias. Los Distritos son unidades de planificación de servicios públicos, no niveles de gobierno autónomo. Las Regiones están previstas pero no conformadas.'
+    },
+    qi6: {
+      correct: '✅ Correcto. El cambio de "poderes" a "funciones" es filosófico y jurídicamente significativo: en democracia el poder soberano pertenece al pueblo (Art. 1 Constitución), y las instituciones son instrumentos funcionales para ejercerlo en nombre del pueblo, no entidades con poder propio.',
+      incorrect: '❌ Incorrecto. El cambio terminológico no es estilístico: refleja un principio democrático fundamental. Si el poder soberano pertenece al pueblo, las instituciones no son "poderes" sino "funciones" al servicio de la ciudadanía. Sí tienen autoridad coercitiva real, pero en nombre del pueblo.'
+    },
+    qi7: {
+      correct: '✅ Correcto. La Nación es un vínculo cultural, histórico e identitario; el Estado es una organización política y jurídica. Esta distinción es clave en Ecuador: hay múltiples naciones (quichua, shuar, etc.) dentro de un solo Estado, lo que fundamenta el carácter plurinacional reconocido en la Constitución.',
+      incorrect: '❌ Incorrecto. Nación y Estado no son sinónimos. Puede haber naciones sin Estado (pueblo kurdo en el siglo XX, por ejemplo) y Estados plurinacionales con varias naciones dentro (como Ecuador). La Nación es un vínculo cultural-identitario; el Estado es una organización político-jurídica.'
+    },
+    qi8: {
+      correct: '✅ Correcto. Los recursos desviados son fondos públicos (contrato estatal), por lo que la Contraloría General del Estado (Función de Transparencia y Control Social) tiene competencia para auditar la contratación. Simultáneamente, la Fiscalía (Función Judicial) puede investigar el posible delito penal de peculado o fraude.',
+      incorrect: '❌ Incorrecto. Cuando se desvían fondos de contratos públicos, la Contraloría General (Función de Transparencia) audita el uso de recursos, y la Fiscalía (Función Judicial) investiga los posibles delitos. El Ministerio contratante no tiene competencia sancionatoria penal; el CNE no supervisa contratos de obra.'
+    },
+    qi9: {
+      correct: '✅ Correcto. El derecho a la Consulta Previa, Libre e Informada de los pueblos indígenas está garantizado en la Constitución (Art. 57 num. 7) y en el Convenio 169 de la OIT, ratificado por Ecuador. Los permisos administrativos del Ejecutivo no pueden sustituirlo. La Corte Constitucional ha declarado inconstitucionales permisos otorgados sin consulta previa.',
+      incorrect: '❌ Incorrecto. La Consulta Previa, Libre e Informada es un derecho constitucional vinculante (Art. 57 num. 7, Constitución 2008) y un compromiso internacional (Convenio 169 OIT). Los permisos del Ejecutivo no lo sustituyen. La Corte Constitucional ecuatoriana ha anulado concesiones mineras y petroleras por incumplirlo.'
+    },
+    qi10: {
+      correct: '✅ Correcto. Los auditores deben reportar al CNE (Función Electoral) como ente receptor; a la Fiscalía (Función Judicial) ante indicios de lavado de activos o financiamiento ilícito (tipificado en el COIP); y posiblemente a la Unidad de Análisis Financiero (UAFE), que forma parte de la Función de Transparencia. La coordinación multifuncional es la respuesta correcta.',
+      incorrect: '❌ Incorrecto. Los auditores no pueden limitar su actuación al CNE cuando detectan posibles delitos. El lavado de activos es un delito penal que debe reportarse a la Fiscalía (Función Judicial) y a la UAFE. Además, la confidencialidad no aplica cuando hay indicios de delito: el COIP obliga a reportarlos. La coordinación debe ser multifuncional.'
+    }
+  };
+
+  function verificarQuiz() {
+    const preguntas = Object.keys(quizCorrects);
+    let sinResponder = [];
+    preguntas.forEach(name => {
+      const sel = document.querySelector(`input[name="${name}"]:checked`);
+      if (!sel) sinResponder.push(name);
+    });
+    if (sinResponder.length > 0) {
+      alert(`Por favor responde todas las preguntas antes de verificar. Te faltan ${sinResponder.length} pregunta(s).`);
+      return;
+    }
+    let correctas = 0;
+    preguntas.forEach(name => {
+      const sel = document.querySelector(`input[name="${name}"]:checked`).value;
+      const fb = document.getElementById(`fb-${name}`);
+      const isCorrect = sel === quizCorrects[name];
+      if (isCorrect) correctas++;
+      fb.className = `feedback-item ${isCorrect ? 'correct' : 'incorrect'}`;
+      fb.textContent = quizFeedbacks[name][isCorrect ? 'correct' : 'incorrect'];
+      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+        inp.disabled = true;
+        inp.parentElement.style.background = '';
+      });
+      const selectedLabel = document.querySelector(`input[name="${name}"]:checked`).parentElement;
+      selectedLabel.style.background = isCorrect ? '#e8f5e9' : '#ffebee';
+    });
+    const pct = Math.round((correctas / preguntas.length) * 100);
+    const scoreEl = document.getElementById('quiz-score');
+    scoreEl.style.display = 'block';
+    document.getElementById('quiz-number').textContent = `${correctas} / ${preguntas.length}`;
+    document.getElementById('quiz-bar').style.width = pct + '%';
+    let emoji, msg;
+    if (pct === 100) { emoji = '🏆'; msg = '¡Perfecto! Rendimiento excepcional en el cuestionario.'; }
+    else if (pct >= 80) { emoji = '🎯'; msg = '¡Muy bien! Comprendes con solidez la organización del Estado ecuatoriano.'; }
+    else if (pct >= 60) { emoji = '📘'; msg = 'Aprobado. Refuerza los temas donde tuviste errores.'; }
+    else if (pct >= 40) { emoji = '⚠️'; msg = 'Por debajo del mínimo. Relee el material y vuelve a intentarlo.'; }
+    else { emoji = '📖'; msg = 'Dedica más tiempo al material. ¡Puedes mejorar con estudio!'; }
+    document.getElementById('quiz-emoji').textContent = emoji;
+    document.getElementById('quiz-message').textContent = `${pct}% — ${msg}`;
+    document.getElementById('btn-reiniciar-quiz').style.display = 'block';
+  }
+
+  function reiniciarQuiz() {
+    Object.keys(quizCorrects).forEach(name => {
+      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+        inp.checked = false;
+        inp.disabled = false;
+        inp.parentElement.style.background = '';
+      });
+      const fb = document.getElementById(`fb-${name}`);
+      fb.className = 'feedback-item';
+      fb.textContent = '';
+    });
+    document.getElementById('quiz-score').style.display = 'none';
+    document.getElementById('btn-reiniciar-quiz').style.display = 'none';
+    document.getElementById('quiz-bar').style.width = '0%';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+</script>
+</body>
+</html>

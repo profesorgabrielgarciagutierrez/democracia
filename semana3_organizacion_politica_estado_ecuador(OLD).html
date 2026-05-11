@@ -1,0 +1,522 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Georgia,'Times New Roman',serif;background:#fff;color:#1a1a2e}
+.ug-header{background:#fff;border-bottom:3px solid #00AEEF;padding:18px 28px;display:flex;align-items:center;gap:16px}
+.ug-logo{height:52px;width:auto}
+.ug-title-block{flex:1}
+.ug-uni{font-size:11px;font-family:Arial,sans-serif;color:#1565C0;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.ug-course{font-size:13px;font-family:Arial,sans-serif;color:#0D47A1;font-weight:600}
+.ug-week-badge{background:#00AEEF;color:#fff;font-family:Arial,sans-serif;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;white-space:nowrap}
+.nav-bar{display:flex;gap:0;background:#f5f9ff;border-bottom:2px solid #00AEEF;overflow-x:auto}
+.nav-btn{background:none;border:none;padding:11px 18px;font-family:Arial,sans-serif;font-size:12px;font-weight:600;color:#1565C0;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+.nav-btn.active{background:#00AEEF;color:#fff;border-bottom:3px solid #0D47A1}
+.nav-btn:hover:not(.active){background:#e3f2fd;border-bottom:3px solid #00AEEF}
+.content{padding:24px 28px;max-height:580px;overflow-y:auto}
+.panel{display:none}
+.panel.active{display:block}
+.recap-card{background:#e8f5e9;border-left:5px solid #2e7d32;border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:20px}
+.recap-card h3{font-family:Arial,sans-serif;font-size:13px;font-weight:700;color:#1b5e20;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.recap-card p{font-size:13px;color:#2e7d32;line-height:1.6}
+.section-title{font-size:18px;font-weight:700;color:#0D47A1;margin:20px 0 10px;border-bottom:2px solid #00AEEF;padding-bottom:6px;font-family:Arial,sans-serif}
+.concept-card{background:#fff;border:1.5px solid #90caf9;border-radius:10px;padding:16px 18px;margin-bottom:14px;position:relative}
+.concept-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:#00AEEF;border-radius:10px 0 0 10px}
+.concept-card h4{font-family:Arial,sans-serif;font-size:13px;font-weight:700;color:#1565C0;margin-bottom:6px;padding-left:8px}
+.concept-card p{font-size:13px;color:#333;line-height:1.7;padding-left:8px}
+.value-tag{display:inline-block;background:#e3f2fd;color:#0D47A1;font-family:Arial,sans-serif;font-size:11px;font-weight:700;padding:3px 9px;border-radius:12px;margin:3px 3px 3px 8px;border:1px solid #90caf9}
+.quote-block{background:#fff8e1;border-left:5px solid #f9a825;border-radius:0 8px 8px 0;padding:14px 18px;margin:18px 0;font-style:italic;font-size:14px;color:#5d4037;line-height:1.7}
+.quote-block cite{display:block;font-style:normal;font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#f9a825;margin-top:6px;text-transform:uppercase;letter-spacing:.5px}
+.contrast-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.contrast-box{border-radius:8px;padding:13px 15px}
+.contrast-box h5{font-family:Arial,sans-serif;font-size:12px;font-weight:700;margin-bottom:7px}
+.contrast-box p{font-size:12px;line-height:1.6}
+.box-a{background:#e8f5e9;border:1.5px solid #4caf50}
+.box-a h5{color:#1b5e20}
+.box-a p{color:#2e7d32}
+.box-b{background:#ffebee;border:1.5px solid #ef9a9a}
+.box-b h5{color:#b71c1c}
+.box-b p{color:#c62828}
+.func-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:14px 0}
+.func-box{background:#1565C0;color:#fff;border-radius:8px;padding:10px 8px;text-align:center}
+.func-box .icon{font-size:18px;margin-bottom:5px}
+.func-box h5{font-family:Arial,sans-serif;font-size:10px;font-weight:700;line-height:1.3}
+.func-box p{font-size:9px;color:#bbdefb;margin-top:3px;line-height:1.3}
+.ecuador-stat{display:inline-flex;align-items:center;gap:8px;background:#fff3e0;border:1.5px solid #ffb300;border-radius:8px;padding:8px 14px;margin:5px 5px 5px 0;font-family:Arial,sans-serif;font-size:12px;color:#e65100}
+.ecuador-stat strong{font-size:15px;color:#bf360c}
+.ideol-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:14px 0}
+.ideol-card{border-radius:8px;padding:12px 13px;border-width:2px;border-style:solid}
+.ideol-card h5{font-family:Arial,sans-serif;font-size:11px;font-weight:700;margin-bottom:5px}
+.ideol-card p{font-size:11px;line-height:1.5}
+.ideol-card ul{font-size:11px;padding-left:14px;margin-top:4px;line-height:1.6}
+.left-ideol{background:#e3f2fd;border-color:#1565C0;color:#0D47A1}
+.center-ideol{background:#e8f5e9;border-color:#388e3c;color:#1b5e20}
+.right-ideol{background:#fff8e1;border-color:#f9a825;color:#5d4037}
+.quiz-intro{background:#e8eaf6;border-radius:10px;padding:14px 18px;margin-bottom:18px;font-family:Arial,sans-serif;font-size:13px;color:#283593;border-left:5px solid #3949ab}
+.quiz-q{background:#fff;border:1.5px solid #90caf9;border-radius:10px;padding:16px 18px;margin-bottom:16px}
+.quiz-q .qnum{font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#00AEEF;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.quiz-q p{font-size:13px;color:#1a1a2e;line-height:1.7;margin-bottom:12px;font-weight:600}
+.quiz-opt{display:block;width:100%;text-align:left;background:#f5f9ff;border:1.5px solid #90caf9;border-radius:7px;padding:9px 14px;margin-bottom:7px;font-family:Arial,sans-serif;font-size:12px;color:#1565C0;cursor:pointer;transition:all .2s}
+.quiz-opt:hover{background:#e3f2fd;border-color:#1565C0}
+.quiz-opt.correct{background:#e8f5e9;border-color:#4caf50;color:#1b5e20;font-weight:700}
+.quiz-opt.wrong{background:#ffebee;border-color:#ef9a9a;color:#b71c1c}
+.quiz-opt.neutral{background:#f5f5f5;border-color:#bdbdbd;color:#616161}
+.feedback{background:#fff9c4;border-left:4px solid #f9a825;border-radius:0 7px 7px 0;padding:10px 14px;margin-top:8px;font-family:Arial,sans-serif;font-size:12px;color:#4e342e;line-height:1.6;display:none}
+.feedback.show{display:block}
+.progress-bar{width:100%;height:8px;background:#e3f2fd;border-radius:10px;margin:14px 0}
+.progress-fill{height:8px;background:#00AEEF;border-radius:10px;transition:width .4s}
+.score-display{font-family:Arial,sans-serif;font-size:13px;color:#1565C0;font-weight:700;margin-bottom:6px}
+.reset-btn{background:#0D47A1;color:#fff;border:none;border-radius:7px;padding:9px 22px;font-family:Arial,sans-serif;font-size:12px;font-weight:700;cursor:pointer;margin-top:12px}
+.reset-btn:hover{background:#1565C0}
+.footer-strip{background:#0D47A1;color:#fff;text-align:center;padding:10px;font-family:Arial,sans-serif;font-size:11px;letter-spacing:.5px}
+</style>
+
+<div class="ug-header">
+  <img class="ug-logo" src="data:image/jpeg;base64,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" alt="Logo Universidad de Guayaquil" onerror="this.style.display='none'">
+  <div class="ug-title-block">
+    <div class="ug-uni">Universidad de Guayaquil</div>
+    <div class="ug-course">Democracia, Ciudadanía y Globalización · Semana 3</div>
+  </div>
+  <span class="ug-week-badge">2026 · Semana 3</span>
+</div>
+
+<div class="nav-bar">
+  <button class="nav-btn active" onclick="showPanel('recap')">🔄 Repaso</button>
+  <button class="nav-btn" onclick="showPanel('soberania')">🏛 Soberanía</button>
+  <button class="nav-btn" onclick="showPanel('estado')">⚖️ Estado de Derecho</button>
+  <button class="nav-btn" onclick="showPanel('funciones')">🔵 5 Funciones</button>
+  <button class="nav-btn" onclick="showPanel('realidad')">📊 Realidad Ecuador</button>
+  <button class="nav-btn" onclick="showPanel('ideologias')">💡 Ideologías</button>
+  <button class="nav-btn" onclick="showPanel('quiz')">✏️ Cuestionario</button>
+</div>
+
+<div class="content">
+
+<!-- PANEL REPASO -->
+<div class="panel active" id="p-recap">
+  <div class="recap-card">
+    <h3>📚 Lo que aprendimos · Semanas 1 y 2</h3>
+    <p>Exploramos qué es la democracia y por qué nos importa como ciudadanos y como profesionales contables. Con Sofía descubrimos que <strong>el contador es guardián de la transparencia institucional</strong>. Estudiamos los tres valores de Amartya Sen (oportunidad, protección, transparencia), los modelos de ciudadanía (liberal, republicano, comunitario, deliberativo, cosmopolita), y conectamos decisiones micro-éticas con consecuencias macro-democráticas. También revisamos conceptos culturales comparativos: MAKOTO, GANBARU, UBUNTU, DUGNAD y la MINGA andina como referentes de valor cívico.</p>
+  </div>
+
+  <div class="section-title">¿Qué aprenderemos hoy?</div>
+
+  <div class="concept-card">
+    <h4>🎯 Hilo conductor de la Semana 3</h4>
+    <p>Pasamos de los conceptos generales de democracia a la arquitectura concreta del Estado ecuatoriano. La pregunta central es: <em>¿Qué estructura sostiene la democracia y qué sucede cuando esa estructura se debilita?</em> Conectaremos los temas con la realidad que vivimos en Ecuador, con datos verificables y sin sesgos ideológicos.</p>
+  </div>
+
+  <div class="quote-block">
+    "El Estado es la forma en que una comunidad se organiza para vivir juntos con justicia. Sin Estado de Derecho, no hay democracia posible."
+    <cite>— Inspirado en Aristóteles, Política, Libro III</cite>
+  </div>
+</div>
+
+<!-- PANEL SOBERANÍA -->
+<div class="panel" id="p-soberania">
+  <div class="section-title">La Soberanía del Estado</div>
+
+  <div class="concept-card">
+    <h4>📖 Definición clásica y actual</h4>
+    <p>La <strong>soberanía</strong> es el poder supremo que tiene un Estado para autogobernarse sin interferencias externas y para organizar la vida de su territorio. Jean Bodin (1576) la definió como "el poder absoluto y perpetuo de una república". Hoy, la Constitución del Ecuador (Art. 1) establece: <em>"El Ecuador es un Estado constitucional de derechos y justicia... La soberanía radica en el pueblo."</em></p>
+    <span class="value-tag">Autodeterminación</span>
+    <span class="value-tag">Dignidad nacional</span>
+    <span class="value-tag">Responsabilidad colectiva</span>
+  </div>
+
+  <div class="contrast-grid">
+    <div class="contrast-box box-a">
+      <h5>✅ Soberanía bien ejercida</h5>
+      <p>Decisiones que benefician al pueblo, instituciones fuertes, transparencia en el gasto público, rendición de cuentas real, respeto a la Constitución.</p>
+    </div>
+    <div class="contrast-box box-b">
+      <h5>❌ Soberanía secuestrada</h5>
+      <p>Cuando grupos de poder (políticos, económicos o criminales) capturan al Estado y gobiernan para beneficio propio. Caso documentado: el caso Metástasis en Ecuador (2023-2024).</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h4>🌎 Soberanía y globalización: la tensión del siglo XXI</h4>
+    <p>La globalización crea presiones sobre la soberanía: organismos internacionales (FMI, BID, ONU), tratados de libre comercio y multinacionales influyen en decisiones nacionales. El reto es ejercer soberanía <em>responsable</em>: abierta al mundo pero fiel al bien común del pueblo ecuatoriano. Un contador que firma estados financieros falsos para empresas extranjeras no solo viola la ley: <strong>erosiona la soberanía fiscal del país</strong>.</p>
+    <span class="value-tag">Bien común</span>
+    <span class="value-tag">Responsabilidad profesional</span>
+    <span class="value-tag">Independencia institucional</span>
+  </div>
+
+  <div class="quote-block">
+    "La soberanía no es un privilegio del gobernante; es una responsabilidad que el pueblo delega y puede retirar."
+    <cite>— Jean-Jacques Rousseau, El Contrato Social (1762)</cite>
+  </div>
+
+  <div class="concept-card">
+    <h4>🔍 Modelos de soberanía en contraste</h4>
+    <p><strong>Modelo Westfaliano (1648):</strong> El Estado es la máxima autoridad dentro de sus fronteras. Nadie puede interferir. Fortaleza: independencia. Debilidad: puede proteger tiranos internos.</p>
+    <p style="margin-top:8px"><strong>Soberanía Popular (Rousseau):</strong> El poder emana del pueblo. El gobierno es un mandatario, no un dueño. Fortaleza: democrática. Debilidad: requiere ciudadanos informados.</p>
+    <p style="margin-top:8px"><strong>Soberanía Responsable (ONU, siglo XXI):</strong> Incluye obligaciones con los propios ciudadanos y con la comunidad internacional (derechos humanos). Fortaleza: humanista. Tensión: puede justificar intervenciones externas.</p>
+  </div>
+</div>
+
+<!-- PANEL ESTADO DE DERECHO -->
+<div class="panel" id="p-estado">
+  <div class="section-title">El Estado de Derecho</div>
+
+  <div class="concept-card">
+    <h4>📖 ¿Qué significa "Estado de Derecho"?</h4>
+    <p>Es el principio por el cual <strong>todos —gobernantes y gobernados— están sometidos a la ley</strong>. Nadie está por encima de ella. Es el pilar que diferencia la democracia del autoritarismo. John Locke lo formuló así: sin ley no hay libertad, porque sin ley hay arbitrariedad del poder.</p>
+  </div>
+
+  <div class="concept-card">
+    <h4>🏗 Pilares del Estado de Derecho (Rule of Law)</h4>
+    <p><strong>1. Legalidad:</strong> Toda acción del Estado debe tener base en la ley.<br>
+    <strong>2. Igualdad ante la ley:</strong> La ley aplica igual para todos, sin privilegios.<br>
+    <strong>3. Independencia judicial:</strong> Los jueces no reciben órdenes del poder político ni económico.<br>
+    <strong>4. Garantía de derechos:</strong> El Estado protege los derechos fundamentales de las personas.<br>
+    <strong>5. Separación de poderes:</strong> Ejecutivo, Legislativo y Judicial se controlan mutuamente.</p>
+    <span class="value-tag">Justicia</span>
+    <span class="value-tag">Igualdad</span>
+    <span class="value-tag">Legalidad</span>
+    <span class="value-tag">Independencia</span>
+  </div>
+
+  <div class="contrast-grid">
+    <div class="contrast-box box-a">
+      <h5>🇩🇪 Alemania: Estado de Derecho sólido</h5>
+      <p>Sistema judicial independiente, Tribunal Constitucional que anula leyes inconstitucionales, transparencia presupuestaria real. Resultado: IPC 78/100 (Transparencia Internacional 2024).</p>
+    </div>
+    <div class="contrast-box box-b">
+      <h5>🇪🇨 Ecuador: Estado de Derecho bajo presión</h5>
+      <p>Interferencia política en la justicia (caso Metástasis), captura del Estado por el crimen organizado, IPC 32/100. La Superintendencia de Compañías detecta irregularidades contables sistemáticas.</p>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    "Un gobierno de leyes, no de hombres."
+    <cite>— John Adams, Constitución de Massachusetts (1780), base del constitucionalismo moderno</cite>
+  </div>
+
+  <div class="concept-card">
+    <h4>⚖️ Estado de Derecho y la profesión contable</h4>
+    <p>El Estado de Derecho requiere que los estados financieros sean verídicos, porque sobre ellos se calculan impuestos, se toman decisiones de inversión y se asignan recursos públicos. Un contador que manipula cifras no solo comete un delito: <strong>ataca directamente el Estado de Derecho</strong>. El caso ISSPOL (pérdida de más de $400 millones del fondo de la Policía Nacional) involucró firmas de auditoría que no cumplieron con su deber.</p>
+    <span class="value-tag">Integridad profesional</span>
+    <span class="value-tag">Veracidad</span>
+    <span class="value-tag">Bien común</span>
+  </div>
+</div>
+
+<!-- PANEL 5 FUNCIONES -->
+<div class="panel" id="p-funciones">
+  <div class="section-title">Las 5 Funciones del Estado Ecuatoriano</div>
+
+  <div class="concept-card">
+    <h4>📜 Art. 1 y 168 de la Constitución del Ecuador (2008)</h4>
+    <p>A diferencia del modelo clásico de tres poderes (Montesquieu), Ecuador adoptó un diseño de <strong>cinco funciones del Estado</strong>, considerado uno de los más innovadores del mundo. Cada función tiene autonomía y se controla mutuamente.</p>
+  </div>
+
+  <div class="func-grid">
+    <div class="func-box">
+      <div class="icon">🏛</div>
+      <h5>Ejecutivo</h5>
+      <p>Presidente, ministerios, gobierno</p>
+    </div>
+    <div class="func-box">
+      <div class="icon">📜</div>
+      <h5>Legislativo</h5>
+      <p>Asamblea Nacional, legisla y fiscaliza</p>
+    </div>
+    <div class="func-box">
+      <div class="icon">⚖️</div>
+      <h5>Judicial</h5>
+      <p>Corte Nacional, jueces, justicia</p>
+    </div>
+    <div class="func-box" style="background:#1b5e20">
+      <div class="icon">🔍</div>
+      <h5>Transparencia</h5>
+      <p>Contraloría, Fiscalía, Defensoría del Pueblo</p>
+    </div>
+    <div class="func-box" style="background:#4a148c">
+      <div class="icon">🗳</div>
+      <h5>Electoral</h5>
+      <p>CNE, TCE, elecciones y participación</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h4>🔍 Función de Transparencia y Control Social — La más relevante para contadores</h4>
+    <p>Esta función es única en el constitucionalismo mundial. Incluye:</p>
+    <p style="margin-top:8px"><strong>Contraloría General del Estado:</strong> Audita el uso de los recursos públicos. Sin auditores íntegros, esta función falla.<br>
+    <strong>Fiscalía General del Estado:</strong> Investiga y acusa en materia penal. Casos como Triple A, Metástasis y Plaga involucraron a la Fiscalía.<br>
+    <strong>Defensoría del Pueblo:</strong> Protege derechos constitucionales.<br>
+    <strong>Superintendencias:</strong> De Compañías, de Bancos, de Control del Poder de Mercado. Supervisan la actividad económica.</p>
+    <span class="value-tag">Control</span>
+    <span class="value-tag">Accountability</span>
+    <span class="value-tag">Rendición de cuentas</span>
+  </div>
+
+  <div class="quote-block">
+    "La Contraloría General es el guardián de los recursos del pueblo. Y los auditores privados son guardianes del mercado. Ambos necesitan la misma virtud: la integridad."
+    <cite>— Marco conceptual del curso, inspirado en T.H. Marshall</cite>
+  </div>
+
+  <div class="concept-card">
+    <h4>⚡ Cuando las funciones colisionan: el caso ecuatoriano</h4>
+    <p>En Ecuador hemos vivido momentos donde las funciones del Estado <em>colisionaron</em> en lugar de controlarse: el juicio político a la Corte Constitucional (2023), la disolución de la Asamblea Nacional por el Ejecutivo (muerte cruzada, 2023), y la captura de la Función Judicial por el crimen organizado (caso Metástasis, 2023-2024). Cada una de estas crisis afecta la confianza institucional, el clima de inversión y los estados financieros de empresas públicas y privadas.</p>
+  </div>
+</div>
+
+<!-- PANEL REALIDAD ECUADOR -->
+<div class="panel" id="p-realidad">
+  <div class="section-title">La Realidad Socioeconómica del Ecuador</div>
+
+  <div class="concept-card">
+    <h4>📊 Datos verificables — Contexto 2024-2025</h4>
+    <p>Para analizar sin sesgos la realidad del Ecuador, es necesario confrontar datos de fuentes independientes:</p>
+    <div style="margin-top:10px;display:flex;flex-wrap:wrap">
+      <span class="ecuador-stat"><strong>32/100</strong> IPC Transparencia Internacional 2024</span>
+      <span class="ecuador-stat"><strong>#121/180</strong> Ranking percepción corrupción</span>
+      <span class="ecuador-stat"><strong>$8,400</strong> PIB per cápita aproximado (2024)</span>
+      <span class="ecuador-stat"><strong>~26%</strong> Pobreza nacional (INEC 2024)</span>
+      <span class="ecuador-stat"><strong>~6%</strong> Desempleo oficial</span>
+      <span class="ecuador-stat"><strong>~$18.000M</strong> Deuda pública (aprox. 54% PIB)</span>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h4>⚡ Tensiones estructurales sin resolver</h4>
+    <p><strong>Seguridad:</strong> Ecuador pasó de ser uno de los países más seguros de Sudamérica a tener tasas de homicidio de más de 40 por 100.000 habitantes (2023). El crimen organizado infiltró instituciones.</p>
+    <p style="margin-top:8px"><strong>Economía:</strong> Dolarización (desde 2000) garantiza estabilidad monetaria, pero limita herramientas de política económica. La deuda pública es alta y el sector petrolero tiene ingresos variables.</p>
+    <p style="margin-top:8px"><strong>Educación:</strong> La calidad educativa pública ha decaído. Las pruebas PISA-D muestran rezago. Un pueblo con menor educación tiene menor capacidad de ejercer su soberanía con criterio.</p>
+    <p style="margin-top:8px"><strong>Corrupción institucional:</strong> El caso Metástasis reveló nexos entre el crimen organizado y jueces, fiscales, asambleístas y funcionarios. El contador cómplice es parte de esta red.</p>
+    <span class="value-tag">Diagnóstico honesto</span>
+    <span class="value-tag">Responsabilidad cívica</span>
+  </div>
+
+  <div class="contrast-grid">
+    <div class="contrast-box box-a">
+      <h5>✅ Lo que funciona en Ecuador</h5>
+      <p>Dolarización estable, recursos naturales importantes (petróleo, camarón, banano, flores), sistema universitario público gratuito, Constitución de derechos progresista, sistema de salud pública presente.</p>
+    </div>
+    <div class="contrast-box box-b">
+      <h5>❌ Lo que requiere transformación</h5>
+      <p>Alta corrupción pública y privada, debilidad institucional, violencia organizada, evasión fiscal masiva, economía informal que supera el 40%, instituciones capturadas por intereses particulares.</p>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    "El desarrollo no es solo crecimiento económico. Es la expansión de las libertades reales que disfrutan los individuos."
+    <cite>— Amartya Sen, Desarrollo y Libertad (1999)</cite>
+  </div>
+
+  <div class="concept-card">
+    <h4>🔗 La cadena causal: de la hoja de cálculo al país</h4>
+    <p>Una empresa con estados financieros falsos → evade impuestos → el Estado recauda menos → hay menos inversión en hospitales, escuelas y seguridad → la pobreza aumenta → más gente cae en la informalidad o en actividades ilegales → el Estado de Derecho se debilita más. <strong>El contador corrupto no es un actor neutral. Es un eslabón en la cadena del subdesarrollo.</strong></p>
+  </div>
+</div>
+
+<!-- PANEL IDEOLOGÍAS -->
+<div class="panel" id="p-ideologias">
+  <div class="section-title">Ideologías Políticas y Culturales: Una Visión Plural</div>
+
+  <div class="concept-card">
+    <h4>⚠️ Advertencia metodológica</h4>
+    <p>En este módulo presentamos las grandes corrientes ideológicas <em>sin parcialidad</em>. Cada una tiene argumentos válidos y limitaciones reales. El objetivo no es decirle qué pensar, sino dotarle de herramientas para <strong>pensar con criterio propio</strong>. Como diría Aristóteles: tener "buen gusto para obrar" requiere conocer las opciones.</p>
+  </div>
+
+  <div class="ideol-grid">
+    <div class="ideol-card left-ideol">
+      <h5>⬅️ IZQUIERDA / PROGRESISMO</h5>
+      <p><strong>Énfasis:</strong> Igualdad, redistribución, derechos colectivos, rol activo del Estado.</p>
+      <ul>
+        <li>Estado como garante del bienestar</li>
+        <li>Servicios públicos universales</li>
+        <li>Impuestos redistributivos</li>
+        <li>Derechos de grupos históricamente excluidos</li>
+      </ul>
+      <p style="margin-top:6px"><strong>Valor central:</strong> Solidaridad.</p>
+      <p><strong>Riesgo real:</strong> Exceso de Estado puede generar ineficiencia y clientelismo.</p>
+    </div>
+    <div class="ideol-card center-ideol">
+      <h5>⬆️ CENTRO / DEMOCRACIA CRISTIANA</h5>
+      <p><strong>Énfasis:</strong> Equilibrio entre libertad y solidaridad, subsidiariedad, bien común.</p>
+      <ul>
+        <li>El Estado actúa donde el individuo no puede</li>
+        <li>Familia como célula social</li>
+        <li>Mercado regulado</li>
+        <li>Valores éticos en la política</li>
+      </ul>
+      <p style="margin-top:6px"><strong>Valor central:</strong> Bien común.</p>
+      <p><strong>Riesgo real:</strong> Puede caer en conservadurismo o en ambigüedad.</p>
+    </div>
+    <div class="ideol-card right-ideol">
+      <h5>➡️ DERECHA / LIBERALISMO</h5>
+      <p><strong>Énfasis:</strong> Libertad individual, mercado libre, rol mínimo del Estado, meritocracia.</p>
+      <ul>
+        <li>Propiedad privada como derecho central</li>
+        <li>Libre mercado como asignador de recursos</li>
+        <li>Reducción del gasto público</li>
+        <li>Responsabilidad individual</li>
+      </ul>
+      <p style="margin-top:6px"><strong>Valor central:</strong> Libertad.</p>
+      <p><strong>Riesgo real:</strong> Puede ignorar desigualdades estructurales.</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h4>🌍 Culturas políticas comparadas: lecciones para Ecuador</h4>
+    <p><strong>Escandinavia (Noruega, Suecia):</strong> Estado de bienestar robusto + economía de mercado + altísima transparencia. IPC: 85-90/100. Demuestran que Estado fuerte y mercado libre no son incompatibles si hay instituciones íntegras.</p>
+    <p style="margin-top:8px"><strong>Japón:</strong> MAKOTO (sinceridad) y GANBARU (esfuerzo perseverante) como valores culturales que se trasladan a la disciplina fiscal y al respeto a las normas. Resultado: IPC 73/100.</p>
+    <p style="margin-top:8px"><strong>África del Sur:</strong> Ubuntu ("Soy porque somos") — la identidad individual es inseparable de la comunidad. Inspiración para pensar el bien común más allá del interés individual.</p>
+    <p style="margin-top:8px"><strong>Ecuador/Andes:</strong> La MINGA como práctica de trabajo colectivo solidario. La pregunta es: ¿por qué esos valores culturales no se trasladan a las instituciones formales?</p>
+    <span class="value-tag">Pluralismo</span>
+    <span class="value-tag">Aprendizaje comparado</span>
+    <span class="value-tag">Humildad epistémica</span>
+  </div>
+
+  <div class="quote-block">
+    "El buen ciudadano no es el que obedece ciegamente ni el que se rebela sin razón. Es el que delibera, se informa y actúa con virtud."
+    <cite>— Aristóteles, Ética Nicomáquea — paráfrasis aplicada</cite>
+  </div>
+</div>
+
+<!-- PANEL CUESTIONARIO DE VALORES -->
+<div class="panel" id="p-quiz">
+  <div class="quiz-intro">
+    <strong>✏️ Cuestionario de reflexión ética y ciudadana</strong><br>
+    Este cuestionario no busca respuestas "correctas" en el sentido académico convencional. Busca enfrentarte a lo que <em>piensas</em> versus lo que <em>moralmente deberías elegir</em>. Lee con calma. Reflexiona. La honestidad contigo mismo es el primer paso para ser un profesional íntegro.
+  </div>
+
+  <div class="score-display" id="score-text">Respondidas: 0 / 7</div>
+  <div class="progress-bar"><div class="progress-fill" id="prog" style="width:0%"></div></div>
+
+  <!-- Q1 -->
+  <div class="quiz-q" id="q1">
+    <div class="qnum">Pregunta 1 · Soberanía y corrupción profesional</div>
+    <p>Sofía, recién graduada, recibe la propuesta de firmar estados financieros de una empresa que claramente subdeclara ingresos. Le ofrecen un bono equivalente a tres salarios. La empresa argumenta que "todos lo hacen" y que el Estado "no merece la verdad" porque es corrupto. ¿Cuál debería ser la decisión de Sofía desde la perspectiva de la soberanía del Estado?</p>
+    <button class="quiz-opt" onclick="answer(1,'A')">A) Rechazar, porque la soberanía fiscal depende de que los contadores certifiquen la verdad; sin impuestos reales, el Estado no puede garantizar derechos a nadie.</button>
+    <button class="quiz-opt" onclick="answer(1,'B')">B) Aceptar, porque el Estado también comete corrupción y no merece lealtad de los ciudadanos.</button>
+    <button class="quiz-opt" onclick="answer(1,'C')">C) Aceptar solo si se asegura de que el monto evadido no es "significativo".</button>
+    <button class="quiz-opt" onclick="answer(1,'D')">D) Pedir asesoría legal para ver si puede hacerlo sin consecuencias.</button>
+    <div class="feedback" id="fb1"><strong>💡 Reflexión:</strong> La respuesta moralmente correcta es A. La soberanía popular se financia con impuestos. El argumento "el Estado también es corrupto" es una racionalización: dos males no hacen un bien. Aristóteles diría que la virtud no depende del comportamiento ajeno, sino del carácter propio. Un Estado debilitado fiscalmente no puede construir escuelas, hospitales ni seguridad. Cada evasión aporta a ese debilitamiento.</div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quiz-q" id="q2">
+    <div class="qnum">Pregunta 2 · Estado de Derecho e igualdad ante la ley</div>
+    <p>Diego trabaja en auditoría. Descubre irregularidades en una empresa cuyos dueños son personas políticamente conectadas. Su supervisor le dice: "Mejor no meterse con esa gente. Haz el informe limpio y no te compliques." ¿Qué valor está en juego y qué debería hacer Diego?</p>
+    <button class="quiz-opt" onclick="answer(2,'A')">A) La igualdad ante la ley y el Estado de Derecho. Diego debe reportar las irregularidades porque sin igualdad ante la ley, el sistema democrático no existe.</button>
+    <button class="quiz-opt" onclick="answer(2,'B')">B) La lealtad al empleador. Diego debe seguir instrucciones; no es su responsabilidad lo que haga la empresa.</button>
+    <button class="quiz-opt" onclick="answer(2,'C')">C) La prudencia personal. No vale la pena arriesgarse por principios abstractos.</button>
+    <button class="quiz-opt" onclick="answer(2,'D')">D) Diego debería renunciar en silencio para no comprometerse.</button>
+    <div class="feedback" id="fb2"><strong>💡 Reflexión:</strong> La respuesta correcta es A. El Estado de Derecho exige que la ley aplique por igual. Si los poderosos quedan fuera del alcance de la ley, la democracia es solo teatro. Diego tiene protecciones legales como informante (whistleblower). La valentía cívica es exactamente esto: hacer lo correcto cuando es difícil y costoso.</div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="quiz-q" id="q3">
+    <div class="qnum">Pregunta 3 · Las 5 Funciones del Estado</div>
+    <p>La Contraloría General inicia una auditoría a una empresa pública donde trabajas. Tu jefe te pide que "arregles" los archivos antes de la revisión. Te argumenta que es para "proteger a la institución". ¿Qué función del Estado estás obstaculizando si lo haces?</p>
+    <button class="quiz-opt" onclick="answer(3,'A')">A) La Función de Transparencia y Control Social, que es la que ejerce la Contraloría. Obstaculizarla es un delito y atenta contra la democracia.</button>
+    <button class="quiz-opt" onclick="answer(3,'B')">B) Ninguna, porque la empresa tiene derecho a proteger su información.</button>
+    <button class="quiz-opt" onclick="answer(3,'C')">C) Solo la Función Judicial, si es que hay un juicio posterior.</button>
+    <button class="quiz-opt" onclick="answer(3,'D')">D) La Función Electoral, que es la que vigila a los funcionarios públicos.</button>
+    <div class="feedback" id="fb3"><strong>💡 Reflexión:</strong> La respuesta es A. Alterar documentos ante una auditoría estatal es obstrucción a la justicia y un delito tipificado en el COIP. Además, viola directamente la Función de Transparencia. La Contraloría existe precisamente para que los recursos públicos se usen con honestidad. Al obstruirla, proteges a individuos a costa del pueblo.</div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="quiz-q" id="q4">
+    <div class="qnum">Pregunta 4 · Realidad socioeconómica e ideología</div>
+    <p>Escuchas dos posturas sobre la pobreza en Ecuador: Postura A: "La pobreza es culpa del Estado que no redistribuye." Postura B: "La pobreza es culpa del individuo que no trabaja lo suficiente." Como ciudadano y futuro profesional formado en pensamiento crítico, ¿cuál es la postura más completa?</p>
+    <button class="quiz-opt" onclick="answer(4,'A')">A) Ambas posturas son parciales. La pobreza tiene causas estructurales (instituciones débiles, desigualdad histórica) Y causas individuales (educación, decisiones). Un análisis honesto requiere ambas dimensiones.</button>
+    <button class="quiz-opt" onclick="answer(4,'B')">B) Solo la Postura A es correcta; el Estado tiene toda la responsabilidad.</button>
+    <button class="quiz-opt" onclick="answer(4,'C')">C) Solo la Postura B es correcta; cada persona es responsable de su situación.</button>
+    <button class="quiz-opt" onclick="answer(4,'D')">D) Ninguna es correcta; la pobreza en Ecuador es culpa de factores externos internacionales.</button>
+    <div class="feedback" id="fb4"><strong>💡 Reflexión:</strong> La respuesta A refleja madurez intelectual. Amartya Sen demostró que la pobreza es multidimensional: hay privación de capacidades (salud, educación, seguridad) que el Estado debe garantizar, pero también hay decisiones individuales que importan. Un profesional que piensa en blanco y negro no sirve bien ni al cliente ni a la sociedad.</div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="quiz-q" id="q5">
+    <div class="qnum">Pregunta 5 · Soberanía y decisión personal</div>
+    <p>En las próximas elecciones, un candidato ofrece "perdonar" deudas tributarias a empresas a cambio de apoyo político. Otro candidato propone fortalecer la Superintendencia de Compañías y hacer obligatoria la auditoría anual de todas las empresas medianas. Desde tu formación como guardián de la transparencia, ¿qué propuesta fortalece el Estado de Derecho?</p>
+    <button class="quiz-opt" onclick="answer(5,'A')">A) La segunda propuesta, porque fortalece los mecanismos de control y hace el sistema más transparente, reduciendo la evasión y fortaleciendo la soberanía fiscal.</button>
+    <button class="quiz-opt" onclick="answer(5,'B')">B) La primera, porque reduce la carga tributaria de las empresas y reactiva la economía.</button>
+    <button class="quiz-opt" onclick="answer(5,'C')">C) Ninguna importa; los políticos siempre incumplen sus promesas.</button>
+    <button class="quiz-opt" onclick="answer(5,'D')">D) La primera, porque perdonar deudas es un acto de generosidad del Estado.</button>
+    <div class="feedback" id="fb5"><strong>💡 Reflexión:</strong> La respuesta correcta es A. El "perdón" tributario a cambio de apoyo político es clientelismo y viola el principio de igualdad ante la ley (todos deben pagar lo que corresponde). Fortalecer la Superintendencia de Compañías significa más rendición de cuentas, más transparencia y más recursos para el Estado. Es la opción democráticamente correcta.</div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="quiz-q" id="q6">
+    <div class="qnum">Pregunta 6 · Valores culturales y decisión profesional</div>
+    <p>Recuerdas los conceptos culturales de semanas anteriores: UBUNTU ("Soy porque somos"), MINGA (trabajo colectivo andino) y MAKOTO (sinceridad y honestidad japonesa). Un colega te dice: "Esos conceptos son bonitos pero no sirven en el Ecuador real, donde lo que importa es el contacto." ¿Qué responderías desde una perspectiva de ciudadanía madura?</p>
+    <button class="quiz-opt" onclick="answer(6,'A')">A) Esos valores no son decorativos: son exactamente lo que falta en Ecuador. La cultura que normaliza el "contacto" sobre el mérito es la que produce las instituciones débiles que hoy sufrimos.</button>
+    <button class="quiz-opt" onclick="answer(6,'B')">B) Tu colega tiene razón: hay que ser pragmático y adaptarse al sistema existente.</button>
+    <button class="quiz-opt" onclick="answer(6,'C')">C) Esos valores aplican en otras culturas pero no en la nuestra por razones históricas.</button>
+    <button class="quiz-opt" onclick="answer(6,'D')">D) Depende de cada situación; no hay una respuesta universal.</button>
+    <div class="feedback" id="fb6"><strong>💡 Reflexión:</strong> La respuesta A es la que corresponde a un ciudadano transformador. Las instituciones no cambian solas: cambian cuando suficientes personas eligen actuar desde la integridad. El argumento "así es la cultura aquí" es una trampa: la cultura no es estática, se construye con cada decisión. Si todos esperan que otro cambie primero, nada cambia.</div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="quiz-q" id="q7">
+    <div class="qnum">Pregunta 7 · El "buen gusto para obrar" de Aristóteles</div>
+    <p>Aristóteles hablaba de la <em>phronesis</em> (prudencia práctica) como la virtud de saber qué hacer bien en cada situación concreta. Un contador con <em>phronesis</em> no solo conoce las NIIF: sabe cuándo una petición del cliente va en contra del bien común y actúa en consecuencia. Desde esta perspectiva, ¿qué caracteriza al profesional contable con verdadero "buen gusto para obrar"?</p>
+    <button class="quiz-opt" onclick="answer(7,'A')">A) Aquel que integra el conocimiento técnico (NIIF, leyes) con los valores éticos y la conciencia del impacto social de sus decisiones, y actúa con integridad incluso cuando es costoso.</button>
+    <button class="quiz-opt" onclick="answer(7,'B')">B) Aquel que conoce todas las normas contables y las aplica con precisión técnica.</button>
+    <button class="quiz-opt" onclick="answer(7,'C')">C) Aquel que maximiza los beneficios de su cliente dentro de lo que la ley permite.</button>
+    <button class="quiz-opt" onclick="answer(7,'D')">D) Aquel que tiene éxito profesional y buenos ingresos, señal de que hace bien su trabajo.</button>
+    <div class="feedback" id="fb7"><strong>💡 Reflexión:</strong> La respuesta A describe al profesional que la Universidad de Guayaquil y la sociedad ecuatoriana necesitan. El conocimiento técnico sin ética es una herramienta peligrosa. La ética sin conocimiento técnico es buena voluntad sin efectividad. Solo la integración de ambos produce el "buen gusto para obrar" que Aristóteles colocó como el horizonte de la educación.</div>
+  </div>
+
+  <button class="reset-btn" onclick="resetQuiz()">🔄 Reiniciar cuestionario</button>
+</div>
+
+</div>
+
+<div class="footer-strip">
+  Universidad de Guayaquil · Facultad de Ciencias Administrativas · Democracia, Ciudadanía y Globalización · Semana 3 · 2026
+</div>
+
+<script>
+var answered = {};
+var correct = {1:'A',2:'A',3:'A',4:'A',5:'A',6:'A',7:'A'};
+var total = 7;
+
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});
+  document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active')});
+  document.getElementById('p-'+id).classList.add('active');
+  var btns = document.querySelectorAll('.nav-btn');
+  var map = ['recap','soberania','estado','funciones','realidad','ideologias','quiz'];
+  var idx = map.indexOf(id);
+  if(idx>=0) btns[idx].classList.add('active');
+}
+
+function answer(qnum, choice){
+  if(answered[qnum]) return;
+  answered[qnum] = choice;
+  var opts = document.querySelectorAll('#q'+qnum+' .quiz-opt');
+  var letters = ['A','B','C','D'];
+  opts.forEach(function(btn,i){
+    var l = letters[i];
+    if(l === correct[qnum]) btn.classList.add('correct');
+    else if(l === choice && choice !== correct[qnum]) btn.classList.add('wrong');
+    else btn.classList.add('neutral');
+  });
+  var fb = document.getElementById('fb'+qnum);
+  if(fb) fb.classList.add('show');
+  updateProgress();
+}
+
+function updateProgress(){
+  var done = Object.keys(answered).length;
+  document.getElementById('score-text').textContent = 'Respondidas: ' + done + ' / ' + total;
+  document.getElementById('prog').style.width = Math.round(done/total*100) + '%';
+}
+
+function resetQuiz(){
+  answered = {};
+  for(var i=1;i<=total;i++){
+    var opts = document.querySelectorAll('#q'+i+' .quiz-opt');
+    opts.forEach(function(btn){btn.className='quiz-opt'});
+    var fb = document.getElementById('fb'+i);
+    if(fb) fb.classList.remove('show');
+  }
+  updateProgress();
+}
+</script>

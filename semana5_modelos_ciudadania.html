@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Semana 5 | Modelos de Ciudadanía | Democracia, Ciudadanía y Globalización</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* =============================================
+   VARIABLES Y RESET
+   ============================================= */
+:root {
+  --azul-oscuro: #003366;
+  --azul-medio: #004d99;
+  --azul-claro: #87CEEB;
+  --azul-muy-claro: #e8f4fc;
+  --blanco: #ffffff;
+  --gris-claro: #f5f7fa;
+  --gris-texto: #333333;
+  --gris-borde: #dde3ea;
+  --verde: #2e7d32;
+  --verde-claro: #e8f5e9;
+  --rojo: #c62828;
+  --rojo-claro: #ffebee;
+  --amarillo: #f9a825;
+  --amarillo-claro: #fffde7;
+  --acento: #0077cc;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 16px;
+  color: var(--gris-texto);
+  background: #f0f4f9;
+  min-height: 100vh;
+}
+
+h1,h2,h3,h4,h5 { font-family: 'Lora', serif; }
+
+/* =============================================
+   ENCABEZADO
+   ============================================= */
+.header {
+  background: var(--azul-oscuro);
+  color: var(--blanco);
+  padding: 0;
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 28px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.header-logo {
+  width: 56px; height: 56px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; flex-shrink: 0;
+}
+.header-inst { font-size: 0.78rem; opacity: 0.75; font-family: 'Source Sans 3', sans-serif; }
+.header-fac  { font-size: 0.9rem; font-weight: 600; opacity: 0.9; }
+.header-materia {
+  padding: 12px 28px 16px;
+}
+.header-materia h1 {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+.header-badges {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px;
+}
+.badge {
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 0.75rem;
+  font-family: 'Source Sans 3', sans-serif;
+}
+.badge.accent { background: var(--azul-claro); color: var(--azul-oscuro); border-color: transparent; font-weight: 700; }
+
+/* =============================================
+   MENÚ DE PESTAÑAS
+   ============================================= */
+.tabs-nav {
+  background: var(--azul-claro);
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  gap: 0;
+  padding: 0 12px;
+  border-bottom: 3px solid var(--azul-oscuro);
+}
+.tabs-nav::-webkit-scrollbar { height: 4px; }
+.tabs-nav::-webkit-scrollbar-thumb { background: var(--azul-oscuro); border-radius: 2px; }
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  padding: 11px 14px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -3px;
+  transition: background 0.2s, color 0.2s;
+  border-radius: 6px 6px 0 0;
+}
+.tab-btn:hover { background: rgba(255,255,255,0.5); }
+.tab-btn.active {
+  background: var(--blanco);
+  color: var(--azul-oscuro);
+  font-weight: 700;
+  border-bottom-color: var(--blanco);
+}
+
+/* =============================================
+   CONTENIDO PRINCIPAL
+   ============================================= */
+.main { max-width: 960px; margin: 0 auto; padding: 28px 18px 60px; }
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+/* =============================================
+   CAJAS Y COMPONENTES DE CONTENIDO
+   ============================================= */
+.section-title {
+  font-size: 1.45rem;
+  color: var(--azul-oscuro);
+  margin-bottom: 6px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--azul-claro);
+}
+.section-subtitle {
+  font-size: 1.15rem;
+  color: var(--azul-medio);
+  margin: 22px 0 10px;
+}
+
+/* Caja de concepto: borde izquierdo azul */
+.caja-concepto {
+  border-left: 5px solid var(--azul-oscuro);
+  background: var(--azul-muy-claro);
+  padding: 14px 18px;
+  margin: 16px 0;
+  border-radius: 0 8px 8px 0;
+}
+.caja-concepto .label {
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--azul-medio); margin-bottom: 4px;
+}
+.caja-concepto p { line-height: 1.65; }
+
+/* Caja de ejemplo/historia */
+.caja-ejemplo {
+  background: #dbeffe;
+  border: 1px solid #9acfea;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 16px 0;
+}
+.caja-ejemplo .label {
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: #005f8a; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 6px;
+}
+.caja-ejemplo p { line-height: 1.65; }
+
+/* Caja de idea clave */
+.caja-clave {
+  background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-medio) 100%);
+  color: white;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 20px 0;
+}
+.caja-clave .label {
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; opacity: 0.8; margin-bottom: 6px;
+}
+.caja-clave p { line-height: 1.65; font-size: 0.97rem; }
+
+/* Caja advertencia/nota */
+.caja-nota {
+  background: var(--amarillo-claro);
+  border-left: 5px solid var(--amarillo);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  margin: 14px 0;
+}
+
+/* Tablas */
+.tabla-comp {
+  width: 100%; border-collapse: collapse; margin: 16px 0;
+  font-size: 0.9rem;
+}
+.tabla-comp th {
+  background: var(--azul-oscuro); color: white;
+  padding: 10px 14px; text-align: left;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+}
+.tabla-comp td { padding: 9px 14px; border-bottom: 1px solid var(--gris-borde); }
+.tabla-comp tr:nth-child(even) td { background: var(--gris-claro); }
+.tabla-comp tr:hover td { background: var(--azul-muy-claro); }
+
+/* Lista visual */
+.lista-visual { list-style: none; padding: 0; margin: 12px 0; }
+.lista-visual li {
+  padding: 8px 12px 8px 36px;
+  position: relative;
+  border-bottom: 1px solid var(--gris-borde);
+  line-height: 1.5;
+}
+.lista-visual li::before {
+  content: attr(data-icon);
+  position: absolute; left: 8px; top: 8px;
+  font-size: 1rem;
+}
+.lista-visual li:last-child { border-bottom: none; }
+
+/* Cards de repaso */
+.repaso-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 14px; margin: 16px 0; }
+.repaso-card {
+  background: white;
+  border: 1px solid var(--gris-borde);
+  border-top: 4px solid var(--azul-medio);
+  border-radius: 10px;
+  padding: 14px;
+}
+.repaso-card .sem { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--azul-medio); margin-bottom: 4px; }
+.repaso-card h4 { font-size: 0.95rem; color: var(--azul-oscuro); margin-bottom: 6px; }
+.repaso-card p { font-size: 0.83rem; line-height: 1.5; color: #555; }
+
+/* =============================================
+   EJERCICIO INTERACTIVO Y CUESTIONARIO
+   ============================================= */
+.ejercicio-wrap { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,50,0.08); }
+.quiz-intro { background: var(--azul-muy-claro); border-radius: 8px; padding: 14px 18px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+
+.ej-item {
+  background: var(--gris-claro);
+  border: 1px solid var(--gris-borde);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 14px;
+  transition: border-color 0.3s;
+}
+.ej-item.correcto { border-color: var(--verde); background: var(--verde-claro); }
+.ej-item.incorrecto { border-color: var(--rojo); background: var(--rojo-claro); }
+.ej-pregunta { font-weight: 600; margin-bottom: 10px; font-size: 0.95rem; line-height: 1.5; }
+.ej-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 2px 8px; border-radius: 20px; margin-bottom: 8px; }
+.badge-teorica { background: #e3f2fd; color: #0d47a1; }
+.badge-analisis { background: #f3e5f5; color: #6a1b9a; }
+
+.opciones-grid { display: grid; gap: 8px; }
+.opcion-label {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 9px 12px;
+  background: white; border: 1.5px solid var(--gris-borde);
+  border-radius: 7px; cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  font-size: 0.9rem; line-height: 1.4;
+}
+.opcion-label:hover { border-color: var(--azul-medio); background: var(--azul-muy-claro); }
+.opcion-label input { margin-top: 2px; flex-shrink: 0; }
+.opcion-label.seleccionada { border-color: var(--azul-medio); background: var(--azul-muy-claro); }
+.opcion-label.correcta { border-color: var(--verde); background: var(--verde-claro); font-weight: 600; }
+.opcion-label.incorrecta { border-color: var(--rojo); background: var(--rojo-claro); }
+
+.feedback-item {
+  margin-top: 10px; padding: 10px 14px;
+  border-radius: 7px; font-size: 0.87rem; line-height: 1.5;
+  display: none;
+}
+.feedback-item.show { display: block; }
+.feedback-item.ok { background: var(--verde-claro); border-left: 4px solid var(--verde); color: #1b5e20; }
+.feedback-item.err { background: var(--rojo-claro); border-left: 4px solid var(--rojo); color: #b71c1c; }
+
+.btn-verificar {
+  display: block; width: 100%; padding: 14px;
+  background: var(--azul-oscuro); color: white;
+  border: none; border-radius: 9px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  cursor: pointer; margin-top: 20px;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-verificar:hover { background: var(--azul-medio); transform: translateY(-1px); }
+.btn-reiniciar {
+  display: none; margin: 12px auto 0; padding: 10px 28px;
+  background: white; color: var(--azul-oscuro);
+  border: 2px solid var(--azul-oscuro); border-radius: 9px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.95rem; font-weight: 700; cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-reiniciar:hover { background: var(--azul-muy-claro); }
+
+/* Panel de resultados */
+.panel-resultados {
+  display: none; margin-top: 24px;
+  background: white; border: 2px solid var(--azul-oscuro);
+  border-radius: 12px; padding: 22px; text-align: center;
+}
+.panel-resultados.show { display: block; animation: fadeIn 0.4s; }
+.resultado-emoji { font-size: 3rem; margin-bottom: 8px; }
+.resultado-score { font-size: 2rem; font-family: 'Lora', serif; color: var(--azul-oscuro); font-weight: 700; }
+.resultado-pct { font-size: 1rem; color: #666; margin-bottom: 14px; }
+.barra-progreso-wrap { background: #e0e0e0; border-radius: 20px; height: 16px; overflow: hidden; margin: 10px auto; max-width: 420px; }
+.barra-progreso { height: 100%; border-radius: 20px; transition: width 1s ease; }
+.barra-verde { background: linear-gradient(90deg, #2e7d32, #66bb6a); }
+.barra-azul  { background: linear-gradient(90deg, #0d47a1, #42a5f5); }
+.barra-amarilla { background: linear-gradient(90deg, #f57f17, #ffca28); }
+.barra-roja  { background: linear-gradient(90deg, #b71c1c, #ef5350); }
+.resultado-msg { margin-top: 10px; font-size: 0.95rem; font-weight: 600; }
+
+/* =============================================
+   ACTIVIDAD IA
+   ============================================= */
+.ia-card {
+  background: white; border-radius: 12px;
+  border: 1px solid var(--gris-borde);
+  padding: 22px; margin-bottom: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,50,0.06);
+}
+.ia-card h3 { color: var(--azul-oscuro); margin-bottom: 10px; font-size: 1.1rem; }
+.prompt-box {
+  background: #1a1a2e; color: #e8f4fc;
+  border-radius: 9px; padding: 16px 18px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.84rem; line-height: 1.7;
+  white-space: pre-wrap; margin: 12px 0;
+  position: relative;
+}
+.prompt-box .copy-btn {
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(255,255,255,0.15); color: white;
+  border: 1px solid rgba(255,255,255,0.3); border-radius: 5px;
+  padding: 3px 10px; font-size: 0.72rem; cursor: pointer;
+  font-family: 'Source Sans 3', sans-serif;
+}
+.prompt-box .copy-btn:hover { background: rgba(255,255,255,0.25); }
+.paso-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--azul-oscuro); color: white;
+  font-size: 0.85rem; font-weight: 700; flex-shrink: 0; margin-top: 2px;
+}
+.paso-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; }
+.criterio-row { display: flex; gap: 12px; margin-bottom: 10px; }
+.criterio-icon { font-size: 1.3rem; flex-shrink: 0; }
+
+/* =============================================
+   PREGUNTAS REFLEXIVAS
+   ============================================= */
+.reflexiva-card {
+  background: white; border-radius: 12px;
+  border-left: 5px solid var(--azul-claro);
+  padding: 18px 20px; margin-bottom: 14px;
+  box-shadow: 0 1px 6px rgba(0,0,50,0.05);
+}
+.reflexiva-card .num {
+  font-size: 0.7rem; font-weight: 700; color: var(--azul-medio);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px;
+}
+.reflexiva-card p { line-height: 1.65; }
+.reflexiva-card .conexion {
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px dashed var(--azul-claro);
+  font-size: 0.85rem; color: #555; font-style: italic;
+}
+
+/* =============================================
+   BIBLIOGRAFÍA
+   ============================================= */
+.ref-card {
+  background: white; border: 1px solid var(--gris-borde);
+  border-radius: 10px; padding: 16px 18px; margin-bottom: 12px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.ref-num {
+  background: var(--azul-oscuro); color: white;
+  border-radius: 50%; width: 30px; height: 30px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.82rem; font-weight: 700;
+}
+.ref-body { font-size: 0.88rem; line-height: 1.65; }
+.ref-body em { font-style: italic; }
+.ref-nota {
+  background: var(--amarillo-claro); border: 1px solid #ffe082;
+  border-radius: 8px; padding: 12px 16px; margin-top: 20px;
+  font-size: 0.83rem; line-height: 1.5;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 600px) {
+  .header-top { padding: 14px 16px 10px; }
+  .header-materia { padding: 10px 16px 14px; }
+  .main { padding: 16px 12px 50px; }
+  .tab-btn { padding: 10px 10px; font-size: 0.72rem; }
+  .tabla-comp { font-size: 0.8rem; }
+  .tabla-comp th, .tabla-comp td { padding: 7px 9px; }
+}
+</style>
+</head>
+<body>
+
+<!-- =============================================
+     ENCABEZADO
+     ============================================= -->
+<header class="header">
+  <div class="header-top">
+    <div class="header-logo">🏛️</div>
+    <div>
+      <div class="header-inst">Universidad de Guayaquil | Facultad de Ciencias Administrativas</div>
+      <div class="header-fac">Carrera en Contabilidad y Auditoría</div>
+    </div>
+  </div>
+  <div class="header-materia">
+    <h1>Democracia, Ciudadanía y Globalización</h1>
+    <div class="header-badges">
+      <span class="badge">Unidad 2: La Democracia</span>
+      <span class="badge accent">Semana 5</span>
+      <span class="badge">Análisis de los Modelos de Ciudadanía</span>
+    </div>
+  </div>
+</header>
+
+<!-- =============================================
+     MENÚ DE PESTAÑAS
+     ============================================= -->
+<nav class="tabs-nav" id="tabsNav">
+  <button class="tab-btn active" data-tab="repaso">📋 Repaso</button>
+  <button class="tab-btn" data-tab="tema1">1. Ciudadanía: concepto</button>
+  <button class="tab-btn" data-tab="tema2">2. Modelos clásicos</button>
+  <button class="tab-btn" data-tab="tema3">3. Ciudadanía global</button>
+  <button class="tab-btn" data-tab="tema4">4. Ecuador y ciudadanía</button>
+  <button class="tab-btn" data-tab="ejercicio">⚙️ Ejercicio</button>
+  <button class="tab-btn" data-tab="cuestionario">📝 Cuestionario</button>
+  <button class="tab-btn" data-tab="ia">🤖 Actividad IA</button>
+  <button class="tab-btn" data-tab="reflexivas">💭 Reflexivas</button>
+  <button class="tab-btn" data-tab="biblio">📚 Bibliografía</button>
+</nav>
+
+<!-- =============================================
+     CONTENIDO PRINCIPAL
+     ============================================= -->
+<main class="main">
+
+<!-- ============ PESTAÑA: REPASO ============ -->
+<section class="tab-content active" id="tab-repaso">
+  <h2 class="section-title">📋 Repaso de Semanas Anteriores</h2>
+  <p style="margin-bottom:18px; line-height:1.65;">Antes de iniciar la semana 5, recordemos los pilares conceptuales que hemos construido en las semanas previas. Esta revisión no es un trámite: cada bloque temático anterior es un escalón necesario para comprender hoy los <strong>modelos de ciudadanía</strong>.</p>
+
+  <div class="repaso-grid">
+    <div class="repaso-card">
+      <div class="sem">Semana 1</div>
+      <h4>Organización Política y Administrativa del Estado Ecuatoriano</h4>
+      <p>Analizamos cómo el Estado ecuatoriano se estructura en niveles de gobierno (central, provincial, cantonal, parroquial), sus funciones constitucionales y la distribución del poder bajo la Constitución de 2008. Comprendimos que el Estado no es monolítico: tiene actores, competencias y recursos diferenciados.</p>
+    </div>
+    <div class="repaso-card">
+      <div class="sem">Semana 2</div>
+      <h4>La Soberanía del Estado</h4>
+      <p>Estudiamos el concepto de soberanía —el poder supremo e irrenunciable del Estado— en sus dimensiones interna (sobre el territorio y la población) y externa (frente a otros Estados). Discutimos cómo la globalización tensiona la soberanía clásica y qué implicaciones tiene esto para Ecuador como país pequeño y dependiente.</p>
+    </div>
+    <div class="repaso-card">
+      <div class="sem">Semana 3</div>
+      <h4>Estado de Derecho y Realidad Socioeconómica</h4>
+      <p>Profundizamos en el Estado de Derecho: el principio de que el poder político está limitado y regulado por la ley. Luego contrastamos ese ideal con la realidad socioeconómica de Ecuador: desigualdad, informalidad laboral, acceso desigual a servicios y persistencia de la pobreza como factores que condicionan el ejercicio real de los derechos.</p>
+    </div>
+    <div class="repaso-card">
+      <div class="sem">Semana 4</div>
+      <h4>Conceptualización Crítica de la Democracia</h4>
+      <p>Exploramos la democracia más allá de su definición procedimental (elecciones). Estudiamos sus dimensiones deliberativa, participativa y representativa, y analizamos las críticas contemporáneas: el déficit democrático, la captura del Estado por élites, la apatía ciudadana y el rol de los medios en la construcción del debate público.</p>
+    </div>
+  </div>
+
+  <div class="caja-clave">
+    <div class="label">🔗 Hilo Conductor</div>
+    <p>Si en semanas anteriores analizamos <strong>cómo se organiza y legitima el poder político</strong>, esta semana 5 nos preguntamos: ¿quién es el sujeto de ese poder? ¿Qué significa <em>ser ciudadano</em>? ¿Es suficiente tener un documento de identidad para ser ciudadano pleno? Los modelos de ciudadanía responden a estas preguntas desde diferentes perspectivas filosóficas, históricas y políticas.</p>
+  </div>
+</section>
+
+<!-- ============ PESTAÑA: TEMA 1 ============ -->
+<section class="tab-content" id="tab-tema1">
+  <h2 class="section-title">1. Ciudadanía: Concepto, Origen e Historia</h2>
+
+  <div class="caja-concepto">
+    <div class="label">📌 Definición Central</div>
+    <p><strong>La ciudadanía</strong> es la condición jurídica, política y social que vincula a un individuo con una comunidad política organizada (generalmente un Estado), otorgándole un conjunto de <em>derechos</em> (civiles, políticos, sociales) y exigiéndole el cumplimiento de determinados <em>deberes</em> (pago de impuestos, respeto a las leyes, participación cívica). No es un simple estatus legal: es también una práctica y una identidad colectiva en permanente construcción.</p>
+  </div>
+
+  <h3 class="section-subtitle">1.1 ¿Por qué importa definir la ciudadanía?</h3>
+  <p style="line-height:1.65; margin-bottom:12px;">La ciudadanía no es solo un concepto académico. Determina quién tiene derecho a votar, a acceder a la educación pública, a trabajar legalmente, a recibir protección del Estado o a ser deportado. En Ecuador, la ciudadanía define también quién puede postularse a cargos de elección popular, quién accede al IESS o quién tiene garantías constitucionales plenamente operativas.</p>
+  <p style="line-height:1.65; margin-bottom:12px;">En otras palabras, la ciudadanía es el <strong>pasaporte interno</strong> hacia los derechos: sin ella, el individuo queda en los márgenes del sistema político y social.</p>
+
+  <h3 class="section-subtitle">1.2 Breve historia del concepto</h3>
+  <div class="caja-ejemplo">
+    <div class="label">📜 Trayectoria Histórica</div>
+    <p><strong>Grecia clásica (siglo V a.C.):</strong> Los <em>polites</em> (ciudadanos) de Atenas eran hombres libres, no esclavos ni extranjeros, con derecho a participar en la Asamblea. Las mujeres, los metecos (residentes extranjeros) y los esclavos quedaban excluidos. La ciudadanía era un privilegio de élite basado en el nacimiento y el género.</p>
+    <br>
+    <p><strong>Roma (siglos III a.C. – V d.C.):</strong> La <em>civitas romana</em> amplió el concepto: en el año 212 d.C., el Edicto de Caracalla concedió ciudadanía a todos los habitantes libres del Imperio. Aparece la distinción entre derechos civiles (protección legal) y derechos políticos (participación).</p>
+    <br>
+    <p><strong>Modernidad (siglos XVII–XIX):</strong> Las Revoluciones Inglesa (1688), Americana (1776) y Francesa (1789) reformulan la ciudadanía como un derecho natural y universal —aunque en la práctica siguió siendo masculina, blanca y propietaria. La ciudadanía moderna se asienta en la idea de igualdad formal ante la ley.</p>
+    <br>
+    <p><strong>Siglo XX:</strong> T.H. Marshall (1950) propone el modelo de ciudadanía plena con tres generaciones de derechos: civiles (siglo XVIII), políticos (siglo XIX) y sociales (siglo XX). A esto se añadirían, en el siglo XXI, derechos culturales, ambientales y digitales.</p>
+  </div>
+
+  <h3 class="section-subtitle">1.3 Las tres dimensiones de la ciudadanía</h3>
+  <table class="tabla-comp">
+    <thead>
+      <tr><th>Dimensión</th><th>¿Qué comprende?</th><th>Ejemplo en Ecuador</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Jurídica / Legal</strong></td>
+        <td>Estatus formal reconocido por el Estado (cédula, pasaporte, registro civil). Define quién es ciudadano <em>ante la ley</em>.</td>
+        <td>La cédula de ciudadanía ecuatoriana, obligatoria desde los 18 años, habilita el acceso a servicios públicos y el voto.</td>
+      </tr>
+      <tr>
+        <td><strong>Política</strong></td>
+        <td>Capacidad de participar en la vida pública: votar, ser elegido, asociarse, protestar, deliberar.</td>
+        <td>El voto obligatorio en Ecuador (Art. 63 Constitución) para mayores de 18; optativo para jóvenes de 16–18 años.</td>
+      </tr>
+      <tr>
+        <td><strong>Social / Cultural</strong></td>
+        <td>Acceso efectivo a salud, educación, vivienda, trabajo digno, seguridad social y reconocimiento de la identidad cultural.</td>
+        <td>Los derechos del buen vivir (Sumak Kawsay) en la Constitución de 2008, que incluyen el derecho al agua, a la alimentación y al ambiente sano.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="caja-concepto">
+    <div class="label">⚠️ Distinción clave: ciudadanía formal vs. ciudadanía real</div>
+    <p>Una persona puede ser ciudadana en sentido formal (tiene cédula, vota) pero carecer de ciudadanía real si no puede ejercer sus derechos en la práctica. Alguien en situación de pobreza extrema, discriminación racial o condición migratoria irregular puede tener el documento pero no el acceso efectivo. Esta brecha es uno de los problemas políticos más urgentes de América Latina.</p>
+  </div>
+
+  <div class="caja-clave">
+    <div class="label">💡 Idea Clave</div>
+    <p>La ciudadanía no es un estado estático: es un proceso histórico de ampliación permanente. Cada época define de forma diferente quién pertenece a la comunidad política y qué derechos le corresponden. Comprender esta historicidad es fundamental para analizar los modelos que estudiaremos a continuación.</p>
+  </div>
+</section>
+
+<!-- ============ PESTAÑA: TEMA 2 ============ -->
+<section class="tab-content" id="tab-tema2">
+  <h2 class="section-title">2. Modelos Clásicos de Ciudadanía</h2>
+  <p style="line-height:1.65; margin-bottom:16px;">A lo largo de la filosofía política moderna se han elaborado distintos <strong>modelos normativos de ciudadanía</strong>, es decir, propuestas teóricas sobre cómo debería entenderse la relación entre el individuo y la comunidad política. Cada modelo parte de supuestos filosóficos distintos y tiene implicaciones políticas concretas. Estudiaremos los cuatro más influyentes.</p>
+
+  <h3 class="section-subtitle">2.1 Modelo Liberal</h3>
+  <div class="caja-concepto">
+    <div class="label">📌 Definición</div>
+    <p>El modelo liberal concibe al ciudadano principalmente como un <strong>individuo portador de derechos</strong> frente al Estado. La ciudadanía es ante todo una protección: garantiza que el Estado no interfiera arbitrariamente en la vida privada, la propiedad, la expresión y la libertad de cada persona. El énfasis está en los <em>derechos civiles y políticos</em> individuales.</p>
+  </div>
+  <p style="line-height:1.65; margin:10px 0;"><strong>Principales teóricos:</strong> John Locke (1689), Immanuel Kant (1797), John Rawls (1971).</p>
+  <p style="line-height:1.65; margin-bottom:10px;"><strong>Principios centrales:</strong></p>
+  <ul class="lista-visual">
+    <li data-icon="🔒">Prioridad de los derechos individuales sobre los intereses colectivos.</li>
+    <li data-icon="🏛️">Estado mínimo: el gobierno solo interviene para proteger derechos y garantizar contratos.</li>
+    <li data-icon="⚖️">Igualdad formal: todos los ciudadanos son iguales ante la ley, independientemente de su condición social.</li>
+    <li data-icon="🗳️">La participación política (votar, elegir) es un derecho, no una obligación moral.</li>
+    <li data-icon="🔐">Separación estricta entre esfera pública (política) y esfera privada (familia, religión, economía).</li>
+  </ul>
+  <div class="caja-ejemplo">
+    <div class="label">🌍 Ejemplo en contexto latinoamericano</div>
+    <p>Las constituciones liberales del siglo XIX en Ecuador y América Latina (como la Constitución ecuatoriana de 1861) adoptaron este modelo: reconocieron derechos individuales pero excluyeron de la ciudadanía plena a indígenas, mujeres y analfabetos. El liberalismo formal coexistía con una profunda desigualdad material. El modelo liberal fue el dominante en la región hasta mediados del siglo XX.</p>
+  </div>
+  <p style="line-height:1.65; margin-top:10px;"><strong>Crítica principal:</strong> Ignora que la igualdad formal no produce igualdad real. Si una persona nace en extrema pobreza, tener los mismos derechos que un millonario no le garantiza el mismo acceso efectivo a la vida pública.</p>
+
+  <h3 class="section-subtitle">2.2 Modelo Republicano (Cívico)</h3>
+  <div class="caja-concepto">
+    <div class="label">📌 Definición</div>
+    <p>El modelo republicano o cívico-humanista concibe la ciudadanía como una <strong>práctica activa de participación</strong> en la vida pública. El ciudadano no solo tiene derechos: tiene el <em>deber</em> de participar en la deliberación colectiva y de subordinar sus intereses privados al bien común. La ciudadanía es una virtud, no solo un estatus legal.</p>
+  </div>
+  <p style="line-height:1.65; margin:10px 0;"><strong>Principales teóricos:</strong> Aristóteles, Maquiavelo, Jean-Jacques Rousseau (1762), Hannah Arendt (1958), Jürgen Habermas (1981).</p>
+  <ul class="lista-visual">
+    <li data-icon="🤝">El ciudadano es un ser político por naturaleza (Aristóteles: <em>zōon politikon</em>): solo se realiza plenamente en la comunidad.</li>
+    <li data-icon="🏙️">La participación activa en lo público (asambleas, debates, voto razonado) es un valor en sí mismo.</li>
+    <li data-icon="📢">La deliberación pública racional es el mecanismo legítimo para tomar decisiones colectivas.</li>
+    <li data-icon="⚡">La libertad no es solo "no ser interferido" (libertad negativa liberal) sino "participar en el autogobierno" (libertad positiva).</li>
+  </ul>
+  <div class="caja-ejemplo">
+    <div class="label">🌍 Ejemplo en Ecuador</div>
+    <p>La Constitución de 2008 tiene elementos republicanos visibles: el <strong>presupuesto participativo</strong> (las comunidades deciden parte del gasto público local), la <strong>consulta previa a pueblos indígenas</strong> (Art. 57), la <strong>revocatoria del mandato</strong> (Art. 105) y la <strong>silla vacía</strong> en los gobiernos autónomos descentralizados, que permite a la ciudadanía participar directamente en sesiones del gobierno local con voz.</p>
+  </div>
+  <p style="line-height:1.65; margin-top:10px;"><strong>Crítica principal:</strong> En sociedades masivas y complejas, exigir participación activa permanente a todos los ciudadanos es poco realista. Además, puede generar conformismo mayoritario que aplaste los derechos de las minorías.</p>
+
+  <h3 class="section-subtitle">2.3 Modelo Comunitarista</h3>
+  <div class="caja-concepto">
+    <div class="label">📌 Definición</div>
+    <p>El comunitarismo rechaza la idea de un individuo abstracto, descontextualizado. Sostiene que la identidad del ciudadano <strong>no puede separarse de su comunidad</strong>: familia, etnia, religión, tradición cultural. Los derechos no son previos a la comunidad; emergen de ella y están condicionados por los valores compartidos del grupo.</p>
+  </div>
+  <p style="line-height:1.65; margin:10px 0;"><strong>Principales teóricos:</strong> Alasdair MacIntyre (1981), Michael Sandel (1982), Charles Taylor (1989), Michael Walzer (1983).</p>
+  <ul class="lista-visual">
+    <li data-icon="🌿">La identidad individual es inseparable de la pertenencia comunitaria (étnica, cultural, religiosa).</li>
+    <li data-icon="🎭">Los derechos colectivos (de pueblos indígenas, comunidades afrodescendientes) son tan importantes como los individuales.</li>
+    <li data-icon="🏘️">El bien común no se define por consenso racional abstracto, sino por los valores enraizados en tradiciones históricas concretas.</li>
+    <li data-icon="🌐">Critica el liberalismo por imponer un modelo de ciudadanía occidentalizado, ignorando diversidades culturales.</li>
+  </ul>
+  <div class="caja-ejemplo">
+    <div class="label">🌍 Ejemplo en Ecuador</div>
+    <p>La declaración de Ecuador como un <strong>Estado plurinacional e intercultural</strong> (Art. 1 de la Constitución de 2008) es un ejemplo de influencia comunitarista. Reconoce a las nacionalidades y pueblos indígenas —como quichuas, shuaras, cofanes, waoranis— como sujetos colectivos con derechos propios, territorios, sistemas de justicia indígena y formas de vida comunitaria que el Estado debe respetar y garantizar.</p>
+  </div>
+  <p style="line-height:1.65; margin-top:10px;"><strong>Crítica principal:</strong> Puede justificar prácticas comunitarias que violan derechos individuales (por ejemplo, discriminación de género dentro de comunidades) en nombre de la "tradición". El peso de la comunidad puede asfixiar la autonomía personal.</p>
+
+  <h3 class="section-subtitle">2.4 Modelo de Ciudadanía Social (Marshall)</h3>
+  <div class="caja-concepto">
+    <div class="label">📌 Definición</div>
+    <p>Thomas H. Marshall propuso en 1950 una evolución histórica de la ciudadanía en tres fases: <strong>derechos civiles</strong> (siglo XVIII: libertad, propiedad, acceso a la justicia), <strong>derechos políticos</strong> (siglo XIX: voto, participación) y <strong>derechos sociales</strong> (siglo XX: educación, salud, trabajo, seguridad social). La ciudadanía plena requiere las tres generaciones funcionando simultáneamente.</p>
+  </div>
+  <ul class="lista-visual">
+    <li data-icon="📜">Los derechos sociales no son "beneficios" ni "ayudas": son derechos de ciudadanía exigibles al Estado.</li>
+    <li data-icon="🏥">Sin educación, salud y trabajo dignos, la ciudadanía civil y política es vacía de contenido real.</li>
+    <li data-icon="🔄">El Estado de bienestar es la institución política que materializa la ciudadanía social.</li>
+    <li data-icon="📉">La reducción del gasto social por políticas de austeridad produce "des-ciudadanización": retroceso de derechos sociales conquistados.</li>
+  </ul>
+  <div class="caja-ejemplo">
+    <div class="label">🌍 Ejemplo en Ecuador</div>
+    <p>El Bono de Desarrollo Humano, el seguro social (IESS/BIESS), la gratuidad de la educación pública y la salud gratuita en el sistema de salud pública son expresiones de la ciudadanía social. Sin embargo, la crisis fiscal de 2019 y las reformas de austeridad impuestas por acuerdos con el FMI redujeron estas prestaciones, generando protestas masivas —como el paro de octubre de 2019— que pueden leerse como una defensa de la ciudadanía social en peligro.</p>
+  </div>
+
+  <h3 class="section-subtitle">2.5 Tabla Comparativa de Modelos</h3>
+  <table class="tabla-comp">
+    <thead>
+      <tr><th>Criterio</th><th>Liberal</th><th>Republicano</th><th>Comunitarista</th><th>Social (Marshall)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Sujeto central</strong></td><td>Individuo</td><td>Ciudadano activo</td><td>Comunidad / pueblo</td><td>Individuo + sociedad</td></tr>
+      <tr><td><strong>Énfasis</strong></td><td>Derechos civiles</td><td>Participación pública</td><td>Identidad cultural</td><td>Derechos sociales</td></tr>
+      <tr><td><strong>Rol del Estado</strong></td><td>Mínimo, protector</td><td>Promotor cívico</td><td>Reconoce diversidad</td><td>Proveedor de servicios</td></tr>
+      <tr><td><strong>Virtud ciudadana</strong></td><td>Autonomía</td><td>Participación</td><td>Pertenencia</td><td>Solidaridad</td></tr>
+      <tr><td><strong>Riesgo crítico</strong></td><td>Desigualdad real</td><td>Tiranía de la mayoría</td><td>Violación autonomía</td><td>Dependencia estatal</td></tr>
+    </tbody>
+  </table>
+
+  <div class="caja-clave">
+    <div class="label">💡 Idea Clave</div>
+    <p>Ningún modelo de ciudadanía es completo por sí solo. Los sistemas políticos democráticos modernos combinan elementos de varios modelos. La Constitución del Ecuador de 2008 es un ejemplo extraordinario: incorpora derechos liberales individuales, participación republicana, reconocimiento comunitarista de plurinacionalidad y derechos sociales marshallanos. Esta hibridación es la norma, no la excepción.</p>
+  </div>
+</section>
+
+<!-- ============ PESTAÑA: TEMA 3 ============ -->
+<section class="tab-content" id="tab-tema3">
+  <h2 class="section-title">3. Ciudadanía Global y Nuevas Formas de Ciudadanía</h2>
+
+  <p style="line-height:1.65; margin-bottom:16px;">Con la globalización —el proceso de integración económica, cultural, tecnológica y política a escala mundial— el concepto de ciudadanía ha trascendido las fronteras del Estado-nación. Surgen nuevas preguntas: ¿puede una persona ser ciudadana del mundo? ¿Los migrantes tienen derechos ciudadanos fuera de su país de origen? ¿Internet crea una nueva ciudadanía digital?</p>
+
+  <h3 class="section-subtitle">3.1 Ciudadanía Cosmopolita</h3>
+  <div class="caja-concepto">
+    <div class="label">📌 Definición</div>
+    <p>El <strong>cosmopolitismo</strong> (del griego <em>kosmopolites</em>: ciudadano del mundo) plantea que la identidad política y moral de las personas no debe limitarse a la nación. Todos los seres humanos comparten una humanidad común que genera derechos y deberes universales, por encima de las fronteras estatales. La ciudadanía cosmopolita no reemplaza a la nacional: la complementa.</p>
+  </div>
+  <p style="line-height:1.65; margin:10px 0;"><strong>Principales teóricos:</strong> Kant (1795, <em>La Paz Perpetua</em>), Martha Nussbaum (1997), David Held (2005), Jürgen Habermas.</p>
+  <ul class="lista-visual">
+    <li data-icon="🌍">Los derechos humanos son la expresión política del cosmopolitismo: no dependen de la nacionalidad sino de la dignidad humana.</li>
+    <li data-icon="🤝">Instituciones como la ONU, la Corte Penal Internacional o la Corte Interamericana de Derechos Humanos son arquitecturas de ciudadanía global.</li>
+    <li data-icon="⚖️">Un crimen de lesa humanidad cometido en cualquier país es punible internacionalmente: la soberanía no protege al criminal.</li>
+    <li data-icon="🌿">El cambio climático requiere ciudadanía global: los derechos ambientales no tienen fronteras.</li>
+  </ul>
+  <div class="caja-ejemplo">
+    <div class="label">🌍 Ejemplo: Ecuador y la ciudadanía cosmopolita</div>
+    <p>La Constitución de 2008 de Ecuador es pionera a nivel mundial: el <strong>Art. 416 establece la ciudadanía universal</strong> como principio de política exterior. Ecuador reconoce el derecho de todas las personas a migrar sin ser consideradas ilegales y ha firmado tratados regionales de libre movilidad (Comunidad Andina de Naciones). Además, el Art. 9 reconoce los mismos derechos a extranjeros que a ciudadanos ecuatorianos, una de las legislaciones más avanzadas del mundo en materia migratoria.</p>
+  </div>
+
+  <h3 class="section-subtitle">3.2 Ciudadanía Digital</h3>
+  <div class="caja-concepto">
+    <div class="label">📌 Definición</div>
+    <p>La <strong>ciudadanía digital</strong> refiere al conjunto de derechos, competencias y responsabilidades que las personas tienen en los entornos digitales. Con la expansión de internet y las redes sociales, el espacio público se ha extendido al ámbito virtual: las personas se informan, deliberan, organizan y ejercen presión política en plataformas digitales.</p>
+  </div>
+  <ul class="lista-visual">
+    <li data-icon="💻">Derecho de acceso a internet como derecho ciudadano (reconocido en Francia, España y propuesto en varios países latinoamericanos).</li>
+    <li data-icon="🔒">Derecho a la privacidad digital y protección de datos personales.</li>
+    <li data-icon="🗣️">Libertad de expresión en redes sociales como extensión de la libertad de prensa.</li>
+    <li data-icon="⚠️">Responsabilidades: combatir la desinformación, el discurso de odio y la manipulación algorítmica.</li>
+    <li data-icon="📱">La brecha digital reproduce la brecha de ciudadanía: quienes no tienen acceso a internet son ciudadanos digitalmente excluidos.</li>
+  </ul>
+  <div class="caja-ejemplo">
+    <div class="label">🌍 Ejemplo en Ecuador</div>
+    <p>Durante la pandemia de COVID-19 (2020–2021), la virtualización de trámites, clases y servicios públicos expuso la brecha digital en Ecuador: el 40% de los hogares rurales no tenía acceso a internet (INEC, 2020), lo que produjo ciudadanos digitalmente excluidos del acceso a la educación y los servicios del Estado. La ciudadanía digital se volvió una condición de ejercicio de derechos básicos.</p>
+  </div>
+
+  <h3 class="section-subtitle">3.3 Ciudadanía Diferenciada (Iris Marion Young)</h3>
+  <div class="caja-concepto">
+    <div class="label">📌 Definición</div>
+    <p>Iris Marion Young (1989) critica el ideal liberal de ciudadanía universal abstracta porque, en la práctica, la norma ciudadana está construida desde la experiencia del hombre blanco, de clase media y occidental. Propone una <strong>ciudadanía diferenciada</strong>: reconocer que grupos oprimidos (mujeres, minorías étnicas, personas con discapacidad, LGBTIQ+) necesitan derechos específicos y representación especial para alcanzar igualdad real.</p>
+  </div>
+  <ul class="lista-visual">
+    <li data-icon="👩">Cuotas de género en cargos públicos como mecanismo de ciudadanía diferenciada.</li>
+    <li data-icon="🦽">Accesibilidad universal como condición de ciudadanía para personas con discapacidad.</li>
+    <li data-icon="🌈">Políticas afirmativas para grupos históricamente excluidos.</li>
+    <li data-icon="🪶">Representación especial para pueblos indígenas en parlamentos (como en Bolivia o Nueva Zelanda).</li>
+  </ul>
+  <div class="caja-ejemplo">
+    <div class="label">🌍 Ejemplo en Ecuador</div>
+    <p>La Constitución ecuatoriana establece la <strong>paridad de género</strong> en las listas electorales (Art. 116). El Consejo de Participación Ciudadana y Control Social debe garantizar la representación de grupos históricamente excluidos. Estas medidas son expresiones de ciudadanía diferenciada: el trato igual a desiguales produce más desigualdad; el trato diferenciado correctivo es necesario para alcanzar la igualdad sustantiva.</p>
+  </div>
+
+  <h3 class="section-subtitle">3.4 Ciudadanía Ecológica</h3>
+  <div class="caja-concepto">
+    <div class="label">📌 Definición</div>
+    <p>La <strong>ciudadanía ecológica</strong> amplía la comunidad política para incluir la relación de los seres humanos con la naturaleza. Surge de la conciencia de que el cambio climático y la crisis ambiental son asuntos de justicia: los pobres del sur global sufren más los efectos de una contaminación causada principalmente por los ricos del norte. El ciudadano ecológico tiene deberes ambientales, no solo hacia otros humanos, sino hacia los ecosistemas.</p>
+  </div>
+  <div class="caja-ejemplo">
+    <div class="label">🌍 Ecuador: pionero mundial</div>
+    <p>Ecuador fue el primer país del mundo en otorgar <strong>derechos a la naturaleza</strong> (Pachamama) en su Constitución de 2008 (Arts. 71–74). La naturaleza tiene derecho a existir, mantenerse y regenerarse. Cualquier ciudadano o comunidad puede exigir judicialmente el cumplimiento de estos derechos. Este reconocimiento es la expresión más radical de la ciudadanía ecológica a nivel constitucional mundial.</p>
+  </div>
+
+  <div class="caja-clave">
+    <div class="label">💡 Idea Clave</div>
+    <p>La ciudadanía del siglo XXI es múltiple, porosa y en expansión. Ya no basta con el modelo liberal de individuo-nación-derechos. Las nuevas formas de ciudadanía —global, digital, diferenciada, ecológica— responden a los desafíos de un mundo interconectado, desigual y ambientalmente amenazado. Ecuador, con su Constitución de 2008, ha incorporado varios de estos avances de forma pionera.</p>
+  </div>
+</section>
+
+<!-- ============ PESTAÑA: TEMA 4 ============ -->
+<section class="tab-content" id="tab-tema4">
+  <h2 class="section-title">4. Ciudadanía en Ecuador: Entre el Derecho y la Realidad</h2>
+  <p style="line-height:1.65; margin-bottom:16px;">Después de explorar los modelos teóricos, corresponde aterrizar el análisis en la realidad concreta de Ecuador. La pregunta central es: <strong>¿qué tipo de ciudadanía existe realmente en Ecuador?</strong> ¿Las normas constitucionales se traducen en ciudadanía efectiva para todos los habitantes?</p>
+
+  <h3 class="section-subtitle">4.1 La Constitución de 2008 como proyecto de ciudadanía ampliada</h3>
+  <div class="caja-ejemplo">
+    <div class="label">📜 El texto constitucional más avanzado de América Latina</div>
+    <p>La Constitución ecuatoriana de 2008, aprobada en Montecristi con el 63,9% de apoyo popular, representó una ruptura con los modelos liberales clásicos y una síntesis de varias tradiciones de ciudadanía:</p>
+    <br>
+    <ul style="padding-left: 18px; line-height: 1.8;">
+      <li><strong>Liberal:</strong> Garantías individuales, habeas corpus, due process, libertad de expresión.</li>
+      <li><strong>Republicana:</strong> Democracia directa (referéndum, iniciativa popular, revocatoria), silla vacía, presupuesto participativo.</li>
+      <li><strong>Comunitarista:</strong> Estado plurinacional e intercultural, derechos colectivos de pueblos indígenas y afroecuatorianos, justicia indígena.</li>
+      <li><strong>Social:</strong> Sumak Kawsay (buen vivir), gratuidad de educación y salud, derechos de la seguridad social, prohibición de privatizar el agua.</li>
+      <li><strong>Ecológica:</strong> Derechos de la naturaleza (Pachamama).</li>
+      <li><strong>Global:</strong> Ciudadanía universal como principio de política exterior.</li>
+    </ul>
+  </div>
+
+  <h3 class="section-subtitle">4.2 Ciudadanía y desigualdad: la brecha entre norma y realidad</h3>
+  <p style="line-height:1.65; margin-bottom:12px;">Sin embargo, el texto constitucional más avanzado no garantiza automáticamente el ejercicio efectivo de la ciudadanía. Ecuador enfrenta estructuras de desigualdad que producen ciudadanos de "primera y segunda clase":</p>
+  <table class="tabla-comp">
+    <thead>
+      <tr><th>Dimensión</th><th>Norma constitucional</th><th>Realidad (datos aproximados)</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Educación</strong></td>
+        <td>Gratuita y obligatoria hasta el bachillerato</td>
+        <td>Tasa de abandono escolar en zonas rurales: 10–15%. Brecha urbano-rural en aprendizaje persiste.</td>
+      </tr>
+      <tr>
+        <td><strong>Salud</strong></td>
+        <td>Sistema público universal y gratuito</td>
+        <td>Tiempo de espera en hospitales públicos: meses. El 30% de la población accede al sector privado.</td>
+      </tr>
+      <tr>
+        <td><strong>Trabajo</strong></td>
+        <td>Trabajo digno, prohibición de trabajo informal sin protección</td>
+        <td>Empleo informal: ~55% de la PEA según INEC (2023). Trabajo no remunerado del hogar: mayoría mujeres.</td>
+      </tr>
+      <tr>
+        <td><strong>Justicia</strong></td>
+        <td>Acceso gratuito y en tiempo razonable</td>
+        <td>Alta congestión judicial. Presos en prisión preventiva sin condena: 30–40% de la población carcelaria.</td>
+      </tr>
+      <tr>
+        <td><strong>Participación</strong></td>
+        <td>Voto, consulta, iniciativa popular</td>
+        <td>Abstencionismo creciente en elecciones locales. Consulta previa a comunidades no siempre se cumple.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-subtitle">4.3 Ciudadanías excluidas en Ecuador</h3>
+  <p style="line-height:1.65; margin-bottom:10px;">Hay grupos para quienes la ciudadanía formal no se traduce en ciudadanía real:</p>
+  <ul class="lista-visual">
+    <li data-icon="🪶"><strong>Pueblos indígenas y afroecuatorianos:</strong> Pese al reconocimiento constitucional, enfrentan discriminación estructural, acceso desigual a la tierra y servicios, y tensión permanente entre justicia indígena y justicia ordinaria.</li>
+    <li data-icon="👩‍🦱"><strong>Mujeres en zonas rurales:</strong> Sobrecarga de trabajo doméstico no remunerado, violencia de género y menor acceso a oportunidades laborales y educativas limitan su ciudadanía efectiva.</li>
+    <li data-icon="🌍"><strong>Migrantes venezolanos:</strong> Ecuador acoge más de 400.000 migrantes venezolanos (ACNUR, 2023). Su estatus migratorio irregular los convierte en ciudadanos de segunda clase: trabajo informal, explotación, xenofobia.</li>
+    <li data-icon="🏳️‍🌈"><strong>Personas LGBTIQ+:</strong> El matrimonio igualitario fue reconocido en 2019 por la Corte Constitucional, pero persisten discriminación laboral y social, y crímenes de odio.</li>
+    <li data-icon="👶"><strong>Niñas, niños y adolescentes:</strong> El trabajo infantil persiste en zonas rurales y urbano-marginales pese a la prohibición constitucional.</li>
+  </ul>
+
+  <h3 class="section-subtitle">4.4 El rol del contador público en la ciudadanía</h3>
+  <div class="caja-nota">
+    <strong>Conexión con tu carrera:</strong> Como profesionales de Contabilidad y Auditoría, ejercen ciudadanía activa en la esfera económica. El pago correcto de impuestos, la transparencia en los estados financieros, la denuncia de irregularidades contables y el rechazo a la corrupción son prácticas de ciudadanía republicana aplicadas al mundo empresarial. La evasión fiscal es una forma de des-ciudadanización: retira recursos del Estado que debería usar para garantizar ciudadanía social a todos.
+  </div>
+
+  <div class="caja-clave">
+    <div class="label">💡 Idea Clave</div>
+    <p>Ecuador es un laboratorio político fascinante: tiene uno de los marcos constitucionales de ciudadanía más avanzados del mundo, pero su implementación es desigual y contradictoria. Comprender esta brecha entre norma y realidad es la tarea principal del análisis político crítico. La ciudadanía no se decreta: se construye día a día mediante instituciones, cultura política y lucha social.</p>
+  </div>
+</section>
+
+<!-- ============ PESTAÑA: EJERCICIO INTERACTIVO ============ -->
+<section class="tab-content" id="tab-ejercicio">
+  <h2 class="section-title">⚙️ Ejercicio Interactivo: Clasificación de Modelos de Ciudadanía</h2>
+  <div class="ejercicio-wrap">
+    <div class="quiz-intro">
+      <strong>Instrucciones:</strong> A continuación encontrarás 8 situaciones, afirmaciones o políticas públicas. Debes identificar a qué <strong>modelo de ciudadanía</strong> corresponde cada una, seleccionando la opción correcta. Responde <em>todas</em> las preguntas antes de presionar <strong>"Verificar respuestas"</strong>. Los resultados y explicaciones aparecerán al final.
+    </div>
+
+    <!-- Ítem 1 -->
+    <div class="ej-item" id="ej1">
+      <div class="ej-pregunta">1. El gobierno de una ciudad decide instalar <em>urnas digitales</em> en los barrios para que los vecinos voten directamente qué proyectos se ejecutan con el presupuesto municipal (semáforos, parques, canchas). ¿A qué modelo de ciudadanía corresponde esta política?</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="ej1" value="a"> <span>a) Modelo Liberal, porque respeta la autonomía individual del votante.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej1" value="b"> <span>b) Modelo Republicano, porque promueve la participación activa de la ciudadanía en el autogobierno local.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej1" value="c"> <span>c) Modelo Comunitarista, porque reconoce la identidad del barrio como comunidad.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej1" value="d"> <span>d) Ciudadanía Digital, porque usa tecnología para votar.</span></label>
+      </div>
+      <div class="feedback-item" id="fb1"></div>
+    </div>
+
+    <!-- Ítem 2 -->
+    <div class="ej-item" id="ej2">
+      <div class="ej-pregunta">2. Una mujer indígena kichwua demanda judicialmente al Estado ecuatoriano exigiendo que se respeten los derechos colectivos de su comunidad a la tierra ancestral, según el Art. 57 de la Constitución. Esta acción se fundamenta principalmente en el modelo:</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="ej2" value="a"> <span>a) Liberal, porque ejerce su derecho individual a la justicia.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej2" value="b"> <span>b) Social (Marshall), porque reclama un derecho social del Estado.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej2" value="c"> <span>c) Comunitarista, porque reivindica derechos colectivos anclados en la identidad cultural y territorial del grupo.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej2" value="d"> <span>d) Cosmopolita, porque acude a instancias internacionales.</span></label>
+      </div>
+      <div class="feedback-item" id="fb2"></div>
+    </div>
+
+    <!-- Ítem 3 -->
+    <div class="ej-item" id="ej3">
+      <div class="ej-pregunta">3. Un estudiante universitario afirma: "El Estado no tiene derecho a decirme en qué gastar mi dinero, a quién debo amar o qué religión practicar. Mi vida privada es mía." Esta postura refleja principalmente el modelo de ciudadanía:</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="ej3" value="a"> <span>a) Republicano, porque defiende su autonomía en la esfera pública.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej3" value="b"> <span>b) Liberal, porque prioriza la autonomía individual y la separación entre esfera privada y pública.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej3" value="c"> <span>c) Comunitarista, porque defiende su identidad personal.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej3" value="d"> <span>d) Social, porque reclama derechos garantizados por el Estado.</span></label>
+      </div>
+      <div class="feedback-item" id="fb3"></div>
+    </div>
+
+    <!-- Ítem 4 -->
+    <div class="ej-item" id="ej4">
+      <div class="ej-pregunta">4. El gobierno ecuatoriano amplía el programa de acceso gratuito a internet para zonas rurales de la Amazonía, argumentando que sin conectividad los ciudadanos de esas zonas no pueden acceder a trámites del Estado, educación en línea ni información pública. Este argumento apela al concepto de:</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="ej4" value="a"> <span>a) Ciudadanía ecológica, porque protege el ecosistema amazónico.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej4" value="b"> <span>b) Ciudadanía digital como condición de ejercicio de derechos ciudadanos básicos.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej4" value="c"> <span>c) Ciudadanía cosmopolita, porque conecta a Ecuador con el mundo.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej4" value="d"> <span>d) Modelo Liberal, porque amplía la libertad de información.</span></label>
+      </div>
+      <div class="feedback-item" id="fb4"></div>
+    </div>
+
+    <!-- Ítem 5 -->
+    <div class="ej-item" id="ej5">
+      <div class="ej-pregunta">5. T.H. Marshall argumentó que los derechos sociales (salud, educación, seguridad social) son parte esencial de la ciudadanía plena. ¿Qué consecuencia política tiene este argumento?</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="ej5" value="a"> <span>a) Que el Estado debe privatizar los servicios sociales para hacerlos eficientes.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej5" value="b"> <span>b) Que el Estado tiene la obligación de proveer servicios sociales como parte de la ciudadanía; recortarlos es una regresión de derechos ciudadanos.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej5" value="c"> <span>c) Que la ciudadanía social es opcional y depende de la economía del país.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej5" value="d"> <span>d) Que los derechos sociales solo aplican a los grupos más pobres.</span></label>
+      </div>
+      <div class="feedback-item" id="fb5"></div>
+    </div>
+
+    <!-- Ítem 6 -->
+    <div class="ej-item" id="ej6">
+      <div class="ej-pregunta">6. La Corte Interamericana de Derechos Humanos condena al Estado de Ecuador por no proteger a una comunidad indígena afectada por derrames petroleros. El fallo obliga al Estado a remediar el daño ambiental. ¿Cuál modelo de ciudadanía fundamenta mejor este fallo?</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="ej6" value="a"> <span>a) Liberal puro, porque protege la propiedad privada de la comunidad.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej6" value="b"> <span>b) Una combinación de ciudadanía cosmopolita (tribunal internacional), comunitarista (derechos de pueblo indígena) y ecológica (derechos ambientales).</span></label>
+        <label class="opcion-label"><input type="radio" name="ej6" value="c"> <span>c) Únicamente social (Marshall), porque garantiza el derecho a la salud.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej6" value="d"> <span>d) Republicano, porque implica participación pública en la deliberación.</span></label>
+      </div>
+      <div class="feedback-item" id="fb6"></div>
+    </div>
+
+    <!-- Ítem 7 -->
+    <div class="ej-item" id="ej7">
+      <div class="ej-pregunta">7. Una organización feminista exige al Consejo Nacional Electoral que las listas electorales incluyan igual número de hombres y mujeres (paridad). Este reclamo es propio del modelo de:</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="ej7" value="a"> <span>a) Ciudadanía diferenciada (Iris Marion Young), que reconoce que la igualdad formal no basta para grupos históricamente excluidos.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej7" value="b"> <span>b) Ciudadanía liberal, porque todas las personas son iguales ante la ley.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej7" value="c"> <span>c) Ciudadanía social, porque es un derecho social de las mujeres.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej7" value="d"> <span>d) Ciudadanía comunitarista, porque las mujeres son una comunidad.</span></label>
+      </div>
+      <div class="feedback-item" id="fb7"></div>
+    </div>
+
+    <!-- Ítem 8 -->
+    <div class="ej-item" id="ej8">
+      <div class="ej-pregunta">8. Un filósofo político sostiene que la ciudadanía ateniense del siglo V a.C. era excluyente porque solo incluía hombres libres nacidos en Atenas. Esta crítica implica que la ciudadanía es:</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="ej8" value="a"> <span>a) Un concepto eterno e inmutable que siempre ha incluido a todos.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej8" value="b"> <span>b) Un concepto históricamente construido, que refleja las relaciones de poder de cada época y puede ampliarse o restringirse.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej8" value="c"> <span>c) Una invención moderna del siglo XX que no existía en la antigüedad.</span></label>
+        <label class="opcion-label"><input type="radio" name="ej8" value="d"> <span>d) Un concepto exclusivamente jurídico que depende de los documentos de identidad.</span></label>
+      </div>
+      <div class="feedback-item" id="fb8"></div>
+    </div>
+
+    <button class="btn-verificar" id="btnVerEj">✔ Verificar respuestas</button>
+    <div class="panel-resultados" id="resultEj">
+      <div class="resultado-emoji" id="emojiEj"></div>
+      <div class="resultado-score" id="scoreEj"></div>
+      <div class="resultado-pct" id="pctEj"></div>
+      <div class="barra-progreso-wrap"><div class="barra-progreso" id="barraEj" style="width:0%"></div></div>
+      <div class="resultado-msg" id="msgEj"></div>
+    </div>
+    <button class="btn-reiniciar" id="btnReiEj">↺ Reiniciar ejercicio</button>
+  </div>
+</section>
+
+<!-- ============ PESTAÑA: CUESTIONARIO ============ -->
+<section class="tab-content" id="tab-cuestionario">
+  <h2 class="section-title">📝 Cuestionario de Evaluación</h2>
+  <div class="ejercicio-wrap">
+    <div class="quiz-intro">
+      <strong>Instrucciones:</strong> 10 preguntas (7 teóricas + 3 de análisis de caso). Lee cada pregunta con atención, selecciona <em>una</em> opción por pregunta, y una vez que hayas respondido <strong>todas</strong>, presiona "Verificar respuestas". Recibirás retroalimentación completa y tu calificación final.
+    </div>
+
+    <!-- Q1 -->
+    <div class="ej-item" id="q1">
+      <span class="ej-badge badge-teorica">Teórica</span>
+      <div class="ej-pregunta">1. Según T.H. Marshall, ¿cuál fue el orden histórico en que se conquistaron los derechos ciudadanos?</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="q1" value="a"> <span>a) Derechos políticos → sociales → civiles</span></label>
+        <label class="opcion-label"><input type="radio" name="q1" value="b"> <span>b) Derechos civiles → políticos → sociales</span></label>
+        <label class="opcion-label"><input type="radio" name="q1" value="c"> <span>c) Derechos sociales → civiles → políticos</span></label>
+        <label class="opcion-label"><input type="radio" name="q1" value="d"> <span>d) Todos se conquistaron simultáneamente en el siglo XX</span></label>
+      </div>
+      <div class="feedback-item" id="fq1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="ej-item" id="q2">
+      <span class="ej-badge badge-teorica">Teórica</span>
+      <div class="ej-pregunta">2. ¿Cuál es la diferencia fundamental entre la ciudadanía <em>formal</em> y la ciudadanía <em>real</em>?</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="q2" value="a"> <span>a) La ciudadanía formal incluye más derechos que la real.</span></label>
+        <label class="opcion-label"><input type="radio" name="q2" value="b"> <span>b) La ciudadanía formal es el reconocimiento legal del estatus; la real es el ejercicio efectivo de los derechos en la vida cotidiana.</span></label>
+        <label class="opcion-label"><input type="radio" name="q2" value="c"> <span>c) La ciudadanía real solo se aplica a los ciudadanos naturalizados.</span></label>
+        <label class="opcion-label"><input type="radio" name="q2" value="d"> <span>d) No hay diferencia; si la ley reconoce el derecho, automáticamente se ejerce.</span></label>
+      </div>
+      <div class="feedback-item" id="fq2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="ej-item" id="q3">
+      <span class="ej-badge badge-teorica">Teórica</span>
+      <div class="ej-pregunta">3. ¿Cuál de los siguientes principios es EXCLUSIVO del modelo republicano de ciudadanía, y NO lo comparte con el modelo liberal?</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="q3" value="a"> <span>a) El reconocimiento de derechos individuales.</span></label>
+        <label class="opcion-label"><input type="radio" name="q3" value="b"> <span>b) La igualdad de todos ante la ley.</span></label>
+        <label class="opcion-label"><input type="radio" name="q3" value="c"> <span>c) La participación activa en el autogobierno como virtud ciudadana indispensable.</span></label>
+        <label class="opcion-label"><input type="radio" name="q3" value="d"> <span>d) La protección de la propiedad privada.</span></label>
+      </div>
+      <div class="feedback-item" id="fq3"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="ej-item" id="q4">
+      <span class="ej-badge badge-teorica">Teórica</span>
+      <div class="ej-pregunta">4. La ciudadanía diferenciada propuesta por Iris Marion Young critica principalmente:</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="q4" value="a"> <span>a) Que los derechos sociales sean gratuitos.</span></label>
+        <label class="opcion-label"><input type="radio" name="q4" value="b"> <span>b) El modelo liberal de ciudadanía universal abstracta, porque en la práctica excluye a grupos históricamente marginados.</span></label>
+        <label class="opcion-label"><input type="radio" name="q4" value="c"> <span>c) Que las mujeres tengan derecho al voto sin restricciones.</span></label>
+        <label class="opcion-label"><input type="radio" name="q4" value="d"> <span>d) El comunitarismo por dar demasiado peso a las tradiciones culturales.</span></label>
+      </div>
+      <div class="feedback-item" id="fq4"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="ej-item" id="q5">
+      <span class="ej-badge badge-teorica">Teórica</span>
+      <div class="ej-pregunta">5. ¿Qué entiende el cosmopolitismo por "ciudadanía global"?</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="q5" value="a"> <span>a) La posibilidad de obtener pasaporte de varios países simultáneamente.</span></label>
+        <label class="opcion-label"><input type="radio" name="q5" value="b"> <span>b) La idea de que todos los seres humanos, más allá de sus naciones, tienen derechos y deberes derivados de su humanidad compartida.</span></label>
+        <label class="opcion-label"><input type="radio" name="q5" value="c"> <span>c) La eliminación de las fronteras nacionales y los Estados soberanos.</span></label>
+        <label class="opcion-label"><input type="radio" name="q5" value="d"> <span>d) La ciudadanía que se ejerce únicamente en organismos internacionales como la ONU.</span></label>
+      </div>
+      <div class="feedback-item" id="fq5"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="ej-item" id="q6">
+      <span class="ej-badge badge-teorica">Teórica</span>
+      <div class="ej-pregunta">6. En la polis ateniense del siglo V a.C., el concepto de ciudadanía era:</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="q6" value="a"> <span>a) Universal e inclusivo: cualquier habitante de Atenas era ciudadano pleno.</span></label>
+        <label class="opcion-label"><input type="radio" name="q6" value="b"> <span>b) Restringido a hombres libres nacidos en Atenas, excluyendo mujeres, esclavos y extranjeros.</span></label>
+        <label class="opcion-label"><input type="radio" name="q6" value="c"> <span>c) Idéntico al concepto moderno de ciudadanía social.</span></label>
+        <label class="opcion-label"><input type="radio" name="q6" value="d"> <span>d) Determinado por el nivel de ingresos económicos del individuo.</span></label>
+      </div>
+      <div class="feedback-item" id="fq6"></div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="ej-item" id="q7">
+      <span class="ej-badge badge-teorica">Teórica</span>
+      <div class="ej-pregunta">7. El hecho de que Ecuador sea declarado Estado <em>plurinacional e intercultural</em> en la Constitución de 2008 refleja principalmente la influencia del modelo de ciudadanía:</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="q7" value="a"> <span>a) Liberal clásico.</span></label>
+        <label class="opcion-label"><input type="radio" name="q7" value="b"> <span>b) Social marshallano.</span></label>
+        <label class="opcion-label"><input type="radio" name="q7" value="c"> <span>c) Comunitarista, que reconoce identidades colectivas y derechos de grupos culturales específicos.</span></label>
+        <label class="opcion-label"><input type="radio" name="q7" value="d"> <span>d) Cosmopolita, que trasciende las identidades nacionales.</span></label>
+      </div>
+      <div class="feedback-item" id="fq7"></div>
+    </div>
+
+    <!-- Q8 – Análisis -->
+    <div class="ej-item" id="q8">
+      <span class="ej-badge badge-analisis">Análisis de Caso</span>
+      <div class="ej-pregunta">8. <strong>Caso:</strong> En un cantón rural de Chimborazo, el 60% de las mujeres indígenas adultas no tiene cédula de identidad porque nunca fueron registradas al nacer. Por esta razón, no pueden votar, no acceden a programas sociales del gobierno, y sus hijos no tienen partida de nacimiento. Un analista político describe su situación como "ciudadanía fantasma". ¿Qué concepto explica mejor esta situación?</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="q8" value="a"> <span>a) Son ciudadanas plenas porque nacieron en territorio ecuatoriano.</span></label>
+        <label class="opcion-label"><input type="radio" name="q8" value="b"> <span>b) Sufren una brecha entre ciudadanía formal (que en derecho les corresponde) y ciudadanía real (que no pueden ejercer por falta de documentación y acceso a instituciones).</span></label>
+        <label class="opcion-label"><input type="radio" name="q8" value="c"> <span>c) Su situación es irrelevante políticamente porque no votan.</span></label>
+        <label class="opcion-label"><input type="radio" name="q8" value="d"> <span>d) Son un ejemplo de ciudadanía cosmopolita porque no pertenecen al sistema nacional.</span></label>
+      </div>
+      <div class="feedback-item" id="fq8"></div>
+    </div>
+
+    <!-- Q9 – Análisis -->
+    <div class="ej-item" id="q9">
+      <span class="ej-badge badge-analisis">Análisis de Caso</span>
+      <div class="ej-pregunta">9. <strong>Caso:</strong> El gobierno nacional reduce el presupuesto de salud pública en un 25% para cumplir con metas de austeridad fiscal exigidas por el FMI. Como resultado, cierran 80 centros de salud rurales y se cobra por la atención antes gratuita. Desde la perspectiva de T.H. Marshall, ¿cómo debe calificarse esta medida?</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="q9" value="a"> <span>a) Es una mejora democrática porque reduce el gasto ineficiente.</span></label>
+        <label class="opcion-label"><input type="radio" name="q9" value="b"> <span>b) Es una regresión de la ciudadanía social: el Estado retira derechos ciudadanos conquistados, convirtiendo en mercancía lo que era un derecho.</span></label>
+        <label class="opcion-label"><input type="radio" name="q9" value="c"> <span>c) Es una medida neutral que no afecta los derechos ciudadanos.</span></label>
+        <label class="opcion-label"><input type="radio" name="q9" value="d"> <span>d) Solo afecta la ciudadanía digital de la población rural.</span></label>
+      </div>
+      <div class="feedback-item" id="fq9"></div>
+    </div>
+
+    <!-- Q10 – Análisis -->
+    <div class="ej-item" id="q10">
+      <span class="ej-badge badge-analisis">Análisis de Caso</span>
+      <div class="ej-pregunta">10. <strong>Caso:</strong> En una empresa de auditoría, un contador descubre que su jefe le pide alterar informes financieros para ocultar evasión de impuestos. El contador se niega, argumentando que "el contador debe rendir cuentas no solo a su empleador sino a la sociedad". Esta postura se relaciona con el modelo de ciudadanía:</div>
+      <div class="opciones-grid">
+        <label class="opcion-label"><input type="radio" name="q10" value="a"> <span>a) Liberal, porque defiende su autonomía laboral individual.</span></label>
+        <label class="opcion-label"><input type="radio" name="q10" value="b"> <span>b) Republicano y social: reconoce que su trabajo tiene consecuencias colectivas (el fraude fiscal priva al Estado de recursos para derechos sociales) y que ser ciudadano activo implica defender el bien común incluso en el ámbito privado.</span></label>
+        <label class="opcion-label"><input type="radio" name="q10" value="c"> <span>c) Cosmopolita, porque los impuestos son un fenómeno global.</span></label>
+        <label class="opcion-label"><input type="radio" name="q10" value="d"> <span>d) Comunitarista, porque defiende los valores de su gremio profesional.</span></label>
+      </div>
+      <div class="feedback-item" id="fq10"></div>
+    </div>
+
+    <button class="btn-verificar" id="btnVerQ">✔ Verificar respuestas</button>
+    <div class="panel-resultados" id="resultQ">
+      <div class="resultado-emoji" id="emojiQ"></div>
+      <div class="resultado-score" id="scoreQ"></div>
+      <div class="resultado-pct" id="pctQ"></div>
+      <div class="barra-progreso-wrap"><div class="barra-progreso" id="barraQ" style="width:0%"></div></div>
+      <div class="resultado-msg" id="msgQ"></div>
+    </div>
+    <button class="btn-reiniciar" id="btnReiQ">↺ Reiniciar cuestionario</button>
+  </div>
+</section>
+
+<!-- ============ PESTAÑA: ACTIVIDAD IA ============ -->
+<section class="tab-content" id="tab-ia">
+  <h2 class="section-title">🤖 Actividad con Inteligencia Artificial</h2>
+  <div class="ia-card">
+    <h3>🎯 Objetivo de la Actividad</h3>
+    <p style="line-height:1.65; margin-bottom:10px;">Utilizarás la inteligencia artificial como <strong>interlocutor crítico</strong> para profundizar en el análisis de los modelos de ciudadanía aplicados al contexto ecuatoriano. La actividad NO consiste en copiar la respuesta de la IA: consiste en <strong>usar la IA para generar un borrador</strong> que tú deberás evaluar, cuestionar y enriquecer con tu propio criterio.</p>
+    <div class="caja-nota">
+      <strong>Herramienta recomendada:</strong> <a href="https://claude.ai" target="_blank" style="color: var(--azul-oscuro);">Claude (claude.ai)</a> de Anthropic — versión gratuita. También puedes usar ChatGPT o Gemini. Claude destaca por su capacidad de análisis político matizado y su menor tendencia a simplificar contextos complejos.
+    </div>
+  </div>
+
+  <div class="ia-card">
+    <h3>📋 La Tarea: Diagnóstico de Ciudadanía en tu Entorno</h3>
+    <p style="line-height:1.65; margin-bottom:12px;">Realizarás un análisis crítico de qué modelos de ciudadanía están <strong>realmente vigentes</strong> en un entorno que conoces (tu barrio, tu universidad, tu empresa, tu comunidad).</p>
+    
+    <div class="paso-row">
+      <div class="paso-num">1</div>
+      <div>
+        <strong>Escoge un entorno:</strong> Tu barrio en Guayaquil, la Facultad de Ciencias Administrativas de la Universidad de Guayaquil, o una empresa donde hayas trabajado o hecho pasantías.
+      </div>
+    </div>
+    <div class="paso-row">
+      <div class="paso-num">2</div>
+      <div>
+        <strong>Copia el siguiente prompt exacto</strong> en Claude (o tu IA preferida) y pégalo en el chat:
+      </div>
+    </div>
+
+    <div class="prompt-box" id="promptIA">Actúa como un politólogo especialista en ciudadanía y democracia en América Latina. Voy a describirte un entorno específico y necesito que analices qué modelos de ciudadanía están presentes, cuáles están ausentes, y dónde hay tensiones o contradicciones.
+
+El entorno que voy a analizar es: [ESCRIBE AQUÍ tu barrio, facultad o empresa]
+
+Por favor, estructura tu respuesta así:
+1. ¿Qué elementos del modelo LIBERAL de ciudadanía están presentes en este entorno? (Da ejemplos concretos)
+2. ¿Qué elementos del modelo REPUBLICANO (participación activa) están presentes o ausentes?
+3. ¿Qué elementos del modelo COMUNITARISTA (identidad colectiva, diversidad) son visibles?
+4. ¿Qué elementos de la CIUDADANÍA SOCIAL (acceso a derechos básicos) se garantizan o se niegan?
+5. ¿Cuál es el modelo de ciudadanía dominante en este entorno y por qué?
+6. ¿Qué brechas identificas entre la ciudadanía formal y la ciudadanía real?
+
+Sé específico, usa ejemplos plausibles para el contexto ecuatoriano urbano de Guayaquil, y no idealices: señala también las contradicciones y limitaciones reales.
+<button class="copy-btn" onclick="copiarPrompt()">📋 Copiar</button></div>
+
+    <div class="paso-row" style="margin-top:14px;">
+      <div class="paso-num">3</div>
+      <div><strong>Lee la respuesta completa</strong> de la IA. Luego responde estas preguntas en tu cuaderno o documento:</div>
+    </div>
+    <ul class="lista-visual" style="margin-left:40px;">
+      <li data-icon="🔍">¿Hay algo en la respuesta de la IA que <em>no coincide</em> con lo que tú has vivido o observado? ¿Qué sería más preciso o matizado?</li>
+      <li data-icon="💬">¿Qué modelo de ciudadanía domina en tu entorno según la IA? ¿Estás de acuerdo? Argumenta por qué sí o por qué no.</li>
+      <li data-icon="🆕">¿Qué elemento importante sobre ciudadanía en tu entorno <em>la IA no mencionó</em>? Añádelo y explícalo.</li>
+      <li data-icon="⚡">¿Cuál es la brecha más urgente entre ciudadanía formal y real en tu entorno? Propón UNA medida concreta para reducirla.</li>
+    </ul>
+    <div class="paso-row" style="margin-top:14px;">
+      <div class="paso-num">4</div>
+      <div><strong>Redacta tu análisis final</strong> (mínimo 400 palabras) integrando: la respuesta de la IA + tu evaluación crítica + tus añadidos originales.</div>
+    </div>
+  </div>
+
+  <div class="ia-card">
+    <h3>📊 Criterios de Evaluación</h3>
+    <p style="margin-bottom:12px; font-size:0.9rem;">Tu docente evaluará la actividad con estos criterios:</p>
+    <div class="criterio-row"><div class="criterio-icon">✅</div><div><strong>Pensamiento crítico (40%):</strong> Identificas elementos que la IA no mencionó, corriges imprecisiones o aportas matices propios del contexto real ecuatoriano. Tu análisis va más allá de la respuesta de la IA.</div></div>
+    <div class="criterio-row"><div class="criterio-icon">✅</div><div><strong>Aplicación de contenidos (30%):</strong> Usas correctamente los conceptos de los 4 modelos de ciudadanía estudiados. No confundes las categorías.</div></div>
+    <div class="criterio-row"><div class="criterio-icon">✅</div><div><strong>Propuesta propia (20%):</strong> Presentas una brecha específica y una medida concreta y factible para reducirla. La medida es tuya, no de la IA.</div></div>
+    <div class="criterio-row"><div class="criterio-icon">⛔</div><div><strong>NO corresponde pensamiento crítico:</strong> Copiar y pegar la respuesta de la IA sin ningún análisis propio. Esto se detecta fácilmente y resulta en calificación de cero.</div></div>
+  </div>
+</section>
+
+<!-- ============ PESTAÑA: PREGUNTAS REFLEXIVAS ============ -->
+<section class="tab-content" id="tab-reflexivas">
+  <h2 class="section-title">💭 Preguntas Reflexivas: Ciudadanía en tu Vida Cotidiana</h2>
+  <div class="caja-nota">
+    <strong>Nota importante:</strong> En esta sección no hay respuestas correctas ni incorrectas. El objetivo es conectar los conceptos académicos que hemos estudiado con las experiencias que vives día a día. Tómate unos minutos para reflexionar honestamente con cada pregunta.
+  </div>
+
+  <div class="reflexiva-card">
+    <div class="num">Reflexión 01</div>
+    <p>Piensa en los últimos 30 días. ¿Cuántas veces hiciste algo que podría llamarse "participación ciudadana"? (Votar, firmar una petición, asistir a una reunión barrial, publicar algo sobre un problema público, pagar impuestos, donar, ayudar a alguien en apuro...). ¿Qué tan activo eres como ciudadano en el sentido republicano del término?</p>
+    <div class="conexion">💡 Conexión: El modelo republicano plantea que la ciudadanía plena requiere participación activa, no solo poseer derechos. Si tu respuesta es "no hice nada de eso", no eres el único: ¿qué condiciones hacen que la gente no participe? ¿Es falta de tiempo, desconfianza, desinterés o falta de canales reales?</div>
+  </div>
+
+  <div class="reflexiva-card">
+    <div class="num">Reflexión 02</div>
+    <p>¿Alguna vez sentiste que tenías un derecho pero no podías ejercerlo? Por ejemplo: tenías derecho a quejarte, pero no sabías dónde; tenías derecho a acceder a un servicio público, pero te lo negaron; tenías derecho a información, pero no te la dieron. ¿Cómo te sentiste? ¿Qué hiciste?</p>
+    <div class="conexion">💡 Conexión: Eso que viviste es exactamente la brecha entre ciudadanía formal y ciudadanía real. Millones de ecuatorianos la experimentan a diario con respecto a servicios mucho más básicos: salud, justicia, educación. El concepto deja de ser abstracto cuando lo conectas con tu propia experiencia.</div>
+  </div>
+
+  <div class="reflexiva-card">
+    <div class="num">Reflexión 03</div>
+    <p>Imagina que un amigo venezolano vive contigo. Trabaja informal, paga IVA en cada compra, pero no puede votar, no puede acceder fácilmente a salud pública, y en algunos barrios lo discriminan. ¿Es ciudadano? ¿Debería serlo? ¿Qué te dice esto sobre los límites de la ciudadanía nacional?</p>
+    <div class="conexion">💡 Conexión: La ciudadanía cosmopolita y la ciudadanía diferenciada se cruzan aquí. Ecuador tiene una de las constituciones más generosas del mundo con los migrantes (Art. 9 y Art. 416), pero la realidad cotidiana de los migrantes venezolanos muestra que la norma y la práctica divergen profundamente.</div>
+  </div>
+
+  <div class="reflexiva-card">
+    <div class="num">Reflexión 04</div>
+    <p>¿Pagas tus impuestos completos y a tiempo? (O si eres dependiente, ¿lo hace tu familia o empleador?). ¿Alguna vez has comprado algo sin factura, o escuchado que alguien lo hace? ¿Te parece bien, mal, o "todos lo hacen"? ¿Qué consecuencias tiene esa práctica para los derechos sociales de toda la población?</p>
+    <div class="conexion">💡 Conexión: La evasión fiscal es una forma de "des-ciudadanización" colectiva: retira recursos que el Estado necesita para garantizar la ciudadanía social (hospitales, escuelas, seguridad social). El modelo republicano diría que pagar impuestos es un acto de ciudadanía activa, no solo una obligación legal.</div>
+  </div>
+
+  <div class="reflexiva-card">
+    <div class="num">Reflexión 05</div>
+    <p>¿Cuánto tiempo pasas en redes sociales al día? ¿Lo que lees ahí te informa sobre política y asuntos públicos, o principalmente te entretienes? ¿Podrías tomar decisiones políticas (votar, opinar sobre una ley, evaluar al gobierno) solo con lo que ves en TikTok, Instagram o WhatsApp?</p>
+    <div class="conexion">💡 Conexión: La ciudadanía digital no es solo tener internet: es ser capaz de usar el espacio digital para deliberar racionalmente, contrastar información y participar en debates públicos. Los algoritmos de las redes sociales están diseñados para generar reacciones emocionales, no deliberación racional. ¿Eso facilita o dificulta la ciudadanía digital?</div>
+  </div>
+
+  <div class="reflexiva-card">
+    <div class="num">Reflexión 06</div>
+    <p>Cuando eres auditor o contador (o lo serás pronto), tendrás acceso a información financiera confidencial de empresas y personas. ¿Qué harías si descubres que una empresa está evadiendo impuestos a gran escala y tu jefe te pide callar? ¿Ser "buen profesional" es solo hacer bien los números, o también tiene una dimensión ciudadana?</p>
+    <div class="conexion">💡 Conexión: La ética profesional del contador-auditor es en sí misma una práctica de ciudadanía. El modelo republicano diría que el bien común no puede dejarse en la puerta de la empresa cuando se va a trabajar. Tu profesión tiene consecuencias directas sobre los recursos del Estado y los derechos sociales de toda la sociedad.</div>
+  </div>
+</section>
+
+<!-- ============ PESTAÑA: BIBLIOGRAFÍA ============ -->
+<section class="tab-content" id="tab-biblio">
+  <h2 class="section-title">📚 Bibliografía</h2>
+  <p style="line-height:1.65; margin-bottom:18px;">Las siguientes referencias corresponden a obras reales verificadas. Se presentan en formato APA 7.ª edición.</p>
+
+  <div class="ref-card">
+    <div class="ref-num">1</div>
+    <div class="ref-body">Marshall, T. H., & Bottomore, T. (1992). <em>Citizenship and social class</em>. Pluto Press. (Obra original de Marshall publicada en 1950; esta edición incluye ensayo de Bottomore sobre perspectivas actuales).</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-num">2</div>
+    <div class="ref-body">Kymlicka, W. (1995). <em>Multicultural citizenship: A liberal theory of minority rights</em>. Oxford University Press.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-num">3</div>
+    <div class="ref-body">Young, I. M. (1989). Polity and group difference: A critique of the ideal of universal citizenship. <em>Ethics, 99</em>(2), 250–274. https://doi.org/10.1086/293065</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-num">4</div>
+    <div class="ref-body">Held, D. (2006). <em>Models of democracy</em> (3rd ed.). Polity Press.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-num">5</div>
+    <div class="ref-body">Asamblea Constituyente del Ecuador. (2008). <em>Constitución de la República del Ecuador</em>. Registro Oficial 449, 20 de octubre de 2008. https://www.asambleanacional.gob.ec/sites/default/files/documents/old/constitucion_de_bolsillo.pdf</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-num">6</div>
+    <div class="ref-body">Benhabib, S. (2004). <em>The rights of others: Aliens, residents and citizens</em>. Cambridge University Press.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-num">7</div>
+    <div class="ref-body">Mouffe, C. (1992). Feminism, citizenship, and radical democratic politics. En J. Butler & J. W. Scott (Eds.), <em>Feminists theorize the political</em> (pp. 369–384). Routledge.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-num">8</div>
+    <div class="ref-body">Comisión Económica para América Latina y el Caribe [CEPAL]. (2022). <em>Panorama social de América Latina y el Caribe 2022</em>. Naciones Unidas. https://repositorio.cepal.org/handle/11362/48519</div>
+  </div>
+
+  <div class="ref-nota">
+    ⚠️ <strong>Nota de verificación académica:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos. Las referencias aquí presentadas corresponden a obras y artículos reales; sin embargo, es responsabilidad del estudiante confirmar ediciones, páginas y disponibilidad actualizada.
+  </div>
+</section>
+
+</main>
+
+<!-- =============================================
+     JAVASCRIPT
+     ============================================= -->
+<script>
+// ── Navegación de pestañas ──────────────────────────────
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabContents.forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + target).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+// ── Resaltar opción seleccionada ────────────────────────
+document.querySelectorAll('.opcion-label input[type="radio"]').forEach(radio => {
+  radio.addEventListener('change', function() {
+    const name = this.name;
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+      r.closest('.opcion-label').classList.remove('seleccionada');
+    });
+    this.closest('.opcion-label').classList.add('seleccionada');
+  });
+});
+
+// ── Datos del Ejercicio Interactivo ─────────────────────
+const ejRespuestas = {
+  ej1: { correcta: 'b', feedback: { ok: '✅ Correcto. El presupuesto participativo con votación directa es una expresión del modelo republicano: los ciudadanos participan activamente en decisiones de autogobierno local.', err: '❌ Incorrecto. Aunque puede tener elementos de otros modelos, lo definitorio aquí es la participación directa de los ciudadanos en decisiones colectivas, que es el núcleo del modelo republicano.' } },
+  ej2: { correcta: 'c', feedback: { ok: '✅ Correcto. La demanda de derechos colectivos vinculados a la identidad cultural y territorial de un pueblo es el núcleo del modelo comunitarista, que reconoce que los grupos tienen derechos propios, no solo los individuos.', err: '❌ Incorrecto. El elemento clave es que se reivindican derechos colectivos (de la comunidad como grupo) basados en su identidad cultural y territorial, lo que define al modelo comunitarista.' } },
+  ej3: { correcta: 'b', feedback: { ok: '✅ Correcto. La defensa de la autonomía individual frente a la interferencia estatal, y la separación entre esfera pública y privada, son principios centrales del modelo liberal de ciudadanía.', err: '❌ Incorrecto. El estudiante defiende su autonomía privada frente al Estado, lo que es la esencia del modelo liberal: los derechos individuales como protección frente al poder público.' } },
+  ej4: { correcta: 'b', feedback: { ok: '✅ Correcto. El argumento de que sin internet no se puede acceder a servicios, trámites y educación conecta directamente con la ciudadanía digital: el acceso a entornos digitales como condición para ejercer derechos ciudadanos básicos.', err: '❌ Incorrecto. El argumento central es que sin acceso a internet los ciudadanos no pueden ejercer derechos fundamentales (educación, trámites, información), lo que define a la ciudadanía digital.' } },
+  ej5: { correcta: 'b', feedback: { ok: '✅ Correcto. Para Marshall, los derechos sociales son derechos de ciudadanía, no beneficios opcionales. Recortarlos equivale a retirar derechos ciudadanos conquistados, lo que es una regresión.', err: '❌ Incorrecto. Marshall argumentó que los derechos sociales (salud, educación, seguridad social) son parte constitutiva de la ciudadanía plena. El Estado tiene la obligación de garantizarlos; privarlos equivale a reducir la ciudadanía.' } },
+  ej6: { correcta: 'b', feedback: { ok: '✅ Correcto. Este caso integra tres modelos: el cosmopolita (tribunal internacional actuando sobre un Estado soberano), el comunitarista (derechos colectivos de pueblo indígena) y el ecológico (obligación de reparar el daño ambiental).', err: '❌ Incorrecto. El fallo combina varios modelos: un tribunal internacional (cosmopolita) defiende los derechos de un pueblo indígena (comunitarista) que incluyen vivir en un ambiente sano (ecológico). No se puede explicar con un solo modelo.' } },
+  ej7: { correcta: 'a', feedback: { ok: '✅ Correcto. La paridad de género en listas electorales es un mecanismo de ciudadanía diferenciada: reconoce que la igualdad formal (mismos derechos para todos) no basta cuando históricamente las mujeres han sido excluidas, y que se necesitan medidas específicas para garantizar representación real.', err: '❌ Incorrecto. La paridad de género no es igualdad abstracta (liberal), sino reconocimiento de que un grupo históricamente excluido necesita medidas especiales para alcanzar representación real. Eso define la ciudadanía diferenciada de Iris Marion Young.' } },
+  ej8: { correcta: 'b', feedback: { ok: '✅ Correcto. La ciudadanía es un concepto históricamente construido: cada época define quién pertenece a la comunidad política y qué derechos le corresponden. La polis ateniense excluía a la mayoría; las democracias modernas han ampliado (aunque no eliminado) esas exclusiones.', err: '❌ Incorrecto. La ciudadanía ateniense demuestra que este concepto no es universal ni eterno: refleja las relaciones de poder de cada época. Su evolución histórica (inclusión progresiva de mujeres, pueblos colonizados, migrantes) muestra que es un concepto dinámico y socialmente construido.' } }
+};
+
+// ── Datos del Cuestionario ──────────────────────────────
+const qRespuestas = {
+  q1:  { correcta: 'b', feedback: { ok: '✅ Correcto. Marshall describió tres generaciones: siglo XVIII (derechos civiles: libertad, propiedad, justicia), siglo XIX (derechos políticos: voto, participación) y siglo XX (derechos sociales: salud, educación, seguridad social).', err: '❌ Incorrecto. Marshall propuso un orden histórico: primero derechos civiles (siglo XVIII), luego políticos (siglo XIX) y finalmente sociales (siglo XX). Alterar este orden distorsiona su argumento central.' } },
+  q2:  { correcta: 'b', feedback: { ok: '✅ Correcto. La ciudadanía formal es el reconocimiento legal (tener cédula, derechos escritos en la ley). La ciudadanía real es el ejercicio efectivo en la vida cotidiana. La brecha entre ambas es uno de los problemas políticos centrales de América Latina.', err: '❌ Incorrecto. Ciudadanía formal = estatus legal reconocido. Ciudadanía real = ejercicio efectivo de los derechos. Que la ley reconozca un derecho no garantiza que se pueda ejercer en la práctica.' } },
+  q3:  { correcta: 'c', feedback: { ok: '✅ Correcto. El modelo republicano añade a los derechos individuales (compartidos con el liberalismo) la idea de que el ciudadano tiene el deber y la virtud de participar activamente en la vida pública. Sin participación, no hay ciudadanía plena.', err: '❌ Incorrecto. Tanto el liberalismo como el republicanismo reconocen derechos individuales e igualdad ante la ley. Lo exclusivo del republicanismo es la exigencia de participación activa en el autogobierno como virtud ciudadana indispensable.' } },
+  q4:  { correcta: 'b', feedback: { ok: '✅ Correcto. Young argumentó que la idea de una ciudadanía universal abstracta en realidad tiene como estándar tácito al hombre blanco occidental de clase media, excluyendo en la práctica a grupos oprimidos que necesitan reconocimiento y representación diferenciada.', err: '❌ Incorrecto. Young critica que el liberalismo clásico propone una ciudadanía "universal" que en la práctica excluye a los grupos históricamente marginados, porque el estándar de lo "universal" está construido desde la experiencia de los grupos dominantes.' } },
+  q5:  { correcta: 'b', feedback: { ok: '✅ Correcto. El cosmopolitismo plantea que los derechos humanos existen más allá de los Estados: toda persona, por el solo hecho de ser humana, tiene derechos y deberes universales. Esto no elimina la ciudadanía nacional, la complementa.', err: '❌ Incorrecto. El cosmopolitismo no aboga por eliminar fronteras ni propone la ciudadanía multinacional (pasaportes múltiples). Plantea que la dignidad humana es el fundamento de derechos universales que trascienden las naciones.' } },
+  q6:  { correcta: 'b', feedback: { ok: '✅ Correcto. La ciudadanía ateniense era exclusiva: hombres libres nacidos de padre ateniense. Mujeres, metecos (residentes extranjeros) y esclavos —que podían ser mayoría de la población— quedaban excluidos de la participación política.', err: '❌ Incorrecto. La ciudadanía en la polis ateniense era profundamente excluyente: solo los hombres libres nacidos en Atenas tenían plenos derechos políticos. La participación en la Asamblea era imposible para mujeres, esclavos y extranjeros.' } },
+  q7:  { correcta: 'c', feedback: { ok: '✅ Correcto. El reconocimiento de Ecuador como Estado plurinacional e intercultural refleja el modelo comunitarista: acepta que la sociedad está compuesta por comunidades distintas (pueblos indígenas, afroecuatorianos) con identidades colectivas y derechos propios.', err: '❌ Incorrecto. La plurinacionalidad es el reconocimiento de múltiples pueblos con identidades culturales colectivas propias. Esto es el núcleo del comunitarismo: la identidad colectiva y los derechos de grupo no pueden reducirse a derechos individuales.' } },
+  q8:  { correcta: 'b', feedback: { ok: '✅ Correcto. Las mujeres indígenas sin cédula tienen el derecho formal a la ciudadanía (nacieron en Ecuador), pero no pueden ejercerla porque el sistema burocrático no llegó a registrarlas. Esta es la brecha clásica entre ciudadanía formal y real.', err: '❌ Incorrecto. Sin cédula, estas mujeres son ciudadanas en derecho pero no en la práctica. No pueden votar, acceder a programas sociales ni registrar a sus hijos. Eso es la brecha entre ciudadanía formal (el derecho que les corresponde) y ciudadanía real (lo que pueden ejercer).' } },
+  q9:  { correcta: 'b', feedback: { ok: '✅ Correcto. Para Marshall, la salud pública gratuita es un derecho social de ciudadanía, no un beneficio. Cuando el Estado la retira o la convierte en mercancía, está reduciendo la ciudadanía social: es una regresión, no una reforma neutral.', err: '❌ Incorrecto. Desde Marshall, los derechos sociales son parte constitutiva de la ciudadanía plena. Cuando el Estado los recorta por presiones externas (FMI), no está haciendo un ajuste técnico: está retirando derechos ciudadanos conquistados. Eso es una regresión democrática.' } },
+  q10: { correcta: 'b', feedback: { ok: '✅ Correcto. El contador que se niega a encubrir evasión fiscal actúa desde la ciudadanía republicana (subordina el interés privado al bien común) y social (la evasión priva al Estado de recursos para garantizar derechos). Su responsabilidad no termina en el escritorio.', err: '❌ Incorrecto. El contador reconoce que su trabajo tiene consecuencias colectivas (la evasión fiscal reduce los recursos del Estado para la ciudadanía social) y que el ciudadano tiene deberes en la esfera pública aunque trabaje en el sector privado. Eso combina el modelo republicano y el social.' } }
+};
+
+// ── Función genérica de verificación ───────────────────
+function verificarQuiz(config) {
+  const { nombres, respuestas, prefijo, idPanel, idEmoji, idScore, idPct, idBarra, idMsg, idBtnRei } = config;
+  let correctas = 0;
+  let sinResponder = [];
+
+  nombres.forEach(n => {
+    const sel = document.querySelector(`input[name="${n}"]:checked`);
+    if (!sel) sinResponder.push(n);
+  });
+
+  if (sinResponder.length > 0) {
+    alert('⚠️ Debes responder todas las preguntas antes de verificar.');
+    return;
+  }
+
+  nombres.forEach(n => {
+    const sel = document.querySelector(`input[name="${n}"]:checked`);
+    const valor = sel.value;
+    const item = document.getElementById(n);
+    const fb = document.getElementById(prefijo + n.replace(/[a-z]+/, ''));
+    const datos = respuestas[n];
+    const esCorrecta = valor === datos.correcta;
+    if (esCorrecta) correctas++;
+
+    // Colorear opciones
+    item.querySelectorAll('.opcion-label').forEach(lbl => {
+      const inp = lbl.querySelector('input');
+      lbl.classList.remove('seleccionada');
+      if (inp.value === datos.correcta) lbl.classList.add('correcta');
+      else if (inp.value === valor && !esCorrecta) lbl.classList.add('incorrecta');
+      inp.disabled = true;
+    });
+
+    // Mostrar feedback
+    fb.className = 'feedback-item show ' + (esCorrecta ? 'ok' : 'err');
+    fb.textContent = esCorrecta ? datos.feedback.ok : datos.feedback.err;
+
+    item.classList.add(esCorrecta ? 'correcto' : 'incorrecto');
+  });
+
+  const total = nombres.length;
+  const pct = Math.round((correctas / total) * 100);
+
+  // Panel de resultados
+  const panel = document.getElementById(idPanel);
+  panel.classList.add('show');
+
+  let emoji, msg, barraClass;
+  if (pct === 100)      { emoji='🏆'; msg='¡Perfecto! Dominio total del tema.'; barraClass='barra-verde'; }
+  else if (pct >= 80)   { emoji='🎯'; msg='¡Muy bien! Sólido manejo de los conceptos.'; barraClass='barra-verde'; }
+  else if (pct >= 60)   { emoji='📘'; msg='Bien. Revisa los ítems incorrectos y refuerza.'; barraClass='barra-azul'; }
+  else if (pct >= 40)   { emoji='⚠️'; msg='Regular. Te recomendamos releer los temas antes de continuar.'; barraClass='barra-amarilla'; }
+  else                  { emoji='📖'; msg='Necesitas repasar. Vuelve al contenido e inténtalo de nuevo.'; barraClass='barra-roja'; }
+
+  document.getElementById(idEmoji).textContent = emoji;
+  document.getElementById(idScore).textContent = correctas + ' / ' + total;
+  document.getElementById(idPct).textContent = pct + '% de respuestas correctas';
+  document.getElementById(idMsg).textContent = msg;
+
+  const barra = document.getElementById(idBarra);
+  barra.className = 'barra-progreso ' + barraClass;
+  setTimeout(() => { barra.style.width = pct + '%'; }, 100);
+
+  document.getElementById(idBtnRei).style.display = 'block';
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// ── Botón verificar ejercicio ───────────────────────────
+document.getElementById('btnVerEj').addEventListener('click', () => {
+  verificarQuiz({
+    nombres: ['ej1','ej2','ej3','ej4','ej5','ej6','ej7','ej8'],
+    respuestas: ejRespuestas,
+    prefijo: 'fb',
+    idPanel: 'resultEj',
+    idEmoji: 'emojiEj',
+    idScore: 'scoreEj',
+    idPct: 'pctEj',
+    idBarra: 'barraEj',
+    idMsg: 'msgEj',
+    idBtnRei: 'btnReiEj'
+  });
+});
+
+// ── Botón verificar cuestionario ────────────────────────
+document.getElementById('btnVerQ').addEventListener('click', () => {
+  verificarQuiz({
+    nombres: ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'],
+    respuestas: qRespuestas,
+    prefijo: 'fq',
+    idPanel: 'resultQ',
+    idEmoji: 'emojiQ',
+    idScore: 'scoreQ',
+    idPct: 'pctQ',
+    idBarra: 'barraQ',
+    idMsg: 'msgQ',
+    idBtnRei: 'btnReiQ'
+  });
+});
+
+// ── Botón reiniciar ejercicio ───────────────────────────
+document.getElementById('btnReiEj').addEventListener('click', () => {
+  document.querySelectorAll('#tab-ejercicio .ej-item').forEach(item => {
+    item.classList.remove('correcto','incorrecto');
+    item.querySelectorAll('.opcion-label').forEach(lbl => {
+      lbl.classList.remove('seleccionada','correcta','incorrecta');
+      lbl.querySelector('input').disabled = false;
+      lbl.querySelector('input').checked = false;
+    });
+    item.querySelectorAll('.feedback-item').forEach(f => { f.className='feedback-item'; f.textContent=''; });
+  });
+  document.getElementById('resultEj').classList.remove('show');
+  document.getElementById('barraEj').style.width = '0%';
+  document.getElementById('btnReiEj').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ── Botón reiniciar cuestionario ────────────────────────
+document.getElementById('btnReiQ').addEventListener('click', () => {
+  document.querySelectorAll('#tab-cuestionario .ej-item').forEach(item => {
+    item.classList.remove('correcto','incorrecto');
+    item.querySelectorAll('.opcion-label').forEach(lbl => {
+      lbl.classList.remove('seleccionada','correcta','incorrecta');
+      lbl.querySelector('input').disabled = false;
+      lbl.querySelector('input').checked = false;
+    });
+    item.querySelectorAll('.feedback-item').forEach(f => { f.className='feedback-item'; f.textContent=''; });
+  });
+  document.getElementById('resultQ').classList.remove('show');
+  document.getElementById('barraQ').style.width = '0%';
+  document.getElementById('btnReiQ').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ── Copiar prompt IA ────────────────────────────────────
+function copiarPrompt() {
+  const texto = document.getElementById('promptIA').innerText.replace('📋 Copiar','').trim();
+  navigator.clipboard.writeText(texto).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = '✅ Copiado';
+    setTimeout(() => { btn.textContent = '📋 Copiar'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>

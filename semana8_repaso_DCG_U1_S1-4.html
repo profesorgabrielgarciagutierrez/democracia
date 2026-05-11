@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- PLANIFICACIÓN: 7 semanas | 2 archivos | Archivo 1: S1-S4 | Archivo 2: S5-S7 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repaso S1–S4 | Democracia, Ciudadanía y Globalización</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Sans 3', sans-serif; background: #f0f4f8; color: #1a1a2e; min-height: 100vh; }
+
+  /* ENCABEZADO */
+  header { background: #003366; color: #fff; padding: 18px 24px; display: flex; align-items: center; gap: 18px; }
+  header img { height: 64px; width: auto; border-radius: 6px; background: #fff; padding: 4px; }
+  .header-text h1 { font-family: 'Lora', serif; font-size: 1.25rem; font-weight: 700; line-height: 1.3; }
+  .header-text p { font-size: 0.88rem; opacity: 0.88; margin-top: 3px; }
+  .badge-repaso { display: inline-block; background: #87CEEB; color: #003366; font-weight: 700; font-size: 0.8rem; padding: 3px 10px; border-radius: 20px; margin-top: 5px; }
+
+  /* BARRA DE PESTAÑAS */
+  .tab-bar-wrapper { background: #87CEEB; overflow-x: auto; white-space: nowrap; border-bottom: 3px solid #003366; }
+  .tab-bar { display: inline-flex; padding: 0 8px; }
+  .tab-btn { display: inline-block; padding: 12px 18px; cursor: pointer; font-family: 'Source Sans 3', sans-serif; font-size: 0.85rem; font-weight: 600; color: #1a1a2e; background: transparent; border: none; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; }
+  .tab-btn:hover { background: rgba(0,51,102,0.1); }
+  .tab-btn.active { background: #fff; color: #003366; font-weight: 700; border-bottom: 3px solid #003366; }
+
+  /* CONTENIDO */
+  .tab-content { display: none; padding: 28px 24px; max-width: 960px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  /* SEMANA HEADER */
+  .semana-header { background: #003366; color: #fff; border-radius: 10px; padding: 18px 22px; margin-bottom: 24px; }
+  .semana-header h2 { font-family: 'Lora', serif; font-size: 1.35rem; }
+  .semana-header p { font-size: 0.9rem; opacity: 0.85; margin-top: 4px; }
+
+  /* BLOQUES */
+  .bloque { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 22px; margin-bottom: 20px; }
+  .bloque-titulo { font-family: 'Lora', serif; font-size: 1.1rem; color: #003366; font-weight: 700; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #87CEEB; }
+  .separador { height: 4px; background: linear-gradient(90deg, #003366, #87CEEB); border-radius: 2px; margin: 28px 0; }
+
+  /* ÍTEMS */
+  .item { background: #f8faff; border: 1px solid #d0ddf0; border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; }
+  .item p { font-size: 0.95rem; font-weight: 600; color: #003366; margin-bottom: 10px; }
+  .item label { display: flex; align-items: flex-start; gap: 8px; font-size: 0.9rem; padding: 5px 6px; border-radius: 5px; cursor: pointer; transition: background 0.15s; }
+  .item label:hover { background: #e8f0fe; }
+  .item input[type=radio] { margin-top: 2px; accent-color: #003366; flex-shrink: 0; }
+
+  /* BADGE */
+  .badge { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 12px; margin-left: 8px; vertical-align: middle; }
+  .badge-teorica { background: #003366; color: #fff; }
+  .badge-analisis { background: #e65c00; color: #fff; }
+
+  /* BOTONES */
+  .btn-verificar { background: #003366; color: #fff; border: none; padding: 11px 28px; border-radius: 8px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: background 0.2s; margin-top: 10px; }
+  .btn-verificar:hover { background: #00509e; }
+  .btn-reiniciar { background: #87CEEB; color: #003366; border: none; padding: 9px 22px; border-radius: 8px; font-size: 0.9rem; font-weight: 700; cursor: pointer; margin-top: 8px; margin-left: 10px; transition: background 0.2s; display: none; }
+  .btn-reiniciar:hover { background: #5fb8e0; }
+
+  /* RESULTADOS */
+  .resultado-item { border-radius: 7px; padding: 10px 14px; margin-top: 8px; font-size: 0.88rem; display: none; }
+  .correcto { background: #d4edda; border-left: 4px solid #28a745; color: #155724; }
+  .incorrecto { background: #f8d7da; border-left: 4px solid #dc3545; color: #721c24; }
+
+  /* CALIFICACIÓN */
+  .calificacion { background: #003366; color: #fff; border-radius: 10px; padding: 18px 20px; margin-top: 16px; display: none; text-align: center; }
+  .calificacion .puntaje { font-family: 'Lora', serif; font-size: 2rem; font-weight: 700; }
+  .calificacion .porcentaje { font-size: 1rem; opacity: 0.85; }
+  .calificacion .mensaje { font-size: 1rem; margin-top: 8px; font-weight: 600; }
+  .barra-wrap { background: rgba(255,255,255,0.2); border-radius: 20px; height: 12px; margin: 10px 0; overflow: hidden; }
+  .barra-fill { height: 100%; background: #87CEEB; border-radius: 20px; width: 0; transition: width 1s ease; }
+
+  .alerta { background: #fff3cd; border: 1px solid #ffc107; color: #856404; padding: 10px 14px; border-radius: 7px; font-size: 0.88rem; margin-top: 8px; display: none; }
+
+  @media(max-width:600px) {
+    .tab-btn { font-size: 0.78rem; padding: 10px 12px; }
+    .header-text h1 { font-size: 1rem; }
+    .tab-content { padding: 16px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ENCABEZADO -->
+<header>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Escudo_de_la_Universidad_de_Guayaquil.png/200px-Escudo_de_la_Universidad_de_Guayaquil.png" alt="UG" onerror="this.style.display='none'">
+  <div class="header-text">
+    <h1>Democracia, Ciudadanía y Globalización</h1>
+    <p>Universidad de Guayaquil | Facultad de Ciencias Administrativas | Contabilidad y Auditoría</p>
+    <span class="badge-repaso">📚 REPASO INTEGRAL — Semanas 1 a 4</span>
+  </div>
+</header>
+
+<!-- BARRA DE PESTAÑAS -->
+<div class="tab-bar-wrapper">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('s1')">S1 — Organización Política</button>
+    <button class="tab-btn" onclick="showTab('s2')">S2 — Soberanía del Estado</button>
+    <button class="tab-btn" onclick="showTab('s3')">S3 — Estado de Derecho</button>
+    <button class="tab-btn" onclick="showTab('s4')">S4 — Democracia Crítica</button>
+  </div>
+</div>
+
+<!-- ============================================================ SEMANA 1 ============================================================ -->
+<div id="s1" class="tab-content active">
+  <div class="semana-header">
+    <h2>Semana 1 — Organización Política y Administrativa del Ecuador</h2>
+    <p>Unidad 1: El Estado ecuatoriano | Estructura, funciones del Estado y niveles de gobierno</p>
+  </div>
+
+  <!-- EJERCICIO S1 -->
+  <div class="bloque">
+    <div class="bloque-titulo">🧩 Ejercicio Interactivo — Semana 1</div>
+    <p style="font-size:0.9rem;color:#555;margin-bottom:14px;">Tipo: <strong>Verdadero o Falso</strong>. Selecciona tu respuesta en cada ítem y luego presiona <em>Verificar respuestas</em>.</p>
+
+    <div class="item">
+      <p>1. El Ecuador es una república constitucional con un sistema presidencial de gobierno.</p>
+      <label><input type="radio" name="s1ei1" value="V"> Verdadero</label>
+      <label><input type="radio" name="s1ei1" value="F"> Falso</label>
+      <div id="s1ei1-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>2. La Constitución de Ecuador reconoce CUATRO funciones del Estado: Ejecutiva, Legislativa, Judicial y Electoral.</p>
+      <label><input type="radio" name="s1ei2" value="V"> Verdadero</label>
+      <label><input type="radio" name="s1ei2" value="F"> Falso</label>
+      <div id="s1ei2-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>3. Los Gobiernos Autónomos Descentralizados (GAD) son entidades del gobierno central sin autonomía propia.</p>
+      <label><input type="radio" name="s1ei3" value="V"> Verdadero</label>
+      <label><input type="radio" name="s1ei3" value="F"> Falso</label>
+      <div id="s1ei3-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>4. La Función de Transparencia y Control Social es la quinta función del Estado ecuatoriano, reconocida en la Constitución de 2008.</p>
+      <label><input type="radio" name="s1ei4" value="V"> Verdadero</label>
+      <label><input type="radio" name="s1ei4" value="F"> Falso</label>
+      <div id="s1ei4-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>5. En Ecuador, el Presidente de la República dirige la Función Legislativa.</p>
+      <label><input type="radio" name="s1ei5" value="V"> Verdadero</label>
+      <label><input type="radio" name="s1ei5" value="F"> Falso</label>
+      <div id="s1ei5-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>6. El principio de descentralización permite que los niveles de gobierno subnacionales (provincias, cantones, parroquias) ejerzan competencias propias.</p>
+      <label><input type="radio" name="s1ei6" value="V"> Verdadero</label>
+      <label><input type="radio" name="s1ei6" value="F"> Falso</label>
+      <div id="s1ei6-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>7. La Asamblea Nacional del Ecuador es unicameral, es decir, tiene una sola cámara legislativa.</p>
+      <label><input type="radio" name="s1ei7" value="V"> Verdadero</label>
+      <label><input type="radio" name="s1ei7" value="F"> Falso</label>
+      <div id="s1ei7-res" class="resultado-item"></div>
+    </div>
+
+    <div id="s1-ej-alerta" class="alerta">⚠️ Por favor, responde todos los ítems antes de verificar.</div>
+    <div style="margin-top:14px;">
+      <button class="btn-verificar" onclick="verificarEjercicio_s1()">✔ Verificar respuestas</button>
+      <button class="btn-reiniciar" id="s1-ej-reiniciar" onclick="reiniciarEjercicio_s1()">🔄 Reiniciar</button>
+    </div>
+    <div id="s1-ej-cal" class="calificacion">
+      <div class="puntaje" id="s1-ej-puntaje"></div>
+      <div class="porcentaje" id="s1-ej-pct"></div>
+      <div class="barra-wrap"><div class="barra-fill" id="s1-ej-barra"></div></div>
+      <div class="mensaje" id="s1-ej-msg"></div>
+    </div>
+  </div>
+
+  <div class="separador"></div>
+
+  <!-- CUESTIONARIO S1 -->
+  <div class="bloque">
+    <div class="bloque-titulo">📋 Cuestionario — Semana 1</div>
+    <p style="font-size:0.9rem;color:#555;margin-bottom:14px;">Selecciona UNA opción por pregunta. Al terminar presiona <em>Verificar respuestas</em>.</p>
+
+    <div class="item">
+      <p>1. ¿Cuál es la norma jurídica de mayor jerarquía en el Ecuador? <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s1qi1" value="a"> a) La Constitución de la República</label>
+      <label><input type="radio" name="s1qi1" value="b"> b) El Código Civil</label>
+      <label><input type="radio" name="s1qi1" value="c"> c) Los tratados internacionales de libre comercio</label>
+      <label><input type="radio" name="s1qi1" value="d"> d) Los decretos ejecutivos del Presidente</label>
+      <div id="s1qi1-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>2. ¿Cuántas funciones del Estado reconoce la Constitución ecuatoriana de 2008? <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s1qi2" value="a"> a) Cinco</label>
+      <label><input type="radio" name="s1qi2" value="b"> b) Tres</label>
+      <label><input type="radio" name="s1qi2" value="c"> c) Cuatro</label>
+      <label><input type="radio" name="s1qi2" value="d"> d) Seis</label>
+      <div id="s1qi2-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>3. ¿Cuál de las siguientes es la función del Estado que elabora y aprueba las leyes en Ecuador? <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s1qi3" value="a"> a) La Función Legislativa (Asamblea Nacional)</label>
+      <label><input type="radio" name="s1qi3" value="b"> b) La Función Ejecutiva (Presidencia)</label>
+      <label><input type="radio" name="s1qi3" value="c"> c) La Función Judicial (Corte Nacional)</label>
+      <label><input type="radio" name="s1qi3" value="d"> d) La Función Electoral (CNE)</label>
+      <div id="s1qi3-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>4. Los GAD provinciales, cantonales y parroquiales representan un nivel de gobierno: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s1qi4" value="a"> a) Subnacional o descentralizado</label>
+      <label><input type="radio" name="s1qi4" value="b"> b) Nacional centralizado</label>
+      <label><input type="radio" name="s1qi4" value="c"> c) Internacional</label>
+      <label><input type="radio" name="s1qi4" value="d"> d) Supranacional</label>
+      <div id="s1qi4-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>5. ¿Qué principio permite transferir competencias y recursos del gobierno central hacia los GAD? <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s1qi5" value="a"> a) Descentralización</label>
+      <label><input type="radio" name="s1qi5" value="b"> b) Centralización</label>
+      <label><input type="radio" name="s1qi5" value="c"> c) Federalismo</label>
+      <label><input type="radio" name="s1qi5" value="d"> d) Privatización</label>
+      <div id="s1qi5-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>6. ¿Qué función del Estado ecuatoriano tiene como misión principal combatir la corrupción y fomentar la participación ciudadana en el control del poder público? <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s1qi6" value="a"> a) La Función de Transparencia y Control Social</label>
+      <label><input type="radio" name="s1qi6" value="b"> b) La Función Electoral</label>
+      <label><input type="radio" name="s1qi6" value="c"> c) La Función Ejecutiva</label>
+      <label><input type="radio" name="s1qi6" value="d"> d) La Función Judicial</label>
+      <div id="s1qi6-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>7. El sistema presidencial del Ecuador implica que el Presidente: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s1qi7" value="a"> a) Es jefe de Estado y jefe de gobierno al mismo tiempo</label>
+      <label><input type="radio" name="s1qi7" value="b"> b) Es solo jefe de Estado, como en los sistemas parlamentarios</label>
+      <label><input type="radio" name="s1qi7" value="c"> c) Es elegido por el Congreso, no por voto popular</label>
+      <label><input type="radio" name="s1qi7" value="d"> d) Puede disolver la Asamblea Nacional en cualquier momento</label>
+      <div id="s1qi7-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>8. <span class="badge badge-analisis">Análisis</span> Un alcalde de un cantón decide usar fondos públicos para obras que solo benefician a su partido político. ¿Qué función del Estado debe intervenir para investigar y sancionar esta conducta?</p>
+      <label><input type="radio" name="s1qi8" value="a"> a) La Función de Transparencia y Control Social, a través de la Contraloría General del Estado</label>
+      <label><input type="radio" name="s1qi8" value="b"> b) La Función Legislativa, redactando una nueva ley</label>
+      <label><input type="radio" name="s1qi8" value="c"> c) La Función Ejecutiva, mediante decreto presidencial</label>
+      <label><input type="radio" name="s1qi8" value="d"> d) La Función Electoral, convocando nuevas elecciones de inmediato</label>
+      <div id="s1qi8-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>9. <span class="badge badge-analisis">Análisis</span> Una empresa privada presiona al gobierno para que cambie una ley ambiental a su favor. En el Estado ecuatoriano, ¿quién tiene la competencia exclusiva de reformar esa ley?</p>
+      <label><input type="radio" name="s1qi9" value="a"> a) La Asamblea Nacional, mediante el proceso legislativo correspondiente</label>
+      <label><input type="radio" name="s1qi9" value="b"> b) El Presidente de la República, por decreto ejecutivo</label>
+      <label><input type="radio" name="s1qi9" value="c"> c) El Consejo Nacional Electoral</label>
+      <label><input type="radio" name="s1qi9" value="d"> d) El Municipio del cantón donde opera la empresa</label>
+      <div id="s1qi9-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>10. <span class="badge badge-analisis">Análisis</span> Un auditor detecta que el GAD parroquial de su localidad no rinde cuentas sobre los fondos recibidos. ¿Qué principio de la organización política del Estado está siendo violado?</p>
+      <label><input type="radio" name="s1qi10" value="a"> a) El principio de rendición de cuentas (accountability) y transparencia</label>
+      <label><input type="radio" name="s1qi10" value="b"> b) El principio de descentralización territorial</label>
+      <label><input type="radio" name="s1qi10" value="c"> c) El principio de soberanía nacional</label>
+      <label><input type="radio" name="s1qi10" value="d"> d) El principio de separación de poderes</label>
+      <div id="s1qi10-res" class="resultado-item"></div>
+    </div>
+
+    <div id="s1-qz-alerta" class="alerta">⚠️ Por favor, responde todas las preguntas antes de verificar.</div>
+    <div style="margin-top:14px;">
+      <button class="btn-verificar" onclick="verificarQuiz_s1()">✔ Verificar respuestas</button>
+      <button class="btn-reiniciar" id="s1-qz-reiniciar" onclick="reiniciarQuiz_s1()">🔄 Reiniciar</button>
+    </div>
+    <div id="s1-qz-cal" class="calificacion">
+      <div class="puntaje" id="s1-qz-puntaje"></div>
+      <div class="porcentaje" id="s1-qz-pct"></div>
+      <div class="barra-wrap"><div class="barra-fill" id="s1-qz-barra"></div></div>
+      <div class="mensaje" id="s1-qz-msg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ SEMANA 2 ============================================================ -->
+<div id="s2" class="tab-content">
+  <div class="semana-header">
+    <h2>Semana 2 — La Soberanía del Estado</h2>
+    <p>Unidad 1: El Estado ecuatoriano | Concepto, tipos de soberanía y su aplicación en Ecuador</p>
+  </div>
+
+  <!-- EJERCICIO S2 -->
+  <div class="bloque">
+    <div class="bloque-titulo">🧩 Ejercicio Interactivo — Semana 2</div>
+    <p style="font-size:0.9rem;color:#555;margin-bottom:14px;">Tipo: <strong>Opción múltiple — elige la afirmación correcta</strong>.</p>
+
+    <div class="item">
+      <p>1. La soberanía, en su sentido clásico moderno, significa que el poder del Estado es:</p>
+      <label><input type="radio" name="s2ei1" value="a"> a) Supremo, independiente y no subordinado a ningún poder externo o interno superior</label>
+      <label><input type="radio" name="s2ei1" value="b"> b) Compartido por igual entre todos los ciudadanos y los organismos internacionales</label>
+      <label><input type="radio" name="s2ei1" value="c"> c) Delegado permanentemente al Fondo Monetario Internacional</label>
+      <div id="s2ei1-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>2. En la Constitución ecuatoriana de 2008, la soberanía reside en:</p>
+      <label><input type="radio" name="s2ei2" value="a"> a) El pueblo y se ejerce a través de los órganos del poder público y formas de participación directa</label>
+      <label><input type="radio" name="s2ei2" value="b"> b) El Presidente de la República como representante único del Estado</label>
+      <label><input type="radio" name="s2ei2" value="c"> c) La Asamblea Nacional como órgano legislativo supremo</label>
+      <div id="s2ei2-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>3. La soberanía INTERNA se refiere a:</p>
+      <label><input type="radio" name="s2ei3" value="a"> a) La autoridad suprema del Estado sobre su territorio y población</label>
+      <label><input type="radio" name="s2ei3" value="b"> b) La capacidad del Estado de intervenir militarmente en otros países</label>
+      <label><input type="radio" name="s2ei3" value="c"> c) El reconocimiento internacional del Estado por parte de la ONU</label>
+      <div id="s2ei3-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>4. Cuando Ecuador firma tratados internacionales, está ejerciendo:</p>
+      <label><input type="radio" name="s2ei4" value="a"> a) Su soberanía externa, como sujeto de derecho internacional en igualdad formal con otros Estados</label>
+      <label><input type="radio" name="s2ei4" value="b"> b) Una renuncia definitiva a su soberanía interna</label>
+      <label><input type="radio" name="s2ei4" value="c"> c) Una transferencia de poder al gobierno de otro país signatario</label>
+      <div id="s2ei4-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>5. La soberanía popular implica que las decisiones del Estado deben basarse en:</p>
+      <label><input type="radio" name="s2ei5" value="a"> a) La voluntad y el consentimiento de la ciudadanía, expresados a través de mecanismos democráticos</label>
+      <label><input type="radio" name="s2ei5" value="b"> b) Los intereses exclusivos de los grupos económicos dominantes</label>
+      <label><input type="radio" name="s2ei5" value="c"> c) Las recomendaciones de organismos financieros internacionales</label>
+      <div id="s2ei5-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>6. La dolarización de Ecuador (año 2000) puede analizarse como un ejemplo de:</p>
+      <label><input type="radio" name="s2ei6" value="a"> a) Limitación a la soberanía monetaria, al renunciar al control sobre la emisión de moneda propia</label>
+      <label><input type="radio" name="s2ei6" value="b"> b) Fortalecimiento de la soberanía territorial del país</label>
+      <label><input type="radio" name="s2ei6" value="c"> c) Ejercicio pleno de la soberanía popular mediante referéndum vinculante</label>
+      <div id="s2ei6-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>7. El concepto de soberanía fue formulado sistemáticamente en el siglo XVI por el filósofo y jurista:</p>
+      <label><input type="radio" name="s2ei7" value="a"> a) Jean Bodin, en su obra Los Seis Libros de la República</label>
+      <label><input type="radio" name="s2ei7" value="b"> b) Karl Marx, en El Capital</label>
+      <label><input type="radio" name="s2ei7" value="c"> c) John Locke, en el Segundo Tratado sobre el Gobierno Civil</label>
+      <div id="s2ei7-res" class="resultado-item"></div>
+    </div>
+
+    <div id="s2-ej-alerta" class="alerta">⚠️ Por favor, responde todos los ítems antes de verificar.</div>
+    <div style="margin-top:14px;">
+      <button class="btn-verificar" onclick="verificarEjercicio_s2()">✔ Verificar respuestas</button>
+      <button class="btn-reiniciar" id="s2-ej-reiniciar" onclick="reiniciarEjercicio_s2()">🔄 Reiniciar</button>
+    </div>
+    <div id="s2-ej-cal" class="calificacion">
+      <div class="puntaje" id="s2-ej-puntaje"></div>
+      <div class="porcentaje" id="s2-ej-pct"></div>
+      <div class="barra-wrap"><div class="barra-fill" id="s2-ej-barra"></div></div>
+      <div class="mensaje" id="s2-ej-msg"></div>
+    </div>
+  </div>
+
+  <div class="separador"></div>
+
+  <!-- CUESTIONARIO S2 -->
+  <div class="bloque">
+    <div class="bloque-titulo">📋 Cuestionario — Semana 2</div>
+    <p style="font-size:0.9rem;color:#555;margin-bottom:14px;">Selecciona UNA opción por pregunta. Al terminar presiona <em>Verificar respuestas</em>.</p>
+
+    <div class="item">
+      <p>1. Según Jean Bodin, el poder soberano se caracteriza por ser: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s2qi1" value="a"> a) Absoluto, perpetuo e indivisible en su origen</label>
+      <label><input type="radio" name="s2qi1" value="b"> b) Temporal, compartido y sujeto a revisión parlamentaria constante</label>
+      <label><input type="radio" name="s2qi1" value="c"> c) Delegado por organismos internacionales al gobierno nacional</label>
+      <label><input type="radio" name="s2qi1" value="d"> d) Exclusivo de las monarquías absolutas europeas del siglo XVIII</label>
+      <div id="s2qi1-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>2. ¿Cuál es la diferencia fundamental entre soberanía interna y soberanía externa? <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s2qi2" value="a"> a) La interna alude al poder supremo sobre el territorio nacional; la externa, a la independencia frente a otros Estados</label>
+      <label><input type="radio" name="s2qi2" value="b"> b) La interna implica firmar tratados; la externa, controlar la economía nacional</label>
+      <label><input type="radio" name="s2qi2" value="c"> c) La interna es propia de repúblicas; la externa, de monarquías</label>
+      <label><input type="radio" name="s2qi2" value="d"> d) No existe diferencia: ambas se refieren al mismo concepto jurídico</label>
+      <div id="s2qi2-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>3. La soberanía popular, concepto desarrollado por Jean-Jacques Rousseau, propone que el poder político legítimo emana de: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s2qi3" value="a"> a) La voluntad general del pueblo, no de un monarca ni de un grupo privilegiado</label>
+      <label><input type="radio" name="s2qi3" value="b"> b) La tradición histórica y la herencia monárquica</label>
+      <label><input type="radio" name="s2qi3" value="c"> c) Los acuerdos entre naciones en el marco de la ONU</label>
+      <label><input type="radio" name="s2qi3" value="d"> d) La clase empresarial que genera riqueza y empleo en el país</label>
+      <div id="s2qi3-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>4. ¿En qué artículo de la Constitución ecuatoriana de 2008 se establece que la soberanía radica en el pueblo? <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s2qi4" value="a"> a) Artículo 1</label>
+      <label><input type="radio" name="s2qi4" value="b"> b) Artículo 10</label>
+      <label><input type="radio" name="s2qi4" value="c"> c) Artículo 76</label>
+      <label><input type="radio" name="s2qi4" value="d"> d) Artículo 120</label>
+      <div id="s2qi4-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>5. La globalización económica desafía la soberanía estatal porque: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s2qi5" value="a"> a) Las decisiones de corporaciones transnacionales y mercados financieros pueden superar la capacidad regulatoria del Estado</label>
+      <label><input type="radio" name="s2qi5" value="b"> b) Elimina la necesidad de ejércitos nacionales y fronteras</label>
+      <label><input type="radio" name="s2qi5" value="c"> c) Transfiere el poder a la ONU de forma automática</label>
+      <label><input type="radio" name="s2qi5" value="d"> d) Fortalece siempre la soberanía al aumentar el PIB nacional</label>
+      <div id="s2qi5-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>6. El principio de no intervención en los asuntos internos de otros Estados es una expresión de: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s2qi6" value="a"> a) La soberanía externa e igualdad jurídica entre Estados</label>
+      <label><input type="radio" name="s2qi6" value="b"> b) La soberanía interna y la autonomía fiscal del gobierno</label>
+      <label><input type="radio" name="s2qi6" value="c"> c) El principio de subsidiariedad aplicado a los GAD</label>
+      <label><input type="radio" name="s2qi6" value="d"> d) El federalismo cooperativo entre países vecinos</label>
+      <div id="s2qi6-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>7. ¿Cuál de las siguientes limitaciones a la soberanía del Estado ecuatoriano está explícitamente reconocida en la Constitución de 2008? <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s2qi7" value="a"> a) La adhesión a tratados internacionales de derechos humanos que prevalecen sobre la ley interna</label>
+      <label><input type="radio" name="s2qi7" value="b"> b) La obligación de consultar al FMI antes de aprobar el presupuesto nacional</label>
+      <label><input type="radio" name="s2qi7" value="c"> c) La subordinación de la Constitución a las decisiones del Banco Mundial</label>
+      <label><input type="radio" name="s2qi7" value="d"> d) La prohibición de firmar tratados bilaterales sin autorización de la OEA</label>
+      <div id="s2qi7-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>8. <span class="badge badge-analisis">Análisis</span> Un gobierno extranjero amenaza con sanciones económicas a Ecuador si no modifica su política petrolera. Si Ecuador cede a esa presión, ¿qué dimensión de su soberanía estaría comprometida?</p>
+      <label><input type="radio" name="s2qi8" value="a"> a) La soberanía externa, al ceder capacidad de decisión autónoma frente a presión de otro Estado</label>
+      <label><input type="radio" name="s2qi8" value="b"> b) La soberanía interna, al cambiar la estructura de los GAD</label>
+      <label><input type="radio" name="s2qi8" value="c"> c) La soberanía popular, al convocar un referéndum no autorizado</label>
+      <label><input type="radio" name="s2qi8" value="d"> d) Ninguna; los acuerdos internacionales no afectan la soberanía</label>
+      <div id="s2qi8-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>9. <span class="badge badge-analisis">Análisis</span> Ecuador decide salir de un bloque de integración regional porque las normas supranacionales contradicen su política agraria. Este acto es un ejercicio de:</p>
+      <label><input type="radio" name="s2qi9" value="a"> a) Soberanía, ya que el Estado tiene la potestad de suscribir o retirarse de acuerdos internacionales</label>
+      <label><input type="radio" name="s2qi9" value="b"> b) Aislacionismo inconstitucional prohibido por la Carta Magna</label>
+      <label><input type="radio" name="s2qi9" value="c"> c) Una violación del principio de no intervención</label>
+      <label><input type="radio" name="s2qi9" value="d"> d) Una forma de descentralización territorial</label>
+      <div id="s2qi9-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>10. <span class="badge badge-analisis">Análisis</span> Una empresa transnacional minera opera en Ecuador sin pagar impuestos, amparada en un tratado bilateral de inversión. ¿Qué tensión conceptual ilustra esta situación?</p>
+      <label><input type="radio" name="s2qi10" value="a"> a) La tensión entre soberanía fiscal del Estado y los compromisos de los tratados internacionales de inversión</label>
+      <label><input type="radio" name="s2qi10" value="b"> b) La tensión entre soberanía popular y soberanía territorial</label>
+      <label><input type="radio" name="s2qi10" value="c"> c) La tensión entre el poder ejecutivo y el poder legislativo</label>
+      <label><input type="radio" name="s2qi10" value="d"> d) La tensión entre los GAD municipales y el gobierno central</label>
+      <div id="s2qi10-res" class="resultado-item"></div>
+    </div>
+
+    <div id="s2-qz-alerta" class="alerta">⚠️ Por favor, responde todas las preguntas antes de verificar.</div>
+    <div style="margin-top:14px;">
+      <button class="btn-verificar" onclick="verificarQuiz_s2()">✔ Verificar respuestas</button>
+      <button class="btn-reiniciar" id="s2-qz-reiniciar" onclick="reiniciarQuiz_s2()">🔄 Reiniciar</button>
+    </div>
+    <div id="s2-qz-cal" class="calificacion">
+      <div class="puntaje" id="s2-qz-puntaje"></div>
+      <div class="porcentaje" id="s2-qz-pct"></div>
+      <div class="barra-wrap"><div class="barra-fill" id="s2-qz-barra"></div></div>
+      <div class="mensaje" id="s2-qz-msg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ SEMANA 3 ============================================================ -->
+<div id="s3" class="tab-content">
+  <div class="semana-header">
+    <h2>Semana 3 — El Estado de Derecho y la Realidad Socioeconómica del Ecuador</h2>
+    <p>Unidad 1: El Estado ecuatoriano | Rule of law, constitucionalismo e indicadores socioeconómicos</p>
+  </div>
+
+  <!-- EJERCICIO S3 -->
+  <div class="bloque">
+    <div class="bloque-titulo">🧩 Ejercicio Interactivo — Semana 3</div>
+    <p style="font-size:0.9rem;color:#555;margin-bottom:14px;">Tipo: <strong>Emparejar concepto con definición</strong>. Selecciona la definición correcta para cada concepto.</p>
+
+    <div class="item">
+      <p>1. <strong>Estado de Derecho</strong> es el principio por el cual:</p>
+      <label><input type="radio" name="s3ei1" value="a"> a) Todas las personas e instituciones, incluido el propio gobierno, están sometidas a la ley</label>
+      <label><input type="radio" name="s3ei1" value="b"> b) El gobierno puede actuar sin restricciones legales en situaciones de emergencia</label>
+      <label><input type="radio" name="s3ei1" value="c"> c) Solo los ciudadanos están obligados a cumplir la ley, no las instituciones públicas</label>
+      <div id="s3ei1-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>2. El <strong>coeficiente de Gini</strong> mide:</p>
+      <label><input type="radio" name="s3ei2" value="a"> a) El grado de desigualdad en la distribución del ingreso dentro de una sociedad</label>
+      <label><input type="radio" name="s3ei2" value="b"> b) El nivel de endeudamiento externo del Estado ecuatoriano</label>
+      <label><input type="radio" name="s3ei2" value="c"> c) La tasa de crecimiento del Producto Interno Bruto anual</label>
+      <div id="s3ei2-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>3. El <strong>constitucionalismo</strong> implica que:</p>
+      <label><input type="radio" name="s3ei3" value="a"> a) La Constitución limita el poder del gobierno y garantiza derechos fundamentales de los ciudadanos</label>
+      <label><input type="radio" name="s3ei3" value="b"> b) El gobierno puede reformar la Constitución sin ningún proceso democrático</label>
+      <label><input type="radio" name="s3ei3" value="c"> c) Los poderes del Estado son ilimitados siempre que estén respaldados por mayoría parlamentaria</label>
+      <div id="s3ei3-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>4. La <strong>pobreza multidimensional</strong> se diferencia de la pobreza por ingresos porque:</p>
+      <label><input type="radio" name="s3ei4" value="a"> a) Considera privaciones en educación, salud, vivienda y servicios básicos, no solo el nivel de ingresos monetarios</label>
+      <label><input type="radio" name="s3ei4" value="b"> b) Se mide únicamente con base en el salario mínimo del país</label>
+      <label><input type="radio" name="s3ei4" value="c"> c) Solo aplica a países con economías dolarizadas como Ecuador</label>
+      <div id="s3ei4-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>5. La <strong>separación de poderes</strong> como elemento del Estado de Derecho sirve para:</p>
+      <label><input type="radio" name="s3ei5" value="a"> a) Prevenir la concentración del poder y garantizar que cada función del Estado actúe con independencia y se controle mutuamente</label>
+      <label><input type="radio" name="s3ei5" value="b"> b) Aumentar la eficiencia del gobierno al concentrar las decisiones en una sola institución</label>
+      <label><input type="radio" name="s3ei5" value="c"> c) Permitir que el Presidente ejerza funciones judiciales en casos de interés nacional</label>
+      <div id="s3ei5-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>6. El <strong>Índice de Percepción de la Corrupción (IPC)</strong> elaborado por Transparencia Internacional mide:</p>
+      <label><input type="radio" name="s3ei6" value="a"> a) La percepción del sector público y empresarial sobre el nivel de corrupción en el sector público de cada país</label>
+      <label><input type="radio" name="s3ei6" value="b"> b) El volumen de exportaciones e importaciones de un país en el año fiscal</label>
+      <label><input type="radio" name="s3ei6" value="c"> c) La calidad de las instituciones democráticas medida por el número de elecciones realizadas</label>
+      <div id="s3ei6-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>7. El <strong>Caso Metástasis</strong> en Ecuador (2023-2024) es un ejemplo de:</p>
+      <label><input type="radio" name="s3ei7" value="a"> a) Captura del Estado por el crimen organizado, que infiltra las instituciones de justicia para burlar el Estado de Derecho</label>
+      <label><input type="radio" name="s3ei7" value="b"> b) Un proceso de reforma constitucional que fortaleció los derechos ciudadanos</label>
+      <label><input type="radio" name="s3ei7" value="c"> c) Un caso de descentralización exitosa de los GAD parroquiales</label>
+      <div id="s3ei7-res" class="resultado-item"></div>
+    </div>
+
+    <div id="s3-ej-alerta" class="alerta">⚠️ Por favor, responde todos los ítems antes de verificar.</div>
+    <div style="margin-top:14px;">
+      <button class="btn-verificar" onclick="verificarEjercicio_s3()">✔ Verificar respuestas</button>
+      <button class="btn-reiniciar" id="s3-ej-reiniciar" onclick="reiniciarEjercicio_s3()">🔄 Reiniciar</button>
+    </div>
+    <div id="s3-ej-cal" class="calificacion">
+      <div class="puntaje" id="s3-ej-puntaje"></div>
+      <div class="porcentaje" id="s3-ej-pct"></div>
+      <div class="barra-wrap"><div class="barra-fill" id="s3-ej-barra"></div></div>
+      <div class="mensaje" id="s3-ej-msg"></div>
+    </div>
+  </div>
+
+  <div class="separador"></div>
+
+  <!-- CUESTIONARIO S3 -->
+  <div class="bloque">
+    <div class="bloque-titulo">📋 Cuestionario — Semana 3</div>
+
+    <div class="item">
+      <p>1. El principio central del Estado de Derecho (rule of law) establece que: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s3qi1" value="a"> a) Nadie, ni el propio gobierno, está por encima de la ley</label>
+      <label><input type="radio" name="s3qi1" value="b"> b) El gobierno puede suspender derechos constitucionales por razones de Estado</label>
+      <label><input type="radio" name="s3qi1" value="c"> c) Los jueces tienen poder discrecional ilimitado para interpretar la ley</label>
+      <label><input type="radio" name="s3qi1" value="d"> d) El Presidente puede legislar sin necesidad de la Asamblea Nacional</label>
+      <div id="s3qi1-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>2. La independencia judicial es un elemento del Estado de Derecho porque: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s3qi2" value="a"> a) Garantiza que los jueces resuelvan conforme a la ley sin presiones políticas ni económicas</label>
+      <label><input type="radio" name="s3qi2" value="b"> b) Permite que el Ejecutivo nombre jueces afines a sus intereses sin restricciones</label>
+      <label><input type="radio" name="s3qi2" value="c"> c) Elimina la necesidad de un Poder Legislativo autónomo</label>
+      <label><input type="radio" name="s3qi2" value="d"> d) Concentra el poder judicial en la Presidencia de la República</label>
+      <div id="s3qi2-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>3. ¿Qué organismo internacional elabora el Índice de Percepción de la Corrupción (IPC)? <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s3qi3" value="a"> a) Transparency International</label>
+      <label><input type="radio" name="s3qi3" value="b"> b) El Fondo Monetario Internacional (FMI)</label>
+      <label><input type="radio" name="s3qi3" value="c"> c) El Banco Mundial</label>
+      <label><input type="radio" name="s3qi3" value="d"> d) La Organización de Estados Americanos (OEA)</label>
+      <div id="s3qi3-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>4. Un valor del coeficiente de Gini cercano a 1 (o 100%) indica: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s3qi4" value="a"> a) Máxima desigualdad: toda la riqueza está concentrada en una sola persona o grupo</label>
+      <label><input type="radio" name="s3qi4" value="b"> b) Máxima igualdad en la distribución del ingreso</label>
+      <label><input type="radio" name="s3qi4" value="c"> c) Un crecimiento económico acelerado del país</label>
+      <label><input type="radio" name="s3qi4" value="d"> d) Un nivel de pobreza extrema inferior al 10% de la población</label>
+      <div id="s3qi4-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>5. El Ecuador es considerado un Estado Constitucional de Derechos y Justicia. Esto significa que: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s3qi5" value="a"> a) Los derechos constitucionales son directamente aplicables y prevalecen sobre cualquier ley ordinaria</label>
+      <label><input type="radio" name="s3qi5" value="b"> b) Los derechos solo se aplican si existe una ley secundaria que los desarrolle</label>
+      <label><input type="radio" name="s3qi5" value="c"> c) La Constitución puede ser modificada por decreto ejecutivo en casos de emergencia</label>
+      <label><input type="radio" name="s3qi5" value="d"> d) El poder judicial tiene autoridad para disolver la Asamblea Nacional</label>
+      <div id="s3qi5-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>6. La economía dolarizada del Ecuador (desde 2000) implica que: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s3qi6" value="a"> a) El Banco Central no puede emitir moneda propia ni devaluar para ajustar la economía</label>
+      <label><input type="radio" name="s3qi6" value="b"> b) Ecuador comparte su banco central con Estados Unidos</label>
+      <label><input type="radio" name="s3qi6" value="c"> c) El Presidente puede ordenar la impresión de dólares en caso de crisis fiscal</label>
+      <label><input type="radio" name="s3qi6" value="d"> d) La inflación en Ecuador siempre es igual a la de Estados Unidos</label>
+      <div id="s3qi6-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>7. La corrupción daña el Estado de Derecho porque: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s3qi7" value="a"> a) Destruye la igualdad ante la ley al permitir que quienes tienen poder o dinero eviten rendir cuentas</label>
+      <label><input type="radio" name="s3qi7" value="b"> b) Solo afecta a las instituciones privadas, no al sector público</label>
+      <label><input type="radio" name="s3qi7" value="c"> c) Es un fenómeno exclusivo de países en vías de desarrollo</label>
+      <label><input type="radio" name="s3qi7" value="d"> d) Fortalece la eficiencia del sector público al reducir la burocracia</label>
+      <div id="s3qi7-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>8. <span class="badge badge-analisis">Análisis</span> Un juez ecuatoriano recibe presiones de un político para fallar a su favor en un juicio de corrupción, y accede. ¿Qué principio del Estado de Derecho se está violando directamente?</p>
+      <label><input type="radio" name="s3qi8" value="a"> a) La independencia judicial y la igualdad ante la ley</label>
+      <label><input type="radio" name="s3qi8" value="b"> b) El principio de descentralización territorial</label>
+      <label><input type="radio" name="s3qi8" value="c"> c) El principio de soberanía popular</label>
+      <label><input type="radio" name="s3qi8" value="d"> d) El principio de representación proporcional en la Asamblea</label>
+      <div id="s3qi8-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>9. <span class="badge badge-analisis">Análisis</span> Ecuador tiene una de las tasas de desempleo juvenil más altas de América Latina y una alta informalidad laboral. Desde la perspectiva del Estado de Derecho, ¿qué obligación constitucional está en riesgo?</p>
+      <label><input type="radio" name="s3qi9" value="a"> a) El derecho al trabajo digno y la obligación del Estado de garantizar condiciones laborales justas (Art. 33 Constitución)</label>
+      <label><input type="radio" name="s3qi9" value="b"> b) El derecho a la propiedad privada de las empresas</label>
+      <label><input type="radio" name="s3qi9" value="c"> c) El principio de separación de poderes entre el ejecutivo y el legislativo</label>
+      <label><input type="radio" name="s3qi9" value="d"> d) La obligación del Estado de mantener el superávit fiscal anual</label>
+      <div id="s3qi9-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>10. <span class="badge badge-analisis">Análisis</span> Una firma de auditoría descubre irregularidades contables en una empresa pública, pero sus directivos presionan para que el informe sea alterado. Si el auditor cede, ¿qué principio del Estado de Derecho vulnera directamente?</p>
+      <label><input type="radio" name="s3qi10" value="a"> a) La transparencia y rendición de cuentas, pilares del Estado de Derecho y de la ética profesional</label>
+      <label><input type="radio" name="s3qi10" value="b"> b) El principio de soberanía monetaria</label>
+      <label><input type="radio" name="s3qi10" value="c"> c) El principio de descentralización fiscal</label>
+      <label><input type="radio" name="s3qi10" value="d"> d) El principio de representación proporcional en el Congreso</label>
+      <div id="s3qi10-res" class="resultado-item"></div>
+    </div>
+
+    <div id="s3-qz-alerta" class="alerta">⚠️ Por favor, responde todas las preguntas antes de verificar.</div>
+    <div style="margin-top:14px;">
+      <button class="btn-verificar" onclick="verificarQuiz_s3()">✔ Verificar respuestas</button>
+      <button class="btn-reiniciar" id="s3-qz-reiniciar" onclick="reiniciarQuiz_s3()">🔄 Reiniciar</button>
+    </div>
+    <div id="s3-qz-cal" class="calificacion">
+      <div class="puntaje" id="s3-qz-puntaje"></div>
+      <div class="porcentaje" id="s3-qz-pct"></div>
+      <div class="barra-wrap"><div class="barra-fill" id="s3-qz-barra"></div></div>
+      <div class="mensaje" id="s3-qz-msg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ SEMANA 4 ============================================================ -->
+<div id="s4" class="tab-content">
+  <div class="semana-header">
+    <h2>Semana 4 — Conceptualización Crítica de la Democracia</h2>
+    <p>Unidad 1: El Estado ecuatoriano | Modelos, crisis y condiciones de la democracia contemporánea</p>
+  </div>
+
+  <!-- EJERCICIO S4 -->
+  <div class="bloque">
+    <div class="bloque-titulo">🧩 Ejercicio Interactivo — Semana 4</div>
+    <p style="font-size:0.9rem;color:#555;margin-bottom:14px;">Tipo: <strong>Clasificar</strong>. Indica a qué modelo o concepto democrático corresponde cada descripción.</p>
+
+    <div class="item">
+      <p>1. "Los ciudadanos eligen representantes que toman decisiones en su nombre; el pueblo no gobierna directamente." Este enunciado describe la democracia:</p>
+      <label><input type="radio" name="s4ei1" value="a"> a) Representativa</label>
+      <label><input type="radio" name="s4ei1" value="b"> b) Directa</label>
+      <label><input type="radio" name="s4ei1" value="c"> c) Deliberativa</label>
+      <div id="s4ei1-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>2. "La ciudadanía decide directamente sobre leyes o políticas mediante referéndums y consultas populares." Este mecanismo corresponde a la democracia:</p>
+      <label><input type="radio" name="s4ei2" value="a"> a) Directa o participativa</label>
+      <label><input type="radio" name="s4ei2" value="b"> b) Representativa liberal clásica</label>
+      <label><input type="radio" name="s4ei2" value="c"> c) Constitucional indirecta</label>
+      <div id="s4ei2-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>3. La crítica de que la democracia puede convertirse en "tiranía de la mayoría" fue señalada principalmente por:</p>
+      <label><input type="radio" name="s4ei3" value="a"> a) Alexis de Tocqueville en La Democracia en América</label>
+      <label><input type="radio" name="s4ei3" value="b"> b) Karl Marx en el Manifiesto Comunista</label>
+      <label><input type="radio" name="s4ei3" value="c"> c) Jean-Jacques Rousseau en El Contrato Social</label>
+      <div id="s4ei3-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>4. El populismo como desafío a la democracia se caracteriza por:</p>
+      <label><input type="radio" name="s4ei4" value="a"> a) Presentar al líder como único intérprete legítimo de la voluntad popular, debilitando las instituciones democráticas</label>
+      <label><input type="radio" name="s4ei4" value="b"> b) Fortalecer la separación de poderes y el Estado de Derecho</label>
+      <label><input type="radio" name="s4ei4" value="c"> c) Aumentar la participación ciudadana en organismos supranacionales</label>
+      <div id="s4ei4-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>5. La "democracia procedimental" se limita a garantizar:</p>
+      <label><input type="radio" name="s4ei5" value="a"> a) Que las reglas del juego electoral sean justas (elecciones libres, periódicas y competitivas), pero no asegura resultados sustantivos de igualdad</label>
+      <label><input type="radio" name="s4ei5" value="b"> b) Que todos los ciudadanos tengan igualdad de ingresos económicos</label>
+      <label><input type="radio" name="s4ei5" value="c"> c) Que el partido gobernante renueve su mandato indefinidamente</label>
+      <div id="s4ei5-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>6. Amartya Sen argumenta que la democracia es valiosa porque:</p>
+      <label><input type="radio" name="s4ei6" value="a"> a) Permite que los ciudadanos expresen sus necesidades, obliga a los gobiernos a responder y tiene valor intrínseco como forma de libertad política</label>
+      <label><input type="radio" name="s4ei6" value="b"> b) Garantiza automáticamente la igualdad económica de todos los ciudadanos</label>
+      <label><input type="radio" name="s4ei6" value="c"> c) Es el único sistema que evita cualquier tipo de conflicto social</label>
+      <div id="s4ei6-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>7. La "democracia sustantiva" o "democracia de alta intensidad" va más allá del voto porque:</p>
+      <label><input type="radio" name="s4ei7" value="a"> a) Exige condiciones reales de igualdad, acceso a derechos sociales y económicos que hagan significativa la participación ciudadana</label>
+      <label><input type="radio" name="s4ei7" value="b"> b) Se basa únicamente en el principio de mayoría sin protección a minorías</label>
+      <label><input type="radio" name="s4ei7" value="c"> c) Elimina las elecciones directas y las reemplaza por asambleas de expertos</label>
+      <div id="s4ei7-res" class="resultado-item"></div>
+    </div>
+
+    <div id="s4-ej-alerta" class="alerta">⚠️ Por favor, responde todos los ítems antes de verificar.</div>
+    <div style="margin-top:14px;">
+      <button class="btn-verificar" onclick="verificarEjercicio_s4()">✔ Verificar respuestas</button>
+      <button class="btn-reiniciar" id="s4-ej-reiniciar" onclick="reiniciarEjercicio_s4()">🔄 Reiniciar</button>
+    </div>
+    <div id="s4-ej-cal" class="calificacion">
+      <div class="puntaje" id="s4-ej-puntaje"></div>
+      <div class="porcentaje" id="s4-ej-pct"></div>
+      <div class="barra-wrap"><div class="barra-fill" id="s4-ej-barra"></div></div>
+      <div class="mensaje" id="s4-ej-msg"></div>
+    </div>
+  </div>
+
+  <div class="separador"></div>
+
+  <!-- CUESTIONARIO S4 -->
+  <div class="bloque">
+    <div class="bloque-titulo">📋 Cuestionario — Semana 4</div>
+
+    <div class="item">
+      <p>1. ¿Cuál es la distinción principal entre democracia directa y democracia representativa? <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s4qi1" value="a"> a) En la directa los ciudadanos deciden sin intermediarios; en la representativa eligen delegados que deciden por ellos</label>
+      <label><input type="radio" name="s4qi1" value="b"> b) La directa es propia de grandes Estados modernos; la representativa, de ciudades-estado antiguas</label>
+      <label><input type="radio" name="s4qi1" value="c"> c) La representativa elimina el sufragio universal; la directa lo mantiene</label>
+      <label><input type="radio" name="s4qi1" value="d"> d) Ambas son idénticas en sus mecanismos de toma de decisiones</label>
+      <div id="s4qi1-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>2. La democracia ateniense del siglo V a.C. es considerada el primer modelo de democracia directa, pero tenía una limitación fundamental: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s4qi2" value="a"> a) Excluía a mujeres, esclavos y extranjeros de la participación política</label>
+      <label><input type="radio" name="s4qi2" value="b"> b) Era una monarquía constitucional disfrazada de democracia</label>
+      <label><input type="radio" name="s4qi2" value="c"> c) No permitía la libre expresión ni el debate público entre ciudadanos</label>
+      <label><input type="radio" name="s4qi2" value="d"> d) Dependía exclusivamente de decisiones del ejército para legitimarse</label>
+      <div id="s4qi2-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>3. La "poliarquía", concepto de Robert Dahl, describe a la democracia moderna como: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s4qi3" value="a"> a) Un sistema de gobierno en el que múltiples grupos compiten por el poder en condiciones de inclusión y contestación relativamente amplias</label>
+      <label><input type="radio" name="s4qi3" value="b"> b) Un gobierno dirigido exclusivamente por expertos en política</label>
+      <label><input type="radio" name="s4qi3" value="c"> c) La concentración del poder en una élite ilustrada elegida por meritocracia</label>
+      <label><input type="radio" name="s4qi3" value="d"> d) Un sistema donde el partido mayoritario controla todos los poderes del Estado</label>
+      <div id="s4qi3-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>4. Uno de los principales desafíos contemporáneos a la democracia es la "desinformación". Esto afecta a la democracia porque: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s4qi4" value="a"> a) Manipula la opinión pública y debilita la capacidad de los ciudadanos de tomar decisiones informadas</label>
+      <label><input type="radio" name="s4qi4" value="b"> b) Fortalece el control de la ciudadanía sobre los representantes políticos</label>
+      <label><input type="radio" name="s4qi4" value="c"> c) Aumenta la participación electoral al generar mayor debate público</label>
+      <label><input type="radio" name="s4qi4" value="d"> d) Solo afecta a los países sin libertad de prensa reconocida</label>
+      <div id="s4qi4-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>5. El "referéndum" en Ecuador es un mecanismo de democracia: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s4qi5" value="a"> a) Directa o semidirecta, porque permite a la ciudadanía pronunciarse directamente sobre una pregunta específica</label>
+      <label><input type="radio" name="s4qi5" value="b"> b) Representativa, porque los ciudadanos delegan en asambleístas la decisión</label>
+      <label><input type="radio" name="s4qi5" value="c"> c) Deliberativa, porque requiere debate previo en la Asamblea Nacional</label>
+      <label><input type="radio" name="s4qi5" value="d"> d) Procedimental, porque garantiza solo la igualdad de voto sin contenido sustantivo</label>
+      <div id="s4qi5-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>6. La abstención electoral elevada en una democracia puede interpretarse como: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s4qi6" value="a"> a) Una señal de desconfianza ciudadana en el sistema político y sus representantes</label>
+      <label><input type="radio" name="s4qi6" value="b"> b) Un indicador de fortalecimiento de las instituciones democráticas</label>
+      <label><input type="radio" name="s4qi6" value="c"> c) Un mecanismo de participación directa reconocido por la Constitución</label>
+      <label><input type="radio" name="s4qi6" value="d"> d) Un signo de madurez democrática, pues indica que los ciudadanos están conformes</label>
+      <div id="s4qi6-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>7. La Constitución del Ecuador de 2008 consagra una "democracia participativa" al incluir: <span class="badge badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="s4qi7" value="a"> a) Mecanismos como la consulta popular, la revocatoria del mandato, la iniciativa popular normativa y la silla vacía</label>
+      <label><input type="radio" name="s4qi7" value="b"> b) Solo el sufragio universal como única forma de participación ciudadana</label>
+      <label><input type="radio" name="s4qi7" value="c"> c) La prohibición de partidos políticos para reducir la polarización</label>
+      <label><input type="radio" name="s4qi7" value="d"> d) La eliminación de las elecciones directas a favor de asambleas ciudadanas</label>
+      <div id="s4qi7-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>8. <span class="badge badge-analisis">Análisis</span> Un gobierno gana elecciones con el 60% de los votos y decide eliminar la libertad de prensa argumentando que "la mayoría lo respalda". ¿Qué problema democrático ilustra esta situación?</p>
+      <label><input type="radio" name="s4qi8" value="a"> a) La "tiranía de la mayoría": la democracia no es solo votar; también implica respetar derechos fundamentales de las minorías</label>
+      <label><input type="radio" name="s4qi8" value="b"> b) Una aplicación correcta del principio mayoritario en democracia directa</label>
+      <label><input type="radio" name="s4qi8" value="c"> c) Un caso de democracia deliberativa que busca el bien común</label>
+      <label><input type="radio" name="s4qi8" value="d"> d) Un ejercicio legítimo de la soberanía popular sin restricciones</label>
+      <div id="s4qi8-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>9. <span class="badge badge-analisis">Análisis</span> En Ecuador, el índice de confianza en los partidos políticos es muy bajo según encuestas regionales. Desde la conceptualización crítica de la democracia, esto representa:</p>
+      <label><input type="radio" name="s4qi9" value="a"> a) Una crisis de representación democrática que debilita la legitimidad del sistema político</label>
+      <label><input type="radio" name="s4qi9" value="b"> b) Un indicador de que la democracia directa está funcionando correctamente</label>
+      <label><input type="radio" name="s4qi9" value="c"> c) Una señal de que el sistema presidencial es más eficiente que el parlamentario</label>
+      <label><input type="radio" name="s4qi9" value="d"> d) Un dato irrelevante para evaluar la calidad de la democracia ecuatoriana</label>
+      <div id="s4qi9-res" class="resultado-item"></div>
+    </div>
+
+    <div class="item">
+      <p>10. <span class="badge badge-analisis">Análisis</span> Una estudiante de Contabilidad argumenta: "Para qué estudiar democracia si mi trabajo es con números." Desde la perspectiva de este curso, la respuesta más fundamentada sería:</p>
+      <label><input type="radio" name="s4qi10" value="a"> a) La contabilidad autentica o falsifica la información sobre la que los ciudadanos y el Estado toman decisiones democráticas; sin datos verídicos, no hay democracia real</label>
+      <label><input type="radio" name="s4qi10" value="b"> b) Tiene razón; la democracia no tiene relación con la profesión contable</label>
+      <label><input type="radio" name="s4qi10" value="c"> c) La democracia solo importa a los políticos y abogados, no a los contadores</label>
+      <label><input type="radio" name="s4qi10" value="d"> d) La democracia es un tema filosófico sin aplicación práctica en la auditoría</label>
+      <div id="s4qi10-res" class="resultado-item"></div>
+    </div>
+
+    <div id="s4-qz-alerta" class="alerta">⚠️ Por favor, responde todas las preguntas antes de verificar.</div>
+    <div style="margin-top:14px;">
+      <button class="btn-verificar" onclick="verificarQuiz_s4()">✔ Verificar respuestas</button>
+      <button class="btn-reiniciar" id="s4-qz-reiniciar" onclick="reiniciarQuiz_s4()">🔄 Reiniciar</button>
+    </div>
+    <div id="s4-qz-cal" class="calificacion">
+      <div class="puntaje" id="s4-qz-puntaje"></div>
+      <div class="porcentaje" id="s4-qz-pct"></div>
+      <div class="barra-wrap"><div class="barra-fill" id="s4-qz-barra"></div></div>
+      <div class="mensaje" id="s4-qz-msg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ JAVASCRIPT ============================================================ -->
+<script>
+// ── NAVEGACIÓN DE PESTAÑAS ──────────────────────────────────────────────
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ── UTILIDADES COMUNES ───────────────────────────────────────────────────
+function getMensaje(pct) {
+  if (pct === 100) return '🏆 ¡Excelente dominio del tema!';
+  if (pct >= 80)  return '🎯 ¡Muy buen trabajo!';
+  if (pct >= 60)  return '📘 Vas por buen camino, repasa los ítems en rojo.';
+  if (pct >= 40)  return '⚠️ Necesitas reforzar. Vuelve al material.';
+  return '📖 Te recomendamos releer el contenido antes de continuar.';
+}
+
+function mostrarCalificacion(idCal, idPuntaje, idPct, idBarra, idMsg, correctas, total) {
+  const pct = Math.round((correctas / total) * 100);
+  document.getElementById(idPuntaje).textContent = correctas + ' / ' + total;
+  document.getElementById(idPct).textContent = pct + '%';
+  document.getElementById(idMsg).textContent = getMensaje(pct);
+  const cal = document.getElementById(idCal);
+  cal.style.display = 'block';
+  setTimeout(() => { document.getElementById(idBarra).style.width = pct + '%'; }, 100);
+}
+
+function allAnswered(names) {
+  return names.every(n => document.querySelector('input[name="'+n+'"]:checked'));
+}
+
+function showAlert(id) {
+  const el = document.getElementById(id);
+  el.style.display = 'block';
+  setTimeout(() => { el.style.display = 'none'; }, 3500);
+}
+
+function mostrarResultados(corrects, feedbacks) {
+  let ok = 0;
+  Object.keys(corrects).forEach(name => {
+    const sel = document.querySelector('input[name="'+name+'"]:checked');
+    const res = document.getElementById(name + '-res');
+    res.style.display = 'block';
+    if (sel && sel.value === corrects[name]) {
+      res.className = 'resultado-item correcto';
+      res.innerHTML = '✅ ' + feedbacks[name].ok;
+      ok++;
+    } else {
+      res.className = 'resultado-item incorrecto';
+      res.innerHTML = '❌ ' + feedbacks[name].err;
+    }
+  });
+  return ok;
+}
+
+function resetBlock(names, resIds, btnId, calId, barraId) {
+  names.forEach(n => { document.querySelectorAll('input[name="'+n+'"]').forEach(r => r.checked = false); });
+  resIds.forEach(id => { const el = document.getElementById(id); if(el){ el.style.display='none'; el.className='resultado-item'; } });
+  document.getElementById(calId).style.display = 'none';
+  document.getElementById(barraId).style.width = '0';
+  document.getElementById(btnId).style.display = 'none';
+}
+
+// ══════════════════════════════════════════════════════════════════
+// SEMANA 1
+// ══════════════════════════════════════════════════════════════════
+
+/* --- EJERCICIO S1 --- */
+const ejercicioCorrects_s1 = { s1ei1:'V', s1ei2:'F', s1ei3:'F', s1ei4:'V', s1ei5:'F', s1ei6:'V', s1ei7:'V' };
+const ejercicioFeedbacks_s1 = {
+  s1ei1: { ok:'Correcto. Ecuador es una república constitucional con sistema presidencial.', err:'Incorrecto. Ecuador sí es una república constitucional con sistema presidencial según la Constitución de 2008.' },
+  s1ei2: { ok:'Correcto. La Constitución de 2008 reconoce CINCO funciones: Ejecutiva, Legislativa, Judicial, Electoral y de Transparencia y Control Social.', err:'Incorrecto. Son CINCO funciones, no cuatro. La quinta es la Función de Transparencia y Control Social.' },
+  s1ei3: { ok:'Correcto. Los GAD son entidades con autonomía política, administrativa y financiera, no dependientes del gobierno central.', err:'Incorrecto. Los GAD tienen autonomía propia reconocida por la Constitución; no son simples dependencias del gobierno central.' },
+  s1ei4: { ok:'Correcto. La Función de Transparencia y Control Social es la quinta función del Estado, una innovación de la Constitución de 2008.', err:'Incorrecto. Esta función sí existe y es la quinta función del Estado ecuatoriano según la Constitución de 2008.' },
+  s1ei5: { ok:'Correcto. El Presidente dirige la Función Ejecutiva, no la Legislativa; esta última es responsabilidad de la Asamblea Nacional.', err:'Incorrecto. El Presidente dirige la Función Ejecutiva. La Función Legislativa corresponde a la Asamblea Nacional.' },
+  s1ei6: { ok:'Correcto. La descentralización transfiere competencias y recursos a los niveles subnacionales de gobierno.', err:'Incorrecto. La descentralización sí permite que provincias, cantones y parroquias ejerzan competencias propias.' },
+  s1ei7: { ok:'Correcto. La Asamblea Nacional es unicameral: tiene una sola cámara, a diferencia de sistemas bicamerales.', err:'Incorrecto. La Asamblea Nacional del Ecuador SÍ es unicameral (una sola cámara).' }
+};
+
+function verificarEjercicio_s1() {
+  const names = Object.keys(ejercicioCorrects_s1);
+  if (!allAnswered(names)) { showAlert('s1-ej-alerta'); return; }
+  const ok = mostrarResultados(ejercicioCorrects_s1, ejercicioFeedbacks_s1);
+  mostrarCalificacion('s1-ej-cal','s1-ej-puntaje','s1-ej-pct','s1-ej-barra','s1-ej-msg', ok, names.length);
+  document.getElementById('s1-ej-reiniciar').style.display = 'inline-block';
+}
+
+function reiniciarEjercicio_s1() {
+  const names = Object.keys(ejercicioCorrects_s1);
+  resetBlock(names, names.map(n=>n+'-res'), 's1-ej-reiniciar', 's1-ej-cal', 's1-ej-barra');
+}
+
+/* --- CUESTIONARIO S1 --- */
+const quizCorrects_s1 = { s1qi1:'a', s1qi2:'a', s1qi3:'a', s1qi4:'a', s1qi5:'a', s1qi6:'a', s1qi7:'a', s1qi8:'a', s1qi9:'a', s1qi10:'a' };
+const quizFeedbacks_s1 = {
+  s1qi1: { ok:'Correcto. La Constitución es la norma suprema del ordenamiento jurídico ecuatoriano.', err:'Incorrecto. La norma de mayor jerarquía en Ecuador es la Constitución de la República (2008).' },
+  s1qi2: { ok:'Correcto. Son cinco: Ejecutiva, Legislativa, Judicial, Electoral y Transparencia y Control Social.', err:'Incorrecto. La Constitución de 2008 reconoce cinco funciones del Estado, no tres ni cuatro.' },
+  s1qi3: { ok:'Correcto. La Asamblea Nacional, como Función Legislativa, elabora y aprueba las leyes.', err:'Incorrecto. La elaboración y aprobación de leyes es competencia de la Asamblea Nacional (Función Legislativa).' },
+  s1qi4: { ok:'Correcto. Los GAD son entidades del nivel subnacional o descentralizado del Estado.', err:'Incorrecto. Los GAD son entidades subnacionales con autonomía, no del nivel central.' },
+  s1qi5: { ok:'Correcto. La descentralización es el principio que permite transferir competencias y recursos a los GAD.', err:'Incorrecto. El principio es la descentralización, no la centralización ni el federalismo.' },
+  s1qi6: { ok:'Correcto. La Función de Transparencia y Control Social, junto con la Contraloría, tiene misión anticorrupción.', err:'Incorrecto. Esta función corresponde a la Función de Transparencia y Control Social.' },
+  s1qi7: { ok:'Correcto. En el presidencialismo, el Presidente es a la vez jefe de Estado y jefe de gobierno.', err:'Incorrecto. En Ecuador el Presidente es jefe de Estado y jefe de gobierno simultáneamente.' },
+  s1qi8: { ok:'Correcto. La Contraloría General, parte de la Función de Transparencia, investiga el uso indebido de fondos públicos.', err:'Incorrecto. La instancia adecuada es la Función de Transparencia y Control Social / Contraloría General del Estado.' },
+  s1qi9: { ok:'Correcto. La reforma de leyes es competencia exclusiva de la Asamblea Nacional mediante el proceso legislativo.', err:'Incorrecto. Solo la Asamblea Nacional puede reformar leyes; el Presidente puede proponer, pero no reformar unilateralmente.' },
+  s1qi10: { ok:'Correcto. La falta de rendición de cuentas viola el principio de accountability y transparencia del Estado de Derecho.', err:'Incorrecto. El principio violado es la rendición de cuentas y transparencia, no la descentralización ni la soberanía.' }
+};
+
+function verificarQuiz_s1() {
+  const names = Object.keys(quizCorrects_s1);
+  if (!allAnswered(names)) { showAlert('s1-qz-alerta'); return; }
+  const ok = mostrarResultados(quizCorrects_s1, quizFeedbacks_s1);
+  mostrarCalificacion('s1-qz-cal','s1-qz-puntaje','s1-qz-pct','s1-qz-barra','s1-qz-msg', ok, names.length);
+  document.getElementById('s1-qz-reiniciar').style.display = 'inline-block';
+}
+
+function reiniciarQuiz_s1() {
+  const names = Object.keys(quizCorrects_s1);
+  resetBlock(names, names.map(n=>n+'-res'), 's1-qz-reiniciar', 's1-qz-cal', 's1-qz-barra');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// SEMANA 2
+// ══════════════════════════════════════════════════════════════════
+
+const ejercicioCorrects_s2 = { s2ei1:'a', s2ei2:'a', s2ei3:'a', s2ei4:'a', s2ei5:'a', s2ei6:'a', s2ei7:'a' };
+const ejercicioFeedbacks_s2 = {
+  s2ei1: { ok:'Correcto. La soberanía en su sentido clásico (Bodin, siglo XVI) es el poder supremo, independiente y no subordinado a ningún poder superior.', err:'Incorrecto. La soberanía clásica se define como poder supremo, independiente y no subordinado. No es compartida ni delegada al exterior.' },
+  s2ei2: { ok:'Correcto. El Art. 1 de la Constitución de 2008 establece que la soberanía radica en el pueblo y se ejerce mediante los órganos del poder público y la participación directa.', err:'Incorrecto. Según la Constitución ecuatoriana (Art. 1), la soberanía reside en el pueblo, no en el Presidente ni en la Asamblea exclusivamente.' },
+  s2ei3: { ok:'Correcto. La soberanía interna es la autoridad suprema del Estado sobre su territorio y su población.', err:'Incorrecto. La soberanía interna se refiere a la autoridad suprema dentro del territorio nacional, no a intervenciones externas ni reconocimiento internacional.' },
+  s2ei4: { ok:'Correcto. Al firmar tratados, Ecuador ejerce su soberanía externa como sujeto de derecho internacional en igualdad con otros Estados.', err:'Incorrecto. Firmar tratados es un ejercicio de soberanía externa, no una renuncia a la soberanía interna.' },
+  s2ei5: { ok:'Correcto. La soberanía popular (Rousseau) implica que las decisiones del Estado se basan en la voluntad y consentimiento ciudadano.', err:'Incorrecto. La soberanía popular se basa en la voluntad y consentimiento de la ciudadanía, expresados democráticamente.' },
+  s2ei6: { ok:'Correcto. Al dolarizarse, Ecuador renunció a emitir su propia moneda, lo que limita su soberanía monetaria.', err:'Incorrecto. La dolarización limita la soberanía monetaria al renunciar al control sobre la emisión de moneda propia.' },
+  s2ei7: { ok:'Correcto. Jean Bodin formuló la teoría moderna de la soberanía en Los Seis Libros de la República (1576).', err:'Incorrecto. El concepto sistemático de soberanía fue formulado por Jean Bodin en el siglo XVI, no por Marx ni Locke.' }
+};
+
+function verificarEjercicio_s2() {
+  const names = Object.keys(ejercicioCorrects_s2);
+  if (!allAnswered(names)) { showAlert('s2-ej-alerta'); return; }
+  const ok = mostrarResultados(ejercicioCorrects_s2, ejercicioFeedbacks_s2);
+  mostrarCalificacion('s2-ej-cal','s2-ej-puntaje','s2-ej-pct','s2-ej-barra','s2-ej-msg', ok, names.length);
+  document.getElementById('s2-ej-reiniciar').style.display = 'inline-block';
+}
+
+function reiniciarEjercicio_s2() {
+  const names = Object.keys(ejercicioCorrects_s2);
+  resetBlock(names, names.map(n=>n+'-res'), 's2-ej-reiniciar', 's2-ej-cal', 's2-ej-barra');
+}
+
+const quizCorrects_s2 = { s2qi1:'a', s2qi2:'a', s2qi3:'a', s2qi4:'a', s2qi5:'a', s2qi6:'a', s2qi7:'a', s2qi8:'a', s2qi9:'a', s2qi10:'a' };
+const quizFeedbacks_s2 = {
+  s2qi1: { ok:'Correcto. Para Bodin, la soberanía es absoluta, perpetua e indivisible en su origen teórico.', err:'Incorrecto. Bodin describió la soberanía como absoluta, perpetua e indivisible.' },
+  s2qi2: { ok:'Correcto. La interna alude al poder supremo sobre el territorio; la externa, a la independencia frente a otros Estados.', err:'Incorrecto. La soberanía interna es el poder supremo interno; la externa es la independencia frente al exterior.' },
+  s2qi3: { ok:'Correcto. Rousseau propuso que el poder legítimo emana de la voluntad general del pueblo.', err:'Incorrecto. Rousseau atribuía el poder político legítimo a la voluntad general del pueblo.' },
+  s2qi4: { ok:'Correcto. El Art. 1 de la Constitución de 2008 establece que la soberanía radica en el pueblo.', err:'Incorrecto. Es el Art. 1 de la Constitución de 2008 el que establece que la soberanía reside en el pueblo.' },
+  s2qi5: { ok:'Correcto. Las decisiones de actores transnacionales pueden superar la capacidad regulatoria del Estado, desafiando su soberanía.', err:'Incorrecto. La globalización desafía la soberanía porque las corporaciones y mercados pueden superar la capacidad regulatoria estatal.' },
+  s2qi6: { ok:'Correcto. El principio de no intervención expresa la igualdad soberana entre Estados en el derecho internacional.', err:'Incorrecto. No intervención es un principio de la soberanía externa e igualdad jurídica entre Estados.' },
+  s2qi7: { ok:'Correcto. La Constitución reconoce la prevalencia de tratados internacionales de DDHH sobre la ley interna (Art. 424-425).', err:'Incorrecto. La limitación reconocida es la adhesión a tratados de DDHH, que prevalecen sobre la ley ordinaria.' },
+  s2qi8: { ok:'Correcto. Ceder ante presión extranjera compromete la soberanía externa al perder autonomía decisional frente a otro Estado.', err:'Incorrecto. Esta situación afecta la soberanía externa, pues Ecuador cede capacidad de decisión autónoma ante otro Estado.' },
+  s2qi9: { ok:'Correcto. Retirarse de un bloque de integración es un ejercicio legítimo de soberanía del Estado.', err:'Incorrecto. Retirarse de un acuerdo internacional es una expresión de la soberanía estatal, no una violación constitucional.' },
+  s2qi10: { ok:'Correcto. Esta situación ilustra la tensión entre la soberanía fiscal del Estado y los compromisos de tratados de inversión.', err:'Incorrecto. La tensión central es entre la soberanía fiscal del Estado y los tratados internacionales de inversión que limitan su capacidad tributaria.' }
+};
+
+function verificarQuiz_s2() {
+  const names = Object.keys(quizCorrects_s2);
+  if (!allAnswered(names)) { showAlert('s2-qz-alerta'); return; }
+  const ok = mostrarResultados(quizCorrects_s2, quizFeedbacks_s2);
+  mostrarCalificacion('s2-qz-cal','s2-qz-puntaje','s2-qz-pct','s2-qz-barra','s2-qz-msg', ok, names.length);
+  document.getElementById('s2-qz-reiniciar').style.display = 'inline-block';
+}
+
+function reiniciarQuiz_s2() {
+  const names = Object.keys(quizCorrects_s2);
+  resetBlock(names, names.map(n=>n+'-res'), 's2-qz-reiniciar', 's2-qz-cal', 's2-qz-barra');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// SEMANA 3
+// ══════════════════════════════════════════════════════════════════
+
+const ejercicioCorrects_s3 = { s3ei1:'a', s3ei2:'a', s3ei3:'a', s3ei4:'a', s3ei5:'a', s3ei6:'a', s3ei7:'a' };
+const ejercicioFeedbacks_s3 = {
+  s3ei1: { ok:'Correcto. El Estado de Derecho (rule of law) somete a todos, incluido el gobierno, al imperio de la ley.', err:'Incorrecto. El Estado de Derecho implica que TODOS, incluido el gobierno, están sujetos a la ley.' },
+  s3ei2: { ok:'Correcto. El coeficiente de Gini mide la desigualdad en la distribución del ingreso (0 = igualdad perfecta; 1 = desigualdad máxima).', err:'Incorrecto. El Gini mide desigualdad en la distribución del ingreso, no deuda ni crecimiento del PIB.' },
+  s3ei3: { ok:'Correcto. El constitucionalismo limita el poder del gobierno y garantiza derechos fundamentales mediante la Constitución.', err:'Incorrecto. El constitucionalismo limita el poder y garantiza derechos; no permite reformas unilaterales ni poderes ilimitados.' },
+  s3ei4: { ok:'Correcto. La pobreza multidimensional incluye privaciones en salud, educación y vivienda, más allá del ingreso monetario.', err:'Incorrecto. La pobreza multidimensional considera múltiples dimensiones (educación, salud, vivienda), no solo ingresos.' },
+  s3ei5: { ok:'Correcto. La separación de poderes previene la concentración del poder y garantiza el control mutuo entre funciones del Estado.', err:'Incorrecto. La separación de poderes sirve para prevenir la concentración del poder, no para concentrarlo.' },
+  s3ei6: { ok:'Correcto. El IPC mide la percepción del sector público y empresarial sobre la corrupción en el sector público.', err:'Incorrecto. El IPC mide percepción de corrupción en el sector público, no exportaciones ni calidad electoral.' },
+  s3ei7: { ok:'Correcto. El Caso Metástasis reveló la infiltración del crimen organizado en instituciones judiciales del Ecuador.', err:'Incorrecto. El Caso Metástasis evidenció la captura del Estado por el crimen organizado, no una reforma constitucional.' }
+};
+
+function verificarEjercicio_s3() {
+  const names = Object.keys(ejercicioCorrects_s3);
+  if (!allAnswered(names)) { showAlert('s3-ej-alerta'); return; }
+  const ok = mostrarResultados(ejercicioCorrects_s3, ejercicioFeedbacks_s3);
+  mostrarCalificacion('s3-ej-cal','s3-ej-puntaje','s3-ej-pct','s3-ej-barra','s3-ej-msg', ok, names.length);
+  document.getElementById('s3-ej-reiniciar').style.display = 'inline-block';
+}
+
+function reiniciarEjercicio_s3() {
+  const names = Object.keys(ejercicioCorrects_s3);
+  resetBlock(names, names.map(n=>n+'-res'), 's3-ej-reiniciar', 's3-ej-cal', 's3-ej-barra');
+}
+
+const quizCorrects_s3 = { s3qi1:'a', s3qi2:'a', s3qi3:'a', s3qi4:'a', s3qi5:'a', s3qi6:'a', s3qi7:'a', s3qi8:'a', s3qi9:'a', s3qi10:'a' };
+const quizFeedbacks_s3 = {
+  s3qi1: { ok:'Correcto. El rule of law establece que nadie, ni el propio gobierno, está por encima de la ley.', err:'Incorrecto. El principio central es que nadie está por encima de la ley, incluido el gobierno.' },
+  s3qi2: { ok:'Correcto. La independencia judicial garantiza decisiones basadas en la ley, sin presiones políticas ni económicas.', err:'Incorrecto. La independencia judicial garantiza que los jueces fallen según la ley, no según intereses políticos.' },
+  s3qi3: { ok:'Correcto. El IPC es elaborado por Transparency International, ONG internacional especializada en anticorrupción.', err:'Incorrecto. El IPC es elaborado por Transparency International, no por el FMI ni el Banco Mundial.' },
+  s3qi4: { ok:'Correcto. Un Gini cercano a 1 indica máxima desigualdad: toda la riqueza concentrada en muy pocas personas.', err:'Incorrecto. Un Gini cercano a 1 indica máxima desigualdad, no igualdad ni crecimiento.' },
+  s3qi5: { ok:'Correcto. En el Estado Constitucional de Derechos, los derechos son directamente aplicables y prevalecen sobre la ley ordinaria.', err:'Incorrecto. En este modelo, los derechos son directamente aplicables sin necesidad de ley secundaria.' },
+  s3qi6: { ok:'Correcto. Sin moneda propia, el Banco Central no puede emitir dinero ni devaluar para ajustar la economía.', err:'Incorrecto. La dolarización implica que Ecuador no puede emitir moneda ni devaluar.' },
+  s3qi7: { ok:'Correcto. La corrupción destruye la igualdad ante la ley al favorecer a quienes tienen poder o dinero.', err:'Incorrecto. La corrupción destruye la igualdad ante la ley; no es exclusiva del sector privado ni "mejora" la eficiencia.' },
+  s3qi8: { ok:'Correcto. La independencia judicial y la igualdad ante la ley son los principios violados cuando un juez falla por presión política.', err:'Incorrecto. Se viola la independencia judicial y la igualdad ante la ley, pilares del Estado de Derecho.' },
+  s3qi9: { ok:'Correcto. El Art. 33 de la Constitución garantiza el derecho al trabajo digno; el desempleo masivo pone en riesgo esa obligación estatal.', err:'Incorrecto. El derecho vulnerado es el trabajo digno (Art. 33 Constitución), no la propiedad ni la separación de poderes.' },
+  s3qi10: { ok:'Correcto. Alterar un informe de auditoría viola la transparencia y rendición de cuentas, pilares del Estado de Derecho y la ética profesional.', err:'Incorrecto. Se viola la transparencia y rendición de cuentas, no la soberanía monetaria ni la descentralización.' }
+};
+
+function verificarQuiz_s3() {
+  const names = Object.keys(quizCorrects_s3);
+  if (!allAnswered(names)) { showAlert('s3-qz-alerta'); return; }
+  const ok = mostrarResultados(quizCorrects_s3, quizFeedbacks_s3);
+  mostrarCalificacion('s3-qz-cal','s3-qz-puntaje','s3-qz-pct','s3-qz-barra','s3-qz-msg', ok, names.length);
+  document.getElementById('s3-qz-reiniciar').style.display = 'inline-block';
+}
+
+function reiniciarQuiz_s3() {
+  const names = Object.keys(quizCorrects_s3);
+  resetBlock(names, names.map(n=>n+'-res'), 's3-qz-reiniciar', 's3-qz-cal', 's3-qz-barra');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// SEMANA 4
+// ══════════════════════════════════════════════════════════════════
+
+const ejercicioCorrects_s4 = { s4ei1:'a', s4ei2:'a', s4ei3:'a', s4ei4:'a', s4ei5:'a', s4ei6:'a', s4ei7:'a' };
+const ejercicioFeedbacks_s4 = {
+  s4ei1: { ok:'Correcto. La democracia representativa es aquella donde los ciudadanos eligen delegados que deciden en su nombre.', err:'Incorrecto. El enunciado describe la democracia representativa, donde los representantes toman decisiones en nombre del pueblo.' },
+  s4ei2: { ok:'Correcto. La democracia directa o participativa permite que los ciudadanos decidan directamente (referéndums, consultas populares).', err:'Incorrecto. Decidir directamente mediante referéndum corresponde a la democracia directa o participativa.' },
+  s4ei3: { ok:'Correcto. Tocqueville advirtió sobre el riesgo de la "tiranía de la mayoría" en La Democracia en América (1835-1840).', err:'Incorrecto. Fue Alexis de Tocqueville quien teorizó sobre la "tiranía de la mayoría" en La Democracia en América.' },
+  s4ei4: { ok:'Correcto. El populismo debilita las instituciones al presentar al líder como único intérprete legítimo de la voluntad popular.', err:'Incorrecto. El populismo debilita las instituciones democráticas, no las fortalece.' },
+  s4ei5: { ok:'Correcto. La democracia procedimental solo garantiza reglas electorales justas, sin asegurar igualdad socioeconómica sustantiva.', err:'Incorrecto. La democracia procedimental se limita a las reglas del juego electoral, no a resultados de igualdad.' },
+  s4ei6: { ok:'Correcto. Para Sen, la democracia permite expresar necesidades, obliga a los gobiernos a responder y tiene valor intrínseco como libertad política.', err:'Incorrecto. Sen argumenta que la democracia vale porque permite expresar necesidades, obliga al gobierno a responder y tiene valor intrínseco.' },
+  s4ei7: { ok:'Correcto. La democracia sustantiva exige condiciones reales de igualdad y acceso a derechos para que la participación ciudadana sea significativa.', err:'Incorrecto. La democracia sustantiva exige condiciones reales de igualdad más allá del procedimiento electoral.' }
+};
+
+function verificarEjercicio_s4() {
+  const names = Object.keys(ejercicioCorrects_s4);
+  if (!allAnswered(names)) { showAlert('s4-ej-alerta'); return; }
+  const ok = mostrarResultados(ejercicioCorrects_s4, ejercicioFeedbacks_s4);
+  mostrarCalificacion('s4-ej-cal','s4-ej-puntaje','s4-ej-pct','s4-ej-barra','s4-ej-msg', ok, names.length);
+  document.getElementById('s4-ej-reiniciar').style.display = 'inline-block';
+}
+
+function reiniciarEjercicio_s4() {
+  const names = Object.keys(ejercicioCorrects_s4);
+  resetBlock(names, names.map(n=>n+'-res'), 's4-ej-reiniciar', 's4-ej-cal', 's4-ej-barra');
+}
+
+const quizCorrects_s4 = { s4qi1:'a', s4qi2:'a', s4qi3:'a', s4qi4:'a', s4qi5:'a', s4qi6:'a', s4qi7:'a', s4qi8:'a', s4qi9:'a', s4qi10:'a' };
+const quizFeedbacks_s4 = {
+  s4qi1: { ok:'Correcto. En la directa los ciudadanos deciden sin intermediarios; en la representativa eligen delegados.', err:'Incorrecto. La democracia directa suprime intermediarios; la representativa los requiere.' },
+  s4qi2: { ok:'Correcto. La democracia ateniense excluía a mujeres, esclavos y extranjeros, lo que la hacía muy restringida.', err:'Incorrecto. La gran limitación era la exclusión de mujeres, esclavos y extranjeros de la participación política.' },
+  s4qi3: { ok:'Correcto. Dahl describe la poliarquía como un sistema de múltiples grupos que compiten en condiciones de inclusión y contestación amplias.', err:'Incorrecto. La poliarquía de Dahl describe competencia de múltiples grupos, no tecnocracia ni partido único.' },
+  s4qi4: { ok:'Correcto. La desinformación manipula la opinión pública y debilita la capacidad ciudadana de tomar decisiones informadas.', err:'Incorrecto. La desinformación debilita la democracia al manipular la opinión pública, no la fortalece.' },
+  s4qi5: { ok:'Correcto. El referéndum es un mecanismo de democracia directa o semidirecta que permite pronunciarse sobre temas específicos.', err:'Incorrecto. El referéndum es un mecanismo de democracia directa, no representativa.' },
+  s4qi6: { ok:'Correcto. La alta abstención es señal de desconfianza ciudadana en el sistema político y sus representantes.', err:'Incorrecto. La alta abstención indica desconfianza, no fortalecimiento ni conformidad democrática.' },
+  s4qi7: { ok:'Correcto. La Constitución de 2008 incluye consulta popular, revocatoria, iniciativa popular normativa y silla vacía, entre otros mecanismos.', err:'Incorrecto. La Constitución de 2008 incluye múltiples mecanismos participativos más allá del sufragio.' },
+  s4qi8: { ok:'Correcto. Eliminar la libertad de prensa por mayoría electoral ilustra la "tiranía de la mayoría": la democracia también protege derechos de minorías.', err:'Incorrecto. Esta situación ilustra la "tiranía de la mayoría": ganar elecciones no autoriza violar derechos fundamentales.' },
+  s4qi9: { ok:'Correcto. La baja confianza en partidos políticos es una señal clásica de crisis de representación democrática.', err:'Incorrecto. La baja confianza en partidos indica crisis de representación, no fortalecimiento democrático.' },
+  s4qi10: { ok:'Correcto. La contabilidad y la auditoría proveen los datos que sustentan las decisiones democráticas; sin información veraz no hay democracia real.', err:'Incorrecto. La contabilidad es un pilar de la democracia porque certifica la información sobre la que el Estado y la ciudadanía deciden.' }
+};
+
+function verificarQuiz_s4() {
+  const names = Object.keys(quizCorrects_s4);
+  if (!allAnswered(names)) { showAlert('s4-qz-alerta'); return; }
+  const ok = mostrarResultados(quizCorrects_s4, quizFeedbacks_s4);
+  mostrarCalificacion('s4-qz-cal','s4-qz-puntaje','s4-qz-pct','s4-qz-barra','s4-qz-msg', ok, names.length);
+  document.getElementById('s4-qz-reiniciar').style.display = 'inline-block';
+}
+
+function reiniciarQuiz_s4() {
+  const names = Object.keys(quizCorrects_s4);
+  resetBlock(names, names.map(n=>n+'-res'), 's4-qz-reiniciar', 's4-qz-cal', 's4-qz-barra');
+}
+</script>
+</body>
+</html>

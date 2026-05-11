@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 4 | Conceptualización Crítica de la Democracia</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #222;
+    background: #f0f4f8;
+  }
+  h1,h2,h3,h4 { font-family: 'Lora', serif; }
+
+  /* ===== HEADER ===== */
+  header {
+    background: #003366;
+    color: #fff;
+    padding: 0;
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 28px;
+  }
+  .header-logo {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 8px;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+  .header-text h1 {
+    font-size: 1.18rem;
+    font-weight: 700;
+    letter-spacing: .3px;
+    line-height: 1.3;
+  }
+  .header-text p {
+    font-size: .88rem;
+    opacity: .88;
+    margin-top: 2px;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .header-badge {
+    margin-left: auto;
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 8px;
+    padding: 8px 16px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .header-badge .sem { font-size: .78rem; opacity: .8; }
+  .header-badge .num { font-size: 1.7rem; font-family: 'Lora',serif; font-weight:700; line-height:1; }
+
+  /* ===== TAB BAR ===== */
+  .tab-bar-wrap {
+    background: #87CEEB;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 3px solid #003366;
+  }
+  .tab-bar-wrap::-webkit-scrollbar { height: 5px; }
+  .tab-bar-wrap::-webkit-scrollbar-thumb { background: #003366; border-radius: 3px; }
+  .tab-bar { display: inline-flex; }
+  .tab-btn {
+    display: inline-block;
+    padding: 11px 18px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    color: #111;
+    background: transparent;
+    border: none;
+    border-right: 1px solid rgba(0,0,0,.12);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .2s, color .2s;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,.5); }
+  .tab-btn.active {
+    background: #fff;
+    color: #003366;
+    font-weight: 700;
+    border-bottom: 3px solid #003366;
+    margin-bottom: -3px;
+  }
+
+  /* ===== CONTENT AREA ===== */
+  .tab-content { display: none; padding: 28px 24px 48px; max-width: 900px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  /* ===== CONTENT ELEMENTS ===== */
+  .section-title {
+    font-size: 1.45rem;
+    color: #003366;
+    border-bottom: 2px solid #87CEEB;
+    padding-bottom: 6px;
+    margin-bottom: 18px;
+  }
+  .subsection-title {
+    font-size: 1.1rem;
+    color: #003366;
+    margin: 22px 0 8px;
+  }
+  p { margin-bottom: 14px; }
+
+  /* Concept box */
+  .concept-box {
+    border-left: 5px solid #003366;
+    background: #eaf1fb;
+    padding: 14px 18px;
+    margin: 18px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .concept-box .cb-label {
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #003366;
+    margin-bottom: 4px;
+  }
+  .concept-box p { margin-bottom: 0; }
+
+  /* Example / history box */
+  .example-box {
+    background: #dbeeff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 18px 0;
+  }
+  .example-box .ex-label {
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #005599;
+    margin-bottom: 6px;
+  }
+  .example-box p { margin-bottom: 0; }
+
+  /* Key idea */
+  .key-idea {
+    background: #003366;
+    color: #fff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 22px 0 8px;
+  }
+  .key-idea .ki-label {
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: .75;
+    margin-bottom: 4px;
+  }
+  .key-idea p { margin-bottom: 0; color: #fff; }
+
+  /* Warning / reflection box */
+  .warn-box {
+    border-left: 5px solid #e67e22;
+    background: #fef6ec;
+    padding: 14px 18px;
+    margin: 18px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .warn-box .w-label {
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #c0392b;
+    margin-bottom: 4px;
+  }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: .93rem; }
+  th { background: #003366; color: #fff; padding: 10px 12px; text-align: left; }
+  td { padding: 9px 12px; border-bottom: 1px solid #cde; vertical-align: top; }
+  tr:nth-child(even) td { background: #eaf1fb; }
+
+  /* List visual */
+  .vlist { list-style: none; padding: 0; margin: 12px 0; }
+  .vlist li {
+    padding: 8px 12px 8px 36px;
+    margin-bottom: 6px;
+    background: #f5f8ff;
+    border-radius: 6px;
+    position: relative;
+  }
+  .vlist li::before {
+    content: '▸';
+    position: absolute;
+    left: 12px;
+    color: #003366;
+    font-weight: 700;
+  }
+
+  /* ===== INTERACTIVE / QUIZ ===== */
+  .quiz-question {
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+  }
+  .quiz-question .q-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .badge {
+    font-size: .72rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+  .badge-teoria { background: #003366; color: #fff; }
+  .badge-caso { background: #e67e22; color: #fff; }
+  .badge-ejercicio { background: #27ae60; color: #fff; }
+  .q-text { font-weight: 600; color: #003366; font-family:'Lora',serif; }
+  .options label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 6px;
+    border: 1px solid #ddd;
+    transition: background .15s;
+  }
+  .options label:hover { background: #eaf1fb; }
+  .options input[type=radio] { margin-top: 3px; flex-shrink: 0; }
+  .feedback-item { display: none; margin-top: 8px; padding: 8px 12px; border-radius: 6px; font-size: .9rem; }
+  .feedback-item.correct { background: #d4edda; color: #155724; border-left: 4px solid #28a745; display: block; }
+  .feedback-item.incorrect { background: #f8d7da; color: #721c24; border-left: 4px solid #dc3545; display: block; }
+
+  .btn-verify {
+    display: inline-block;
+    background: #003366;
+    color: #fff;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background .2s;
+  }
+  .btn-verify:hover { background: #00509e; }
+  .btn-reset {
+    display: inline-block;
+    background: #6c757d;
+    color: #fff;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: .95rem;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 10px;
+    transition: background .2s;
+  }
+  .btn-reset:hover { background: #545b62; }
+
+  .score-box {
+    display: none;
+    background: #fff;
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-top: 24px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,.1);
+  }
+  .score-box .score-emoji { font-size: 3rem; }
+  .score-box .score-num { font-size: 2rem; font-family:'Lora',serif; color:#003366; margin: 8px 0; }
+  .progress-bar-wrap { background: #e0e0e0; border-radius: 20px; height: 18px; overflow: hidden; margin: 10px auto; max-width: 400px; }
+  .progress-bar-fill { height: 100%; border-radius: 20px; transition: width 1s; }
+  .score-msg { font-size: 1.05rem; color: #333; margin-top: 10px; }
+
+  /* ===== IA ACTIVITY ===== */
+  .ia-step {
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    border-left: 5px solid #00BCD4;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .ia-step .step-label {
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #00BCD4;
+    margin-bottom: 6px;
+  }
+  .prompt-box {
+    background: #1a1a2e;
+    color: #e0e0ff;
+    font-family: monospace;
+    font-size: .9rem;
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 12px 0;
+    white-space: pre-wrap;
+    line-height: 1.6;
+  }
+
+  /* ===== REFLEXIÓN ===== */
+  .reflexion-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    border-top: 4px solid #87CEEB;
+  }
+  .reflexion-card .r-num {
+    font-size: .78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #87CEEB;
+    margin-bottom: 6px;
+  }
+  .reflexion-card .r-text { font-family:'Lora',serif; color:#003366; font-size:1.05rem; }
+  .reflexion-card .r-hint { font-size:.88rem; color:#555; margin-top:8px; font-style:italic; }
+
+  /* ===== BIBLIOGRAPHY ===== */
+  .bib-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    border-left: 5px solid #87CEEB;
+  }
+  .bib-card .bib-authors { font-weight: 700; color: #003366; font-size: .93rem; }
+  .bib-card .bib-year { font-size: .88rem; color: #555; }
+  .bib-card .bib-title { font-style: italic; color: #222; }
+  .bib-note {
+    background: #eaf1fb;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: .85rem;
+    color: #333;
+    margin-top: 20px;
+  }
+
+  /* ===== REPASO TIMELINE ===== */
+  .timeline { border-left: 3px solid #87CEEB; padding-left: 20px; margin: 16px 0; }
+  .timeline-item { margin-bottom: 20px; position: relative; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -27px;
+    top: 6px;
+    width: 13px;
+    height: 13px;
+    background: #003366;
+    border-radius: 50%;
+    border: 2px solid #87CEEB;
+  }
+  .timeline-item h4 { color: #003366; margin-bottom: 4px; }
+  .timeline-item p { margin-bottom: 0; font-size: .93rem; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .header-inner { flex-wrap: wrap; }
+    .header-badge { margin-left: 0; }
+    .tab-content { padding: 18px 12px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-inner">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Logo_de_la_Universidad_de_Guayaquil.png/200px-Logo_de_la_Universidad_de_Guayaquil.png"
+         alt="Logo Universidad de Guayaquil" class="header-logo"
+         onerror="this.style.display='none'">
+    <div class="header-text">
+      <h1>Democracia, Ciudadanía y Globalización</h1>
+      <p>Universidad de Guayaquil · Facultad de Ciencias Administrativas · Contabilidad y Auditoría</p>
+      <p style="margin-top:4px; font-size:.83rem; opacity:.75;">Unidad 1: El Estado Ecuatoriano</p>
+    </div>
+    <div class="header-badge">
+      <div class="sem">SEMANA</div>
+      <div class="num">4</div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== TAB BAR ===== -->
+<div class="tab-bar-wrap">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('repaso')">📋 Repaso</button>
+    <button class="tab-btn" onclick="showTab('t1')">1. ¿Qué es democracia?</button>
+    <button class="tab-btn" onclick="showTab('t2')">2. Tipos de democracia</button>
+    <button class="tab-btn" onclick="showTab('t3')">3. Críticas a la democracia</button>
+    <button class="tab-btn" onclick="showTab('t4')">4. Democracia en Ecuador</button>
+    <button class="tab-btn" onclick="showTab('t5')">5. Democracia y profesión</button>
+    <button class="tab-btn" onclick="showTab('ejercicio')">⚙️ Ejercicio</button>
+    <button class="tab-btn" onclick="showTab('cuestionario')">📝 Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia')">🤖 Act. con IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion')">💭 Reflexión</button>
+    <button class="tab-btn" onclick="showTab('biblio')">📚 Bibliografía</button>
+  </div>
+</div>
+
+<!-- ===== REPASO ===== -->
+<div id="repaso" class="tab-content active">
+  <h2 class="section-title">📋 Repaso de Semanas Anteriores</h2>
+  <p>Antes de adentrarnos en la <strong>conceptualización crítica de la democracia</strong>, es fundamental consolidar lo aprendido en las tres semanas previas. Este repaso no es un simple listado: es una síntesis analítica que conecta cada tema como piezas de un mismo rompecabezas —el Estado ecuatoriano—.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <h4>Semana 1 · Organización política y administrativa del Ecuador</h4>
+      <p>Estudiamos la estructura del Estado ecuatoriano según la Constitución de 2008: las <strong>cinco funciones del Estado</strong> (Ejecutiva, Legislativa, Judicial, de Transparencia y Control Social, y Electoral), la organización territorial en regiones, provincias, cantones y parroquias, y el modelo de gobierno descentralizado. Comprendimos que el Estado no es un ente abstracto sino una arquitectura institucional con roles definidos y con responsabilidades concretas frente al ciudadano.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Semana 2 · La soberanía del Estado</h4>
+      <p>Profundizamos en el concepto de <strong>soberanía</strong>: el poder supremo, irrenunciable e indelegable que reside en el pueblo ecuatoriano. Distinguimos soberanía interna (autoridad sobre el territorio y la población) de soberanía externa (independencia ante otros Estados). También analizamos cómo la soberanía se ejerce a través de mecanismos de participación ciudadana: referéndum, consulta popular, iniciativa legislativa. La soberanía popular es el fundamento filosófico de la democracia.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Semana 3 · El Estado de Derecho y la realidad socioeconómica del Ecuador</h4>
+      <p>Analizamos el <strong>Estado de Derecho</strong>: el principio de que tanto gobernantes como gobernados están sujetos a la ley. Vimos sus pilares (legalidad, separación de poderes, garantías fundamentales, control judicial) y los desafíos que enfrenta en Ecuador: índices de corrupción, debilidad institucional y desigualdad. La realidad socioeconómica —pobreza, desempleo, inequidad regional— evidenció que el Estado de Derecho no basta en el papel; debe materializarse en condiciones de vida dignas para todos los ciudadanos.</p>
+    </div>
+  </div>
+
+  <div class="key-idea">
+    <div class="ki-label">🔗 Hilo conductor</div>
+    <p>Las semanas anteriores nos han mostrado <em>cómo está organizado</em> el Estado, <em>en quién reside el poder</em> y <em>bajo qué normas debe operar</em>. Esta semana responderemos una pregunta más profunda: <strong>¿qué tipo de régimen político hace que todo eso tenga sentido?</strong> La respuesta es la democracia —pero una democracia que debemos entender críticamente, no solo celebrar.</p>
+  </div>
+</div>
+
+<!-- ===== TEMA 1 ===== -->
+<div id="t1" class="tab-content">
+  <h2 class="section-title">1. ¿Qué es la democracia? Origen, definición y evolución del concepto</h2>
+
+  <p>La palabra <strong>democracia</strong> proviene del griego: <em>dêmos</em> (pueblo) y <em>kratos</em> (poder, gobierno). Literalmente significa "el gobierno del pueblo". Sin embargo, esta definición tan simple ha sido debatida, ampliada, criticada y reinterpretada durante más de 2 500 años. Entenderla solo como "el pueblo manda" sería insuficiente para un profesional que toma decisiones con impacto social.</p>
+
+  <div class="concept-box">
+    <div class="cb-label">📌 Definición inicial</div>
+    <p><strong>Democracia</strong> es el sistema político en el que el poder reside en la ciudadanía, que lo ejerce directamente o a través de representantes elegidos libremente, bajo un marco de derechos y libertades garantizados, con mecanismos de control al poder y con igualdad de todos ante la ley.</p>
+  </div>
+
+  <h3 class="subsection-title">El origen: Atenas del siglo V a.C.</h3>
+  <p>La democracia nació en Atenas bajo el liderazgo de <strong>Clístenes</strong> (508 a.C.) y alcanzó su apogeo con <strong>Pericles</strong>. Era una democracia <em>directa</em>: los ciudadanos —hombres libres, no esclavos, no mujeres, no extranjeros— se reunían en el <em>ágora</em> para tomar decisiones colectivas. Participaban alrededor de 40 000 ciudadanos de una población total de 300 000 personas. El concepto de "pueblo" tenía, desde el inicio, exclusiones profundas.</p>
+
+  <div class="example-box">
+    <div class="ex-label">🏛️ Dato histórico clave</div>
+    <p>En la democracia ateniense original, el 85% de la población no podía participar: mujeres, esclavos y extranjeros quedaban excluidos. Esto nos obliga a preguntarnos: ¿cuándo decimos "el pueblo manda", de qué pueblo hablamos realmente?</p>
+  </div>
+
+  <h3 class="subsection-title">La evolución hacia la democracia moderna</h3>
+  <p>Tras siglos de monarquías y feudalismo, la idea democrática resurge con fuerza en el siglo XVII-XVIII a través de pensadores como <strong>John Locke</strong> (el poder político proviene del consentimiento de los gobernados), <strong>Jean-Jacques Rousseau</strong> (la voluntad general como base del contrato social) y <strong>Montesquieu</strong> (la separación de poderes como garantía de libertad). Las revoluciones francesa (1789) y americana (1776) tradujeron esas ideas en sistemas de gobierno reales.</p>
+
+  <p>En el siglo XX, la democracia se convirtió en el sistema político dominante a nivel global, especialmente tras la Segunda Guerra Mundial y la caída del bloque soviético (1989). Sin embargo, su expansión no ha sido lineal ni libre de contradicciones.</p>
+
+  <h3 class="subsection-title">Definiciones que todo estudiante debe conocer</h3>
+  <table>
+    <thead>
+      <tr><th>Autor / Fuente</th><th>Definición o enfoque central</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Abraham Lincoln</strong> (1863)</td><td>"El gobierno del pueblo, por el pueblo y para el pueblo." Énfasis en la participación y en el servicio al ciudadano.</td></tr>
+      <tr><td><strong>Joseph Schumpeter</strong> (1942)</td><td>La democracia es un método institucional en el que los líderes compiten por el voto popular. Enfoque procedimental/electoral.</td></tr>
+      <tr><td><strong>Robert Dahl</strong> (1971)</td><td>Propone el concepto de <em>poliarquía</em>: un sistema con elecciones libres, libertad de expresión, pluralismo político y acceso a información alternativa.</td></tr>
+      <tr><td><strong>Amartya Sen</strong> (1999)</td><td>La democracia es más que votar: incluye el debate público, la libertad de prensa y la protección de derechos. Es condición del desarrollo humano.</td></tr>
+      <tr><td><strong>Constitución del Ecuador</strong> (2008)</td><td>Ecuador es un "Estado constitucional de derechos y justicia, social, democrático, soberano" (Art. 1). La soberanía reside en el pueblo y se ejerce mediante representación y participación directa.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subsection-title">Los tres pilares conceptuales de la democracia</h3>
+  <ul class="vlist">
+    <li><strong>Libertad política:</strong> Los ciudadanos pueden opinar, organizarse, protestar y elegir sin coacción del Estado.</li>
+    <li><strong>Igualdad política:</strong> El voto de cada ciudadano tiene el mismo peso, independientemente de su riqueza, raza o posición social.</li>
+    <li><strong>Responsabilidad del poder (accountability):</strong> Quienes gobiernan deben rendir cuentas y pueden ser removidos si no cumplen su mandato.</li>
+  </ul>
+
+  <div class="key-idea">
+    <div class="ki-label">💡 Idea clave</div>
+    <p>La democracia no es un estado fijo que se alcanza de una vez; es un <strong>proceso continuo de construcción</strong>. Un país puede tener elecciones periódicas y aun así no ser plenamente democrático si carece de libertad de prensa, si el poder judicial no es independiente, o si millones de ciudadanos viven en condiciones que les impiden ejercer realmente sus derechos.</p>
+  </div>
+</div>
+
+<!-- ===== TEMA 2 ===== -->
+<div id="t2" class="tab-content">
+  <h2 class="section-title">2. Tipos de democracia: directa, representativa y participativa</h2>
+  <p>No existe un único modelo de democracia. A lo largo de la historia y en distintas geografías, han surgido diversas formas de organizar el autogobierno del pueblo. Conocerlas permite entender mejor cuál es el modelo ecuatoriano y sus fortalezas y limitaciones.</p>
+
+  <h3 class="subsection-title">A. Democracia directa</h3>
+  <div class="concept-box">
+    <div class="cb-label">📌 Definición</div>
+    <p>En la <strong>democracia directa</strong>, los ciudadanos toman las decisiones políticas fundamentales sin intermediarios. No hay representantes: el pueblo delibera y vota directamente sobre leyes, políticas y asuntos públicos.</p>
+  </div>
+  <p><strong>Origen:</strong> Atenas clásica (siglo V a.C.). <strong>Ejemplo contemporáneo:</strong> Suiza, que utiliza el referéndum y la iniciativa popular con gran frecuencia. En 2021, los suizos votaron en referéndum sobre si prohibir el uso de pesticidas sintéticos —una decisión técnica y compleja tomada directamente por la ciudadanía.</p>
+  <p><strong>Ventajas:</strong> Mayor participación ciudadana, decisiones con legitimidad directa, menor riesgo de que los representantes traicionen la voluntad popular.</p>
+  <p><strong>Limitaciones:</strong> Difícil de aplicar en sociedades grandes y complejas; puede derivar en la "tiranía de la mayoría" (las minorías quedan sin protección); requiere ciudadanos bien informados.</p>
+
+  <h3 class="subsection-title">B. Democracia representativa (o indirecta)</h3>
+  <div class="concept-box">
+    <div class="cb-label">📌 Definición</div>
+    <p>En la <strong>democracia representativa</strong>, los ciudadanos no toman las decisiones directamente, sino que eligen periódicamente a representantes (legisladores, presidente, alcaldes) que actúan en su nombre dentro de las instituciones del Estado.</p>
+  </div>
+  <p>Es el modelo dominante en el mundo contemporáneo. Los mecanismos clave son: <em>elecciones libres y periódicas, sufragio universal, pluripartidismo, separación de poderes y libertad de prensa</em>.</p>
+  <p><strong>Limitaciones:</strong> Los representantes pueden distanciarse de las necesidades de sus electores; el dinero puede influir en las campañas; el ciudadano solo "participa" cada ciertos años al votar. Schumpeter la criticó señalando que, en la práctica, los ciudadanos solo eligen entre élites que compiten por el poder.</p>
+
+  <h3 class="subsection-title">C. Democracia participativa</h3>
+  <div class="concept-box">
+    <div class="cb-label">📌 Definición</div>
+    <p>La <strong>democracia participativa</strong> combina elementos de la democracia directa y la representativa. Mantiene la representación, pero crea mecanismos adicionales para que los ciudadanos intervengan activamente en las decisiones públicas entre elecciones.</p>
+  </div>
+  <p>El Ecuador de 2008 adoptó explícitamente este modelo. La Constitución vigente establece en el Art. 95 que "la participación de la ciudadanía en todos los asuntos de interés público es un derecho" y que se ejerce "a través de los mecanismos de la democracia representativa, directa y comunitaria".</p>
+
+  <div class="example-box">
+    <div class="ex-label">🇪🇨 Ejemplo ecuatoriano</div>
+    <p>Ecuador reconoce constitucionalmente los siguientes mecanismos de democracia participativa: <strong>referéndum y consulta popular</strong> (como el referéndum de 2023 sobre seguridad que resultó en el cierre de la Asamblea), <strong>iniciativa normativa ciudadana</strong> (los ciudadanos pueden proponer leyes), <strong>revocatoria del mandato</strong> (los electores pueden destituir a un funcionario elegido), <strong>presupuestos participativos</strong> (los barrios priorizan el gasto público local), y la <strong>silla vacía</strong> (un ciudadano puede ocupar el asiento de un concejal y votar en sesiones de gobiernos locales).</p>
+  </div>
+
+  <h3 class="subsection-title">D. Democracia deliberativa</h3>
+  <p>Propuesta por filósofos como <strong>Jürgen Habermas</strong>, este enfoque sostiene que la legitimidad democrática no proviene solo del voto, sino de la <em>calidad del debate público</em>. Las decisiones son válidas cuando resultan de un proceso de argumentación racional, libre e inclusivo, donde todos los afectados pueden expresarse.</p>
+  <p>Este modelo tiene aplicaciones prácticas en <strong>asambleas ciudadanas</strong> (como la Asamblea Ciudadana de Irlanda que deliberó sobre el aborto en 2016-2017) y en procesos de consulta previa a comunidades indígenas en Ecuador.</p>
+
+  <table>
+    <thead>
+      <tr><th>Tipo</th><th>Quién decide</th><th>Cómo</th><th>Desafío principal</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Directa</strong></td><td>Todos los ciudadanos</td><td>Votación directa en cada asunto</td><td>Escala y complejidad</td></tr>
+      <tr><td><strong>Representativa</strong></td><td>Representantes elegidos</td><td>Voto periódico en elecciones</td><td>Distancia entre representante y ciudadano</td></tr>
+      <tr><td><strong>Participativa</strong></td><td>Ciudadanos + representantes</td><td>Mix: voto + mecanismos directos</td><td>Garantizar participación real, no formal</td></tr>
+      <tr><td><strong>Deliberativa</strong></td><td>Todos a través del debate</td><td>Argumentación racional e inclusiva</td><td>Asegurar igualdad en el debate</td></tr>
+    </tbody>
+  </table>
+
+  <div class="key-idea">
+    <div class="ki-label">💡 Idea clave</div>
+    <p>Ecuador no es solo una democracia representativa: su Constitución de 2008 creó un modelo <strong>híbrido y ambicioso</strong>. El reto real no está en el texto constitucional —que es progresista— sino en si esos mecanismos funcionan efectivamente en la práctica cotidiana del país.</p>
+  </div>
+</div>
+
+<!-- ===== TEMA 3 ===== -->
+<div id="t3" class="tab-content">
+  <h2 class="section-title">3. Críticas a la democracia: sus límites y contradicciones</h2>
+  <p>Pensar críticamente sobre la democracia no significa estar en su contra. Significa comprenderla con honestidad intelectual, reconociendo que, como todo sistema humano, tiene fallas, tensiones y límites que debemos conocer para superarlos.</p>
+
+  <div class="warn-box">
+    <div class="w-label">⚠️ Nota pedagógica</div>
+    <p>Las críticas que estudiaremos a continuación provienen de diversas corrientes filosóficas y políticas. El objetivo no es concluir que la democracia es un fracaso, sino entender sus vulnerabilidades para convertirse en ciudadanos y profesionales que contribuyan a fortalecerla.</p>
+  </div>
+
+  <h3 class="subsection-title">Crítica 1: La tiranía de la mayoría</h3>
+  <p>El filósofo <strong>John Stuart Mill</strong> (siglo XIX) advirtió que la democracia podía convertirse en una "tiranía de la mayoría": el grupo más numeroso puede votar en contra de los derechos de minorías —étnicas, religiosas, sexuales, políticas—. La historia lo ha confirmado: en algunos estados de EE.UU. las mayorías votaron por mantener la segregación racial; en varios países, las mayorías han apoyado la discriminación.</p>
+  <p><strong>¿Cómo se contrarresta?</strong> Con los derechos fundamentales como límites infranqueables: ninguna mayoría democrática puede votar para eliminar los derechos de una minoría. La Constitución del Ecuador de 2008 intenta esto reconociendo derechos colectivos de pueblos indígenas y afroecuatorianos.</p>
+
+  <h3 class="subsection-title">Crítica 2: El problema de la información y la manipulación</h3>
+  <p>La democracia supone ciudadanos informados. Pero en la era de las redes sociales, la <strong>desinformación</strong> (noticias falsas, propaganda, algoritmos que crean "burbujas" ideológicas) amenaza esa base. Un ciudadano que vota basado en información falsa no ejerce realmente su soberanía: alguien más la está ejerciendo por él.</p>
+
+  <div class="example-box">
+    <div class="ex-label">🌐 Ejemplo contemporáneo</div>
+    <p>Durante las elecciones ecuatorianas de 2021 y 2023, circularon masivamente en WhatsApp cadenas de mensajes con información falsa sobre candidatos, actas electorales y resultados. El CNE y organizaciones de verificación como Chequea Ecuador debieron trabajar intensamente para desmentirlas. Este fenómeno no es exclusivo de Ecuador: ocurre en Brasil, México, Argentina, y también en democracias consolidadas como EE.UU. y el Reino Unido.</p>
+  </div>
+
+  <h3 class="subsection-title">Crítica 3: La captura del Estado por élites económicas</h3>
+  <p>El politólogo <strong>Robert Michels</strong> formuló la "ley de hierro de la oligarquía": en toda organización —incluyendo los partidos políticos— tiende a formarse una élite dirigente que se perpetúa en el poder y distancia de las bases. En las democracias reales, los grupos económicos poderosos pueden influir en las campañas, en los medios de comunicación y en las decisiones políticas, haciendo que el "gobierno del pueblo" sea, en la práctica, el gobierno de las élites.</p>
+  <p>El economista <strong>Joseph Stiglitz</strong> documentó cómo en los países más desiguales, la democracia formal coexiste con la captura del poder por parte del 1% más rico. Ecuador no escapa a esta dinámica.</p>
+
+  <h3 class="subsection-title">Crítica 4: La democracia sin desarrollo no es suficiente</h3>
+  <p><strong>Amartya Sen</strong> argumentó que la democracia es inseparable del desarrollo humano. Un ciudadano que vive en la pobreza extrema, que no tiene acceso a educación ni información, que depende económicamente de quien lo puede presionar para votar, no puede ejercer libremente su voto. La libertad política formal no basta si no va acompañada de libertades reales: salud, educación, seguridad económica.</p>
+
+  <div class="example-box">
+    <div class="ex-label">🇪🇨 Conexión ecuatoriana</div>
+    <p>En zonas rurales del Ecuador —especialmente en provincias como Bolívar, Cotopaxi o Esmeraldas— se han documentado históricamente prácticas de <strong>clientelismo político</strong>: candidatos que ofrecen bonos, mercados, materiales de construcción o empleos a cambio del voto. Esto ocurre precisamente donde los índices de pobreza son más altos. La democracia formal (elecciones) se distorsiona cuando la pobreza convierte el voto en mercancía.</p>
+  </div>
+
+  <h3 class="subsection-title">Crítica 5: La democracia puede elegir su propia destrucción</h3>
+  <p>La historia ha mostrado que líderes con discursos populistas y autoritarios pueden llegar al poder mediante elecciones democráticas y luego desmantelar las instituciones desde adentro. Este fenómeno, llamado <strong>"erosión democrática"</strong> o <em>democratic backsliding</em>, ocurre de forma gradual: se debilita el poder judicial, se ataca a la prensa, se persigue a la oposición, todo con el argumento de que "el pueblo" lo apoya. Ejemplos latinoamericanos recientes incluyen Venezuela, Nicaragua y, en menor medida, debates en Ecuador y Perú.</p>
+
+  <div class="key-idea">
+    <div class="ki-label">💡 Idea clave</div>
+    <p>Las críticas a la democracia no la invalidan: nos muestran que <strong>la democracia requiere cuidado permanente</strong>. Necesita ciudadanos informados, instituciones fuertes, medios libres, educación de calidad y profesionales íntegros —como los contadores y auditores— que no permitan que el dinero público sea robado ni que los estados financieros sean falsificados para sostener el poder.</p>
+  </div>
+</div>
+
+<!-- ===== TEMA 4 ===== -->
+<div id="t4" class="tab-content">
+  <h2 class="section-title">4. La democracia en Ecuador: avances, retrocesos y desafíos</h2>
+  <p>Ecuador tiene una historia democrática marcada por tensiones, interrupciones y renovaciones. Conocer esa trayectoria es indispensable para entender el sistema político actual y sus vulnerabilidades.</p>
+
+  <h3 class="subsection-title">Breve cronología democrática del Ecuador</h3>
+  <table>
+    <thead>
+      <tr><th>Período</th><th>Hito clave</th><th>Significado democrático</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1830</td><td>Fundación de la República</td><td>Democracia muy restringida: solo votaban hombres alfabetos y propietarios</td></tr>
+      <tr><td>1861</td><td>Sufragio masculino universal (teórico)</td><td>Se elimina el requisito de propiedad, pero persiste la exclusión por analfabetismo</td></tr>
+      <tr><td>1929</td><td>Voto de la mujer</td><td>Ecuador fue el primer país latinoamericano en reconocerlo, aunque limitado al inicio</td></tr>
+      <tr><td>1979</td><td>Retorno a la democracia</td><td>Tras la dictadura militar, Ecuador inicia un período democrático ininterrumpido (formal)</td></tr>
+      <tr><td>1997-2006</td><td>Derrocamiento de tres presidentes</td><td>Inestabilidad: Bucaram (1997), Mahuad (2000), Gutiérrez (2005) salieron antes de terminar su mandato</td></tr>
+      <tr><td>2008</td><td>Nueva Constitución</td><td>Se aprueba en referéndum con 63,9% de apoyo; introduce democracia participativa y derechos de la naturaleza</td></tr>
+      <tr><td>2023</td><td>Muerte cruzada y referéndum</td><td>El presidente Noboa disuelve la Asamblea, se convoca referéndum sobre seguridad; evidencia de tensión institucional persistente</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subsection-title">El modelo constitucional de 2008: una democracia ambiciosa</h3>
+  <p>La Constitución de 2008 creó uno de los marcos democráticos más avanzados de América Latina en términos de derechos y participación. Entre sus innovaciones:</p>
+  <ul class="vlist">
+    <li><strong>Estado constitucional de derechos:</strong> No solo existe un Estado de Derecho (sujeción a la ley) sino un Estado donde los derechos son la base del sistema.</li>
+    <li><strong>Función de Transparencia y Control Social:</strong> Organismos como la Contraloría, la Defensoría del Pueblo y el CPCCS (Consejo de Participación Ciudadana y Control Social) tienen rango constitucional.</li>
+    <li><strong>Derechos de la naturaleza (Pachamama):</strong> Primera Constitución en el mundo en reconocer a la naturaleza como sujeto de derechos.</li>
+    <li><strong>Economía social y solidaria:</strong> Reconoce distintas formas de organización económica, incluyendo la comunitaria e indígena.</li>
+    <li><strong>Consulta previa libre e informada:</strong> Las comunidades indígenas deben ser consultadas antes de proyectos extractivos en sus territorios.</li>
+  </ul>
+
+  <h3 class="subsection-title">Indicadores reales de la democracia ecuatoriana</h3>
+  <div class="example-box">
+    <div class="ex-label">📊 Datos verificables (2023-2024)</div>
+    <p><strong>Índice de Percepción de la Corrupción (Transparencia Internacional, 2023):</strong> Ecuador obtuvo 34 puntos sobre 100, ubicándose en el puesto 108 de 180 países. Un puntaje bajo indica alta percepción de corrupción. <br><br>
+    <strong>Índice de Democracia (The Economist Intelligence Unit, 2023):</strong> Ecuador figura como "democracia defectuosa" con un puntaje de 5.87 sobre 10, debido a debilidades en cultura política y funcionamiento del gobierno.<br><br>
+    <strong>Caso Metástasis (2023-2024):</strong> La investigación de la Fiscalía reveló vínculos entre el crimen organizado, el narcotráfico y figuras judiciales, policiales y políticas. Fue un golpe profundo a la credibilidad democrática del país.</p>
+  </div>
+
+  <h3 class="subsection-title">¿Qué amenaza actualmente la democracia ecuatoriana?</h3>
+  <ul class="vlist">
+    <li><strong>Corrupción sistémica:</strong> Escándalos como el ISSPOL (desfalco al seguro policial), el caso Metástasis y el caso Triple A revelan redes de corrupción que atraviesan partidos, jueces e instituciones.</li>
+    <li><strong>Crisis de seguridad:</strong> El avance del crimen organizado debilita el monopolio del uso legítimo de la fuerza —condición básica del Estado democrático.</li>
+    <li><strong>Desconfianza ciudadana:</strong> Según Latinobarómetro, menos del 30% de ecuatorianos confía en el Congreso y menos del 20% en los partidos políticos.</li>
+    <li><strong>Desigualdad persistente:</strong> El coeficiente de Gini en Ecuador muestra desigualdades que impiden la participación política real de sectores empobrecidos.</li>
+  </ul>
+
+  <div class="key-idea">
+    <div class="ki-label">💡 Idea clave</div>
+    <p>Ecuador tiene una democracia <strong>constitucionalmente avanzada pero institucionalmente frágil</strong>. La brecha entre el texto de la Constitución y la realidad cotidiana es el principal desafío democrático del país. Cerrar esa brecha requiere instituciones fuertes —y profesionales con ética— en todos los niveles.</p>
+  </div>
+</div>
+
+<!-- ===== TEMA 5 ===== -->
+<div id="t5" class="tab-content">
+  <h2 class="section-title">5. Democracia y profesión contable: el contador como guardián institucional</h2>
+  <p>¿Qué tiene que ver la democracia con la Contabilidad y la Auditoría? Más de lo que parece a primera vista. La conexión es directa, profunda y tiene consecuencias muy concretas para tu vida profesional futura.</p>
+
+  <h3 class="subsection-title">La transparencia fiscal como condición democrática</h3>
+  <p>La democracia requiere que los ciudadanos puedan controlar al gobierno. Pero ese control es imposible sin información confiable. ¿Cómo sabe un ciudadano si el gobierno gasta bien los impuestos? A través de los <strong>estados financieros públicos</strong>, los <strong>informes de auditoría</strong>, las <strong>declaraciones de presupuesto y ejecución presupuestaria</strong>. Todos esos documentos son elaborados o verificados por contadores y auditores.</p>
+
+  <div class="concept-box">
+    <div class="cb-label">📌 Concepto clave</div>
+    <p><strong>Accountability democrática:</strong> La capacidad de los ciudadanos de exigir cuentas a quienes ejercen el poder. Sin información financiera veraz y auditada, la accountability es imposible. El contador y el auditor son los profesionales que hacen posible que esa información exista y sea confiable.</p>
+  </div>
+
+  <h3 class="subsection-title">La cadena causal: de la ética contable a la democracia</h3>
+  <p>Para entender la importancia de la ética profesional en Contabilidad, sigue esta cadena de causas y efectos:</p>
+
+  <div class="example-box">
+    <div class="ex-label">🔗 Cadena causal: del contador al sistema democrático</div>
+    <p><strong>1.</strong> Un contador firma estados financieros falsos de una empresa pública.<br>
+    <strong>↓</strong><br>
+    <strong>2.</strong> Los recursos públicos son desviados sin que nadie lo detecte.<br>
+    <strong>↓</strong><br>
+    <strong>3.</strong> Hospitales, escuelas o carreteras no se construyen por falta de fondos.<br>
+    <strong>↓</strong><br>
+    <strong>4.</strong> Los ciudadanos más vulnerables pierden acceso a servicios básicos.<br>
+    <strong>↓</strong><br>
+    <strong>5.</strong> La desconfianza en las instituciones crece; la participación democrática se debilita.<br>
+    <strong>↓</strong><br>
+    <strong>6.</strong> La democracia se erosiona desde adentro.</p>
+  </div>
+
+  <p>Este encadenamiento ocurrió en los escándalos más graves del Ecuador reciente. En el caso ISSPOL, por ejemplo, se desviaron más de 200 millones de dólares de los fondos de seguridad de la Policía Nacional. Los controles contables y de auditoría fallaron o fueron manipulados.</p>
+
+  <h3 class="subsection-title">Sofía y la decisión que importa</h3>
+  <div class="example-box">
+    <div class="ex-label">👩‍💼 Caso Sofía</div>
+    <p>Sofía, contadora recién graduada, trabaja en el departamento financiero de un municipio pequeño. Su jefe le pide que registre como "gastos de mantenimiento" ciertos egresos que en realidad son pagos irregulares a empresas fantasma. Le dice: "Es solo un trámite, aquí siempre se ha hecho así". <br><br>
+    Sofía sabe que si firma, estará participando en un acto de corrupción que perjudica directamente a los ciudadanos de ese cantón. También sabe que negarse puede costarle el trabajo. <br><br>
+    <strong>¿Qué está en juego?</strong> No solo el dinero de ese municipio. Está en juego la confianza de los ciudadanos en sus instituciones. Está en juego si la democracia local funciona o es solo una fachada. Y está en juego la integridad de Sofía como profesional y como persona.</p>
+  </div>
+
+  <h3 class="subsection-title">Marcos normativos que protegen al profesional ético</h3>
+  <ul class="vlist">
+    <li><strong>Código de Ética del IFAC</strong> (Federación Internacional de Contadores): establece los principios de integridad, objetividad, competencia, confidencialidad y comportamiento profesional.</li>
+    <li><strong>Ley Orgánica de la Contraloría General del Estado</strong> (Ecuador): el auditor gubernamental tiene la obligación de reportar irregularidades independientemente de presiones políticas.</li>
+    <li><strong>Ley de Empresas</strong> y normativa de la SCVS (Superintendencia de Compañías): establece responsabilidades legales del contador firmante.</li>
+    <li><strong>Constitución del Ecuador, Art. 212:</strong> La Contraloría es el órgano técnico que controla la utilización de los recursos públicos y ejerce el control externo de las entidades del sector público.</li>
+  </ul>
+
+  <div class="key-idea">
+    <div class="ki-label">💡 Idea clave</div>
+    <p>El contador y el auditor no son simples técnicos que procesan números. Son <strong>guardianes de la transparencia institucional</strong>. Cada estado financiero que firman, cada auditoría que realizan, cada irregularidad que reportan o que dejan pasar, tiene consecuencias que trascienden la empresa o entidad donde trabajan: fortalecen o debilitan la democracia en la que todos vivimos.</p>
+  </div>
+</div>
+
+<!-- ===== EJERCICIO INTERACTIVO ===== -->
+<div id="ejercicio" class="tab-content">
+  <h2 class="section-title">⚙️ Ejercicio Interactivo: Clasificar y relacionar</h2>
+  <p>Responde todas las preguntas y luego presiona <strong>"Verificar respuestas"</strong>. Solo entonces verás la retroalimentación y tu calificación.</p>
+
+  <!-- E1 -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-ejercicio">Clasificar</span><span class="q-text">Pregunta 1</span></div>
+    <p>La democracia ateniense clásica excluía de la participación política a:</p>
+    <div class="options">
+      <label><input type="radio" name="ei1" value="a"> Mujeres, esclavos y extranjeros (metecos)</label>
+      <label><input type="radio" name="ei1" value="b"> Solo a los extranjeros</label>
+      <label><input type="radio" name="ei1" value="c"> Solo a los esclavos</label>
+      <label><input type="radio" name="ei1" value="d"> A nadie; era totalmente incluyente</label>
+    </div>
+    <div id="fb-ei1" class="feedback-item"></div>
+  </div>
+
+  <!-- E2 -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-ejercicio">Relacionar</span><span class="q-text">Pregunta 2</span></div>
+    <p>El mecanismo de la <strong>"silla vacía"</strong> en Ecuador corresponde al tipo de democracia:</p>
+    <div class="options">
+      <label><input type="radio" name="ei2" value="a"> Participativa</label>
+      <label><input type="radio" name="ei2" value="b"> Representativa pura</label>
+      <label><input type="radio" name="ei2" value="c"> Monárquica constitucional</label>
+      <label><input type="radio" name="ei2" value="d"> Tecnocrática</label>
+    </div>
+    <div id="fb-ei2" class="feedback-item"></div>
+  </div>
+
+  <!-- E3 -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-ejercicio">Identificar</span><span class="q-text">Pregunta 3</span></div>
+    <p>Amartya Sen argumenta que la democracia no puede funcionar plenamente sin:</p>
+    <div class="options">
+      <label><input type="radio" name="ei3" value="a"> Libertades reales: salud, educación y seguridad económica para todos</label>
+      <label><input type="radio" name="ei3" value="b"> Un partido político único y fuerte</label>
+      <label><input type="radio" name="ei3" value="c"> La eliminación de la propiedad privada</label>
+      <label><input type="radio" name="ei3" value="d"> Líderes carismáticos con visión de largo plazo</label>
+    </div>
+    <div id="fb-ei3" class="feedback-item"></div>
+  </div>
+
+  <!-- E4 -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-ejercicio">Verdadero / Falso</span><span class="q-text">Pregunta 4</span></div>
+    <p>La Constitución ecuatoriana de 2008 reconoce a la naturaleza (Pachamama) como sujeto de derechos. ¿Es esto correcto?</p>
+    <div class="options">
+      <label><input type="radio" name="ei4" value="a"> Verdadero — Ecuador fue el primer país del mundo en hacerlo</label>
+      <label><input type="radio" name="ei4" value="b"> Falso — la naturaleza solo recibe protección como recurso económico</label>
+      <label><input type="radio" name="ei4" value="c"> Falso — eso fue añadido en 2015 mediante enmienda</label>
+      <label><input type="radio" name="ei4" value="d"> Verdadero, pero también lo hizo Bolivia antes que Ecuador</label>
+    </div>
+    <div id="fb-ei4" class="feedback-item"></div>
+  </div>
+
+  <!-- E5 -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-ejercicio">Identificar error</span><span class="q-text">Pregunta 5</span></div>
+    <p>¿Cuál de las siguientes afirmaciones contiene un error conceptual?</p>
+    <div class="options">
+      <label><input type="radio" name="ei5" value="a"> "La tiranía de la mayoría ocurre cuando el grupo más numeroso impone sus decisiones eliminando los derechos de minorías, lo cual es <em>compatible</em> con los principios democráticos básicos."</label>
+      <label><input type="radio" name="ei5" value="b"> La democracia deliberativa propone que la legitimidad proviene del debate racional e inclusivo, no solo del voto.</label>
+      <label><input type="radio" name="ei5" value="c"> El clientelismo político distorsiona la democracia al convertir el voto en un intercambio de favores materiales.</label>
+      <label><input type="radio" name="ei5" value="d"> El sufragio universal implica que todos los ciudadanos tienen igual peso en las elecciones.</label>
+    </div>
+    <div id="fb-ei5" class="feedback-item"></div>
+  </div>
+
+  <!-- E6 -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-ejercicio">Relacionar</span><span class="q-text">Pregunta 6</span></div>
+    <p>El concepto de <strong>"accountability democrática"</strong> se relaciona directamente con la labor del contador porque:</p>
+    <div class="options">
+      <label><input type="radio" name="ei6" value="a"> La información financiera veraz y auditada es la base que permite a los ciudadanos controlar el uso del poder público</label>
+      <label><input type="radio" name="ei6" value="b"> Los contadores tienen la responsabilidad de organizar las elecciones</label>
+      <label><input type="radio" name="ei6" value="c"> La contabilidad determina quién puede votar según su nivel de ingresos</label>
+      <label><input type="radio" name="ei6" value="d"> La auditoría reemplaza a la justicia electoral en los procesos democráticos</label>
+    </div>
+    <div id="fb-ei6" class="feedback-item"></div>
+  </div>
+
+  <!-- E7 -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-ejercicio">Clasificar</span><span class="q-text">Pregunta 7</span></div>
+    <p>¿A qué tipo de crítica a la democracia corresponde el fenómeno del <em>democratic backsliding</em> (erosión democrática)?</p>
+    <div class="options">
+      <label><input type="radio" name="ei7" value="a"> La democracia puede elegir líderes que desde adentro la desmantelan gradualmente</label>
+      <label><input type="radio" name="ei7" value="b"> La democracia no permite la participación de minorías étnicas</label>
+      <label><input type="radio" name="ei7" value="c"> El sufragio universal genera inflación económica</label>
+      <label><input type="radio" name="ei7" value="d"> La democracia directa es incompatible con economías de mercado</label>
+    </div>
+    <div id="fb-ei7" class="feedback-item"></div>
+  </div>
+
+  <!-- E8 -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-ejercicio">Ordenar</span><span class="q-text">Pregunta 8</span></div>
+    <p>En la "cadena causal" estudiada, ¿qué ocurre <strong>inmediatamente después</strong> de que un contador firma estados financieros falsos de una entidad pública?</p>
+    <div class="options">
+      <label><input type="radio" name="ei8" value="a"> Los recursos públicos son desviados sin que nadie lo detecte inicialmente</label>
+      <label><input type="radio" name="ei8" value="b"> La democracia colapsa de inmediato</label>
+      <label><input type="radio" name="ei8" value="c"> Los ciudadanos dejan de votar</label>
+      <label><input type="radio" name="ei8" value="d"> La Contraloría investiga automáticamente al día siguiente</label>
+    </div>
+    <div id="fb-ei8" class="feedback-item"></div>
+  </div>
+
+  <div style="margin-top:20px;">
+    <button class="btn-verify" onclick="verificarEjercicio()">✅ Verificar respuestas</button>
+    <button class="btn-reset" onclick="reiniciarEjercicio()">🔄 Reiniciar</button>
+  </div>
+
+  <div id="score-ejercicio" class="score-box">
+    <div class="score-emoji" id="ej-emoji"></div>
+    <div class="score-num" id="ej-num"></div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="ej-bar"></div></div>
+    <div class="score-msg" id="ej-msg"></div>
+  </div>
+</div>
+
+<!-- ===== CUESTIONARIO ===== -->
+<div id="cuestionario" class="tab-content">
+  <h2 class="section-title">📝 Cuestionario — 10 Preguntas</h2>
+  <p>Responde las 10 preguntas y presiona <strong>"Verificar respuestas"</strong>. Solo entonces verás los resultados detallados.</p>
+
+  <!-- Q1 -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-teoria">Teórica</span><span class="q-text">1. ¿Qué significa etimológicamente la palabra "democracia"?</span></div>
+    <div class="options">
+      <label><input type="radio" name="qi1" value="a"> Gobierno del pueblo (dêmos = pueblo; kratos = poder)</label>
+      <label><input type="radio" name="qi1" value="b"> Poder de los sabios (demo = saber; cracia = elite)</label>
+      <label><input type="radio" name="qi1" value="c"> Gobierno de las leyes (demos = norma; kratos = aplicación)</label>
+      <label><input type="radio" name="qi1" value="d"> Autoridad del Estado (demo = Estado; cracia = control)</label>
+    </div>
+    <div id="fb-qi1" class="feedback-item"></div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-teoria">Teórica</span><span class="q-text">2. Según Robert Dahl, ¿qué es una "poliarquía"?</span></div>
+    <div class="options">
+      <label><input type="radio" name="qi2" value="a"> Un sistema con elecciones libres, libertad de expresión, pluralismo político y acceso a información alternativa</label>
+      <label><input type="radio" name="qi2" value="b"> Un gobierno dirigido por múltiples partidos sin elecciones periódicas</label>
+      <label><input type="radio" name="qi2" value="c"> La dictadura de un partido mayoritario que respeta la Constitución</label>
+      <label><input type="radio" name="qi2" value="d"> Un sistema donde el ejército comparte el poder con civiles</label>
+    </div>
+    <div id="fb-qi2" class="feedback-item"></div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-teoria">Teórica</span><span class="q-text">3. ¿Cuál fue la primera innovación histórica de la Constitución ecuatoriana de 2008 a nivel mundial?</span></div>
+    <div class="options">
+      <label><input type="radio" name="qi3" value="a"> Reconocer a la naturaleza (Pachamama) como sujeto de derechos</label>
+      <label><input type="radio" name="qi3" value="b"> Establecer el voto obligatorio y universal</label>
+      <label><input type="radio" name="qi3" value="c"> Crear una Asamblea Nacional unicameral</label>
+      <label><input type="radio" name="qi3" value="d"> Eliminar las Fuerzas Armadas del organigrama del Estado</label>
+    </div>
+    <div id="fb-qi3" class="feedback-item"></div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-teoria">Teórica</span><span class="q-text">4. La "ley de hierro de la oligarquía" fue formulada por:</span></div>
+    <div class="options">
+      <label><input type="radio" name="qi4" value="a"> Robert Michels, para describir cómo en toda organización tiende a formarse una élite dirigente que se perpetúa</label>
+      <label><input type="radio" name="qi4" value="b"> John Stuart Mill, para defender los derechos de las minorías frente a la mayoría</label>
+      <label><input type="radio" name="qi4" value="c"> Jean-Jacques Rousseau, para fundamentar la voluntad general del pueblo</label>
+      <label><input type="radio" name="qi4" value="d"> Joseph Schumpeter, para describir la competencia entre élites por el voto popular</label>
+    </div>
+    <div id="fb-qi4" class="feedback-item"></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-teoria">Teórica</span><span class="q-text">5. La democracia participativa se diferencia de la representativa principalmente porque:</span></div>
+    <div class="options">
+      <label><input type="radio" name="qi5" value="a"> Combina la representación con mecanismos adicionales de participación ciudadana directa entre elecciones</label>
+      <label><input type="radio" name="qi5" value="b"> Elimina completamente la figura de los representantes elegidos</label>
+      <label><input type="radio" name="qi5" value="c"> Solo permite votar a ciudadanos con educación universitaria</label>
+      <label><input type="radio" name="qi5" value="d"> Es exclusiva de países con economías socialistas</label>
+    </div>
+    <div id="fb-qi5" class="feedback-item"></div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-teoria">Teórica</span><span class="q-text">6. En Ecuador, ¿en qué artículo constitucional se define al país como Estado "democrático, soberano" y de derechos?</span></div>
+    <div class="options">
+      <label><input type="radio" name="qi6" value="a"> Artículo 1 de la Constitución de 2008</label>
+      <label><input type="radio" name="qi6" value="b"> Artículo 15 de la Constitución de 2008</label>
+      <label><input type="radio" name="qi6" value="c"> Artículo 95 de la Constitución de 2008</label>
+      <label><input type="radio" name="qi6" value="d"> Artículo 212 de la Constitución de 2008</label>
+    </div>
+    <div id="fb-qi6" class="feedback-item"></div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-teoria">Teórica</span><span class="q-text">7. ¿Qué principio establece que ninguna mayoría democrática puede votar para eliminar los derechos fundamentales de una minoría?</span></div>
+    <div class="options">
+      <label><input type="radio" name="qi7" value="a"> Los derechos fundamentales como límites infranqueables al poder de la mayoría</label>
+      <label><input type="radio" name="qi7" value="b"> El principio de soberanía absoluta de la mayoría numérica</label>
+      <label><input type="radio" name="qi7" value="c"> La ley natural de Montesquieu sobre la separación de poderes</label>
+      <label><input type="radio" name="qi7" value="d"> El contrato social rousseauniano que elimina toda minoría disidente</label>
+    </div>
+    <div id="fb-qi7" class="feedback-item"></div>
+  </div>
+
+  <!-- Q8 CASO -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-caso">Análisis de caso</span><span class="q-text">8. Un alcalde de un cantón ecuatoriano distribuye víveres y materiales de construcción a familias pobres en la semana previa a las elecciones, condicionando la ayuda al voto por su candidato. ¿Cómo se denomina esta práctica?</span></div>
+    <div class="options">
+      <label><input type="radio" name="qi8" value="a"> Clientelismo político: convierte el voto en mercancía y distorsiona la democracia aprovechando la vulnerabilidad económica</label>
+      <label><input type="radio" name="qi8" value="b"> Acción afirmativa legítima del gobierno local para reducir la pobreza</label>
+      <label><input type="radio" name="qi8" value="c"> Democracia participativa en su forma más pura, ya que implica beneficios directos al ciudadano</label>
+      <label><input type="radio" name="qi8" value="d"> Política social redistributiva garantizada por la Constitución de 2008</label>
+    </div>
+    <div id="fb-qi8" class="feedback-item"></div>
+  </div>
+
+  <!-- Q9 CASO -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-caso">Análisis de caso</span><span class="q-text">9. Una auditora encuentra irregularidades financieras graves en una empresa pública. Su director le indica que "archive el asunto" porque el directivo involucrado tiene influencias políticas. Si la auditora cede, ¿qué consecuencia democrática tiene su decisión?</span></div>
+    <div class="options">
+      <label><input type="radio" name="qi9" value="a"> Debilita la accountability democrática al impedir que los ciudadanos conozcan el mal uso de los recursos públicos</label>
+      <label><input type="radio" name="qi9" value="b"> Fortalece la estabilidad política al evitar escándalos innecesarios</label>
+      <label><input type="radio" name="qi9" value="c"> No tiene consecuencias democráticas; es un asunto meramente administrativo interno</label>
+      <label><input type="radio" name="qi9" value="d"> Protege la democracia al mantener la gobernabilidad sin turbulencias</label>
+    </div>
+    <div id="fb-qi9" class="feedback-item"></div>
+  </div>
+
+  <!-- Q10 CASO -->
+  <div class="quiz-question">
+    <div class="q-header"><span class="badge badge-caso">Análisis de caso</span><span class="q-text">10. Un líder político gana las elecciones con amplio respaldo popular y, una vez en el poder, comienza a controlar los medios de comunicación, nombrar jueces afines y perseguir a la oposición, argumentando que tiene el "mandato del pueblo". ¿Qué fenómeno describe esto?</span></div>
+    <div class="options">
+      <label><input type="radio" name="qi10" value="a"> Democratic backsliding (erosión democrática): uso de la legitimidad electoral para desmantelar las instituciones democráticas desde adentro</label>
+      <label><input type="radio" name="qi10" value="b"> Democracia deliberativa en su forma más avanzada</label>
+      <label><input type="radio" name="qi10" value="c"> Ejercicio legítimo de la soberanía popular sin límites</label>
+      <label><input type="radio" name="qi10" value="d"> Poliarquía consolidada según los criterios de Robert Dahl</label>
+    </div>
+    <div id="fb-qi10" class="feedback-item"></div>
+  </div>
+
+  <div style="margin-top:20px;">
+    <button class="btn-verify" onclick="verificarCuestionario()">✅ Verificar respuestas</button>
+    <button class="btn-reset" onclick="reiniciarCuestionario()">🔄 Reiniciar</button>
+  </div>
+
+  <div id="score-cuestionario" class="score-box">
+    <div class="score-emoji" id="quiz-emoji"></div>
+    <div class="score-num" id="quiz-num"></div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="quiz-bar"></div></div>
+    <div class="score-msg" id="quiz-msg"></div>
+  </div>
+</div>
+
+<!-- ===== ACTIVIDAD CON IA ===== -->
+<div id="ia" class="tab-content">
+  <h2 class="section-title">🤖 Actividad con Inteligencia Artificial</h2>
+  <p>Esta actividad está diseñada para que uses la IA como <strong>interlocutor crítico</strong>, no como fuente de respuestas que copiarás. El objetivo es desarrollar tu capacidad de analizar, cuestionar y construir argumentos propios.</p>
+
+  <div class="ia-step">
+    <div class="step-label">🎯 Objetivo de la actividad</div>
+    <p>Utilizar la IA para analizar un caso real de erosión democrática en América Latina, compararlo con la situación ecuatoriana y construir tu propio diagnóstico crítico sobre las fortalezas y debilidades de la democracia en Ecuador.</p>
+  </div>
+
+  <div class="ia-step">
+    <div class="step-label">🛠️ Herramienta recomendada</div>
+    <p><strong>Claude en claude.ai</strong> (Anthropic) — completamente gratuito. También puedes usar ChatGPT (chatgpt.com) o Gemini (gemini.google.com). Se recomienda Claude por su capacidad de análisis matizado y sus respuestas contextualizadas.</p>
+  </div>
+
+  <div class="ia-step">
+    <div class="step-label">📋 Paso 1 — Copia este prompt EXACTAMENTE y pégalo en la IA</div>
+    <div class="prompt-box">Actúa como un politólogo especializado en democracia latinoamericana. 
+
+Quiero que analices el concepto de "erosión democrática" (democratic backsliding) con un enfoque específico en América Latina.
+
+Por favor, desarrolla lo siguiente:
+
+1. Define con precisión qué es la erosión democrática y en qué se diferencia de un golpe de Estado tradicional.
+
+2. Presenta UN caso latinoamericano concreto (diferente a Ecuador) donde haya ocurrido erosión democrática en los últimos 15 años. Identifica: a) cómo llegó el líder al poder, b) qué acciones tomó para debilitar la democracia, c) qué instituciones fueron atacadas primero.
+
+3. Identifica 3 señales de alerta temprana que los ciudadanos deberían reconocer para detectar la erosión democrática antes de que sea irreversible.
+
+4. Finalmente, desde la perspectiva de un profesional contable o auditor, ¿qué papel específico puede jugar ese profesional para resistir o facilitar la erosión democrática en su ámbito laboral?
+
+Sé analítico, usa evidencia concreta y evita generalizaciones.</div>
+  </div>
+
+  <div class="ia-step">
+    <div class="step-label">📋 Paso 2 — Qué hacer con la respuesta de la IA</div>
+    <p>Una vez que tengas la respuesta, NO la copies directamente. En cambio:</p>
+    <ol style="margin-left:20px; line-height:2;">
+      <li><strong>Lee críticamente:</strong> ¿El caso que presentó la IA es realmente un caso de erosión democrática o podría interpretarse de otra manera? ¿Hay otro punto de vista?</li>
+      <li><strong>Conéctalo con Ecuador:</strong> Compara las "señales de alerta" que identificó la IA con lo que has visto o escuchado sobre la situación política en Ecuador. ¿Cuántas de esas señales están presentes aquí?</li>
+      <li><strong>Evalúa tu rol profesional:</strong> De las acciones que mencionó la IA para el profesional contable, ¿cuáles te parecen más difíciles de ejecutar en la realidad ecuatoriana? ¿Por qué?</li>
+      <li><strong>Escribe tu análisis:</strong> Redacta un texto de 300-400 palabras que integre las ideas de la IA con tu propia perspectiva, citando el caso latinoamericano como referencia comparativa.</li>
+    </ol>
+  </div>
+
+  <div class="ia-step">
+    <div class="step-label">📋 Paso 3 — Pregunta de seguimiento a la IA (opcional avanzado)</div>
+    <div class="prompt-box">Basándote en tu análisis anterior, responde: ¿Puede un profesional contable ser considerado cómplice de la erosión democrática si, por presión de sus superiores, certifica estados financieros que ocultan irregularidades en entidades públicas? Justifica tu respuesta desde una perspectiva ética y desde las consecuencias institucionales.</div>
+  </div>
+
+  <div class="ia-step">
+    <div class="step-label">✅ Criterios de evaluación — ¿Qué demuestra pensamiento crítico?</div>
+    <table>
+      <thead><tr><th>Pensamiento crítico ✅</th><th>Copia simple ❌</th></tr></thead>
+      <tbody>
+        <tr><td>Cuestiona o matiza lo que dijo la IA</td><td>Reproduce textualmente la respuesta</td></tr>
+        <tr><td>Conecta el caso con la realidad ecuatoriana con ejemplos</td><td>No hace ninguna conexión local</td></tr>
+        <tr><td>Expresa una postura personal argumentada</td><td>No hay voz propia, solo la IA habla</td></tr>
+        <tr><td>Identifica limitaciones o sesgos en la respuesta de la IA</td><td>Acepta todo lo que dijo la IA sin cuestionarlo</td></tr>
+        <tr><td>Conecta el tema democrático con su futuro rol profesional</td><td>Trata el tema como ajeno a la carrera</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== REFLEXIÓN ===== -->
+<div id="reflexion" class="tab-content">
+  <h2 class="section-title">💭 Preguntas Reflexivas: La democracia en tu vida cotidiana</h2>
+  <p style="color:#555; font-style:italic; margin-bottom:20px;">No hay respuestas correctas ni incorrectas. Estas preguntas buscan conectar lo que has aprendido con lo que vives cada día. Tómate el tiempo que necesites para pensarlas con honestidad.</p>
+
+  <div class="reflexion-card">
+    <div class="r-num">Reflexión 1 · Democracia y decisiones grupales</div>
+    <div class="r-text">¿Recuerdas alguna vez en que un grupo del que formas parte (familia, amigos, compañeros) tomó una decisión "en mayoría" que te pareció injusta o incorrecta? ¿Cómo te sentiste? ¿Acataste la decisión o la cuestionaste?</div>
+    <div class="r-hint">Pista: ¿Qué te dice esa experiencia sobre la diferencia entre "ganar el voto" y "tener razón"? ¿La mayoría siempre tiene la razón?</div>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="r-num">Reflexión 2 · Tu voz y tu participación</div>
+    <div class="r-text">¿Alguna vez has sentido que tu opinión no importa, que "con lo que yo diga no va a cambiar nada"? ¿En qué momento de tu vida has tenido ese pensamiento más fuertemente?</div>
+    <div class="r-hint">Reflexiona: Esa sensación de impotencia política que quizás sentiste, ¿en qué se parece a lo que millones de ciudadanos sienten hacia la democracia? ¿Qué pasaría si todos pensaran lo mismo?</div>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="r-num">Reflexión 3 · La presión de "aquí siempre se ha hecho así"</div>
+    <div class="r-text">¿Has estado alguna vez en una situación donde alguien —un familiar, un jefe, un amigo— te pidió hacer algo que sabías que no estaba bien, argumentando que "así son las cosas" o "así lo hacen todos"? ¿Qué hiciste?</div>
+    <div class="r-hint">Conecta: Sofía, la contadora de nuestro caso, enfrentó exactamente esa presión. ¿Qué dice de nuestra integridad cómo respondemos cuando la presión social empuja hacia el camino incorrecto?</div>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="r-num">Reflexión 4 · Información y manipulación</div>
+    <div class="r-text">¿Cuántas veces en la última semana compartiste en redes sociales una noticia sin verificar si era verdadera? ¿O creíste algo sobre un político, una empresa o una persona solo porque lo viste en un estado de WhatsApp?</div>
+    <div class="r-hint">La democracia muere en silencio cuando los ciudadanos toman decisiones basadas en mentiras. ¿Qué cambiarías en tus hábitos digitales para ser un ciudadano más informado?</div>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="r-num">Reflexión 5 · Tu autoestima y el poder</div>
+    <div class="r-text">Cuando una persona tiene una autoestima sana, es más difícil que acepte ser manipulada o que ceda ante presiones injustas. ¿En qué áreas de tu vida sientes que actúas desde un lugar de seguridad propia, y en cuáles cedes demasiado fácilmente a lo que otros esperan de ti?</div>
+    <div class="r-hint">Un ciudadano que no se valora a sí mismo tampoco valora su voto. La democracia sana comienza con ciudadanos con autoestima sana. ¿Cómo construyes eso en tu día a día?</div>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="r-num">Reflexión 6 · La emoción detrás del voto</div>
+    <div class="r-text">La programación neurolingüística (PNL) nos enseña que los seres humanos tomamos la mayoría de nuestras decisiones primero desde las emociones y luego las racionalizamos. ¿Qué emoción crees que guía más los votos en Ecuador: el miedo, la esperanza, la rabia, la lealtad tribal? ¿Y a ti, qué emoción te guiaría más?</div>
+    <div class="r-hint">Ser consciente de nuestras emociones al decidir es el primer paso para votar (y actuar profesionalmente) con más lucidez y menos manipulación.</div>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="r-num">Reflexión 7 · El precio de la indiferencia</div>
+    <div class="r-text">"A mí la política no me interesa" es una frase que escuchamos con frecuencia. Pero piensa: ¿el precio de los alimentos te interesa? ¿La seguridad de tu barrio te interesa? ¿El costo de tus estudios te interesa? Todo eso es política. ¿Puedes identificar una decisión política del último año que haya afectado directamente tu vida cotidiana?</div>
+    <div class="r-hint">La indiferencia hacia la política es un lujo que solo pueden permitirse quienes no son afectados por sus consecuencias. Para quienes sí son afectados —es decir, para todos— la indiferencia es una forma de rendición.</div>
+  </div>
+
+  <div class="key-idea" style="margin-top:24px;">
+    <div class="ki-label">🌱 Invitación final</div>
+    <p>La democracia no es un concepto lejano que vive en los libros de texto. Vive —o muere— en las decisiones que tú tomas cada día: en cómo tratas la información que recibes, en si defiendes lo correcto cuando hay presión para no hacerlo, en si crees que tu voz importa. Cada semana de este curso descubriremos que la materia que estudiamos está más viva en tu cotidianidad de lo que imaginas.</p>
+  </div>
+</div>
+
+<!-- ===== BIBLIOGRAFÍA ===== -->
+<div id="biblio" class="tab-content">
+  <h2 class="section-title">📚 Bibliografía — APA 7.ª edición</h2>
+
+  <div class="bib-card">
+    <div class="bib-authors">Dahl, R. A.</div>
+    <div class="bib-year">(1998).</div>
+    <span class="bib-title">On democracy.</span>
+    <span> Yale University Press.</span>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Sen, A.</div>
+    <div class="bib-year">(1999).</div>
+    <span class="bib-title">Development as freedom.</span>
+    <span> Oxford University Press.</span>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Schumpeter, J. A.</div>
+    <div class="bib-year">(1942).</div>
+    <span class="bib-title">Capitalism, socialism and democracy.</span>
+    <span> Harper & Brothers.</span>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Levitsky, S., & Ziblatt, D.</div>
+    <div class="bib-year">(2018).</div>
+    <span class="bib-title">How democracies die.</span>
+    <span> Crown Publishing Group.</span>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Asamblea Nacional Constituyente del Ecuador.</div>
+    <div class="bib-year">(2008).</div>
+    <span class="bib-title">Constitución de la República del Ecuador.</span>
+    <span> Registro Oficial No. 449. Gobierno del Ecuador.</span>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Transparency International.</div>
+    <div class="bib-year">(2024).</div>
+    <span class="bib-title">Corruption Perceptions Index 2023.</span>
+    <span> Transparency International. https://www.transparency.org/en/cpi/2023</span>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Latinobarómetro.</div>
+    <div class="bib-year">(2023).</div>
+    <span class="bib-title">Informe Latinobarómetro 2023: La recesión democrática de América Latina.</span>
+    <span> Corporación Latinobarómetro. https://www.latinobarometro.org</span>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Habermas, J.</div>
+    <div class="bib-year">(1996).</div>
+    <span class="bib-title">Between facts and norms: Contributions to a discourse theory of law and democracy.</span>
+    <span> MIT Press.</span>
+  </div>
+
+  <div class="bib-note">
+    📌 <strong>Nota importante:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos.
+  </div>
+</div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+  /* ===== NAVEGACIÓN DE PESTAÑAS ===== */
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const btns = document.querySelectorAll('.tab-btn');
+    const tabMap = {
+      'repaso': 0, 't1': 1, 't2': 2, 't3': 3, 't4': 4, 't5': 5,
+      'ejercicio': 6, 'cuestionario': 7, 'ia': 8, 'reflexion': 9, 'biblio': 10
+    };
+    btns[tabMap[id]].classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  /* ===== EJERCICIO INTERACTIVO ===== */
+  const ejercicioCorrects = {
+    ei1: 'a', ei2: 'a', ei3: 'a', ei4: 'a',
+    ei5: 'a', ei6: 'a', ei7: 'a', ei8: 'a'
+  };
+  const ejercicioFeedbacks = {
+    ei1: {
+      correct: '✅ Correcto. La democracia ateniense excluía a mujeres, esclavos y extranjeros (metecos). Solo participaban hombres libres, nacidos en Atenas, mayores de edad. Esto representaba apenas el 15% de la población total.',
+      incorrect: '❌ Incorrecto. En Atenas se excluía a mujeres, esclavos y metecos (extranjeros residentes). El concepto de "pueblo" era profundamente limitado desde el inicio de la democracia occidental.'
+    },
+    ei2: {
+      correct: '✅ Correcto. La "silla vacía" es un mecanismo de democracia participativa establecido en Ecuador, que permite a un ciudadano ocupar el asiento de un concejal y participar con voz y voto en sesiones de gobiernos locales.',
+      incorrect: '❌ Incorrecto. La "silla vacía" es un mecanismo de democracia participativa, no de democracia representativa pura. Permite la intervención directa del ciudadano en sesiones del gobierno local.'
+    },
+    ei3: {
+      correct: '✅ Correcto. Amartya Sen argumenta en "Development as Freedom" (1999) que la democracia política es insuficiente si no va acompañada de libertades reales: salud, educación, seguridad económica. Sin estas, el voto no puede ejercerse libremente.',
+      incorrect: '❌ Incorrecto. Sen señala que sin libertades reales (salud, educación, seguridad económica), la libertad política formal es vacía. Un ciudadano en extrema pobreza no puede votar con verdadera libertad.'
+    },
+    ei4: {
+      correct: '✅ Correcto. La Constitución ecuatoriana de 2008 fue la primera en el mundo en reconocer a la naturaleza (Pachamama) como sujeto de derechos, en sus artículos 71-74. Bolivia reconoció derechos similares en 2009, después que Ecuador.',
+      incorrect: '❌ Incorrecto. La afirmación es verdadera. Ecuador fue efectivamente el primer país del mundo en reconocer a la naturaleza como sujeto de derechos en su Constitución de 2008. Bolivia lo hizo después.'
+    },
+    ei5: {
+      correct: '✅ Correcto identificaste el error. La afirmación dice que la tiranía de la mayoría es "compatible con los principios democráticos básicos", lo cual es falso. La tiranía de la mayoría es precisamente una de las principales amenazas y fallas de la democracia, no una característica compatible con ella.',
+      incorrect: '❌ Incorrecto. La opción A contiene el error: afirma que la tiranía de la mayoría es "compatible con los principios democráticos básicos". Esto es falso: la tiranía de la mayoría es una disfunción democrática que debe ser contrarrestada con derechos fundamentales inviolables.'
+    },
+    ei6: {
+      correct: '✅ Correcto. La accountability democrática (rendición de cuentas) requiere información financiera veraz. Los ciudadanos solo pueden controlar el uso del poder público si tienen acceso a estados financieros auditados y confiables. Esa información la producen y certifican los contadores y auditores.',
+      incorrect: '❌ Incorrecto. La accountability democrática se basa en la transparencia de la información pública. Los contadores y auditores son quienes producen y certifican esa información. Sin su trabajo íntegro, los ciudadanos no pueden controlar al gobierno.'
+    },
+    ei7: {
+      correct: '✅ Correcto. El democratic backsliding (erosión democrática) describe precisamente el proceso por el cual líderes elegidos democráticamente desmantelan gradualmente las instituciones y libertades democráticas desde adentro del sistema, con aparente legitimidad popular.',
+      incorrect: '❌ Incorrecto. El democratic backsliding se refiere específicamente al uso del poder legítimamente obtenido para erosionar gradualmente las instituciones democráticas: independencia judicial, libertad de prensa, pluralismo político.'
+    },
+    ei8: {
+      correct: '✅ Correcto. En la cadena causal estudiada, el primer efecto inmediato de firmar estados financieros falsos es que los recursos públicos son desviados sin detección inicial. Las consecuencias mayores (hospitales sin construir, desconfianza ciudadana, erosión democrática) son efectos posteriores en la cadena.',
+      incorrect: '❌ Incorrecto. Según la cadena causal del material, el primer efecto es que los recursos son desviados sin que nadie lo detecte inicialmente. El colapso democrático y la investigación de la Contraloría son consecuencias posteriores, no inmediatas.'
+    }
+  };
+
+  function verificarEjercicio() {
+    const names = ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8'];
+    for (let n of names) {
+      if (!document.querySelector(`input[name="${n}"]:checked`)) {
+        alert('⚠️ Por favor responde todas las preguntas antes de verificar.');
+        return;
+      }
+    }
+    let score = 0;
+    for (let n of names) {
+      const sel = document.querySelector(`input[name="${n}"]:checked`).value;
+      const fb = document.getElementById(`fb-${n}`);
+      if (sel === ejercicioCorrects[n]) {
+        fb.className = 'feedback-item correct';
+        fb.innerHTML = ejercicioFeedbacks[n].correct;
+        score++;
+      } else {
+        fb.className = 'feedback-item incorrect';
+        fb.innerHTML = ejercicioFeedbacks[n].incorrect;
+      }
+    }
+    document.querySelectorAll('#ejercicio input[type=radio]').forEach(r => r.disabled = true);
+    const pct = Math.round((score / 8) * 100);
+    const box = document.getElementById('score-ejercicio');
+    box.style.display = 'block';
+    document.getElementById('ej-emoji').textContent = pct === 100 ? '🏆' : pct >= 80 ? '🎯' : pct >= 60 ? '📘' : pct >= 40 ? '⚠️' : '📖';
+    document.getElementById('ej-num').textContent = `${score} / 8 — ${pct}%`;
+    const bar = document.getElementById('ej-bar');
+    bar.style.width = '0%';
+    bar.style.background = pct >= 80 ? '#28a745' : pct >= 60 ? '#ffc107' : '#dc3545';
+    setTimeout(() => { bar.style.width = pct + '%'; }, 100);
+    document.getElementById('ej-msg').textContent =
+      pct === 100 ? '¡Perfecto! Dominas la conceptualización crítica de la democracia.' :
+      pct >= 80 ? '¡Muy bien! Tienes una sólida comprensión del tema.' :
+      pct >= 60 ? 'Buen esfuerzo. Repasa los conceptos donde tuviste errores.' :
+      pct >= 40 ? 'Sigue intentándolo. Revisa el material y vuelve a intentar.' :
+      'Te recomendamos releer las pestañas de contenido antes de intentar de nuevo.';
+    box.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function reiniciarEjercicio() {
+    document.querySelectorAll('#ejercicio input[type=radio]').forEach(r => { r.checked = false; r.disabled = false; });
+    document.querySelectorAll('#ejercicio .feedback-item').forEach(f => { f.className = 'feedback-item'; f.innerHTML = ''; });
+    document.getElementById('score-ejercicio').style.display = 'none';
+    document.getElementById('ej-bar').style.width = '0%';
+  }
+
+  /* ===== CUESTIONARIO ===== */
+  const quizCorrects = {
+    qi1: 'a', qi2: 'a', qi3: 'a', qi4: 'a', qi5: 'a',
+    qi6: 'a', qi7: 'a', qi8: 'a', qi9: 'a', qi10: 'a'
+  };
+  const quizFeedbacks = {
+    qi1: {
+      correct: '✅ Correcto. "Democracia" viene del griego dêmos (pueblo) y kratos (poder/gobierno). Etimológicamente significa "el gobierno del pueblo", aunque su aplicación práctica ha sido debatida y reinterpretada durante más de 2 500 años.',
+      incorrect: '❌ Incorrecto. La etimología correcta es dêmos = pueblo y kratos = poder. "Democracia" significa literalmente "el gobierno del pueblo", aunque históricamente la definición de "pueblo" ha variado enormemente.'
+    },
+    qi2: {
+      correct: '✅ Correcto. Robert Dahl usó el término "poliarquía" para describir los sistemas democráticos reales, caracterizados por: elecciones libres y competitivas, sufragio universal, libertad de expresión, información alternativa y libertad de asociación.',
+      incorrect: '❌ Incorrecto. Para Dahl, una poliarquía es un sistema con elecciones libres, libertad de expresión, pluralismo e información alternativa. No se trata de gobierno multipartidista sin elecciones ni de dictadura mayoritaria.'
+    },
+    qi3: {
+      correct: '✅ Correcto. La Constitución ecuatoriana de 2008 fue la primera en el mundo en reconocer a la naturaleza (Pachamama) como sujeto de derechos (Arts. 71-74), permitiendo que cualquier persona o comunidad pueda exigir ante el Estado el respeto de sus derechos.',
+      incorrect: '❌ Incorrecto. La innovación histórica a nivel mundial fue el reconocimiento de la naturaleza (Pachamama) como sujeto de derechos. Esto fue una novedad jurídica sin precedentes en ninguna Constitución del mundo hasta ese momento.'
+    },
+    qi4: {
+      correct: '✅ Correcto. Robert Michels formuló la "ley de hierro de la oligarquía" en su obra "Political Parties" (1911), argumentando que en toda organización —incluidos los partidos democráticos— se forma inevitablemente una élite que se perpetúa en el poder y se distancia de las bases.',
+      incorrect: '❌ Incorrecto. La "ley de hierro de la oligarquía" fue formulada por Robert Michels, no por Mill, Rousseau ni Schumpeter. Michels analizó cómo las organizaciones democráticas tienden a generar élites que se perpetúan internamente.'
+    },
+    qi5: {
+      correct: '✅ Correcto. La democracia participativa se distingue por combinar la representación con mecanismos adicionales de participación directa entre elecciones: referéndum, revocatoria del mandato, silla vacía, presupuesto participativo, iniciativa legislativa ciudadana.',
+      incorrect: '❌ Incorrecto. La democracia participativa no elimina la representación, sino que la complementa con mecanismos directos adicionales. Ecuador adoptó este modelo híbrido en su Constitución de 2008 (Art. 95).'
+    },
+    qi6: {
+      correct: '✅ Correcto. El Art. 1 de la Constitución de 2008 establece que Ecuador es un "Estado constitucional de derechos y justicia, social, democrático, soberano, independiente, unitario, intercultural, plurinacional y laico".',
+      incorrect: '❌ Incorrecto. La definición del Estado ecuatoriano como democrático y de derechos está en el Art. 1. El Art. 95 trata la participación ciudadana; el Art. 212 se refiere a la Contraloría General del Estado.'
+    },
+    qi7: {
+      correct: '✅ Correcto. El principio de los derechos fundamentales como límites infranqueables establece que ciertos derechos —especialmente de minorías— no pueden ser eliminados por ninguna mayoría democrática. Es la respuesta constitucional a la "tiranía de la mayoría" advertida por John Stuart Mill.',
+      incorrect: '❌ Incorrecto. El principio que limita el poder de la mayoría sobre los derechos de las minorías es el de los derechos fundamentales como límites infranqueables. No es la soberanía absoluta de la mayoría, que es precisamente el problema que este principio busca corregir.'
+    },
+    qi8: {
+      correct: '✅ Correcto. Esta práctica se denomina clientelismo político: el intercambio de bienes materiales o favores por votos. Distorsiona la democracia porque convierte el sufragio —un derecho ciudadano— en una mercancía, y funciona especialmente donde la pobreza hace vulnerables a los ciudadanos.',
+      incorrect: '❌ Incorrecto. Esta práctica es clientelismo político: distribución condicionada de bienes a cambio de votos. No es acción afirmativa (que no es condicional), ni democracia participativa (que garantiza derechos sin contraprestación), ni política redistributiva legítima.'
+    },
+    qi9: {
+      correct: '✅ Correcto. Si la auditora cede, debilita la accountability democrática: los ciudadanos no podrán conocer el mal uso de los recursos públicos y, por tanto, no podrán exigir responsabilidad a quienes gobiernan. Esto erosiona uno de los pilares fundamentales de la democracia: la rendición de cuentas.',
+      incorrect: '❌ Incorrecto. La decisión de la auditora de ceder tiene consecuencias democráticas directas: destruye la accountability. Los escándalos de corrupción que no son detectados y reportados impiden que los ciudadanos ejerzan control sobre el poder público.'
+    },
+    qi10: {
+      correct: '✅ Correcto. Esto describe el democratic backsliding (erosión democrática): un proceso gradual en que líderes elegidos democráticamente desmantelan las instituciones desde adentro, atacando primero los medios de comunicación, la justicia independiente y la oposición política.',
+      incorrect: '❌ Incorrecto. Este fenómeno es el democratic backsliding o erosión democrática. No es democracia deliberativa (que busca ampliar el debate), ni poliarquía consolidada (que implica instituciones fuertes), ni ejercicio legítimo de soberanía (que respeta los derechos de todos).'
+    }
+  };
+
+  function verificarCuestionario() {
+    const names = ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'];
+    for (let n of names) {
+      if (!document.querySelector(`input[name="${n}"]:checked`)) {
+        alert('⚠️ Por favor responde todas las preguntas antes de verificar.');
+        return;
+      }
+    }
+    let score = 0;
+    for (let n of names) {
+      const sel = document.querySelector(`input[name="${n}"]:checked`).value;
+      const fb = document.getElementById(`fb-${n}`);
+      if (sel === quizCorrects[n]) {
+        fb.className = 'feedback-item correct';
+        fb.innerHTML = quizFeedbacks[n].correct;
+        score++;
+      } else {
+        fb.className = 'feedback-item incorrect';
+        fb.innerHTML = quizFeedbacks[n].incorrect;
+      }
+    }
+    document.querySelectorAll('#cuestionario input[type=radio]').forEach(r => r.disabled = true);
+    const pct = Math.round((score / 10) * 100);
+    const box = document.getElementById('score-cuestionario');
+    box.style.display = 'block';
+    document.getElementById('quiz-emoji').textContent = pct === 100 ? '🏆' : pct >= 80 ? '🎯' : pct >= 60 ? '📘' : pct >= 40 ? '⚠️' : '📖';
+    document.getElementById('quiz-num').textContent = `${score} / 10 — ${pct}%`;
+    const bar = document.getElementById('quiz-bar');
+    bar.style.width = '0%';
+    bar.style.background = pct >= 80 ? '#28a745' : pct >= 60 ? '#ffc107' : '#dc3545';
+    setTimeout(() => { bar.style.width = pct + '%'; }, 100);
+    document.getElementById('quiz-msg').textContent =
+      pct === 100 ? '🏆 ¡Excelente! Dominio total del tema.' :
+      pct >= 80 ? '🎯 ¡Muy bien! Comprensión sólida de la democracia.' :
+      pct >= 60 ? '📘 Bien. Revisa los conceptos donde tuviste errores.' :
+      pct >= 40 ? '⚠️ Necesitas reforzar el estudio. Vuelve al contenido.' :
+      '📖 Te recomendamos releer todas las pestañas antes de intentar de nuevo.';
+    box.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function reiniciarCuestionario() {
+    document.querySelectorAll('#cuestionario input[type=radio]').forEach(r => { r.checked = false; r.disabled = false; });
+    document.querySelectorAll('#cuestionario .feedback-item').forEach(f => { f.className = 'feedback-item'; f.innerHTML = ''; });
+    document.getElementById('score-cuestionario').style.display = 'none';
+    document.getElementById('quiz-bar').style.width = '0%';
+  }
+</script>
+</body>
+</html>
